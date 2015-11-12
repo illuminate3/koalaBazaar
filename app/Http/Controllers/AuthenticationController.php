@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Vinkla\Instagram\Facades\Instagram;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-
+use App\CustomClasses\InstagramAPI;
 class AuthenticationController extends Controller
 {
     public function showRegister(){
@@ -19,7 +18,8 @@ class AuthenticationController extends Controller
 
     public function registersupplierviainstagram(){
         Session::put('instagram_operation',['operation'=>'register','user_type'=>'supplier']);
-        return Redirect::to(Instagram::getLoginUrl());
+        $instagram=new InstagramAPI();
+        return Redirect::to($instagram->getLoginUrl());
     }
 
     public function showSupplierRegister(){
@@ -31,24 +31,29 @@ class AuthenticationController extends Controller
     }
 
     public function instagramCallback(Request $request){
+        if($request->has('hub.mode')){
+            if($request->get('hub.mode')=='subscribe'){
+                return $request->get('hub.challenge');
+            }
+        }
         if(Session::get('instagram_operation')){
             $instagramOperation=Session::pull('instagram_operation');
-           if($instagramOperation['operation']=='register'){
-               if($instagramOperation['user_type']=='supplier'){
-                   if (Session::has('user_instagram_info'))
-                   {
-                       Session::forget('user_instagram_info');
-                   }
+            if($instagramOperation['operation']=='register'){
+                if($instagramOperation['user_type']=='supplier'){
+                    if (Session::has('user_instagram_info'))
+                    {
+                        Session::forget('user_instagram_info');
+                    }
+                    if($request->get('code')){
+                        $code = $request->get('code');
+                        $instagram=new InstagramAPI();
+                        $data = $instagram->getOAuthToken($code);
+                        Session::put('user_instagram_info',$data);
+                        return Redirect::action('AuthenticationController@showSupplierRegister');
+                    }
+                }
 
-                   if($request->get('code')){
-                       $code = $request->get('code');
-                       $data = Instagram::getOAuthToken($code);
-                       Session::put('user_instagram_info',$data);
-                       return Redirect::action('AuthenticationController@showSupplierRegister');
-                   }
-               }
-
-           }
+            }
         }
 
     }

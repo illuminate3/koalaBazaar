@@ -13,6 +13,7 @@
 use App\Supplier;
 use App\User;
 use App\InstagramAccount;
+use App\CustomClasses\InstagramAPI;
 Route::get('/', function () {
     return view('user.index');
 });
@@ -29,10 +30,20 @@ Route::get('/customerRegister', function () {
     return view('dashboard.customerRegister');
 });
 
+Route::get('getsubscriptions',function(){
+    $faruk = new InstagramAPI();
+    return $faruk->getSubscriptions()->meta->code;
+});
+
+Route::get('setsubscriptions',function(){
+    $faruk = new InstagramAPI();
+    return $faruk->setUserMediaSubscription();
+});
 
 Route::get('register','AuthenticationController@showRegister');
 Route::group(['prefix' => 'register'], function()
 {
+
     Route::get('/','AuthenticationController@showRegister');
 
     Route::get('supplierviainstagram', 'AuthenticationController@registersupplierviainstagram');
