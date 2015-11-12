@@ -32,12 +32,13 @@ Route::get('/customerRegister', function () {
 
 Route::get('getsubscriptions',function(){
     $faruk = new InstagramAPI();
-    return $faruk->getSubscriptions()->meta->code;
+    return print_r($faruk->getSubscriptions());
 });
 
 Route::get('setsubscriptions',function(){
     $faruk = new InstagramAPI();
-    return $faruk->setUserMediaSubscription();
+    $faruk->setUserMediaSubscription();
+    return null;
 });
 
 Route::get('register','AuthenticationController@showRegister');
