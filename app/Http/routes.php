@@ -37,8 +37,7 @@ Route::get('getsubscriptions',function(){
 
 Route::get('setsubscriptions',function(){
     $faruk = new InstagramAPI();
-    $faruk->setUserMediaSubscription();
-    return null;
+    return print_r($faruk->setUserMediaSubscription());
 });
 
 Route::get('register','AuthenticationController@showRegister');
