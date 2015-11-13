@@ -38,8 +38,8 @@ class AuthenticationController extends Controller
             }
         }
 
-        if($request->has('omer.faruk')){
-            echo $request->get('omer.faruk');
+        if($request->has('omer_faruk')){
+            echo $request->get('omer_faruk');
             return null;
         }
         if(Session::get('instagram_operation')){
