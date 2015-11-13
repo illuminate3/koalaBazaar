@@ -75,7 +75,7 @@ class InstagramAPI {
     private $defaultConfig=array(
         'apiKey' => '32dbb99b438945caabe6b0a8636b8acc',
         'apiSecret' => '911fe9399a2441e5a5a37a56ffdfeecc',
-        'apiCallback' => 'http://www.koalabazaar.com/instagramcallback' // must point to success.php
+        'apiCallback' => 'http://www.koalabazaar.com/instagramcallback/' // must point to success.php
     );
     /**
      * Default constructor.
