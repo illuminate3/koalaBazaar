@@ -33,14 +33,10 @@ class AuthenticationController extends Controller
     public function instagramCallback(Request $request){
         if($request->has('hub_mode')){
             if($request->get('hub_mode')=='subscribe'){
-                return $request->get('hub_challenge');
+                echo $request->get('hub_challenge');
+                return null;
 
             }
-        }
-
-        if($request->has('omer_faruk')){
-            echo $request->get('omer_faruk');
-            return null;
         }
         if(Session::get('instagram_operation')){
             $instagramOperation=Session::pull('instagram_operation');
