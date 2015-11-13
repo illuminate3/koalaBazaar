@@ -37,6 +37,11 @@ class AuthenticationController extends Controller
 
             }
         }
+
+        if($request->has('omer.faruk')){
+            echo $request->get('omer.faruk');
+            return null;
+        }
         if(Session::get('instagram_operation')){
             $instagramOperation=Session::pull('instagram_operation');
             if($instagramOperation['operation']=='register'){
