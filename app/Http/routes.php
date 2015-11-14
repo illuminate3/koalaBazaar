@@ -31,6 +31,12 @@ Route::get('/panel', function () {
     return view('dashboard.testWelcome');
 });
 
+Route::get('/default', function () {
+    return view('dashboard.default');
+});
+
+
+
 Route::get('/supplierProfileEdit', function () {
     return view('dashboard.supplierProfileEdit');
 });

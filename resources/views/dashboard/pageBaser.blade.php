@@ -21,7 +21,7 @@
         <!-- END RESPONSIVE MENU TOGGLER -->
         <!-- BEGIN PAGE ACTIONS -->
         <!-- DOC: Remove "hide" class to enable the page header actions -->
-        <div class="page-actions hide">
+        <div class="page-actions">
             <div class="btn-group"></div>
             <div class="btn-group"></div>
         </div>
@@ -249,6 +249,7 @@
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
+
                 @yield('page_level_portlets')
 
             </div>
