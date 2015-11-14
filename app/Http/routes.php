@@ -14,12 +14,9 @@ use App\Supplier;
 use App\User;
 use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
+
 Route::get('/', function () {
     return view('user.index');
-});
-
-Route::get('/panel', function () {
-    return view('dashboard.main');
 });
 
 Route::get('/supplierRegister', function () {
@@ -30,25 +27,33 @@ Route::get('/customerRegister', function () {
     return view('dashboard.customerRegister');
 });
 
-Route::get('getsubscriptions',function(){
+Route::get('/panel', function () {
+    return view('dashboard.testWelcome');
+});
+
+Route::get('/supplierProfileEdit', function () {
+    return view('dashboard.supplierProfileEdit');
+});
+
+
+Route::get('getsubscriptions', function () {
     $faruk = new InstagramAPI();
     return print_r($faruk->getSubscriptions());
 });
 
-Route::get('setsubscriptions',function(){
+Route::get('setsubscriptions', function () {
     $faruk = new InstagramAPI();
     return print_r($faruk->setUserMediaSubscription());
 });
 
-Route::get('register','AuthenticationController@showRegister');
-Route::group(['prefix' => 'register'], function()
-{
+Route::get('register', 'AuthenticationController@showRegister');
+Route::group(['prefix' => 'register'], function () {
 
-    Route::get('/','AuthenticationController@showRegister');
+    Route::get('/', 'AuthenticationController@showRegister');
 
     Route::get('supplierviainstagram', 'AuthenticationController@registersupplierviainstagram');
-    Route::get('supplier','AuthenticationController@showSupplierRegister');
-    Route::post('store/supplier','User\SupplierController@store');
+    Route::get('supplier', 'AuthenticationController@showSupplierRegister');
+    Route::post('store/supplier', 'User\SupplierController@store');
 
 });
-Route::any('instagramcallback','AuthenticationController@instagramCallback');
+Route::any('instagramcallback', 'AuthenticationController@instagramCallback');
