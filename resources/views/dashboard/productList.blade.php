@@ -67,9 +67,6 @@
                             <input type="checkbox" class="group-checkable" data-set="#product_list .checkboxes"/>
                         </th>
                         <th>
-                            supplier_id
-                        </th>
-                        <th>
                             id
                         </th>
                         <th>
@@ -94,92 +91,38 @@
                     </thead>
 
                     <tbody>
+                    @foreach ($products as $product)
+
                     <tr class="odd gradeX">
                         <td>
                             <input type="checkbox" class="checkboxes" value="1"/>
                         </td>
                         <td>
-                            shuxer
+                            {{ $product->id }}
                         </td>
                         <td>
-                            <a href="mailto:shuxer@gmail.com">
-                                shuxer@gmail.com </a>
-                        </td>
-                        <td>
-                            120
-                        </td>
-                        <td class="center">
-                            12 Jan 2012
-                        </td>
-                        <td>
-                            <span class="label label-sm label-success">
-                                Approved </span>
-                        </td>
-                        <td>
-                            image soon
-                        </td>
-                        <td>
-                            price soon
-                        </td>
-                        <td>
-                            current_unit soon
-                        </td>
-                    </tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX"></tr>
-                    <tr class="odd gradeX">
-                        <td>
-                            <input type="checkbox" class="checkboxes" value="1"/>
-                        </td>
-                        <td>
-                            weep
-                        </td>
-                        <td>
-                            <a href="mailto:userwow@gmail.com">
-                                good@gmail.com </a>
-                        </td>
-                        <td>
-                            20
-                        </td>
-                        <td class="center">
-                            15.11.2011
-                        </td>
-                        <td>
-                            <span class="label label-sm label-success">
-                                Approved </span>
-                        </td>
-                        <td>
-                            image soon
-                        </td>
-                        <td>
-                            price soon
-                        </td>
-                        <td>
-                            current_unit soon
+                            {{ $product->title }}
                         </td>
 
+                        <td class="center">
+                            {{ $product->description }}
+                        </td>
+                        <td>
+                            <span class="label label-sm label-success">
+                                    {{ $product->isActive }}</span>
+                        </td>
+                        <td>
+                            {{ $product->image }}
+                        </td>
+                        <td>
+                            {{ $product->price }}
+                        </td>
+                        <td>
+                            {{ $product->current_unit }}
+                        </td>
                     </tr>
+                    @endforeach
+
                     </tbody>
                 </table>
             </div>

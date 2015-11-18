@@ -26,20 +26,17 @@
                             <li><a href="login-register.html">Login</a>
 
                                 <div class="top-link-section">
-                                    <form id="top-login" role="form">
+                                    <form id="top-login" role="form" action="{{ action('AuthenticationController@doLogin') }}" method="POST">
                                         <div class="input-group" id="top-login-username">
                                             <span class="input-group-addon"><i class="icon-user"></i></span>
-                                            <input type="email" class="form-control" placeholder="Email address"
+                                            <input type="email" class="form-control" name="email" placeholder="Email address"
                                                    required="">
                                         </div>
                                         <div class="input-group" id="top-login-password">
                                             <span class="input-group-addon"><i class="icon-key"></i></span>
-                                            <input type="password" class="form-control" placeholder="Password"
+                                            <input type="password" class="form-control" name="pass" placeholder="Password"
                                                    required="">
                                         </div>
-                                        <label class="checkbox">
-                                            <input type="checkbox" value="remember-me"> Remember me
-                                        </label>
                                         <button class="btn btn-danger btn-block" type="submit">Sign in</button>
                                     </form>
                                 </div>
@@ -1466,27 +1463,34 @@
                     <div class="col_one_third nobottommargin">
 
                         <div class="well well-lg nobottommargin">
-                            <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+                            @if($errors->has())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger">
+                                        <i class="icon-remove-sign"></i>{{ $error }}
+                                    </div>
+                                @endforeach
+                            @endif
+
+
+                            <form class="nobottommargin" action="{{ action('AuthenticationController@doLogin') }}" method="post">
 
                                 <h3>Login to your Account</h3>
 
                                 <div class="col_full">
-                                    <label for="login-form-username">Username:</label>
-                                    <input type="text" id="login-form-username" name="login-form-username" value=""
-                                           class="form-control"/>
+                                    <label for="login-form-username">Email:</label>
+                                    <input type="text" name="email" value="" class="form-control"/>
                                 </div>
 
                                 <div class="col_full">
                                     <label for="login-form-password">Password:</label>
-                                    <input type="password" id="login-form-password" name="login-form-password" value=""
+                                    <input type="password" name="pass" value=""
                                            class="form-control"/>
                                 </div>
 
                                 <div class="col_full nobottommargin">
                                     <button class="button button-3d nomargin" id="login-form-submit"
-                                            name="login-form-submit" value="login">Login
+                                            name="login-form-submit" type="submit" value="login">Login
                                     </button>
-                                    <a href="#" class="fright">Forgot Password?</a>
                                 </div>
 
                             </form>

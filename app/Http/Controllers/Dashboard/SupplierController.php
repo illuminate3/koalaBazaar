@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\User;
@@ -112,10 +113,12 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('dashboard.testWelcome');
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -123,12 +126,14 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $user=User::find($id);
+        $user=Auth::user();
 
         return view('dashboard.supplierProfileEdit',['user'=>$user]);
+
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -137,9 +142,48 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $updateRules = array(
+            'email'       => 'required|email',
+            'password'    =>'required',
+            'rpassword'   => 'required|same:password'
+        );
+        // do the validation ----------------------------------
+        // validate against the inputs from our form
+        $validator = Validator::make($request->all(), $updateRules);
+
+        // check if the validator failed -----------------------
+        if ($validator->fails()) {
+
+            // get the error messages from the validator
+            $messages = $validator->messages();
+            // redirect our user back to the form with the errors from the validator
+            return back()->withInput()->withErrors($messages);
+
+        }
+        else {
+        $user=Auth::user();
+
+
+            $user->name=$request->input('firstname');
+            $user->surname=$request->input('surname');
+
+            $user->email=$request->input('email');
+            $user->password=bcrypt($request->input('password'));
+            $user->update();
+
+            $supplier=$user->userable;
+            $supplier->profile_image=$request->input('profile_picture');
+            $supplier->cover_image=$request->input('cover_image');
+            $supplier->country=$request->input('country');
+            $supplier->city=$request->input('city');
+            $supplier->description=$request->input('description');
+            $supplier->phone=$request->input('phone');
+
+            $supplier->update();
+
+        }
     }
 
     /**
