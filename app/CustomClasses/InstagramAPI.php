@@ -504,8 +504,11 @@ class InstagramAPI {
         return $this->_makeCall('subscriptions',false,['client_secret'=>$this->getApiSecret(),'client_id'=>$this->getApiKey()]);
     }
 
-    public function setUserMediaSubscription(){
-        return $this->_makeCall('subscriptions',false,['client_secret'=>$this->getApiSecret(),'callback_url'=>$this->getApiCallback(),'client_id'=>$this->getApiKey(),'object'=>'user','aspect'=>'media'],'POST');
+    public function setUserMediaSubscription($callback=null){
+        if($callback==null){
+            $callback=$this->getApiCallback();
+        }
+        return $this->_makeCall('subscriptions',false,['client_secret'=>$this->getApiSecret(),'callback_url'=>$callback,'client_id'=>$this->getApiKey(),'object'=>'user','aspect'=>'media'],'POST');
     }
 
     /**

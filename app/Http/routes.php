@@ -44,12 +44,14 @@ Route::get('/supplierProfileEdit', function () {
 
 Route::get('getsubscriptions', function () {
     $faruk = new InstagramAPI();
-    return print_r($faruk->getSubscriptions());
+    print_r($faruk->getSubscriptions());
+    return null;
 });
 
 Route::get('setsubscriptions', function () {
     $faruk = new InstagramAPI();
-    return print_r($faruk->setUserMediaSubscription());
+    print_r($faruk->setUserMediaSubscription('http://koalashop.eu1.frbit.net/instagramcallback'));
+    return null;
 });
 
 Route::get('register', 'AuthenticationController@showRegister');
