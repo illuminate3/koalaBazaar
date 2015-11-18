@@ -49,7 +49,7 @@ Route::get('getsubscriptions', function () {
 
 Route::get('setsubscriptions', function () {
     $faruk = new InstagramAPI();
-    print_r($faruk->setUserMediaSubscription('http://koalashop.eu1.frbit.net/instagramcallback'));
+    print_r($faruk->setUserMediaSubscription('https://koalashop.eu1.frbit.net/instagramcallback'));
     return null;
 });
 
