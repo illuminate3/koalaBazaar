@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\User;
+use App\InstagramAccount
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -45,7 +46,6 @@ class InstagramController extends Controller
                         }
                     }
                 }
-
             }
         }
 
