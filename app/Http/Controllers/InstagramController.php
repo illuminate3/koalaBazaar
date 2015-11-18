@@ -28,7 +28,7 @@ class InstagramController extends Controller
 
             foreach($objects as $object){
                 $instagram=new InstagramAPI();
-                $instagramAccount=InstagramAccount::where('instagram_id',2237148792)->first();
+                $instagramAccount=InstagramAccount::where('instagram_id',$object['object_id'])->first();
                 if($instagramAccount->isSupplier()){
                     $instagram->setAccessToken($instagramAccount->access_token);
                     $media=$instagram->getUserMedia($instagramAccount->instagram_id);
