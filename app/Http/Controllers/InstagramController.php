@@ -34,7 +34,7 @@ class InstagramController extends Controller
                         $instagram=new InstagramAPI();
                         $data = $instagram->getOAuthToken($code);
                         Session::put('user_instagram_info',$data);
-                        return Redirect::action('User\SupplierController@create');
+                        return Redirect::action('Dashboard\SupplierController@create');
                     }
                 }
 
