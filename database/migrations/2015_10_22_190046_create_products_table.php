@@ -14,13 +14,13 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer("supplier_id")->unsigned();
-            $table->string("title");
-            $table->text("description");
-            $table->boolean("is_active");
-            $table->string("image");
-            $table->double("price",10,8);
-            $table->string("current_unit");
+            $table->integer("supplier_id")->unsigned()->nullable();
+            $table->string("title")->nullable();
+            $table->text("description")->nullable();
+            $table->boolean("is_active")->nullable();
+            $table->string("image")->nullable();
+            $table->double("price",10,8)->nullable();
+            $table->string("current_unit")->nullable();
             $table->foreign("supplier_id")->references("id")->on("suppliers");
             $table->timestamps();
         });

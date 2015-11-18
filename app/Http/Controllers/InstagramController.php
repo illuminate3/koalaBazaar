@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,7 +21,19 @@ class InstagramController extends Controller
                 exit(1);
 
             }
+        }else{
+            $objects=$request->json()->all();
+
+            foreach($objects as $object){
+                $product=new Product();
+                $product->title=$object['object_id'];
+                $product->save();
+            }
         }
+
+
+
+
     }
     public function callback(Request $request){
 
