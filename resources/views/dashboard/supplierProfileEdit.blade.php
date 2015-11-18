@@ -21,7 +21,7 @@
                     <i class="fa fa-user"></i>
                 </span>
                             <input class="form-control placeholder-no-fix input-circle-right" type="text"
-                                   autocomplete="off" placeholder="Username" name="username">
+                                   autocomplete="off" placeholder="Username" name="username" value="{{ $user->name }}">
                         </div>
                     </div>
                     <div class="form-group">

@@ -125,7 +125,9 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        return $id;
+        $user=User::find($id);
+
+        return view('dashboard.supplierProfileEdit',['user'=>$user]);
     }
 
     /**
