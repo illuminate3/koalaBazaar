@@ -38,7 +38,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->action('AuthenticationController@register')->withErrors(['messages'=>'Lütfen giriş yapınız']);
+                return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>'Lütfen giriş yapınız']);
             }
         }
 

@@ -1,5 +1,5 @@
 .idea
+.env
 .env.example
 .gitattributes
 /storage/logs/laravel.log
-.env
