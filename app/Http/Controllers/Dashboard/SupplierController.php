@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Supplier;
 use App\InstagramAccount;
-use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
