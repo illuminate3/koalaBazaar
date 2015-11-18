@@ -100,7 +100,7 @@ class SupplierController extends Controller
 
             }
         }else{
-            return Redirect::action('AuthenticationController@showRegister');
+            return redirect()->action('AuthenticationController@showRegister');
         }
 
     }
