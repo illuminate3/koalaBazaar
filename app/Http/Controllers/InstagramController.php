@@ -36,8 +36,8 @@ class InstagramController extends Controller
                         foreach($media->data as $singleMedia){
                             $product=new Product();
                             $product->supplier_id=$instagramAccount->instagramable->id;
-                            $product->title=$singleMedia->caption;
-                            $product->description=$singleMedia->caption;
+                            $product->title=$singleMedia->caption->text;
+                            $product->description=$singleMedia->caption->text;
                             $product->is_active=true;
                             $product->image=$singleMedia->images->standard_resolution->url;
                             $product->current_unit='try';
