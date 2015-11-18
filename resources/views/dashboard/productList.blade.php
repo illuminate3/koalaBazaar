@@ -112,7 +112,8 @@
                                     {{ $product->isActive }}</span>
                         </td>
                         <td>
-                            {{ $product->image }}
+                            <img src="{{$product->image}}">
+
                         </td>
                         <td>
                             {{ $product->price }}

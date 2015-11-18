@@ -8,8 +8,8 @@
 
 
 @section('page_level_portlets')
-    <h3 class="page-title" style="font-family:fantasy; font-size:200%">
-        <b> p r o f i l i n i z </b>
+    <h3 class="page-title">
+        <b> profiliniz </b>
         <b><i class="fa fa-hand-o-down fa-lg"></i></b>
     </h3>
     <div class="row">
