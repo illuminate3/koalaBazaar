@@ -20,9 +20,9 @@ class CreateCheckOutsTable extends Migration
             $table->string('customer_email');
             $table->text("description");
             $table->string('product_title');
-            $table->double('product_price',10,8);
+            $table->double('product_price',10,2);
             $table->string("image");
-            $table->double("price",10,8);
+            $table->double("price",10,2);
             $table->string("current_unit");
             $table->timestamps();
 

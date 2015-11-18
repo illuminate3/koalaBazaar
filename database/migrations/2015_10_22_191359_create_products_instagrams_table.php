@@ -17,7 +17,7 @@ class CreateProductsInstagramsTable extends Migration
             $table->string('id');
             $table->string("url");
             $table->string("image_url");
-            $table->text("caption");
+            $table->text("caption")->nullable();
             $table->timestamp("created_on_instagram");
             $table->unique('id');
             $table->foreign("product_id")->references("id")->on("products");

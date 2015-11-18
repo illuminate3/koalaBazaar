@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\ProductsInstagram;
+use App\User;
+use App\InstagramAccount;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,14 +17,69 @@ use App\CustomClasses\InstagramAPI;
 
 class InstagramController extends Controller
 {
-    public function callback(Request $request){
+    public function subscriptioncallback(Request $request){
         if($request->has('hub_mode')){
             if($request->get('hub_mode')=='subscribe'){
-                echo $request->get('hub_challenge');
-                return null;
+                print $request->get('hub_challenge');
+                exit(1);
 
             }
+        }else{
+            $objects=$request->json()->all();
+
+            foreach($objects as $object){
+                $instagram=new InstagramAPI();
+                $instagramAccount=InstagramAccount::where('instagram_id',$object['object_id'])->first();
+                if($instagramAccount->isSupplier()){
+                    $instagram->setAccessToken($instagramAccount->access_token);
+                    $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
+                    if($media->meta->code==200){
+                        foreach($media->data as $singleMedia) {
+                            if ($singleMedia->type == 'image') {
+                                $caption=null;
+                                if(isset($singleMedia->caption)){
+                                    $caption=$singleMedia->caption->text;
+                                }
+
+                                $product = new Product();
+                                $product->supplier_id = $instagramAccount->instagramable->id;
+                                $product->title = $instagramAccount->instagramable->shop_name.' '.$caption;
+                                $product->description = $caption;
+                                $product->image = $singleMedia->images->standard_resolution->url;
+
+                                if($caption==null){
+                                    $product->price=null;
+                                    $product->current_unit = null;
+                                    $product->is_active = false;
+                                }else{
+                                    $product->price =1223;
+                                    $product->is_active = true;
+                                    $product->current_unit = 'try';
+                                }
+                                $product->price = ($caption==null) ? null : $caption;
+                                $product->save();
+
+                                $productInstagram = new ProductsInstagram();
+                                $productInstagram->product_id = $product->id;
+                                $productInstagram->url = $singleMedia->link;
+                                $productInstagram->id=$singleMedia->id;
+                                $productInstagram->image_url = $singleMedia->images->standard_resolution->url;
+                                $productInstagram->caption = $caption;
+                                $productInstagram->created_on_instagram = date('Y-m-d h:i:sa', $singleMedia->created_time);
+                                $productInstagram->save();
+                            }
+                        }
+                    }
+                }
+            }
         }
+
+
+
+
+    }
+    public function callback(Request $request){
+
         if(Session::get('instagram_operation')){
             $instagramOperation=Session::pull('instagram_operation');
             if($instagramOperation['operation']=='register'){

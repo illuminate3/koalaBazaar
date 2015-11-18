@@ -11,9 +11,10 @@
 |
 */
 use App\Supplier;
+use App\Product;
 use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
-
+use App\User;
 Route::get('/', function () {
     return view('user.index');
 });
@@ -49,7 +50,24 @@ Route::get('getsubscriptions', function () {
 
 Route::get('setsubscriptions', function () {
     $faruk = new InstagramAPI();
-    print_r($faruk->setUserMediaSubscription('http://koalashop.eu1.frbit.net/instagramcallback'));
+    print_r($faruk->setUserMediaSubscription('https://koalashop.eu1.frbit.net/instagramsubscriptioncallback'));
+    return null;
+});
+
+Route::get('testmedia',function(){
+    $instagram=new InstagramAPI();
+    $instagramAccount=InstagramAccount::where('instagram_id',2237148792)->first();
+    if($instagramAccount->isSupplier()){
+        $instagram->setAccessToken($instagramAccount->access_token);
+        $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
+        foreach($media->data as $singleMedia){
+            if(isset($singleMedia->caption)){
+                echo "not null";
+            }else{
+                echo "null";
+            }
+        }
+    }
     return null;
 });
 
@@ -80,4 +98,5 @@ Route::group(['prefix' => 'register'], function () {
     Route::any('store/supplier', 'Dashboard\SupplierController@store');
 
 });
+Route::any('instagramsubscriptioncallback','InstagramController@subscriptioncallback');
 Route::any('instagramcallback', 'InstagramController@callback');
