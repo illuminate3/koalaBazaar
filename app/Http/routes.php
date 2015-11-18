@@ -54,11 +54,14 @@ Route::get('setsubscriptions', function () {
 });
 
 Route::get('register', 'AuthenticationController@showRegister');
+Route::post('login', 'AuthenticationController@doLogin');
 Route::group(['prefix' => 'dashboard'],function(){
     Route::group(['prefix'=>'supplier'],function(){
-        Route::get('{id}/edit','Dashboard\SupplierController@edit');
-        Route::post('{id}/update','Dashboard\SupplierController@update');
+        Route::get('edit','Dashboard\SupplierController@edit');
+        Route::post('update','Dashboard\SupplierController@update');
     });
+
+
 });
 Route::group(['prefix' => 'register'], function () {
 
