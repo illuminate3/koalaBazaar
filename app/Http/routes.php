@@ -86,7 +86,7 @@ Route::get('testmedia',function(){
 Route::get('register', 'AuthenticationController@showRegister');
 Route::post('login', 'AuthenticationController@doLogin');
 
-Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
+Route::group(['prefix' => 'dashboard','middleware' => 'auth.simple'],function(){
     Route::group(['prefix'=>'supplier'],function(){
         Route::get('/','Dashboard\SupplierController@show');
         Route::get('/productList','Dashboard\ProductController@index');
