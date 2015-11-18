@@ -11,7 +11,6 @@
 |
 */
 use App\Supplier;
-use App\User;
 use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
 
