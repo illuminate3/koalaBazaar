@@ -59,18 +59,12 @@ Route::get('testmedia',function(){
     $instagramAccount=InstagramAccount::where('instagram_id',2237148792)->first();
     if($instagramAccount->isSupplier()){
         $instagram->setAccessToken($instagramAccount->access_token);
-        $media=$instagram->getUserMedia($instagramAccount->instagram_id);
-        if($media->meta->code==200){
-            foreach($media->data as $singleMedia){
-                $product=new Product();
-                $product->supplier_id=$instagramAccount->instagramable->id;
-                $product->title=$singleMedia->caption;
-                $product->description=$singleMedia->caption;
-                $product->is_active=true;
-                $product->image=$singleMedia->images->standard_resolution->url;
-                $product->current_unit='try';
-                $product->price=12;
-                $product->save();
+        $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
+        foreach($media->data as $singleMedia){
+            if(isset($singleMedia->caption)){
+                echo "not null";
+            }else{
+                echo "null";
             }
         }
     }

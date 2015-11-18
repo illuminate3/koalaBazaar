@@ -36,16 +36,27 @@ class InstagramController extends Controller
                     if($media->meta->code==200){
                         foreach($media->data as $singleMedia) {
                             if ($singleMedia->type == 'image') {
-
+                                $caption=null;
+                                if(isset($singleMedia->caption)){
+                                    $caption=$singleMedia->caption->text;
+                                }
 
                                 $product = new Product();
                                 $product->supplier_id = $instagramAccount->instagramable->id;
-                                $product->title = $singleMedia->caption->text;
-                                $product->description = $singleMedia->caption->text;
-                                $product->is_active = true;
+                                $product->title = $instagramAccount->instagramable->shop_name.' '.$caption;
+                                $product->description = $caption;
                                 $product->image = $singleMedia->images->standard_resolution->url;
-                                $product->current_unit = 'try';
-                                $product->price = 12132;
+
+                                if($caption==null){
+                                    $product->price=null;
+                                    $product->current_unit = null;
+                                    $product->is_active = false;
+                                }else{
+                                    $product->price =1223;
+                                    $product->is_active = true;
+                                    $product->current_unit = 'try';
+                                }
+                                $product->price = ($caption==null) ? null : $caption;
                                 $product->save();
 
                                 $productInstagram = new ProductsInstagram();
@@ -53,7 +64,7 @@ class InstagramController extends Controller
                                 $productInstagram->url = $singleMedia->link;
                                 $productInstagram->id=$singleMedia->id;
                                 $productInstagram->image_url = $singleMedia->images->standard_resolution->url;
-                                $productInstagram->caption = $singleMedia->caption->text;
+                                $productInstagram->caption = $caption;
                                 $productInstagram->created_on_instagram = date('Y-m-d h:i:sa', $singleMedia->created_time);
                                 $productInstagram->save();
                             }
