@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->text("description")->nullable();
             $table->boolean("is_active")->nullable();
             $table->string("image")->nullable();
-            $table->double("price",10,8)->nullable();
+            $table->double("price",10,2)->nullable();
             $table->string("current_unit")->nullable();
             $table->foreign("supplier_id")->references("id")->on("suppliers");
             $table->timestamps();

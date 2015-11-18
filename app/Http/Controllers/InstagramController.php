@@ -34,24 +34,28 @@ class InstagramController extends Controller
                     $instagram->setAccessToken($instagramAccount->access_token);
                     $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
                     if($media->meta->code==200){
-                        foreach($media->data as $singleMedia){
-                            $product=new Product();
-                            $product->supplier_id=$instagramAccount->instagramable->id;
-                            $product->title=$singleMedia->caption->text;
-                            $product->description=$singleMedia->caption->text;
-                            $product->is_active=true;
-                            $product->image=$singleMedia->images->standard_resolution->url;
-                            $product->current_unit='try';
-                            $product->price=12132;
-                            $product->save();
+                        foreach($media->data as $singleMedia) {
+                            if ($singleMedia->type == 'image') {
 
-                            $productInstagram=new ProductsInstagram();
-                            $productInstagram->product_id=$product->id;
-                            $productInstagram->url=$singleMedia->link;
-                            $productInstagram->image_url=$singleMedia->images->standard_resolution->url;
-                            $productInstagram->caption=$singleMedia->caption->text;
-                            $productInstagram->created_on_instagram=date('Y-m-d h:i:sa', $singleMedia->created_time);
-                            $productInstagram->save();
+
+                                $product = new Product();
+                                $product->supplier_id = $instagramAccount->instagramable->id;
+                                $product->title = $singleMedia->caption->text;
+                                $product->description = $singleMedia->caption->text;
+                                $product->is_active = true;
+                                $product->image = $singleMedia->images->standard_resolution->url;
+                                $product->current_unit = 'try';
+                                $product->price = 12132;
+                                $product->save();
+
+                                $productInstagram = new ProductsInstagram();
+                                $productInstagram->product_id = $product->id;
+                                $productInstagram->url = $singleMedia->link;
+                                $productInstagram->image_url = $singleMedia->images->standard_resolution->url;
+                                $productInstagram->caption = $singleMedia->caption->text;
+                                $productInstagram->created_on_instagram = date('Y-m-d h:i:sa', $singleMedia->created_time);
+                                $productInstagram->save();
+                            }
                         }
                     }
                 }
