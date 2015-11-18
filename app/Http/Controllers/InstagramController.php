@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,9 +26,26 @@ class InstagramController extends Controller
             $objects=$request->json()->all();
 
             foreach($objects as $object){
-                $product=new Product();
-                $product->title=$object['object_id'];
-                $product->save();
+                $instagram=new InstagramAPI();
+                $instagramAccount=InstagramAccount::where('instagram_id',$object['object_id'])->first();
+                if($instagramAccount->isSupplier()){
+                    $instagram->setAccessToken($instagramAccount->access_token);
+                    $media=$instagram->getUserMedia($instagramAccount->instagram_id);
+                    if($media->meta->code==200){
+                        foreach($media->data as $singleMedia){
+                            $product=new Product();
+                            $product->supplier_id=$instagramAccount->instagramable->id;
+                            $product->title=$singleMedia->caption;
+                            $product->caption=$singleMedia->caption;
+                            $product->isActive=true;
+                            $product->image=$singleMedia->images->standard_resolution->url;
+                            $product->current_unit='try';
+                            $product->price=12;
+                            $product->save();
+                        }
+                    }
+                }
+
             }
         }
 

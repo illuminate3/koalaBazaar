@@ -13,7 +13,7 @@
 use App\Supplier;
 use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
-
+use App\User;
 Route::get('/', function () {
     return view('user.index');
 });
@@ -50,6 +50,15 @@ Route::get('getsubscriptions', function () {
 Route::get('setsubscriptions', function () {
     $faruk = new InstagramAPI();
     print_r($faruk->setUserMediaSubscription('https://koalashop.eu1.frbit.net/instagramsubscriptioncallback'));
+    return null;
+});
+
+Route::get('testmedia',function(){
+    $instagramAccount=InstagramAccount::where('instagram_id',2237148792)->first();
+    if($instagramAccount->isSupplier()){
+        echo "supplier";
+    };
+    print_r($instagramAccount->instagramable_id);
     return null;
 });
 
