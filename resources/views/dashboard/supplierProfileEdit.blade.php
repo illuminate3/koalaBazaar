@@ -25,7 +25,7 @@
             <div class="acc_content clearfix">
                 <form id="update-form" name="update-form" class="nobottommargin" action="{{ action('Dashboard\SupplierController@update') }}" method="post">
                             <h4> {{ $user->userable->shop_name }} </h4>
-                            <h4>{{$user->userable->profile_image}}</h4>
+
 
 
 

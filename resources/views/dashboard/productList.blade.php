@@ -112,7 +112,7 @@
                                     {{ $product->isActive }}</span>
                         </td>
                         <td>
-                            <img src="{{$product->image}}">
+                            <img src="{{$product->image}}" style="width: 130px;">
 
                         </td>
                         <td>
