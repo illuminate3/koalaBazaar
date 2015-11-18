@@ -16,8 +16,8 @@ class InstagramController extends Controller
     public function callback(Request $request){
         if($request->has('hub_mode')){
             if($request->get('hub_mode')=='subscribe'){
-                echo trim($request->get('hub_challenge'));
-                return null;
+                print $request->get('hub_challenge');
+                exit(1);
 
             }
         }
