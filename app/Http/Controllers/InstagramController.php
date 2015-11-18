@@ -51,6 +51,7 @@ class InstagramController extends Controller
                                 $productInstagram = new ProductsInstagram();
                                 $productInstagram->product_id = $product->id;
                                 $productInstagram->url = $singleMedia->link;
+                                $productInstagram->id=$singleMedia->id;
                                 $productInstagram->image_url = $singleMedia->images->standard_resolution->url;
                                 $productInstagram->caption = $singleMedia->caption->text;
                                 $productInstagram->created_on_instagram = date('Y-m-d h:i:sa', $singleMedia->created_time);
