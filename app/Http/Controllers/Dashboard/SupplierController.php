@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-
+use App\User;
+use App\Supplier;
+use App\InstagramAccount;
 class SupplierController extends Controller
 {
     /**
