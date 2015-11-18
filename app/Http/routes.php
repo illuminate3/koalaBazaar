@@ -55,19 +55,31 @@ Route::get('setsubscriptions', function () {
 });
 
 Route::get('testmedia',function(){
-    $instagram=new InstagramAPI();
-    $instagramAccount=InstagramAccount::where('instagram_id',2237148792)->first();
-    if($instagramAccount->isSupplier()){
-        $instagram->setAccessToken($instagramAccount->access_token);
-        $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
-        foreach($media->data as $singleMedia){
-            if(isset($singleMedia->caption)){
-                echo "not null";
-            }else{
-                echo "null";
-            }
+    $caption='Fiyat:20try';
+    $key='fiyat:';
+    $captionSmall=mb_strtolower($caption, 'UTF-8');
+    echo $captionSmall.'</br>';
+    $firstOccurence=strpos($captionSmall,$key);
+    echo $firstOccurence.'</br>';
+    $priceStart=$firstOccurence+strlen($key);
+    $priceEnd=$priceStart;
+    echo $priceStart.'</br>';
+    $price="zaa";
+
+    for($i=$priceStart;$i<strlen($caption);$i++){
+        if(is_numeric(substr($caption,$i))){
+            $price=$price.substr($caption,$i);
+        }else{
+            echo "ptr";
+            $priceEnd=$i;
+            $i=strlen($caption);
+
         }
     }
+
+    echo $price.'</br>';
+
+
     return null;
 });
 
