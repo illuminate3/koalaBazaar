@@ -96,6 +96,7 @@ class SupplierController extends Controller
                 $instagramAccount->website=$instagramInfo->user->website;
                 $instagramAccount->profile_picture=$instagramInfo->user->profile_picture;
                 $supplier->instagramAccount()->save($instagramAccount);
+
                 redirect()->action('AuthenticationController@showRegister')->with('success',['Successful']);
 
             }
@@ -124,7 +125,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $id;
     }
 
     /**

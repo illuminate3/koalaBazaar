@@ -54,13 +54,19 @@ Route::get('setsubscriptions', function () {
 });
 
 Route::get('register', 'AuthenticationController@showRegister');
+Route::group(['prefix' => 'dashboard'],function(){
+    Route::group(['prefix'=>'supplier'],function(){
+        Route::get('{id}/edit','Dashboard\SupplierController@edit');
+        Route::post('{id}/update','Dashboard\SupplierController@update');
+    });
+});
 Route::group(['prefix' => 'register'], function () {
 
     Route::get('/', 'AuthenticationController@showRegister');
 
     Route::get('supplierviainstagram', 'AuthenticationController@registersupplierviainstagram');
     Route::get('supplier', 'Dashboard\SupplierController@create');
-    Route::post('store/supplier', 'Dashboard\SupplierController@store');
+    Route::any('store/supplier', 'Dashboard\SupplierController@store');
 
 });
 Route::any('instagramcallback', 'InstagramController@callback');
