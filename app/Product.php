@@ -14,6 +14,9 @@ class Product extends Model
         return $this->belongsTo('App\Supplier');
     }
 
+    public function instagram(){
+        return $this->hasOne('App\ProductsInstagram');
+    }
     public function comments() {
         return $this->morphMany('App\Comment','commentable','commentable_type','commentable_id','id');
     }

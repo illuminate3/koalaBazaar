@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductsInstagram;
 use App\User;
 use App\InstagramAccount;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class InstagramController extends Controller
                 $instagramAccount=InstagramAccount::where('instagram_id',$object['object_id'])->first();
                 if($instagramAccount->isSupplier()){
                     $instagram->setAccessToken($instagramAccount->access_token);
-                    $media=$instagram->getUserMedia($instagramAccount->instagram_id);
+                    $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
                     if($media->meta->code==200){
                         foreach($media->data as $singleMedia){
                             $product=new Product();
@@ -41,8 +42,16 @@ class InstagramController extends Controller
                             $product->is_active=true;
                             $product->image=$singleMedia->images->standard_resolution->url;
                             $product->current_unit='try';
-                            $product->price=12;
+                            $product->price=12132;
                             $product->save();
+
+                            $productInstagram=new ProductsInstagram();
+                            $productInstagram->product_id=$product->id;
+                            $productInstagram->url=$singleMedia->link;
+                            $productInstagram->image_url=$singleMedia->images->standard_resolution->url;
+                            $productInstagram->caption=$singleMedia->caption->text;
+                            $productInstagram->created_on_instagram=date('Y-m-d h:i:sa', $singleMedia->created_time);
+                            $productInstagram->save();
                         }
                     }
                 }
