@@ -27,9 +27,25 @@ class InstagramController extends Controller
             $objects=$request->json()->all();
 
             foreach($objects as $object){
-                $product=new Product();
-                $product->title=$object['object_id'];
-                $product->save();
+                $instagram=new InstagramAPI();
+                $instagramAccount=InstagramAccount::where('instagram_id',2237148792)->first();
+                if($instagramAccount->isSupplier()){
+                    $instagram->setAccessToken($instagramAccount->access_token);
+                    $media=$instagram->getUserMedia($instagramAccount->instagram_id);
+                    if($media->meta->code==200){
+                        foreach($media->data as $singleMedia){
+                            $product=new Product();
+                            $product->supplier_id=$instagramAccount->instagramable->id;
+                            $product->title=$singleMedia->caption;
+                            $product->description=$singleMedia->caption;
+                            $product->is_active=true;
+                            $product->image=$singleMedia->images->standard_resolution->url;
+                            $product->current_unit='try';
+                            $product->price=12;
+                            $product->save();
+                        }
+                    }
+                }
             }
         }
 
