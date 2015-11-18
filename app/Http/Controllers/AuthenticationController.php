@@ -22,41 +22,5 @@ class AuthenticationController extends Controller
         return Redirect::to($instagram->getLoginUrl());
     }
 
-    public function showSupplierRegister(){
-        if(Session::has('user_instagram_info')){
-            $userInfo=Session::get('user_instagram_info');
-            return view('dashboard.supplierRegister',['userInfo'=>$userInfo]);
-        }
 
-    }
-
-    public function instagramCallback(Request $request){
-        if($request->has('hub_mode')){
-            if($request->get('hub_mode')=='subscribe'){
-                echo $request->get('hub_challenge');
-                return null;
-
-            }
-        }
-        if(Session::get('instagram_operation')){
-            $instagramOperation=Session::pull('instagram_operation');
-            if($instagramOperation['operation']=='register'){
-                if($instagramOperation['user_type']=='supplier'){
-                    if (Session::has('user_instagram_info'))
-                    {
-                        Session::forget('user_instagram_info');
-                    }
-                    if($request->get('code')){
-                        $code = $request->get('code');
-                        $instagram=new InstagramAPI();
-                        $data = $instagram->getOAuthToken($code);
-                        Session::put('user_instagram_info',$data);
-                        return Redirect::action('AuthenticationController@showSupplierRegister');
-                    }
-                }
-
-            }
-        }
-
-    }
 }

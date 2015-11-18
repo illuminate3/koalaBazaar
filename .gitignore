@@ -3,3 +3,4 @@
 .gitattributes
 /storage/logs/laravel.log
 .env
+/vendor

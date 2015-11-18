@@ -31,7 +31,10 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        if(Session::has('user_instagram_info')){
+            $userInfo=Session::get('user_instagram_info');
+            return view('dashboard.supplierRegister',['userInfo'=>$userInfo]);
+        }
     }
 
     /**
@@ -93,6 +96,7 @@ class SupplierController extends Controller
                 $instagramAccount->website=$instagramInfo->user->website;
                 $instagramAccount->profile_picture=$instagramInfo->user->profile_picture;
                 $supplier->instagramAccount()->save($instagramAccount);
+                redirect()->action('AuthenticationController@register')->with('success',['Successful']);
 
             }
         }else{
