@@ -8,8 +8,8 @@
 
 
 @section('page_level_portlets')
-    <h3 class="page-title" style="font-family:fantasy; font-size:200%">
-        <b> p r o f i l i n i z </b>
+    <h3 class="page-title">
+        <b> profiliniz </b>
         <b><i class="fa fa-hand-o-down fa-lg"></i></b>
     </h3>
     <div class="row">
@@ -25,7 +25,7 @@
             <div class="acc_content clearfix">
                 <form id="update-form" name="update-form" class="nobottommargin" action="{{ action('Dashboard\SupplierController@update') }}" method="post">
                             <h4> {{ $user->userable->shop_name }} </h4>
-                            <h4>{{$user->userable->profile_image}}</h4>
+
 
 
 
