@@ -13,7 +13,7 @@ use App\CustomClasses\InstagramAPI;
 
 class InstagramController extends Controller
 {
-    public function callback(Request $request){
+    public function subscriptioncallback(Request $request){
         if($request->has('hub_mode')){
             if($request->get('hub_mode')=='subscribe'){
                 print $request->get('hub_challenge');
@@ -21,6 +21,9 @@ class InstagramController extends Controller
 
             }
         }
+    }
+    public function callback(Request $request){
+
         if(Session::get('instagram_operation')){
             $instagramOperation=Session::pull('instagram_operation');
             if($instagramOperation['operation']=='register'){
