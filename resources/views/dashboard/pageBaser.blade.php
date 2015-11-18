@@ -191,14 +191,15 @@
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false"
                     data-auto-scroll="true" data-slide-speed="200">
                     <li class="start active ">
-                        <a href="panel">
+                        <a href="{{ action('Dashboard\SupplierController@show') }}">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard Home</span>
                             <span class="selected"></span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:;">
+                    <li class="start active ">
+                        <a href="{{ action('Dashboard\ProductController@index') }}">
                             <i class="icon-basket"></i>
                             <span class="title">Ürünlerim</span>
                             <span class="arrow "></span>
@@ -234,7 +235,7 @@
 
 
                     <li class="start active ">
-                        <a href="supplierProfileEdit">
+                        <a href="{{ action('Dashboard\SupplierController@edit') }}">
                             <i class="icon-user"></i>
                             <span class="title">Profilimi Düzenle</span>
                             <span class="arrow"></span>

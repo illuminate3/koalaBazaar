@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Supplier;
 use App\Customer;
+use App\Product;
 use App\InstagramAccount;
 class UserTableSeeder extends Seeder
 {
@@ -16,10 +17,11 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user=new User();
-        $user->name=str_random(10);
+        $user->name='mugekural';
         $user->surname=str_random(10);
         $user->email=$user->name.'@gmail.com';
         $user->is_active=true;
+        $user->password=bcrypt('12345');
         $user->type='App\Supplier';
         $user->save();
         $supplier=new Supplier();
@@ -50,6 +52,18 @@ class UserTableSeeder extends Seeder
         $instagram->profile_picture="";
 
         $supplier->instagramAccount()->save($instagram);
+
+        $product=new Product();
+        $product->supplier_id=$supplier->id;
+        $product->id="235";
+        $product->is_active=true;
+        $product->title="kitap";
+        $product->description="martı";
+        $product->price="340";
+
+        $product->save();
+
+
 
         $instagram2=new InstagramAccount();
         $instagram2->instagram_id="700797";
