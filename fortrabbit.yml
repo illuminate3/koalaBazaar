@@ -2,3 +2,4 @@ version: 1
 strategy: fullsync
 excludes:
     - .env
+    - storage/
