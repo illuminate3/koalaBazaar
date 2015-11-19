@@ -52,7 +52,7 @@ class InstagramController extends Controller
                                 if($status){
                                     $product->image = $file->filename;
                                 }else{
-                                    $product->image =$singleMedia->images->standard_resolution->url;
+                                    $product->image =null;
                                 };
 
 
