@@ -79,6 +79,7 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
 
     Route::group(['prefix'=>'product'],function(){
         Route::get('/','Dashboard\ProductController@index');
+        Route::get('/edit/{id}','Dashboard\ProductController@edit');
     });
 
 
