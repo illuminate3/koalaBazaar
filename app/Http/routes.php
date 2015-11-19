@@ -75,16 +75,24 @@ Route::get('register', 'AuthenticationController@showRegister');
 Route::post('login', 'AuthenticationController@doLogin');
 
 Route::group(['prefix' => 'dashboard'],function(){
+
+
     Route::group(['prefix'=>'supplier'],function(){
-        Route::get('/','Dashboard\SupplierController@show');
-        Route::get('/productList','Dashboard\ProductController@index');
+       Route::get('/','Dashboard\SupplierController@show');
+     //   Route::get('/productList','Dashboard\ProductController@index');
         Route::get('edit','Dashboard\SupplierController@edit');
         Route::post('update','Dashboard\SupplierController@update');
+        Route::post('updatePassword','Dashboard\SupplierController@updatePassword');
+        Route::post('updateImages','Dashboard\SupplierController@updateImages');
+
     });
 
     Route::group(['prefix'=>'product'],function(){
         Route::get('/','Dashboard\ProductController@index');
     });
+
+
+
 
 });
 

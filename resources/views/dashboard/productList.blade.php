@@ -40,6 +40,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="btn-group pull-right">
+
                                 <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu pull-right">
@@ -60,6 +61,7 @@
                         </div>
                     </div>
                 </div>
+
                 <table class="table table-striped table-bordered table-hover" id="product_list">
                     <thead>
                     <tr>
@@ -76,17 +78,16 @@
                             description
                         </th>
                         <th>
-                            is_active
-                        </th>
-                        <th>
                             image
                         </th>
                         <th>
-                            price
+                            is_active
                         </th>
                         <th>
-                            current_unit
+                           düzenle
                         </th>
+
+
                     </tr>
                     </thead>
 
@@ -107,20 +108,38 @@
                         <td class="center">
                             {{ $product->description }}
                         </td>
-                        <td>
-                            <span class="label label-sm label-success">
-                                    {{ $product->isActive }}</span>
-                        </td>
+
                         <td>
                             <img src="{{$product->image}}" style="width: 130px;">
 
                         </td>
                         <td>
-                            {{ $product->price }}
+                            <a href="{{ action('Dashboard\SupplierController@show') }}" class="btn default btn-xs purple">
+                                Edit
+                            </a>
+                            @if($product->is_active)
+                                    <span class="label label-xl label-default">
+										Aktif </span>
+
+
+                            @else
+                                <span class="label label-sm label-default">
+										Deaktif </span>
+                                <div class="btn-group pull-right">
+                                    <a href="{{ action('Dashboard\SupplierController@show') }}">
+                                        <span class="label label-sm label-success">
+										Aktive et </span>
+                                    </a>
+                                </div>
+
+                            @endif
                         </td>
                         <td>
-                            {{ $product->current_unit }}
+                            <a href="{{ action('Dashboard\SupplierController@show') }}" class="btn default btn-xs purple">
+                                Deaktive et
+                            </a>
                         </td>
+
                     </tr>
                     @endforeach
 
