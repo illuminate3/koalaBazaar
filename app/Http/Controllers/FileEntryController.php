@@ -55,7 +55,7 @@ class FileEntryController extends Controller
         $entry = FileEntry::where('filename', '=', $path)->first();
 
         if($entry==null || !Storage::exists($path)){
-            return response(null,404);
+            return response('NotFound',404);
         }else{
             $file = Storage::get($entry->filename);
             return response($file)->header('Content-Type', $entry->mime);
