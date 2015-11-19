@@ -1,5 +1,4 @@
-@extends ('dashboard.mainBaser')
-@extends ('dashboard.pageBaser')
+@extends('dashboard.main')
 @section('title')
     Welcome Page
 @stop

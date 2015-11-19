@@ -1,5 +1,4 @@
-@extends ('dashboard.mainBaser')
-@extends('dashboard.pageBaser')
+@extends ('dashboard.main')
 @section('title')
     Edit Profile
 @stop
@@ -116,7 +115,7 @@
 
 
                     <div class="col_full nobottommargin right" align="right">
-                        <input type="submit" value="düzenle" style="color:green;  font-family: fantasy; font-size:150%">
+                        <input type="submit" value="düzenle">
                     </div>
                 </form>
             </div>
@@ -172,10 +171,7 @@
 
 @section('page_level_scripts')
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="{{asset('/dashboard')}}/assets/global/scripts/metronic.js" type="text/javascript"></script>
-    <script src="{{asset('/dashboard')}}/assets/admin/layout2/scripts/layout.js" type="text/javascript"></script>
     <script src="{{asset('/dashboard')}}/assets/admin/layout2/scripts/quick-sidebar.js" type="text/javascript"></script>
-    <script src="{{asset('/dashboard')}}/assets/admin/layout2/scripts/demo.js" type="text/javascript"></script>
     <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
     <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->

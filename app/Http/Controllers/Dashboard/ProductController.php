@@ -57,7 +57,48 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        if(!Product::find($id)) {
+            return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
+        }
+
+        $product=Product::find($id)->first();
+        if(Auth::user()->id!=$product->supplier_id) {
+            return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
+        }
+    }
+    public function setAsActive($id)
+    {
+      //  $product=Product::find($id)->first();
+        if(!Product::find($id)) {
+            return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
+        }
+
+        $product=Product::find($id)->first();
+        if(Auth::user()->id!=$product->supplier_id) {
+            return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
+        }
+
+        $product->is_active=true;
+        $product->update();
+        return  redirect()->back()->with(['success'=>["Aktive edildi"]]);
+
+
+    }
+
+    public function setAsDeactive($id)
+    {
+
+        if(!Product::find($id)) {
+            return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
+        }
+        $product=Product::find($id)->first();
+        if(Auth::user()->id!=$product->supplier_id) {
+            return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
+        }
+
+        $product->is_active=false;
+        $product->update();
+        return  redirect()->back()->with(['success'=>["Deaktive edildi"]]);
     }
 
     /**

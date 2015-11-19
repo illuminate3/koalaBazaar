@@ -1,5 +1,4 @@
-@extends ('dashboard.mainBaser')
-@extends('dashboard.pageBaser')
+@extends('dashboard.main')
 @section('title')
     Product List
     @stop
@@ -11,6 +10,21 @@
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
     <div class="col-md-12">
+        @if($errors->has())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">
+                    <i class="icon-remove-sign"></i>{{ $error }}
+                </div>
+            @endforeach
+        @endif
+        @if(\Illuminate\Support\Facades\Session::has('success'))
+            @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
+                <div class="alert alert-success">
+                    <i class="icon-remove-sign"></i>{{ $success }}
+                </div>
+                @endforeach
+                @endif
+
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div class="portlet box grey-cascade">
             <div class="portlet-title">
@@ -114,30 +128,30 @@
 
                         </td>
                         <td>
-                            <a href="{{ action('Dashboard\SupplierController@show') }}" class="btn default btn-xs purple">
-                                Edit
-                            </a>
+
                             @if($product->is_active)
-                                    <span class="label label-xl label-default">
+                                    <span class="label label-xl label-success">
 										Aktif </span>
 
 
                             @else
                                 <span class="label label-sm label-default">
 										Deaktif </span>
-                                <div class="btn-group pull-right">
-                                    <a href="{{ action('Dashboard\SupplierController@show') }}">
-                                        <span class="label label-sm label-success">
-										Aktive et </span>
-                                    </a>
-                                </div>
-
                             @endif
                         </td>
                         <td>
-                            <a href="{{ action('Dashboard\SupplierController@show') }}" class="btn default btn-xs purple">
-                                Deaktive et
+                            <a href="{{ action('Dashboard\ProductController@edit',$product->id) }}" class="btn default btn-xs purple">
+                                Düzenle
                             </a>
+                            @if($product->is_active)
+                                <a href="{{ action('Dashboard\ProductController@setAsDeactive',$product->id) }}" class="btn default btn-xs default">
+                                    Deaktive et
+                                </a>
+                                @else
+                                <a href="{{ action('Dashboard\ProductController@setAsActive',$product->id)}}" class="btn default btn-xs green">
+                                    Aktive et
+                                </a>
+                            @endif
                         </td>
 
                     </tr>
