@@ -56,7 +56,7 @@ Route::get('setsubscriptions', function () {
 });
 
 Route::get('testmedia',function(){
-    Storage::put('aasd.jpg',file_get_contents('http://www.lenovo.com/images/gallery/1060x596/lenovo-laptop-z40-front-5.jpg'));
+    Storage::put('omer.jpg',file_get_contents('http://www.lenovo.com/images/gallery/1060x596/lenovo-laptop-z40-front-5.jpg'));
     return null;
 });
 
