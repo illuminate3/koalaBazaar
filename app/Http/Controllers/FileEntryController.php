@@ -54,7 +54,7 @@ class FileEntryController extends Controller
     {
         $entry = FileEntry::where('filename', '=', $path)->first();
 
-        if($entry==null || Storage::exists($path)){
+        if($entry==null || !Storage::exists($path)){
             return response(null,404);
         }else{
             $file = Storage::get($entry->filename);
