@@ -48,7 +48,7 @@ class InstagramController extends Controller
                                 $product->description = $caption;
                                 $file = new FileEntry();
                                 if($file->storeFromUrl($singleMedia->images->standard_resolution->url,$instagramAccount->instagramable->id,'product')){
-                                    $product->image = $file->name;
+                                    $product->image = $file->filename;
                                 }else{
                                     $product->image =$singleMedia->images->standard_resolution->url;
                                 };
