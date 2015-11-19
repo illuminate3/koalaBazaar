@@ -110,7 +110,7 @@
                         </td>
 
                         <td>
-                            <img src="@if($product->image==null) {{$product->image}}@else {{$product->instagram->image_url}}  @endif" style="width: 130px;">
+                            <img src="@if($product->image!=null) {{$product->image}}@else {{$product->instagram->image_url}}  @endif" style="width: 130px;">
 
                         </td>
                         <td>
