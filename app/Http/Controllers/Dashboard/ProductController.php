@@ -20,7 +20,9 @@ class ProductController extends Controller
     {
         $user=Auth::user();
         $shop=$user->userable;
-        $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
+        $products= Product::where(['supplier_id'=>$user->id])->get();
+    //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
+
         return view('dashboard.productList',['products'=>$products]);
 
 

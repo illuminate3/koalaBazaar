@@ -146,9 +146,14 @@ class SupplierController extends Controller
     public function update(Request $request)
     {
         $updateRules = array(
+
+            'firstname'           => 'required',
+            'surname'        => 'required',
+            'phone'         => 'required| digits:11',
             'email'       => 'required|email',
-            'password'    =>'required',
-            'rpassword'   => 'required|same:password'
+            'country'        => 'required',
+            'city'           => 'required',
+            'description'    => 'required',
         );
         // do the validation ----------------------------------
         // validate against the inputs from our form
@@ -158,9 +163,10 @@ class SupplierController extends Controller
         if ($validator->fails()) {
 
             // get the error messages from the validator
-            $messages = $validator->messages();
+            $updater = $validator->messages();
             // redirect our user back to the form with the errors from the validator
-            return back()->withInput()->withErrors($messages);
+
+            return back()->withInput()->withErrors($validator,'updater');
 
         }
         else {
@@ -169,7 +175,6 @@ class SupplierController extends Controller
 
             $user->name=$request->input('firstname');
             $user->surname=$request->input('surname');
-
             $user->email=$request->input('email');
             $user->password=bcrypt($request->input('password'));
             $user->update();
@@ -183,9 +188,36 @@ class SupplierController extends Controller
             $supplier->phone=$request->input('phone');
 
             $supplier->update();
+            return redirect()->back()->with('success',['Successful','asdas']);
 
         }
     }
+    public function updatePassword(Request $request)
+    {
+
+            $rules = array(
+                'password'             =>'required',
+            'repassword'           => 'required|same:password'
+        );
+
+        // do the validation ----------------------------------
+        // validate against the inputs from our form
+        $validator2 = Validator::make($request->all(), $rules);
+
+        // check if the validator failed -----------------------
+        if ($validator2->fails()) {
+            // get the error messages from the validator
+            $updatePassword = $validator2->messages();
+            // redirect our user back to the form with the errors from the validator
+            return back()->withInput()->withErrors($validator2,'updatePassword');
+
+        }else{
+            $user=Auth::user();
+            $user->password=bcrypt($request->input('password'));
+        }
+
+    }
+
 
     /**
      * Remove the specified resource from storage.
