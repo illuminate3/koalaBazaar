@@ -15,8 +15,15 @@ use App\Product;
 use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 Route::get('/', function () {
     return view('user.index');
+});
+
+Route::get('storage/{path}','FileEntryController@show')->where('path', '(.*)');;
+Route::get('testmedia',function(){
+    $file=new \App\FileEntry();
+    $file->storeFromUrl('http://www.istanbul.ferraridealers.com/siteasset/ferraridealer/4f74a1a219b2b/961/420/selected/-216/0/0/4f74a1a219b2b.jpg','1','test');
 });
 
 Route::get('/supplierRegister', function () {
@@ -54,29 +61,12 @@ Route::get('setsubscriptions', function () {
     return null;
 });
 
-Route::get('testmedia',function(){
-    $instagram=new InstagramAPI();
-    $instagramAccount=InstagramAccount::where('instagram_id',2237148792)->first();
-    if($instagramAccount->isSupplier()){
-        $instagram->setAccessToken($instagramAccount->access_token);
-        $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
-        foreach($media->data as $singleMedia){
-            if(isset($singleMedia->caption)){
-                echo "not null";
-            }else{
-                echo "null";
-            }
-        }
-    }
-    return null;
-});
+
 
 Route::get('register', 'AuthenticationController@showRegister');
 Route::post('login', 'AuthenticationController@doLogin');
 
-Route::group(['prefix' => 'dashboard'],function(){
-
-
+Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     Route::group(['prefix'=>'supplier'],function(){
        Route::get('/','Dashboard\SupplierController@show');
      //   Route::get('/productList','Dashboard\ProductController@index');

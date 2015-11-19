@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductsInstagram;
 use App\User;
+use App\FileEntry;
 use App\InstagramAccount;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,8 @@ class InstagramController extends Controller
                     $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
                     if($media->meta->code==200){
                         foreach($media->data as $singleMedia) {
-                            if ($singleMedia->type == 'image') {
+                            if ($singleMedia->type == 'image' && ProductsInstagram::where('id', '=', $singleMedia->id)->first() ==null) {
+
                                 $caption=null;
                                 if(isset($singleMedia->caption)){
                                     $caption=$singleMedia->caption->text;
@@ -45,7 +47,14 @@ class InstagramController extends Controller
                                 $product->supplier_id = $instagramAccount->instagramable->id;
                                 $product->title = $instagramAccount->instagramable->shop_name.' '.$caption;
                                 $product->description = $caption;
-                                $product->image = $singleMedia->images->standard_resolution->url;
+                                $file = new FileEntry();
+                                $status=$file->storeFromUrl($singleMedia->images->standard_resolution->url,$instagramAccount->instagramable->id,'product');
+                                if($status){
+                                    $product->image = $file->filename;
+                                }else{
+                                    $product->image =$singleMedia->images->standard_resolution->url;
+                                };
+
 
                                 if($caption==null){
                                     $product->price=null;
