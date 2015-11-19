@@ -15,6 +15,7 @@ use App\Product;
 use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 Route::get('/', function () {
     return view('user.index');
 });
@@ -55,31 +56,7 @@ Route::get('setsubscriptions', function () {
 });
 
 Route::get('testmedia',function(){
-    $caption='Fiyat:20try';
-    $key='fiyat:';
-    $captionSmall=mb_strtolower($caption, 'UTF-8');
-    echo $captionSmall.'</br>';
-    $firstOccurence=strpos($captionSmall,$key);
-    echo $firstOccurence.'</br>';
-    $priceStart=$firstOccurence+strlen($key);
-    $priceEnd=$priceStart;
-    echo $priceStart.'</br>';
-    $price="zaa";
-
-    for($i=$priceStart;$i<strlen($caption);$i++){
-        if(is_numeric(substr($caption,$i))){
-            $price=$price.substr($caption,$i);
-        }else{
-            echo "ptr";
-            $priceEnd=$i;
-            $i=strlen($caption);
-
-        }
-    }
-
-    echo $price.'</br>';
-
-
+    Storage::put('aasd.jpg',file_get_contents('http://www.lenovo.com/images/gallery/1060x596/lenovo-laptop-z40-front-5.jpg'));
     return null;
 });
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Supplier;
@@ -97,7 +98,7 @@ class SupplierController extends Controller
                 $instagramAccount->website=$instagramInfo->user->website;
                 $instagramAccount->profile_picture=$instagramInfo->user->profile_picture;
                 $supplier->instagramAccount()->save($instagramAccount);
-
+                Storage::makeDirectory($user->id);
                 redirect()->action('AuthenticationController@showRegister')->with('success',['Successful']);
 
             }
