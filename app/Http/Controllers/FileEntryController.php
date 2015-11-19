@@ -52,9 +52,14 @@ class FileEntryController extends Controller
      */
     public function show($path)
     {
-        $entry = FileEntry::where('filename', '=', $path)->firstOrFail();
+        $entry = FileEntry::where('filename', '=', $path)->first();
         $file = Storage::get($entry->filename);
-        return response($file)->header('Content-Type', $entry->mime);
+        if($entry==null){
+            return response(null,404);
+        }else{
+
+            return response($file)->header('Content-Type', $entry->mime);
+        }
     }
 
     /**
