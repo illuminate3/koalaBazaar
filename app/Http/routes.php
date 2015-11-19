@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('user.index');
 });
 
+Route::get('storage/{path}','FileEntryController@show')->where('path', '(.*)');;
+
+
 Route::get('/supplierRegister', function () {
     return view('dashboard.supplierRegister');
 });
@@ -55,10 +58,7 @@ Route::get('setsubscriptions', function () {
     return null;
 });
 
-Route::get('testmedia',function(){
-    Storage::put('omer.jpg',file_get_contents('http://www.lenovo.com/images/gallery/1060x596/lenovo-laptop-z40-front-5.jpg'));
-    return null;
-});
+
 
 Route::get('register', 'AuthenticationController@showRegister');
 Route::post('login', 'AuthenticationController@doLogin');
