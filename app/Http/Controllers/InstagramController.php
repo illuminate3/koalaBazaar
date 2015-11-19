@@ -36,7 +36,8 @@ class InstagramController extends Controller
                     $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
                     if($media->meta->code==200){
                         foreach($media->data as $singleMedia) {
-                            if ($singleMedia->type == 'image') {
+                            if ($singleMedia->type == 'image' && ProductsInstagram::where('id', '=', $singleMedia->id)->first() ==null) {
+
                                 $caption=null;
                                 if(isset($singleMedia->caption)){
                                     $caption=$singleMedia->caption->text;
@@ -47,7 +48,8 @@ class InstagramController extends Controller
                                 $product->title = $instagramAccount->instagramable->shop_name.' '.$caption;
                                 $product->description = $caption;
                                 $file = new FileEntry();
-                                if($file->storeFromUrl($singleMedia->images->standard_resolution->url,$instagramAccount->instagramable->id,'product')){
+                                $status=$file->storeFromUrl($singleMedia->images->standard_resolution->url,$instagramAccount->instagramable->id,'product');
+                                if($status){
                                     $product->image = $file->filename;
                                 }else{
                                     $product->image =$singleMedia->images->standard_resolution->url;

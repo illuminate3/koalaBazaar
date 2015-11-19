@@ -21,7 +21,10 @@ Route::get('/', function () {
 });
 
 Route::get('storage/{path}','FileEntryController@show')->where('path', '(.*)');;
-
+Route::get('testmedia',function(){
+    $file=new \App\FileEntry();
+    $file->storeFromUrl('http://www.istanbul.ferraridealers.com/siteasset/ferraridealer/4f74a1a219b2b/961/420/selected/-216/0/0/4f74a1a219b2b.jpg','1','test');
+});
 
 Route::get('/supplierRegister', function () {
     return view('dashboard.supplierRegister');

@@ -12,10 +12,13 @@ class FileEntry extends Model
 
     public function storeFromUrl($url,$path,$name){
         $counter=1;
-        while(Storage::exists($path.'/'.$name.'.'.pathinfo($url, PATHINFO_EXTENSION))){
+        if(Storage::exists($path.'/'.$name.'.'.pathinfo($url, PATHINFO_EXTENSION))){
+            while(Storage::exists($path.'/'.$name.'-'.$counter.'.'.pathinfo($url, PATHINFO_EXTENSION))){
+                $counter++;
+            }
             $name=$name.'-'.$counter;
-            $counter++;
         }
+
         $file=file_get_contents($url);
 
 
