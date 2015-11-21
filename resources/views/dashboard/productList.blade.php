@@ -6,6 +6,7 @@
         <!-- BEGIN PAGE LEVEL STYLES -->
 <link rel="stylesheet" type="text/css" href="{{asset('/dashboard')}}/assets/global/plugins/select2/select2.css">
 <link rel="stylesheet" type="text/css" href="{{asset('/dashboard')}}/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css">
+<link href="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
 <!-- END PAGE LEVEL STYLES -->
 @endsection
         
@@ -71,7 +72,9 @@
                                         {{ $product->description }}
                                     </td>
                                            <td>
-                                        <img src="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" style="width: 100px;">
+                                               <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">
+                                                   <img class="img-responsive" src="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" style="width: 100px;" alt="">
+                                               </a>
                                     </td>
                                            <td>
 
@@ -117,17 +120,21 @@
 
 @section('page_level_plugins')
 
+    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
     <script>
         jQuery(document).ready(function() {
             TableManaged.init();
         });
     </script>
-    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/select2/select2.min.js"></script>
-    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
 @endsection
 
 @section('page_level_scripts')
+    <script src="{{asset('/dashboard')}}/assets/global/scripts/datatable.js"></script>
+    <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/ecommerce-products-edit.js"></script>
     <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/table-managed.js"></script>
 
 @endsection

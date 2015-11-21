@@ -3,6 +3,13 @@
 @section('title','Product Detail')
 @endsection
 
+        @section('page_level_styles')
+        <!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="{{asset('/dashboard')}}/assets/global/plugins/select2/select2.css">
+<link href="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+<!-- END PAGE LEVEL STYLES -->
+        @endsection
+        
 @section('page_level_content')
         <!--BEGIN PAGE LEVEL CONTENT-->
         <div class="row">
@@ -114,7 +121,9 @@
 
                                 </div>
                                 <div class="col-md-4">
-                                    <img class="img-responsive" src="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" style="width: 130px;">
+                                    <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">
+                                        <img class="img-responsive" src="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}} @endif" alt="">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -125,4 +134,13 @@
         <!--END PAGE LEVEL CONTENT-->
 @endsection
 
+@section('page_level_plugins')
+    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script src="{{asset('/dashboard')}}/assets/global/plugins/plupload/js/plupload.full.min.js" type="text/javascript"></script>
+@endsection
 
+@section('page_level_scripts')
+    <script src="{{asset('/dashboard')}}/assets/global/scripts/datatable.js"></script>
+    <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/ecommerce-products-edit.js"></script>
+    @endsection
