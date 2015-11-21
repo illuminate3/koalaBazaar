@@ -457,7 +457,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="{{action('Dashboard\SupplierController@edit')}}">
                             <i class="icon-user"></i>
                             <span class="title">Profilimi Düzenle</span>
