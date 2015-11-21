@@ -7,8 +7,9 @@
     <link href="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css">
     <link href="{{asset('/dashboard')}}/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css">
     <link href="{{asset('/dashboard')}}/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
 
-    @endsection
+@endsection
 
 @section('page_level_content')
 
@@ -206,8 +207,9 @@
                                                     @foreach ($products as $product)
                                                     <tr>
                                                         <td>
-                                                            <a href="javascript:;">
+                                                            <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">
                                                                 {{$product->title}} </a>
+
                                                         </td>
                                                         <td>
                                                             {{$product->price}}  {{$product->current_unit}}
@@ -802,7 +804,9 @@
 
     <script src="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
     <script src="{{asset('/dashboard')}}/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-    @endsection
+    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+
+@endsection
 
 @section('page_level_scripts')
     <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/profile.js" type="text/javascript"></script>
