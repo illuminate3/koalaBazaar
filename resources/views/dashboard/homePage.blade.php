@@ -803,8 +803,6 @@
         </div>
     </div>
 
-
-
     @endsection
 
 @section('page_level_plugins')
@@ -815,4 +813,9 @@
 
 @section('page_level_scripts')
     <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/profile.js" type="text/javascript"></script>
+    <script>
+        jQuery(document).ready(function() {
+            Profile.init(); // init page demo
+        });
+    </script>
     @endsection
