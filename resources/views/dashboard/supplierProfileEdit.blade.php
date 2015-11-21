@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Phone</label>
-                                    <input type="text" value="{{$user->phone}}" class="form-control" name="phone">
+                                    <input type="text" value="{{$user->userable->phone}}" class="form-control" name="phone">
                                 </div>
 
                                 <div class="form-group">
@@ -69,7 +69,7 @@
 
                                 <div class="form-group">
                                     <label class="control-label">Country</label>
-                                    <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1" name="country">
+                                    <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1" name="country" value="{{$user->userable->country}}">
                                         <option value="">Select...</option>
                                         <option value="TR">Türkiye</option>
                                         <option value="FR">Fransa</option>
@@ -79,18 +79,18 @@
 
                                 <div class="form-group">
                                     <label class="control-label">City</label>
-                                    <input type="text"  class="form-control" name="city">
+                                    <input type="text"  class="form-control" name="city" value="{{$user->userable->city}}">
                                 </div>
 
 
                                 <div class="form-group">
                                     <label class="control-label">Description</label>
-                                    <textarea class="form-control" rows="3" name="description"></textarea>
+                                    <textarea class="form-control" rows="3" name="description" placeholder="{{$user->userable->description}}"></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label">Social Links</label>
-                                    <input type="text" placeholder="Facebook, Twitter, Instagram..." class="form-control" name="social_links">
+                                    <input type="text" placeholder="Facebook, Twitter, Instagram..." class="form-control" name="social_links" value="{{$user->userable->social_links}}">
                                 </div>
 
                                 <div class="margiv-top-10">

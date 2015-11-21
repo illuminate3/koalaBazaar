@@ -174,7 +174,6 @@ class SupplierController extends Controller
             $user->name=$request->input('firstname');
             $user->surname=$request->input('surname');
             $user->email=$request->input('email');
-            $user->password=bcrypt($request->input('password'));
             $user->update();
 
             $supplier=$user->userable;

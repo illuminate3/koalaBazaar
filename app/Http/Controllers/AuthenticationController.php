@@ -53,7 +53,7 @@ class AuthenticationController extends Controller
                 $user=Auth::user();
                 if($user->isSupplier()){
 
-                    return redirect()->action('Dashboard\SupplierController@edit');
+                    return redirect()->action('Dashboard\SupplierController@show');
                 }
 
             } else {
