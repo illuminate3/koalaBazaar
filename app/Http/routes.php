@@ -34,15 +34,6 @@ Route::get('/customerRegister', function () {
     return view('dashboard.customerRegister');
 });
 
-Route::get('/panel', function () {
-    return view('dashboard.testWelcome');
-});
-
-Route::get('/default', function () {
-    return view('dashboard.default');
-});
-
-
 
 Route::get('/supplierProfileEdit', function () {
     return view('dashboard.supplierProfileEdit');
@@ -68,8 +59,7 @@ Route::post('login', 'AuthenticationController@doLogin');
 
 Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     Route::group(['prefix'=>'supplier'],function(){
-       Route::get('/','Dashboard\SupplierController@show');
-     //   Route::get('/productList','Dashboard\ProductController@index');
+        Route::get('/','Dashboard\SupplierController@show');
         Route::get('edit','Dashboard\SupplierController@edit');
         Route::post('update','Dashboard\SupplierController@update');
         Route::post('updatePassword','Dashboard\SupplierController@updatePassword');
@@ -80,11 +70,10 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     Route::group(['prefix'=>'product'],function(){
         Route::get('/','Dashboard\ProductController@index');
         Route::get('/edit/{id}','Dashboard\ProductController@edit');
+        Route::get('/update/{id}','Dashboard\ProductController@update');
         Route::get('/setasactive/{id}','Dashboard\ProductController@setAsActive');
         Route::get('/setasdeactive/{id}','Dashboard\ProductController@setAsDeactive');
     });
-
-
 
 
 });

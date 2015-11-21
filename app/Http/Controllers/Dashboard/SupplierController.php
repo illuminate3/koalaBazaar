@@ -116,7 +116,7 @@ class SupplierController extends Controller
      */
     public function show()
     {
-        return view('dashboard.testWelcome');
+        return view('dashboard.main');
     }
 
 
@@ -136,6 +136,7 @@ class SupplierController extends Controller
     }
 
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -146,33 +147,23 @@ class SupplierController extends Controller
     public function update(Request $request)
     {
         $updateRules = array(
-
-            'firstname'           => 'required',
+            'firstname'      => 'required',
             'surname'        => 'required',
-            'phone'         => 'required| digits:11',
-            'email'       => 'required|email',
+            'phone'          => 'required|digits:11',
+            'email'          => 'required|email',
             'country'        => 'required',
             'city'           => 'required',
             'description'    => 'required',
         );
-        // do the validation ----------------------------------
-        // validate against the inputs from our form
+
         $validator = Validator::make($request->all(), $updateRules);
 
-        // check if the validator failed -----------------------
         if ($validator->fails()) {
-
-            // get the error messages from the validator
-            $updater = $validator->messages();
-            // redirect our user back to the form with the errors from the validator
-
-            return back()->withInput()->withErrors($validator,'updater');
-
+            return back()->withInput()->withErrors($validator);
         }
+
         else {
         $user=Auth::user();
-
-
             $user->name=$request->input('firstname');
             $user->surname=$request->input('surname');
             $user->email=$request->input('email');
@@ -180,7 +171,6 @@ class SupplierController extends Controller
             $user->update();
 
             $supplier=$user->userable;
-            $supplier->profile_image=$request->input('profile_picture');
             $supplier->cover_image=$request->input('cover_image');
             $supplier->country=$request->input('country');
             $supplier->city=$request->input('city');
@@ -188,32 +178,46 @@ class SupplierController extends Controller
             $supplier->phone=$request->input('phone');
 
             $supplier->update();
-            return redirect()->back()->with('success',['Successful','asdas']);
-
+            return redirect()->back()->with('success',['Successful','Profil bilgileriniz güncellendi']);
         }
     }
     public function updatePassword(Request $request)
     {
-
             $rules = array(
-                'password'             =>'required',
-            'repassword'           => 'required|same:password'
+                'password'         =>'required|alphaNum',
+                'rpassword'       => 'required|same:password'
         );
 
-        // do the validation ----------------------------------
-        // validate against the inputs from our form
-        $validator2 = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
 
-        // check if the validator failed -----------------------
-        if ($validator2->fails()) {
-            // get the error messages from the validator
-            $updatePassword = $validator2->messages();
-            // redirect our user back to the form with the errors from the validator
-            return back()->withInput()->withErrors($validator2,'updatePassword');
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+
+        }
+        $user=Auth::user();
+
+            $user->password=bcrypt($request->input('password'));
+            $user->update();
+            return redirect()->back()->with('success',['Successful','Parolanız güncellendi']);
+
+
+
+    }
+    public function updateImages(Request $request)
+    {
+        $rules = array('cover_image'=>'required');
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
 
         }else{
             $user=Auth::user();
-            $user->password=bcrypt($request->input('password'));
+            $supplier=$user->userable;
+            $supplier->cover_image=$request->input('cover_image');
+            $supplier->update();
+            return redirect()->back()->with('success',['Successful','Fotoğrafınız güncellendi']);
         }
 
     }
