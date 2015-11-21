@@ -212,18 +212,21 @@ class SupplierController extends Controller
     public function updateImages(Request $request)
     {
         $rules = array('cover_image'=>'required');
-
         $validator = Validator::make($request->all(), $rules);
+
 
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator);
 
-        }else{
+        }
+        else{
+
             $user=Auth::user();
             $supplier=$user->userable;
             $supplier->cover_image=$request->input('cover_image');
             $supplier->update();
             return redirect()->back()->with('success',['Successful','Fotoğrafınız güncellendi']);
+
         }
 
     }

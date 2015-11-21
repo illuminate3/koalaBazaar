@@ -115,7 +115,7 @@ class ProductController extends Controller
         if(!Product::find($id)) {
             return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
         }
-        $product=Product::find($id)->first();
+        $product=Product::find($id);
         if(Auth::user()->id!=$product->supplier_id) {
             return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
         }

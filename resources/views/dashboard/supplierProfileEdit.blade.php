@@ -132,12 +132,20 @@
                                         <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Image url</label>
+                                    <input type="text" placeholder="image_link" class="form-control" name="cover_image_url" value="{{$user->userable->cover_image}}">
+
+                                </div>
                                 <div class="margin-top-10">
                                     <button type="submit" class="btn default btn green">
                                         <i class="fa fa-check"></i> Kapak Fotoğrafını Düzenle</button>
                                     <a href="javascript:;" class="btn default">
                                         Cancel </a>
                                 </div>
+
+
                             </form>
                         </div>
                         <!-- END CHANGE AVATAR TAB -->
