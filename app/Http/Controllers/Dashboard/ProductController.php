@@ -64,19 +64,19 @@ class ProductController extends Controller
             return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
         }
 
-        $product=Product::find($id)->first();
+        $product=Product::find($id);
         if(Auth::user()->id!=$product->supplier_id) {
             return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
         }
     }
     public function setAsActive($id)
     {
-      //  $product=Product::find($id)->first();
+
         if(!Product::find($id)) {
             return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
         }
 
-        $product=Product::find($id)->first();
+        $product=Product::find($id);
         if(Auth::user()->id!=$product->supplier_id) {
             return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
         }
@@ -94,7 +94,7 @@ class ProductController extends Controller
         if(!Product::find($id)) {
             return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
         }
-        $product=Product::find($id)->first();
+        $product=Product::find($id);
         if(Auth::user()->id!=$product->supplier_id) {
             return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
         }
@@ -138,7 +138,7 @@ class ProductController extends Controller
            // return view('dashboard.supplierProfileEdit');
             return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
         }
-        $product=Product::find($id)->first();
+        $product=Product::find($id);
         if(Auth::user()->id!=$product->supplier_id) {
             //return view('dashboard.supplierProfileEdit');
            return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
