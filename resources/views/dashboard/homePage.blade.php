@@ -670,7 +670,7 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12">
                         <!-- BEGIN PORTLET -->
                         <div class="portlet light">
                             <div class="portlet-title">
@@ -681,7 +681,7 @@
                                     <span class="caption-helper">45 pending</span>
                                 </div>
                                 <div class="inputs">
-                                    <div class="portlet-input input-inline input-small ">
+                                    <div class="portlet-input scroll input-inline input-small ">
                                         <div class="input-icon right">
                                             <i class="icon-magnifier"></i>
                                             <input type="text" class="form-control form-control-solid" placeholder="search...">
@@ -690,8 +690,7 @@
                                 </div>
                             </div>
                             <div class="portlet-body">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 305px;">
-                                    <div class="scroller" style="height: 305px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
+                                <div data-spy="scroll" class="scrollspy-example">
                                         <div class="general-item-list">
                                             <div class="item">
                                                 <div class="item-head">
@@ -785,18 +784,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 167.067px; background: rgb(215, 220, 226);"></div>
-
-                                    <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(234, 234, 234);">
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- END PORTLET -->
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
             </div>
             <!-- END PROFILE CONTENT -->
