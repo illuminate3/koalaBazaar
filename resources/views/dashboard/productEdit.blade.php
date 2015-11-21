@@ -114,7 +114,7 @@
 
                                 </div>
                                 <div class="col-md-4">
-                                    <img class="img-responsive" src="{{$product->image}}" style="width: 130px;">
+                                    <img class="img-responsive" src="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" style="width: 130px;">
                                 </div>
                             </div>
                         </div>
