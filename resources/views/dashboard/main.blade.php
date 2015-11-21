@@ -14,6 +14,9 @@
     <link href="{{asset('/dashboard')}}/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
     <link href="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
+
+    @section('page_level_styles')
+            @show
     <!-- BEGIN THEME STYLES -->
     <link href="{{asset('/dashboard')}}/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css">
     <link href="{{asset('/dashboard')}}/assets/global/css/plugins.css" rel="stylesheet" type="text/css">
@@ -22,6 +25,8 @@
     <link href="{{asset('/dashboard')}}/assets/admin/layout2/css/custom.css" rel="stylesheet" type="text/css">
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico">
+
+
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -375,7 +380,7 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="image">
+                            <img alt="" class="img-circle" src="{{asset('/dashboard')}}/assets/admin/layout2/img/avatar3_small.jpg">
 						<span class="username username-hide-on-mobile">
 
                         Nick</span>
@@ -452,11 +457,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active open">
+                    <li class="active">
                         <a href="{{action('Dashboard\SupplierController@edit')}}">
                             <i class="icon-user"></i>
                             <span class="title">Profilimi Düzenle</span>
-                            <span class="arrow "></span>
                         </a>
                     </li>
 

@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Supplier;
+use App\Product;
+
 use App\InstagramAccount;
 class SupplierController extends Controller
 {
@@ -116,7 +118,12 @@ class SupplierController extends Controller
      */
     public function show()
     {
-        return view('dashboard.main');
+        $user=Auth::user();
+
+        $products= Product::where(['supplier_id'=>$user->id])->get();
+        //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
+
+        return view('dashboard.homePage',['user'=>$user,'products'=>$products]);
     }
 
 
