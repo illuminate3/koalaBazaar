@@ -814,9 +814,5 @@
     @endsection
 
 @section('page_level_scripts')
-    <script src="{{asset('/dashboard')}}/assets/global/scripts/metronic.js" type="text/javascript"></script>
-    <script src="{{asset('/dashboard')}}/assets/admin/layout2/scripts/layout.js" type="text/javascript"></script>
-    <script src="{{asset('/dashboard')}}/assets/admin/layout2/scripts/demo.js" type="text/javascript"></script>
     <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/profile.js" type="text/javascript"></script>
-
     @endsection
