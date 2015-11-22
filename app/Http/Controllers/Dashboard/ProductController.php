@@ -120,7 +120,6 @@ class ProductController extends Controller
             return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
         }
 
-
         return view('dashboard.productEdit',['product'=>$product]);
         //
     }
@@ -160,7 +159,7 @@ class ProductController extends Controller
             $updateProduct = $validator->messages();
             // redirect our user back to the form with the errors from the validator
            // return view('dashboard.supplierProfileEdit');
-            return back()->withInput()->withErrors($validator,'updateProduct');
+            return back()->withInput()->withErrors($validator);
 
         }else{
 

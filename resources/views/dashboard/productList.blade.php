@@ -13,6 +13,20 @@
 @section('page_level_content')
         <!-- BEGIN PAGE LEVEL CONTENT-->
 <div class="row">
+    @if($errors->has())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                <i class="icon-remove-sign"></i>{{ $error }}
+            </div>
+        @endforeach
+    @endif
+    @if(\Illuminate\Support\Facades\Session::has('success'))
+        @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
+            <div class="alert alert-success">
+                <i class="icon-remove-sign"></i>{{ $success }}
+            </div>
+        @endforeach
+    @endif
     <div class="col-md-12">
         <!-- BEGIN EXAMPLE TABLE PORTLET-->
         <div class="portlet box yellow-casablanca">

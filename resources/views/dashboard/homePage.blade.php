@@ -14,6 +14,21 @@
 @section('page_level_content')
 
     <div class="row">
+        @if($errors->has())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">
+                    <i class="icon-remove-sign"></i>{{ $error }}
+                </div>
+            @endforeach
+        @endif
+
+        @if(\Illuminate\Support\Facades\Session::has('success'))
+            @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
+                <div class="alert alert-success">
+                    <i class="icon-remove-sign"></i>{{ $success }}
+                </div>
+            @endforeach
+        @endif
         <div class="col-md-12">
             <!-- BEGIN PROFILE SIDEBAR -->
             <div class="profile-sidebar" style="width: 300px;">

@@ -13,22 +13,22 @@
 @section('page_level_content')
         <!--BEGIN PAGE LEVEL CONTENT-->
         <div class="row">
-            <div class="col-md-12">
-                @if($errors->updateProduct->has())
-                    @foreach ($errors->updateProduct->all() as $error)
-                        <div class="alert alert-danger">
-                            <i class="icon-remove-sign"></i>{{ $error }}
-                        </div>
-                    @endforeach
-                @endif
+            @if($errors->has())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        <i class="icon-remove-sign"></i>{{ $error }}
+                    </div>
+                @endforeach
+            @endif
 
-                @if(\Illuminate\Support\Facades\Session::has('success'))
-                    @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
-                        <div class="alert alert-success">
-                            <i class="icon-remove-sign"></i>{{ $success }}
-                        </div>
-                    @endforeach
-                @endif
+            @if(\Illuminate\Support\Facades\Session::has('success'))
+                @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
+                    <div class="alert alert-success">
+                        <i class="icon-remove-sign"></i>{{ $success }}
+                    </div>
+                @endforeach
+            @endif
+            <div class="col-md-12">
                 <form class="form-horizontal form-row-seperated" action="{{ action('Dashboard\ProductController@update',$product->id) }}">
                     <div class="portlet light">
                         <div class="portlet-title">
