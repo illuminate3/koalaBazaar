@@ -73,7 +73,7 @@
 														 </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <textarea class="form-control" name="description"></textarea>
+                                                    <textarea class="form-control" name="description"> {!! $product->description !!}</textarea>
                                                 </div>
                                             </div>
 
