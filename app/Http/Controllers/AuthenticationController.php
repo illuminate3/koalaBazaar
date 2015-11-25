@@ -24,6 +24,13 @@ class AuthenticationController extends Controller
         return Redirect::to($instagram->getLoginUrl());
     }
 
+    public function doLogout(){
+        if(Auth::check()){
+            Auth::logout();
+            return redirect('/');
+        }
+    }
+
     public function doLogin(Request $request){
 
 // validate the info, create rules for the inputs

@@ -63,17 +63,7 @@
         <!-- END PAGE ACTIONS -->
         <!-- BEGIN PAGE TOP -->
         <div class="page-top">
-            <!-- BEGIN HEADER SEARCH BOX -->
-            <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-            <form class="search-form search-form-expanded" action="extra_search.html" method="GET">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..." name="query">
-					<span class="input-group-btn">
-					<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
-					</span>
-                </div>
-            </form>
-            <!-- END HEADER SEARCH BOX -->
+
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
                 <ul class="nav navbar-nav pull-right">
@@ -90,12 +80,18 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="{{asset('/dashboard')}}/assets/admin/layout2/img/avatar3_small.jpg">
+                            <img alt="" class="img-circle" src="{{ Auth::user()->userable->profile_image  }}">
 						<span class="username username-hide-on-mobile">
 
-                        Nick</span>
+                        {{ Auth::user()->name.' '.Auth::user()->surname }}</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="{{ action('AuthenticationController@doLogout') }}">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
                 </ul>

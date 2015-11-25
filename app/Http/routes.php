@@ -56,7 +56,7 @@ Route::get('setsubscriptions', function () {
 
 Route::get('register', 'AuthenticationController@showRegister');
 Route::post('login', 'AuthenticationController@doLogin');
-
+Route::get('logout', 'AuthenticationController@doLogout');
 Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     Route::group(['prefix'=>'supplier'],function(){
         Route::get('/','Dashboard\SupplierController@show');
