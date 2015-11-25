@@ -29,7 +29,7 @@
                 @endforeach
             @endif
             <div class="col-md-12">
-                <form class="form-horizontal form-row-seperated" action="{{ action('Dashboard\ProductController@update',$product->id) }}">
+                <form class="form-horizontal form-row-seperated" method="post" action="{{ action('Dashboard\ProductController@update',$product->id) }}">
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">

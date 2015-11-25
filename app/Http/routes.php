@@ -70,7 +70,7 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     Route::group(['prefix'=>'product'],function(){
         Route::get('/','Dashboard\ProductController@index');
         Route::get('/edit/{id}','Dashboard\ProductController@edit');
-        Route::get('/update/{id}','Dashboard\ProductController@update');
+        Route::post('/update/{id}','Dashboard\ProductController@update');
         Route::get('/setasactive/{id}','Dashboard\ProductController@setAsActive');
         Route::get('/setasdeactive/{id}','Dashboard\ProductController@setAsDeactive');
     });
