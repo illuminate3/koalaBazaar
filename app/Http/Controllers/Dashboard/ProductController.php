@@ -167,7 +167,7 @@ class ProductController extends Controller
             $product->title=$request->input('title');
             $product->description=$request->input('description');
             $product->price=$request->input('price');
-            $product->currency_unit=$request->input('current_unit');
+            $product->currency_unit_id=$request->input('current_unit');
             if($request->input('is_active')=='1') {
                 $product->is_active=true;
             }else {
