@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Product;
+use App\CurrencyUnit;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -119,8 +120,8 @@ class ProductController extends Controller
         if(Auth::user()->id!=$product->supplier_id) {
             return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
         }
-
-        return view('dashboard.productEdit',['product'=>$product]);
+        $units=CurrencyUnit::all();
+        return view('dashboard.productEdit',['product'=>$product,'currency_units'=>$units]);
         //
     }
 

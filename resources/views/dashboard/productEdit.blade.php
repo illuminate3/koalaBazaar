@@ -92,9 +92,9 @@
                                                 <div class="col-md-10">
                                                     <select class="table-group-action-input form-control input-medium" name="current_unit">
                                                         <option value="">Select...</option>
-                                                        <option value="TRY">TRY</option>
-                                                        <option value="USD">USD</option>
-                                                        <option value="EUR">EUR</option>
+                                                        @foreach($currency_units as $curunit)
+                                                        <option value="{{ $curunit->id }}" @if($product->currency_unit_id == $curunit->id) selected @endif>{{ $curunit->unit_name }}</option>
+                                                        @endforeach
 
                                                     </select>
                                                 </div>
@@ -105,9 +105,9 @@
                                                 </label>
                                                 <div class="col-md-10">
                                                     <select class="table-group-action-input form-control input-medium" name="is_active">
-                                                        <option value="">Select...</option>
-                                                        <option value="1">Active</option>
-                                                        <option value="0">Not Active</option>
+
+                                                        <option value="1" @if($product->is_active) selected @endif>Active</option>
+                                                        <option value="0" @if(!$product->is_active) selected @endif>Not Active</option>
                                                     </select>
                                                 </div>
                                             </div>

@@ -8,7 +8,7 @@ class Product extends Model
 {
    protected $table='products';
 
-    protected $fillable=['supplier_id','id','title','description','is_active','image','price','current_unit'];
+    protected $fillable=['supplier_id','id','title','description','is_active','image','price','currency_unit_id'];
 
     public function supplier() {
         return $this->belongsTo('App\Supplier');
@@ -23,5 +23,9 @@ class Product extends Model
 
     public function ranks() {
         return $this->morphMany('App\Ranking','rankable','rankable_type','rankable_id','id');
+    }
+
+    public function currencyUnit(){
+        return $this->hasOne('App\CurrencyUnit','id','currency_unit_id');
     }
 }

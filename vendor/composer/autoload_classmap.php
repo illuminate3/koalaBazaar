@@ -6,11 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCurrencyUnitToProducts' => $baseDir . '/database/migrations/2015_11_25_122806_add_currency_unit_to_products.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2015_10_22_183013_create_addresses_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2015_10_22_185822_create_categories_table.php',
     'CreateCategoryProductPivotTable' => $baseDir . '/database/migrations/2015_10_22_192252_create_category_product_pivot_table.php',
     'CreateCheckOutsTable' => $baseDir . '/database/migrations/2015_10_22_200052_create_check_outs_table.php',
     'CreateCommentsTable' => $baseDir . '/database/migrations/2015_11_05_194954_create_comments_table.php',
+    'CreateCurrencyUnitsTable' => $baseDir . '/database/migrations/2015_11_25_122327_create_currency_units_table.php',
     'CreateCustomersTable' => $baseDir . '/database/migrations/2015_10_21_145857_create_customers_table.php',
     'CreateFileEntriesTable' => $baseDir . '/database/migrations/2015_11_19_160215_create_file_entries_table.php',
     'CreateInstagramAccountsTable' => $baseDir . '/database/migrations/2015_11_05_145752_create_instagram_accounts_table.php',
@@ -21,6 +23,7 @@ return array(
     'CreateSuppliersTable' => $baseDir . '/database/migrations/2015_10_21_145840_create_suppliers_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateWishedProductsTable' => $baseDir . '/database/migrations/2015_11_05_195128_create_wished_products_table.php',
+    'CurrencyUnitsSeeder' => $baseDir . '/database/seeds/CurrencyUnitsSeeder.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
