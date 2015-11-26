@@ -1,4 +1,4 @@
-@extends('dashboard.main')
+@extends('dashboard.mainSupplier')
 
 @section('title','Product Detail')
 @endsection

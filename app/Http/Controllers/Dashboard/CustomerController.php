@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Customer;
 use App\User;
+use App\Address;
 use App\InstagramAccount;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -107,9 +109,15 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $user=Auth::user();
+
+         $addresses= Address::where(['customer_id'=>$user->id])->get();
+        //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
+
+        return view('dashboard.customer.homePage',['user'=>$user,'addresses'=>$addresses]);
+    //    return view('dashboard.customer.homePage');
     }
 
     /**
@@ -120,7 +128,9 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=Auth::user();
+
+        return view('dashboard.customer.ProfileEdit',['user'=>$user]);
     }
 
     /**

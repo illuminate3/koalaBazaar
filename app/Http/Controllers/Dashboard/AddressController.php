@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Customer;
+use App\User;
+use App\Address;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
 class AddressController extends Controller
 {
     /**
@@ -26,7 +35,8 @@ class AddressController extends Controller
      */
     public function create()
     {
-        //
+     // return null;
+        return view('dashboard.customer.createAddress');
     }
 
     /**
