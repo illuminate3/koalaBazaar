@@ -65,8 +65,8 @@ class CustomerController extends Controller
 
         }else{
             $user=new User();
-            $user->name=$request->input('firstname');
-            $user->surname=$request->input('surname');
+            $user->name=trim($request->input('firstname'));
+            $user->surname=trim($request->input('surname'));
             $user->setAsCustomer();
             $user->is_active=false;
             $user->email=$request->input('email');

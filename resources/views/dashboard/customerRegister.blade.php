@@ -128,8 +128,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 <span class="input-group-addon input-circle-left">
                     <i class="fa fa-lock"></i>
                 </span>
-                <input class="form-control placeholder-no-fix input-circle-right" type="pass" autocomplete="off"
-                       id="register_password" placeholder="Password" name="password">
+                <input class="form-control placeholder-no-fix input-circle-right" type="password" autocomplete="off"
+                       id="register_password" placeholder="Password" name="pass">
             </div>
         </div>
 
