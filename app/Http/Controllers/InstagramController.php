@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CurrencyUnit;
 use App\Product;
 use App\ProductsInstagram;
 use App\User;
@@ -58,11 +59,11 @@ class InstagramController extends Controller
 
                                 if($caption==null){
                                     $product->price=null;
-                                    $product->current_unit = null;
+                                    $product->currency_unit_id = null;
                                 }else{
                                     $text=mb_strtolower($caption, 'UTF-8');
 
-                                    $units=\App\CurrencyUnit::all();
+                                    $units=CurrencyUnit::all();
                                     $estimatedPrice=null;
                                     $currencyUnit=null;
                                     foreach($units as $unit){
@@ -85,10 +86,10 @@ class InstagramController extends Controller
 
                                     if($estimatedPrice){
                                         $product->price=$estimatedPrice;
-                                        $product->current_unit = $currencyUnit;
+                                        $product->currency_unit_id = $currencyUnit;
                                     }else{
                                         $product->price=null;
-                                        $product->current_unit = null;
+                                        $product->currency_unit_id = null;
                                     }
                                 }
                                 $product->save();
