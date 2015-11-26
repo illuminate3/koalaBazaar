@@ -101,7 +101,7 @@ class SupplierController extends Controller
                 $instagramAccount->profile_picture=$instagramInfo->user->profile_picture;
                 $supplier->instagramAccount()->save($instagramAccount);
                 Storage::makeDirectory($user->id);
-                redirect()->action('AuthenticationController@showRegister')->with('success',['Successful']);
+                return redirect()->action('AuthenticationController@showRegister')->with('success',['Successful']);
 
             }
         }else{
