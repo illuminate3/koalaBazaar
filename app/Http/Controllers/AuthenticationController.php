@@ -66,7 +66,10 @@ class AuthenticationController extends Controller
 
                     return redirect()->action('Dashboard\SupplierController@show');
                 }
+                if($user->isCustomer()){
 
+                    return redirect()->action('Dashboard\CustomerController@show');
+                }
             } else {
 
                 // validation not successful, send back to form

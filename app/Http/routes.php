@@ -76,7 +76,30 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     });
 
 
+    Route::group(['prefix'=>'customer'],function(){
+        Route::get('/','Dashboard\CustomerController@show');
+        Route::get('edit','Dashboard\CustomerController@edit');
+        Route::post('update','Dashboard\CustomerController@update');
+        Route::post('updatePassword','Dashboard\CustomerController@updatePassword');
+
+        Route::group(['prefix'=>'address'],function(){
+            Route::get('/','Dashboard\AddressController@index');
+            Route::get('create','Dashboard\AddressController@create');
+            Route::post('store','Dashboard\AddressController@store');
+            Route::get('edit/{id}','Dashboard\CustomerController@edit');
+            Route::any('update/{id}','Dashboard\CustomerController@update');
+
+        });
+
+    });
+
+
+
+
 });
+
+
+
 
 
 Route::group(['prefix' => 'register'], function () {
@@ -90,9 +113,6 @@ Route::group(['prefix' => 'register'], function () {
     Route::get('customerviainstagram', 'AuthenticationController@registercustomerviainstagram');
     Route::get('customer', 'Dashboard\CustomerController@create');
     Route::any('store/customer', 'Dashboard\CustomerController@store');
-
-
-
 
 });
 Route::any('instagramsubscriptioncallback','InstagramController@subscriptioncallback');
