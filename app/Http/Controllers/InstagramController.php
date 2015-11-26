@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\CurrencyUnit;
 use App\Product;
 use App\ProductsInstagram;
@@ -56,6 +57,13 @@ class InstagramController extends Controller
                                     $product->image =null;
                                 };
 
+                                foreach($singleMedia->tags as $tag){
+
+                                    $relatedCategories=Category::where('keywords', 'LIKE', '%'.mb_strtolower($tag, 'UTF-8').'%')->get();
+                                    foreach($relatedCategories as $relatedCategory){
+                                        $product->categories()->attach($relatedCategory);
+                                    }
+                                }
 
                                 if($caption==null){
                                     $product->price=null;

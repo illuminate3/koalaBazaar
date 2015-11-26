@@ -53,35 +53,14 @@ Route::get('setsubscriptions', function () {
 });
 
 Route::get('getprice',function(){
-    $text="Bu Ürün Sadece Fiyat:20.23TRY ";
-    $text=mb_strtolower($text, 'UTF-8');
-
-    $units=\App\CurrencyUnit::all();
-    $estimatedPrice=null;
-    $currencyUnit=null;
-    foreach($units as $unit){
-        $firstOccurence=stripos($text,$unit->unit_short_name);
-        if($firstOccurence){
-            for($i=$firstOccurence-1; $i>=0;$i--){
-                $charAt=substr($text,$i,1);
-                if(is_numeric($charAt) || $charAt=='.'){
-                    $estimatedPrice=$charAt.$estimatedPrice;
-                }else{
-                    $i=0;
-                }
-
-            }
-            $currencyUnit=$unit->id;
-            break;
+    $media=new InstagramAPI();
+    $singleMedia=$media->getMedia('1123318109713417722_2237148792')->data;
+    foreach($singleMedia->tags as $tag){
+        $relatedCategories=\App\Category::where('keywords', 'LIKE', '%'.mb_strtolower($tag, 'UTF-8').'%')->get();
+        foreach($relatedCategories as $relatedCategory){
+            echo "helolo";
         }
-
     }
-
-    if($estimatedPrice){
-       echo $estimatedPrice;
-    }
-    return null;
-
 });
 
 Route::get('register', 'AuthenticationController@showRegister');
