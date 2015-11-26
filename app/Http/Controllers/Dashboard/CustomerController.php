@@ -70,8 +70,8 @@ class CustomerController extends Controller
             $user->surname=trim($request->input('surname'));
             $user->setAsCustomer();
             $user->is_active=false;
-            $user->email=$request->input('email');
-            $user->password=bcrypt($request->input('password'));
+            $user->email=$request->input('customeremail');
+            $user->password=bcrypt($request->input('pass'));
             $user->save();
             $customer=new Customer();
             $customer->phone=$request->input('phone');
