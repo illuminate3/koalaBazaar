@@ -74,7 +74,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
     <!-- BEGIN REGISTRATION FORM -->
-    <form class="register-form" action="index.html" method="post" style="display: block;">
+    <form class="register-form" action="{{ action('Dashboard\CustomerController@store') }}" method="post" style="display: block;">
         <h3>Sign Up</h3>
 
         <div class="form-group">

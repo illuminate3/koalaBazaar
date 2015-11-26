@@ -87,6 +87,13 @@ Route::group(['prefix' => 'register'], function () {
     Route::get('supplier', 'Dashboard\SupplierController@create');
     Route::any('store/supplier', 'Dashboard\SupplierController@store');
 
+    Route::get('customerviainstagram', 'AuthenticationController@registercustomerviainstagram');
+    Route::get('customer', 'Dashboard\CustomerController@create');
+    Route::any('store/customer', 'Dashboard\CustomerController@store');
+
+
+
+
 });
 Route::any('instagramsubscriptioncallback','InstagramController@subscriptioncallback');
 Route::any('instagramcallback', 'InstagramController@callback');

@@ -23,7 +23,11 @@ class AuthenticationController extends Controller
         $instagram=new InstagramAPI();
         return Redirect::to($instagram->getLoginUrl());
     }
-
+    public function registercustomerviainstagram(){
+        Session::put('instagram_operation',['operation'=>'register','user_type'=>'customer']);
+        $instagram=new InstagramAPI();
+        return Redirect::to($instagram->getLoginUrl());
+    }
     public function doLogout(){
         if(Auth::check()){
             Auth::logout();

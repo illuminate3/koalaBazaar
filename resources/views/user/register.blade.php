@@ -1506,19 +1506,37 @@
                                 <i class="acc-open icon-user4"></i>Müşteri misiniz?
                             </div>
                             <div class="acc_content clearfix">
-                                <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
-
-
+                                <form id="login-form" name="login-form" class="nobottommargin" action="{{ action('Dashboard\CustomerController@store')}}" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
                 <span class="input-group-addon input-circle-left">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-font"></i>
                 </span>
-                                            <input class="form-control placeholder-no-fix input-circle-right"
-                                                   type="text" autocomplete="off" placeholder="Username"
-                                                   name="username">
+                                            <input type="text" class="form-control input-circle-right"
+                                                   placeholder="Name" name="firstname">
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+                <span class="input-group-addon input-circle-left">
+                    <i class="fa fa-font"></i>
+                </span>
+                                            <input type="text" class="form-control input-circle-right"
+                                                   placeholder="Surname" name="surname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                     <span class="input-group-addon input-circle-left">
+                                 <i class="fa fa-envelope"></i>
+                                    </span>
+                                            <input type="text" class="form-control input-circle-right"
+                                                   placeholder="Email" name="email">
+                                        </div>
+                                    </div>
+
 
 
                                     <div class="form-group">
@@ -1544,26 +1562,7 @@
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <div class="input-group">
-                <span class="input-group-addon input-circle-left">
-                    <i class="fa fa-font"></i>
-                </span>
-                                            <input type="text" class="form-control input-circle-right"
-                                                   placeholder="Name" name="firstname">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-
-                                        <div class="input-group">
-                <span class="input-group-addon input-circle-left">
-                    <i class="fa fa-font"></i>
-                </span>
-                                            <input type="text" class="form-control input-circle-right"
-                                                   placeholder="Surname" name="surname">
-                                        </div>
-                                    </div>
 
 
                                     <div class="form-group">
@@ -1576,24 +1575,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                     <span class="input-group-addon input-circle-left">
-                                 <i class="fa fa-envelope"></i>
-                                    </span>
-                                            <input type="text" class="form-control input-circle-right"
-                                                   placeholder="Email" name="email">
-                                        </div>
-                                    </div>
+
 
                                     <div class="col_full nobottommargin">
                                         <button class="button button-3d button-green" id="login-form-submit"
                                                 name="login-form-submit" value="login">Sign Up
                                         </button>
-                                        <button class="button button-3d button-blue" id="login-form-submit"
+                                        <a href="{{ action('AuthenticationController@registersupplierviainstagram') }}" class="button button-3d button-blue" id="login-form-submit"
                                                 name="login-with-instagram">Login with Instagram
-                                        </button>
-                                        <a href="#" class="fright">Forgot Password?</a>
+                                        </a>
                                     </div>
                                 </form>
                             </div>
