@@ -106,6 +106,20 @@ class InstagramController extends Controller
                     }
                 }
 
+                if($instagramOperation['user_type']=='customer'){
+                    if (Session::has('user_instagram_info'))
+                    {
+                        Session::forget('user_instagram_info');
+                    }
+                    if($request->get('code')){
+                        $code = $request->get('code');
+                        $instagram=new InstagramAPI();
+                        $data = $instagram->getOAuthToken($code);
+                        Session::put('user_instagram_info',$data);
+                        return Redirect::action('Dashboard\CustomerController@create');
+                    }
+                }
+
             }
         }
     }
