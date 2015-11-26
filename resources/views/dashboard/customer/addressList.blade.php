@@ -6,7 +6,23 @@
 
 @section('page_level_content')
 
+    @if($errors->has())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                <i class="icon-remove-sign"></i>{{ $error }}
+            </div>
+        @endforeach
+    @endif
 
+    @if(\Illuminate\Support\Facades\Session::has('success'))
+        @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
+            <div class="alert alert-success">
+                <i class="icon-remove-sign"></i>{{ $success }}
+            </div>
+        @endforeach
+    @endif
+
+    <div class="row">
     <div class="col-md-12">
         <div class="portlet box purple">
             <div class="portlet-title">
@@ -59,7 +75,7 @@
                     </table>
                 </div>
 
-
+                 </div>
             </div>
         </div>
     </div>
