@@ -59,13 +59,38 @@ class InstagramController extends Controller
                                 if($caption==null){
                                     $product->price=null;
                                     $product->current_unit = null;
-                                    $product->is_active = false;
                                 }else{
-                                    $product->price =1223;
-                                    $product->is_active = true;
-                                    $product->current_unit = 'try';
+                                    $text=mb_strtolower($caption, 'UTF-8');
+
+                                    $units=\App\CurrencyUnit::all();
+                                    $estimatedPrice=null;
+                                    $currencyUnit=null;
+                                    foreach($units as $unit){
+                                        $firstOccurence=stripos($text,$unit->unit_short_name);
+                                        if($firstOccurence){
+                                            for($i=$firstOccurence-1; $i>=0;$i--){
+                                                $charAt=substr($text,$i,1);
+                                                if(is_numeric($charAt) || $charAt=='.'){
+                                                    $estimatedPrice=$charAt.$estimatedPrice;
+                                                }else{
+                                                    $i=0;
+                                                }
+
+                                            }
+                                            $currencyUnit=$unit->id;
+                                            break;
+                                        }
+
+                                    }
+
+                                    if($estimatedPrice){
+                                        $product->price=$estimatedPrice;
+                                        $product->current_unit = $currencyUnit;
+                                    }else{
+                                        $product->price=null;
+                                        $product->current_unit = null;
+                                    }
                                 }
-                                $product->price = ($caption==null) ? null : $caption;
                                 $product->save();
 
                                 $productInstagram = new ProductsInstagram();

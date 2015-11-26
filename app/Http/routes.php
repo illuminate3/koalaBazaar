@@ -52,11 +52,42 @@ Route::get('setsubscriptions', function () {
     return null;
 });
 
+Route::get('getprice',function(){
+    $text="Bu Ürün Sadece Fiyat:20.23TRY ";
+    $text=mb_strtolower($text, 'UTF-8');
 
+    $units=\App\CurrencyUnit::all();
+    $estimatedPrice=null;
+    $currencyUnit=null;
+    foreach($units as $unit){
+        $firstOccurence=stripos($text,$unit->unit_short_name);
+        if($firstOccurence){
+            for($i=$firstOccurence-1; $i>=0;$i--){
+                $charAt=substr($text,$i,1);
+                if(is_numeric($charAt) || $charAt=='.'){
+                    $estimatedPrice=$charAt.$estimatedPrice;
+                }else{
+                    $i=0;
+                }
+
+            }
+            $currencyUnit=$unit->id;
+            break;
+        }
+
+    }
+
+    if($estimatedPrice){
+       echo $estimatedPrice;
+    }
+    return null;
+
+});
 
 Route::get('register', 'AuthenticationController@showRegister');
 Route::post('login', 'AuthenticationController@doLogin');
 Route::get('logout', 'AuthenticationController@doLogout');
+
 Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     Route::group(['prefix'=>'supplier'],function(){
         Route::get('/','Dashboard\SupplierController@show');
@@ -98,10 +129,6 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
 
 });
 
-
-
-
-
 Route::group(['prefix' => 'register'], function () {
 
     Route::get('/', 'AuthenticationController@showRegister');
@@ -115,5 +142,6 @@ Route::group(['prefix' => 'register'], function () {
     Route::any('store/customer', 'Dashboard\CustomerController@store');
 
 });
+
 Route::any('instagramsubscriptioncallback','InstagramController@subscriptioncallback');
 Route::any('instagramcallback', 'InstagramController@callback');
