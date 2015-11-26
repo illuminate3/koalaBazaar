@@ -101,7 +101,13 @@ class InstagramController extends Controller
                                     $product->is_active=true;
                                 }
                                 $product->save();
+                                foreach($singleMedia->tags as $tag){
 
+                                    $relatedCategories=Category::where('keywords', 'LIKE', '%'.mb_strtolower($tag, 'UTF-8').'%')->get();
+                                    foreach($relatedCategories as $relatedCategory){
+                                        $product->categories()->attach($relatedCategory);
+                                    }
+                                }
                                 $productInstagram = new ProductsInstagram();
                                 $productInstagram->product_id = $product->id;
                                 $productInstagram->url = $singleMedia->link;
