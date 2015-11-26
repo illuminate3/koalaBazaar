@@ -1581,7 +1581,7 @@
                                         <button class="button button-3d button-green" id="login-form-submit"
                                                 name="login-form-submit" value="login">Sign Up
                                         </button>
-                                        <a href="{{ action('AuthenticationController@registersupplierviainstagram') }}" class="button button-3d button-blue" id="login-form-submit"
+                                        <a href="{{ action('AuthenticationController@registercustomerviainstagram') }}" class="button button-3d button-blue" id="login-form-submit"
                                                 name="login-with-instagram">Login with Instagram
                                         </a>
                                     </div>
