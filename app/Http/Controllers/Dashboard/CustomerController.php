@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Customer;
+use App\User;
 use App\InstagramAccount;
 use Illuminate\Http\Request;
 
