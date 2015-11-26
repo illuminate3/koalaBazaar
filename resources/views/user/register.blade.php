@@ -1533,7 +1533,7 @@
                                  <i class="fa fa-envelope"></i>
                                     </span>
                                             <input type="text" class="form-control input-circle-right"
-                                                   placeholder="Email" name="email">
+                                                   placeholder="Email" name="customeremail">
                                         </div>
                                     </div>
 
@@ -1546,7 +1546,7 @@
                 </span>
                                             <input class="form-control placeholder-no-fix input-circle-right"
                                                    type="password" autocomplete="off" id="register_password"
-                                                   placeholder="Password" name="password">
+                                                   placeholder="Password" name="pass">
                                         </div>
                                     </div>
 
@@ -1557,7 +1557,7 @@
                 </span>
                                             <input class="form-control placeholder-no-fix input-circle-right"
                                                    type="password" autocomplete="off" id="register_password"
-                                                   placeholder="Re-type your password" name="rpassword">
+                                                   placeholder="Re-type your password" name="rpass">
                                         </div>
                                     </div>
 

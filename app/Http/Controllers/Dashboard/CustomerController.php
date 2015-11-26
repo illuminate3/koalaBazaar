@@ -49,10 +49,10 @@ class CustomerController extends Controller
         $rules = array(
             'firstname'        => 'required',
             'surname'          =>'required',
-            'email'        => 'required|email',
-            'password'             =>'required',
+            'customeremail'        => 'required|email',
+            'pass'             =>'required',
             'phone'         =>'required',
-            'rpassword'           => 'required|same:pass'
+            'rpass'           => 'required|same:pass'
         );
         $validator = Validator::make($request->all(), $rules);
 

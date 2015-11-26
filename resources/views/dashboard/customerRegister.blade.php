@@ -118,7 +118,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <span class="input-group-addon input-circle-left">
                     <i class="fa fa-envelope"></i>
                 </span>
-                <input type="text" class="form-control input-circle-right" placeholder="Email" value="{{ old('email') }}" name="email">
+                <input type="text" class="form-control input-circle-right" placeholder="Email" value="{{ old('customeremail') }}" name="customeremail">
             </div>
         </div>
 
@@ -128,7 +128,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <span class="input-group-addon input-circle-left">
                     <i class="fa fa-lock"></i>
                 </span>
-                <input class="form-control placeholder-no-fix input-circle-right" type="password" autocomplete="off"
+                <input class="form-control placeholder-no-fix input-circle-right" type="pass" autocomplete="off"
                        id="register_password" placeholder="Password" name="password">
             </div>
         </div>
@@ -140,7 +140,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <i class="fa fa-lock"></i>
                 </span>
                 <input class="form-control placeholder-no-fix input-circle-right" type="password" autocomplete="off"
-                       id="register_password" placeholder="Re-type your password" name="rpassword">
+                       id="register_password" placeholder="Re-type your password" name="rpass">
             </div>
         </div>
 
