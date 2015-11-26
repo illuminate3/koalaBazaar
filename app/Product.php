@@ -14,6 +14,10 @@ class Product extends Model
         return $this->belongsTo('App\Supplier');
     }
 
+    public function categories(){
+        return $this->belongsToMany('App\Category');
+    }
+
     public function instagram(){
         return $this->hasOne('App\ProductsInstagram');
     }

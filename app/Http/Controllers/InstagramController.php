@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\CurrencyUnit;
 use App\Product;
 use App\ProductsInstagram;
 use App\User;
@@ -56,18 +58,56 @@ class InstagramController extends Controller
                                 };
 
 
+
                                 if($caption==null){
                                     $product->price=null;
-                                    $product->current_unit = null;
-                                    $product->is_active = false;
+                                    $product->currency_unit_id = null;
                                 }else{
-                                    $product->price =1223;
-                                    $product->is_active = true;
-                                    $product->current_unit = 'try';
-                                }
-                                $product->price = ($caption==null) ? null : $caption;
-                                $product->save();
+                                    $text=mb_strtolower($caption, 'UTF-8');
 
+                                    $units=CurrencyUnit::all();
+                                    $estimatedPrice=null;
+                                    $currencyUnit=null;
+                                    foreach($units as $unit){
+                                        $firstOccurence=stripos($text,$unit->unit_short_name);
+                                        if($firstOccurence){
+                                            for($i=$firstOccurence-1; $i>=0;$i--){
+                                                $charAt=substr($text,$i,1);
+                                                if(is_numeric($charAt) || $charAt=='.'){
+                                                    $estimatedPrice=$charAt.$estimatedPrice;
+                                                }else{
+                                                    $i=0;
+                                                }
+
+                                            }
+                                            $currencyUnit=$unit->id;
+                                            break;
+                                        }
+
+                                    }
+
+                                    if($estimatedPrice){
+                                        $product->price=$estimatedPrice;
+                                        $product->currency_unit_id = $currencyUnit;
+                                    }else{
+                                        $product->price=null;
+                                        $product->currency_unit_id = null;
+                                    }
+                                }
+
+                                if($product->price==null || $product->currency_unit_id==null){
+                                    $product->is_active=false;
+                                }else{
+                                    $product->is_active=true;
+                                }
+                                $product->save();
+                                foreach($singleMedia->tags as $tag){
+
+                                    $relatedCategories=Category::where('keywords', 'LIKE', '%'.mb_strtolower($tag, 'UTF-8').'%')->get();
+                                    foreach($relatedCategories as $relatedCategory){
+                                        $product->categories()->attach($relatedCategory);
+                                    }
+                                }
                                 $productInstagram = new ProductsInstagram();
                                 $productInstagram->product_id = $product->id;
                                 $productInstagram->url = $singleMedia->link;

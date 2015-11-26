@@ -8,4 +8,8 @@ class Category extends Model
 {
     protected $table='categories';
     protected $fillable=['title','slug','description'];
+
+    public function products(){
+        return $this->belongsToMany('App\Products');
+    }
 }

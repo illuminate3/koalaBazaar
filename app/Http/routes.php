@@ -52,11 +52,21 @@ Route::get('setsubscriptions', function () {
     return null;
 });
 
-
+Route::get('getprice',function(){
+    $media=new InstagramAPI();
+    $singleMedia=$media->getMedia('1123318109713417722_2237148792')->data;
+    foreach($singleMedia->tags as $tag){
+        $relatedCategories=\App\Category::where('keywords', 'LIKE', '%'.mb_strtolower($tag, 'UTF-8').'%')->get();
+        foreach($relatedCategories as $relatedCategory){
+            echo "helolo";
+        }
+    }
+});
 
 Route::get('register', 'AuthenticationController@showRegister');
 Route::post('login', 'AuthenticationController@doLogin');
 Route::get('logout', 'AuthenticationController@doLogout');
+
 Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     Route::group(['prefix'=>'supplier'],function(){
         Route::get('/','Dashboard\SupplierController@show');
@@ -98,10 +108,6 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
 
 });
 
-
-
-
-
 Route::group(['prefix' => 'register'], function () {
 
     Route::get('/', 'AuthenticationController@showRegister');
@@ -115,5 +121,6 @@ Route::group(['prefix' => 'register'], function () {
     Route::any('store/customer', 'Dashboard\CustomerController@store');
 
 });
+
 Route::any('instagramsubscriptioncallback','InstagramController@subscriptioncallback');
 Route::any('instagramcallback', 'InstagramController@callback');
