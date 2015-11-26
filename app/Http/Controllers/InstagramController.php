@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -131,6 +132,30 @@ class InstagramController extends Controller
 
         if(Session::get('instagram_operation')){
             $instagramOperation=Session::pull('instagram_operation');
+            if($instagramOperation['operation']=='login'){
+                if($request->get('code')){
+                    $code = $request->get('code');
+                    $instagram=new InstagramAPI();
+                    $data = $instagram->getOAuthToken($code);
+                    ;
+                    $instagramAccount=InstagramAccount::where(['username'=>$data->user->username,'access_token'=>$data->access_token])->first();
+                    if($instagramAccount) {
+
+                        if(Auth::loginUsingId($instagramAccount->instagramable->user->id)){
+                            if($instagramAccount->instagramable->user->isSupplier()){
+                                return redirect()->action('Dashboard\SupplierController@show');
+                            }
+                            if($instagramAccount->instagramable->user->isCustomer()){
+                                return redirect()->action('Dashboard\CustomerController@show');
+                            }
+
+                        }
+                    }else{
+                        return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>"Kayıtlı Kullanıcı Bulunamadı"]);
+
+                    }
+                }
+            }
             if($instagramOperation['operation']=='register'){
                 if($instagramOperation['user_type']=='supplier'){
                     if (Session::has('user_instagram_info'))

@@ -18,6 +18,12 @@ class AuthenticationController extends Controller
         return view('user.register');
     }
 
+    public function loginviainstagram(){
+        Session::put('instagram_operation',['operation'=>'login']);
+        $instagram=new InstagramAPI();
+        return Redirect::to($instagram->getLoginUrl());
+    }
+
     public function registersupplierviainstagram(){
         Session::put('instagram_operation',['operation'=>'register','user_type'=>'supplier']);
         $instagram=new InstagramAPI();

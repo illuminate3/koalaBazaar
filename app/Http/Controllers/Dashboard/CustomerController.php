@@ -52,10 +52,10 @@ class CustomerController extends Controller
         $rules = array(
             'firstname'        => 'required',
             'surname'          =>'required',
-            'customeremail'        => 'required|email',
+            'customeremail'    => 'required|email',
             'pass'             =>'required',
-            'phone'         =>'required',
-            'rpass'           => 'required|same:pass'
+            'phone'            =>'required',
+            'rpass'            => 'required|same:pass'
         );
         $validator = Validator::make($request->all(), $rules);
 
@@ -67,6 +67,10 @@ class CustomerController extends Controller
             return back()->withInput()->withErrors($messages);
 
         }else{
+            if(User::where('email',$request->input('customeremail'))->first()){
+                return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>"Sistemde mail adresi kayıtlı"]);
+            }
+
             $user=new User();
             $user->name=trim($request->input('firstname'));
             $user->surname=trim($request->input('surname'));
