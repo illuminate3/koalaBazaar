@@ -71,7 +71,14 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END SIDEBAR TOGGLER BUTTON -->
 <!-- BEGIN LOGIN -->
 <div class="content">
-
+    @if($errors->has())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" style="display: block;">
+                <button class="close" data-close="alert"></button>
+                <span>{{ $error }} </span>
+            </div>
+            @endforeach
+            @endif
 
     <!-- BEGIN REGISTRATION FORM -->
     <form class="register-form" action="{{ action('Dashboard\CustomerController@store') }}" method="post" style="display: block;">
@@ -83,7 +90,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <span class="input-group-addon input-circle-left">
                     <i class="fa fa-font"></i>
                 </span>
-                <input type="text" class="form-control input-circle-right" placeholder="Name" name="firstname">
+                <input type="text" class="form-control input-circle-right" placeholder="Name" value="@if(old('firstname')) {{ old('firstname') }} @else {{ $userInfo->user->full_name }} @endif" name="firstname">
             </div>
         </div>
 
@@ -92,7 +99,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <span class="input-group-addon input-circle-left">
                     <i class="fa fa-font"></i>
                 </span>
-                <input type="text" class="form-control input-circle-right" placeholder="Surname" name="surname">
+                <input type="text" class="form-control input-circle-right" placeholder="Surname" value="{{ old('surname') }}" name="surname">
             </div>
         </div>
 
@@ -101,7 +108,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <span class="input-group-addon input-circle-left">
                     <i class="fa fa-phone"></i>
                 </span>
-                <input type="text" class="form-control input-circle-right" placeholder="Phone" name="phone">
+                <input type="text" class="form-control input-circle-right" placeholder="Phone" value="{{ old('phone') }}" name="phone">
             </div>
         </div>
 
@@ -111,7 +118,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <span class="input-group-addon input-circle-left">
                     <i class="fa fa-envelope"></i>
                 </span>
-                <input type="text" class="form-control input-circle-right" placeholder="Email" name="email">
+                <input type="text" class="form-control input-circle-right" placeholder="Email" value="{{ old('email') }}" name="email">
             </div>
         </div>
 
