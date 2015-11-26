@@ -57,13 +57,7 @@ class InstagramController extends Controller
                                     $product->image =null;
                                 };
 
-                                foreach($singleMedia->tags as $tag){
 
-                                    $relatedCategories=Category::where('keywords', 'LIKE', '%'.mb_strtolower($tag, 'UTF-8').'%')->get();
-                                    foreach($relatedCategories as $relatedCategory){
-                                        $product->categories()->attach($relatedCategory);
-                                    }
-                                }
 
                                 if($caption==null){
                                     $product->price=null;
@@ -99,6 +93,12 @@ class InstagramController extends Controller
                                         $product->price=null;
                                         $product->currency_unit_id = null;
                                     }
+                                }
+
+                                if($product->price==null || $product->currency_unit_id==null){
+                                    $product->is_active=false;
+                                }else{
+                                    $product->is_active=true;
                                 }
                                 $product->save();
 
