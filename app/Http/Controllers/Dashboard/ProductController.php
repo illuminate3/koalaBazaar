@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Category;
 use App\Product;
 use App\CurrencyUnit;
 use Illuminate\Http\Request;
@@ -121,7 +122,8 @@ class ProductController extends Controller
             return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
         }
         $units=CurrencyUnit::all();
-        return view('dashboard.productEdit',['product'=>$product,'currency_units'=>$units]);
+        $categories=Category::all();
+        return view('dashboard.productEdit',['product'=>$product,'currency_units'=>$units,'categories'=>$categories]);
         //
     }
 
@@ -175,6 +177,14 @@ class ProductController extends Controller
             }
 
             $product->update();
+
+            $product->categories()->detach();
+            foreach($request->input('categories') as $category){
+                if(Category::find($category)){
+                    $product->categories()->attach(Category::find($category)->first());
+                }
+
+            }
             return redirect()->back()->with('success',['Successful','Ürün bilgileri güncellendi']);
             }
 

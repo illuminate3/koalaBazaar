@@ -99,6 +99,30 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Categories: <span class="required">
+														* </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <div class="form-control height-auto">
+                                                        <div class="scroller"  data-always-visible="1">
+                                                            <ul class="list-unstyled">
+                                                                @foreach($categories as $category)
+                                                                <li>
+                                                                    <label><input type="checkbox" name="categories[]" @if($product->categories()->find($category->id))) checked @endif value="{{ $category->id }}">{{ $category->title }}</label>
+
+                                                                </li>
+                                                                @endforeach
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+															<span class="help-block">
+															select one or more categories </span>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Status: <span class="required">
 														* </span>
