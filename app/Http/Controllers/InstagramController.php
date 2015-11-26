@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -139,6 +140,7 @@ class InstagramController extends Controller
                     ;
                     $instagramAccount=InstagramAccount::where(['username'=>$data->user->username,'access_token'=>$data->access_token])->first();
                     if($instagramAccount) {
+
                         if(Auth::loginUsingId($instagramAccount->instagramable->user->id)){
                             if($instagramAccount->instagramable->user->isSupplier()){
                                 return redirect()->action('Dashboard\SupplierController@show');
