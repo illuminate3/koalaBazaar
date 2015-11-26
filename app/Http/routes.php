@@ -60,6 +60,7 @@ Route::get('getprice',function(){
 Route::get('register', 'AuthenticationController@showRegister');
 Route::post('login', 'AuthenticationController@doLogin');
 Route::get('logout', 'AuthenticationController@doLogout');
+Route::get('loginviainstagram','AuthenticationController@loginviainstagram');
 
 Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
     Route::group(['prefix'=>'supplier'],function(){
