@@ -76,8 +76,7 @@
                                   <button type="submit" class="btn default btn green">
                                       <i class="fa fa-check"></i> Profili Düzenle</button>
 
-                                  <a href="javascript:;" class="btn default">
-                                      Cancel </a>
+
                               </div>
                           </form>
                       </div>
@@ -101,25 +100,17 @@
                               <div class="margin-top-10">
                                   <button type="submit" class="btn default btn green">
                                       <i class="fa fa-check"></i> Parolamı Değiştir</button>
-                                  <a href="javascript:;" class="btn default">
-                                      Cancel </a>
+
                               </div>
                           </form>
                       </div>
                       <!-- END CHANGE PASSWORD TAB -->
-                      <!-- PRIVACY SETTINGS TAB -->
-                      <div class="tab-pane" id="tab_1_4"></div>
-                      <!-- END PRIVACY SETTINGS TAB -->
                   </div>
               </div>
           </div>
 
       </div>
-
-      <div class="col-md-4"></div>
       <!-- END BEGIN PROFILE SIDEBAR -->
-
-
 
 
   </div>

@@ -96,8 +96,8 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
             Route::get('/','Dashboard\AddressController@index');
             Route::get('create','Dashboard\AddressController@create');
             Route::post('store','Dashboard\AddressController@store');
-            Route::get('edit/{id}','Dashboard\CustomerController@edit');
-            Route::any('update/{id}','Dashboard\CustomerController@update');
+            Route::get('edit/{id}','Dashboard\AddressController@edit');
+            Route::any('update/{id}','Dashboard\AddressController@update');
 
         });
 

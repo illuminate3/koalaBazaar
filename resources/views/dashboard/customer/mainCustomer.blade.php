@@ -90,12 +90,18 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="{{asset('/dashboard')}}/assets/admin/layout2/img/avatar3_small.jpg">
+                           <img alt="" class="img-circle" src="{{asset('/dashboard')}}/assets/admin/layout2/img/avatar3_small.jpg">
 						<span class="username username-hide-on-mobile">
 
-                        Nick</span>
+                        {{ Auth::user()->name.' '.Auth::user()->surname }}</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="{{ action('AuthenticationController@doLogout') }}">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
                 </ul>
@@ -133,7 +139,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{action('Dashboard\AddressController@index')}}">
+                        <a href="{{action('Dashboard\CustomerController@show')}}">
                             <i class="icon-basket"></i>
                             <span class="title">Siparişlerim</span>
                             <span class="arrow "></span>
@@ -183,7 +189,7 @@
                                     Adres Ekle</a>
                             </li>
                             <li>
-                                <a href="ecommerce_orders_view.html">
+                                <a href="{{action('Dashboard\AddressController@index')}}">
                                     <i class="icon-tag"></i>
                                     Adreslerim</a>
                             </li>
