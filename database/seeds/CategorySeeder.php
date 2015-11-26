@@ -11,7 +11,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        \App\Category::create(['title'=>'Elektronic','slug'=>'elektronic','description'=>'Koala Elektronic Reyonu','keywords'=>'elektronik,teknoloji']);
+        \App\Category::create(['title'=>'Elektronik','slug'=>'elektronik','description'=>'Koala Elektronik Reyonu','keywords'=>'elektronik,teknoloji']);
         \App\Category::create(['title'=>'Giyim','slug'=>'giyim','description'=>'Koala Giyim Reyonu','keywords'=>'giyim,kiyafet']);
     }
 }
