@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function category(Request $request,$slug=null)
     {
 
-        $paginateNumber=5;
+        $paginateNumber=6 ;
         if($slug==null) {
             $products=Product::where('is_active',true);
         }elseif($category=Category::where('slug',$slug)->first()) {
@@ -49,15 +49,11 @@ class HomeController extends Controller
 
     }
 
-    public function showShopProfile($id,Request $request)
+    public function shopList(Request $request)
     {
-        $supplier=Supplier::where('id',$id)->first();
-        if($supplier){
-            $products=$supplier->products()->paginate(1);
-            dd($products->appends($request->except('page')));
-        }else{
-            return redirect()->action('Frontend\HomeController@index');
-        }
+        $paginator=Supplier::paginate(10);
+        $paginator->appends($request->except('page'));
+        return view('user.shopsList',['paginator'=>$paginator]);
     }
 
 }

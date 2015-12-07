@@ -54,20 +54,13 @@
 
                                 </div>
                             </div>
+                        </div>
                         @endforeach
 
                     </div>
                         </div>
                     <!-- #shop end -->
                     <ul class="pagination topmargin nobottommargin">
-                        <li @if(1==$paginator->currentPage()) class="disabled" @endif><a
-                                    href="{{ $paginator->url(1) }}">«</a></li>
-                        @for ($i = 1 ; $i <=$paginator->total(); $i++)
-                            <li @if($i==$paginator->currentPage()) class="active" @endif ><a
-                                        href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
-                        @endfor
-                        <li @if($paginator->total()==$paginator->currentPage()) class="disabled" @endif><a
-                                    href="{{ $paginator->url($paginator->total()) }}">»</a></li>
 
                         <li @if(1==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url(1) }}">«</a></li>
                         @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
@@ -78,6 +71,7 @@
 
                     </ul>
                 </div>
+
                 <!-- .postcontent end -->
 
                 <!-- Sidebar
@@ -256,7 +250,6 @@
             </div>
 
         </div>
-
     </section>
 
 @endsection

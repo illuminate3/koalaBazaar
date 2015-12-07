@@ -18,8 +18,15 @@ use App\User;
 use Illuminate\Support\Facades\Storage;
 Route::get('/','Frontend\HomeController@index');
 Route::get('kategori/{slug?}','Frontend\HomeController@category');
-Route::get('magaza/{id}','Frontend\HomeController@showShopProfile');
+
+
 Route::get('urun/{id}','FrontEnd\ProductController@show');
+
+Route::group(['prefix' => 'magaza'], function () {
+    Route::get('/','Frontend\HomeController@shopList');
+    Route::get('{id}','Frontend\HomeController@shopDetail');
+
+});
 
 
 Route::get('/product',function() {
