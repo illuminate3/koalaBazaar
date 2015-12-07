@@ -20,6 +20,19 @@ Route::get('/', function () {
     return view('user.index');
 });
 
+Route::get('/main',function() {
+    return view('user.main');
+
+});
+Route::get('/shop',function() {
+    return view('user.shop');
+
+});
+Route::get('/category',function() {
+    return view('user.category');
+
+});
+
 Route::get('storage/{path}','FileEntryController@show')->where('path', '(.*)');;
 Route::get('testmedia',function(){
     $file=new \App\FileEntry();
@@ -38,6 +51,7 @@ Route::get('/customerRegister', function () {
 Route::get('/supplierProfileEdit', function () {
     return view('dashboard.supplierProfileEdit');
 });
+
 
 
 Route::get('getsubscriptions', function () {
