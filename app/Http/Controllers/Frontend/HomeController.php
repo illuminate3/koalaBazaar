@@ -56,4 +56,18 @@ class HomeController extends Controller
         return view('user.shopsList',['paginator'=>$paginator]);
     }
 
+    public function shopDetail(Request $request,$id){
+        if($supplier=Supplier::where('id',$id)->first()){
+            $paginateNumber=10;
+            $products=$supplier->products();
+            $paginator=$products->orderBy('created_at','desc')->paginate($paginateNumber);
+            $paginator->appends($request->except('page'));
+            $recentlyAddedProducts=$products->orderBy('created_at','desc')->limit(3)->get();
+            return view('user.shop',['supplier'=>$supplier,'paginator'=>$paginator,'recentlyAddedProducts'=>$recentlyAddedProducts]);
+        }else{
+            return redirect()->action('Frontend\HomeController@index');
+        }
+
+    }
+
 }

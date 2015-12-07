@@ -4,18 +4,7 @@
 
 @section('content')
 
-    <section id="page-title">
 
-        <div class="container clearfix">
-            <h1>Portfolio Single - Image</h1>
-            <div id="portfolio-navigation">
-                <a href="#"><i class="icon-angle-left"></i></a>
-                <a href="#"><i class="icon-line-grid"></i></a>
-                <a href="#"><i class="icon-angle-right"></i></a>
-            </div>
-        </div>
-
-    </section>
 
     <section id="content" style="margin-bottom: 0px;">
 
@@ -25,22 +14,21 @@
 
                 <!-- Portfolio Single Image
                 ============================================= -->
-                <div class="col_two_third portfolio-single-image nobottommargin">
+                <div class="col_one_third portfolio-single-image nobottommargin">
                     <a href="#">
-                        <img src="images/portfolio/single/10.jpg" alt=""></a>
+                        <img src="{{ $supplier->profile_image }}" alt=""></a>
                 </div><!-- .portfolio-single-image end -->
 
                 <!-- Portfolio Single Content
                 ============================================= -->
-                <div class="col_one_third portfolio-single-content col_last nobottommargin">
+                <div class="col_two_third portfolio-single-content col_last nobottommargin">
 
                     <!-- Portfolio Single - Description
                     ============================================= -->
                     <div class="fancy-title title-bottom-border">
-                        <h2>Project Info:</h2>
+                        <h2>{{ $supplier->shop_name }}:</h2>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, dolores, facere, corrupti delectus ex quidem adipisci tempore.</p>
-                    <p>Illum molestias cupiditate eveniet dolore obcaecati voluptatibus est quos eos id recusandae officia. Cupiditate, voluptates quibusdam ipsum vel corporis laboriosam id est doloremque?</p>
+                    <p>{{ $supplier->description }}</p>
                     <!-- Portfolio Single - Description End -->
 
                     <div class="line"></div>
@@ -48,10 +36,9 @@
                     <!-- Portfolio Single - Meta
                     ============================================= -->
                     <ul class="portfolio-meta bottommargin">
-                        <li><span><i class="icon-user"></i>Created by:</span> John Doe</li>
-                        <li><span><i class="icon-calendar3"></i>Completed on:</span> 17th March 2014</li>
-                        <li><span><i class="icon-lightbulb"></i>Skills:</span> HTML5 / PHP / CSS3</li>
-                        <li><span><i class="icon-link"></i>Client:</span> <a href="#">Google</a></li>
+                        <li><span><i class="icon-phone"></i>Telefon:</span> {{ $supplier->phone }}</li>
+                        <li><span><i class="icon-flag"></i>Ülke:</span> {{ $supplier->country }}</li>
+                        <li><span><i class="icon-map-marker"></i>Şehir:</span>{{ $supplier->city }}</li>
                     </ul>
                     <!-- Portfolio Single - Meta End -->
 
@@ -111,300 +98,41 @@
                                 <!-- Shop
                                 ============================================= -->
                                 <div id="shop" class="product-2 clearfix">
+                                    @foreach($paginator->items() as $item)
+                                        <div class="product clearfix">
+                                            <div class="product-image">
+                                                <a href="#"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
+                                                <div class="product-overlay">
+                                                    <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                                    <a href="#" class="item-quick-view"><i class="icon-zoom-in2"></i><span>View</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-desc center">
+                                                <div class="product-title"><h3><a href="#">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)...@endif</a></h3></div>
+                                                <div class="product-price"><ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins></div>
+                                                <div class="product-rating">
+                                                    <i class="icon-star3"></i>
+                                                    <i class="icon-star3"></i>
+                                                    <i class="icon-star3"></i>
+                                                    <i class="icon-star3"></i>
+                                                    <i class="icon-star-half-full"></i>
 
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/dress/1.jpg" alt="Checked Short Dress"></a>
-                                            <a href="#"><img src="images/shop/dress/1-1.jpg" alt="Checked Short Dress"></a>
-                                            <div class="sale-flash">50% Off*</div>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Checked Short Dress</a></h3></div>
-                                            <div class="product-price"><del>$24.99</del> <ins>$12.49</ins></div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-half-full"></i>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
 
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/pants/1-1.jpg" alt="Slim Fit Chinos"></a>
-                                            <a href="#"><img src="images/shop/pants/1.jpg" alt="Slim Fit Chinos"></a>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Slim Fit Chinos</a></h3></div>
-                                            <div class="product-price">$39.99</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-half-full"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <div class="fslider" data-arrows="false">
-                                                <div class="flexslider">
-
-                                                    <div class="flex-viewport" style="overflow: hidden; position: relative;"><div class="slider-wrap" style="width: 1000%; transition-duration: 0s; transform: translate3d(-410px, 0px, 0px);"><div class="slide clone" aria-hidden="true" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/shoes/1-2.jpg" alt="Dark Brown Boots" draggable="false"></a></div>
-                                                            <div class="slide flex-active-slide" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/shoes/1.jpg" alt="Dark Brown Boots" draggable="false"></a></div>
-                                                            <div class="slide" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/shoes/1-1.jpg" alt="Dark Brown Boots" draggable="false"></a></div>
-                                                            <div class="slide" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/shoes/1-2.jpg" alt="Dark Brown Boots" draggable="false"></a></div>
-                                                            <div class="slide clone" aria-hidden="true" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/shoes/1.jpg" alt="Dark Brown Boots" draggable="false"></a></div></div></div><ol class="flex-control-nav flex-control-paging"><li data-animate="zoomIn" data-delay="0" class="zoomIn animated"><a class="flex-active">1</a></li><li data-animate="zoomIn" data-delay="200" class="zoomIn animated"><a class="">2</a></li><li data-animate="zoomIn" data-delay="400" class="zoomIn animated"><a class="">3</a></li></ol></div>
-                                            </div>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Dark Brown Boots</a></h3></div>
-                                            <div class="product-price">$49</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-empty"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/dress/2.jpg" alt="Light Blue Denim Dress"></a>
-                                            <a href="#"><img src="images/shop/dress/2-2.jpg" alt="Light Blue Denim Dress"></a>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Light Blue Denim Dress</a></h3></div>
-                                            <div class="product-price">$19.95</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/sunglasses/1.jpg" alt="Unisex Sunglasses"></a>
-                                            <a href="#"><img src="images/shop/sunglasses/1-1.jpg" alt="Unisex Sunglasses"></a>
-                                            <div class="sale-flash">Sale!</div>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Unisex Sunglasses</a></h3></div>
-                                            <div class="product-price"><del>$19.99</del> <ins>$11.99</ins></div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-empty"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/tshirts/1.jpg" alt="Blue Round-Neck Tshirt"></a>
-                                            <a href="#"><img src="images/shop/tshirts/1-1.jpg" alt="Blue Round-Neck Tshirt"></a>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Blue Round-Neck Tshirt</a></h3></div>
-                                            <div class="product-price">$9.99</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-half-full"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/watches/1.jpg" alt="Silver Chrome Watch"></a>
-                                            <a href="#"><img src="images/shop/watches/1-1.jpg" alt="Silver Chrome Watch"></a>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Silver Chrome Watch</a></h3></div>
-                                            <div class="product-price">$129.99</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-half-full"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/shoes/2.jpg" alt="Men Grey Casual Shoes"></a>
-                                            <a href="#"><img src="images/shop/shoes/2-1.jpg" alt="Men Grey Casual Shoes"></a>
-                                            <div class="sale-flash">Sale!</div>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Men Grey Casual Shoes</a></h3></div>
-                                            <div class="product-price"><del>$45.99</del> <ins>$39.49</ins></div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-half-full"></i>
-                                                <i class="icon-star-empty"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <div class="fslider" data-arrows="false">
-                                                <div class="flexslider">
-
-                                                    <div class="flex-viewport" style="overflow: hidden; position: relative;"><div class="slider-wrap" style="width: 1000%; transition-duration: 0s; transform: translate3d(-410px, 0px, 0px);"><div class="slide clone" aria-hidden="true" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/dress/3-2.jpg" alt="Pink Printed Dress" draggable="false"></a></div>
-                                                            <div class="slide flex-active-slide" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/dress/3.jpg" alt="Pink Printed Dress" draggable="false"></a></div>
-                                                            <div class="slide" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/dress/3-1.jpg" alt="Pink Printed Dress" draggable="false"></a></div>
-                                                            <div class="slide" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/dress/3-2.jpg" alt="Pink Printed Dress" draggable="false"></a></div>
-                                                            <div class="slide clone" aria-hidden="true" style="width: 410px; float: left; display: block;"><a href="#"><img src="images/shop/dress/3.jpg" alt="Pink Printed Dress" draggable="false"></a></div></div></div><ol class="flex-control-nav flex-control-paging"><li data-animate="zoomIn" data-delay="0" class="not-animated"><a class="flex-active">1</a></li><li data-animate="zoomIn" data-delay="200" class="not-animated"><a class="">2</a></li><li data-animate="zoomIn" data-delay="400" class="not-animated"><a class="">3</a></li></ol></div>
-                                            </div>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Pink Printed Dress</a></h3></div>
-                                            <div class="product-price">$39.49</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-empty"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/pants/5.jpg" alt="Green Trousers"></a>
-                                            <a href="#"><img src="images/shop/pants/5-1.jpg" alt="Green Trousers"></a>
-                                            <div class="sale-flash">Sale!</div>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Green Trousers</a></h3></div>
-                                            <div class="product-price"><del>$24.99</del> <ins>$21.99</ins></div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-half-full"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/sunglasses/2.jpg" alt="Men Aviator Sunglasses"></a>
-                                            <a href="#"><img src="images/shop/sunglasses/2-1.jpg" alt="Men Aviator Sunglasses"></a>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Men Aviator Sunglasses</a></h3></div>
-                                            <div class="product-price">$13.49</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-empty"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product clearfix">
-                                        <div class="product-image">
-                                            <a href="#"><img src="images/shop/tshirts/4.jpg" alt="Black Polo Tshirt"></a>
-                                            <a href="#"><img src="images/shop/tshirts/4-1.jpg" alt="Black Polo Tshirt"></a>
-                                            <div class="product-overlay">
-                                                <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc center">
-                                            <div class="product-title"><h3><a href="#">Black Polo Tshirt</a></h3></div>
-                                            <div class="product-price">$11.49</div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <ul class="pagination topmargin nobottommargin">
-                                        <li class="disabled"><a href="#">«</a></li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">»</a></li>
-                                    </ul>
                                 </div><!-- #shop end -->
+                                <ul class="pagination topmargin nobottommargin">
+                                    <li @if(1==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url(1) }}">«</a></li>
+                                    @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
+                                        <li @if($i==$paginator->currentPage()) class="active" @endif ><a href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
+                                    @endfor
+                                    <li @if($paginator->lastPage()==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url($paginator->lastPage()) }}">»</a></li>
 
+
+                                </ul>
                             </div><!-- .postcontent end -->
 
                             <!-- Sidebar
@@ -414,229 +142,44 @@
 
                                     <div class="widget widget_links clearfix">
 
-                                        <h4>Shop Categories</h4>
+                                        <h4>Ürün Kategorileri</h4>
                                         <ul>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Pants</a></li>
-                                            <li><a href="#">Tshirts</a></li>
-                                            <li><a href="#">Sunglasses</a></li>
-                                            <li><a href="#">Shoes</a></li>
-                                            <li><a href="#">Bags</a></li>
-                                            <li><a href="#">Watches</a></li>
+                                            @foreach(\App\Category::all() as $singleCategory)
+                                                <li>
+                                                    <a href="{{ action('Frontend\HomeController@category',$singleCategory->slug) }}">{{ $singleCategory->title }}</a>
+                                                </li>
+                                            @endforeach
                                         </ul>
 
                                     </div>
 
                                     <div class="widget clearfix">
 
-                                        <h4>Recent Items</h4>
+                                        <h4>Son Eklenenler</h4>
+
                                         <div id="post-list-footer">
-
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/1.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Blue Round-Neck Tshirt</a></h4>
+                                            @foreach($recentlyAddedProducts as $product)
+                                                <div class="spost clearfix">
+                                                    <div class="entry-image">
+                                                        <a href="#"><img src="{{ action('FileEntryController@show',$product->image) }}" alt="Image"></a>
                                                     </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$29.99</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                                    <div class="entry-c">
+                                                        <div class="entry-title">
+                                                            <h4><a href="#">{{ $product->title }}</a></h4>
+                                                        </div>
+                                                        <ul class="entry-meta">
 
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/6.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Checked Short Dress</a></h4>
-                                                    </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$23.99</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i> <i class="icon-star-empty"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                                            <li class="color">{{ $product->price }} {{ $product->currencyUnit->unit_short_name }}</li>
+                                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
 
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/7.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Light Blue Denim Dress</a></h4>
+                                                        </ul>
                                                     </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$19.99</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
-                                                    </ul>
                                                 </div>
-                                            </div>
+                                            @endforeach
+
+
 
                                         </div>
-
-                                    </div>
-
-                                    <div class="widget clearfix">
-
-                                        <h4>Last Viewed Items</h4>
-                                        <div class="widget-last-view">
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/3.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Round-Neck Tshirt</a></h4>
-                                                    </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$15</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/10.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Green Trousers</a></h4>
-                                                    </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$19</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/11.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Silver Chrome Watch</a></h4>
-                                                    </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$34.99</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i> <i class="icon-star-empty"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="widget clearfix">
-
-                                        <h4>Popular Items</h4>
-                                        <div id="Popular-item">
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/8.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Pink Printed Dress</a></h4>
-                                                    </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$21</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/5.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Blue Round-Neck Tshirt</a></h4>
-                                                    </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$19.99</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div class="spost clearfix">
-                                                <div class="entry-image">
-                                                    <a href="#"><img src="images/shop/small/12.jpg" alt="Image"></a>
-                                                </div>
-                                                <div class="entry-c">
-                                                    <div class="entry-title">
-                                                        <h4><a href="#">Men Aviator Sunglasses</a></h4>
-                                                    </div>
-                                                    <ul class="entry-meta">
-                                                        <li class="color">$14.99</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="widget clearfix">
-                                        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FEnvato&amp;width=240&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=499481203443583" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:290px;" allowtransparency="true"></iframe>
-                                    </div>
-
-                                    <div class="widget subscribe-widget clearfix">
-
-                                        <h4>Subscribe For Latest Offers</h4>
-                                        <h5>Subscribe to Our Newsletter to get Important News, Amazing Offers &amp; Inside Scoops:</h5>
-                                        <form action="#" role="form" class="notopmargin nobottommargin">
-                                            <div class="input-group divcenter">
-                                                <input type="text" class="form-control" placeholder="Enter your Email" required="">
-										<span class="input-group-btn">
-											<button class="btn btn-success" type="submit"><i class="icon-email2"></i></button>
-										</span>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <div class="widget clearfix">
-
-                                        <div id="oc-clients-full" class="owl-carousel image-carousel owl-theme owl-loaded">
-
-
-
-
-
-
-
-
-
-
-                                            <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1000px, 0px, 0px); transition: 0.25s; width: 3000px;"><div class="owl-item cloned" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/7.png" alt="Clients"></a></div></div><div class="owl-item cloned" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/8.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/1.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/2.png" alt="Clients"></a></div></div><div class="owl-item active" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/3.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/4.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/5.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/6.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/7.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/8.png" alt="Clients"></a></div></div><div class="owl-item cloned" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/1.png" alt="Clients"></a></div></div><div class="owl-item cloned" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/2.png" alt="Clients"></a></div></div></div></div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;">prev</div><div class="owl-next" style="display: none;">next</div></div><div class="owl-dots" style="display: none;"></div></div></div>
-
-                                        <script type="text/javascript">
-
-                                            jQuery(document).ready(function($) {
-
-                                                var ocClients = $("#oc-clients-full");
-
-                                                ocClients.owlCarousel({
-                                                    items: 1,
-                                                    margin: 10,
-                                                    loop: true,
-                                                    nav: false,
-                                                    autoplay: true,
-                                                    dots: false,
-                                                    autoplayHoverPause: true
-                                                });
-
-                                            });
-
-                                        </script>
 
                                     </div>
 
