@@ -1,25 +1,28 @@
 @extends('user.main')
-
-@section('title','Kategoriler')
-@endsection
+        @section('title','Kategoriler')
+        @endsection
 
 @section('content')
+
+    <!-- Page Title
+    ============================================= -->
     @if($category)
-        <section id="page-title">
+    <section id="page-title">
 
-            <div class="container clearfix">
-                <h1> {{ $category->title }} </h1>
-                <span>{{ $category->description }}</span>
-                <ol class="breadcrumb">
-                    <li><a href="{{ action('Frontend\HomeController@index')}}">Anasayfa</a></li>
-                    <li class="active">{{ $category->title }}</li>
-                </ol>
-            </div>
+        <div class="container clearfix">
+            <h1>{{ $category->title }}</h1>
+            <span>{{ $category->description }}</span>
+            <ol class="breadcrumb">
+                <li><a href="{{ action('Frontend\HomeController@index') }}">Anasayfa</a></li>
+                <li class="active">{{ $category->title }}</li>
+            </ol>
+        </div>
 
-        </section>
+    </section><!-- #page-title end -->
     @endif
-
-    <section id="content" style="margin-bottom: 0px;">
+    <!-- Content
+    ============================================= -->
+    <section id="content">
 
         <div class="content-wrap">
 
@@ -34,34 +37,33 @@
                     <div id="shop" class="product-2 clearfix">
 
                         @foreach($paginator->items() as $item)
-                        <div class="product clearfix">
-                            <div class="product-image">
-                                <a href="#"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
-                                <div class="product-overlay">
-                                    <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                    <a href="#" class="item-quick-view"><i class="icon-zoom-in2"></i><span>View</span></a>
+                            <div class="product clearfix">
+                                <div class="product-image">
+                                    <a href="#"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
+                                    <div class="product-overlay">
+                                        <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                        <a href="#" class="item-quick-view"><i class="icon-zoom-in2"></i><span>View</span></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-desc center">
-                                <div class="product-title"><h3><a href="#">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)...@endif</a></h3></div>
-                                <div class="product-price"><ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins></div>
-                                <div class="product-rating">
-                                    <i class="icon-star3"></i>
-                                    <i class="icon-star3"></i>
-                                    <i class="icon-star3"></i>
-                                    <i class="icon-star3"></i>
-                                    <i class="icon-star-half-full"></i>
+                                <div class="product-desc center">
+                                    <div class="product-title"><h3><a href="#">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)...@endif</a></h3></div>
+                                    <div class="product-price"><ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins></div>
+                                    <div class="product-rating">
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star-half-full"></i>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
 
-                    </div>
-                        </div>
-                    <!-- #shop end -->
-                    <ul class="pagination topmargin nobottommargin">
 
+                    </div><!-- #shop end -->
+
+                    <ul class="pagination topmargin nobottommargin">
                         <li @if(1==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url(1) }}">«</a></li>
                         @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
                             <li @if($i==$paginator->currentPage()) class="active" @endif ><a href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
@@ -70,9 +72,7 @@
 
 
                     </ul>
-                </div>
-
-                <!-- .postcontent end -->
+                </div><!-- .postcontent end -->
 
                 <!-- Sidebar
                 ============================================= -->
@@ -81,16 +81,15 @@
 
                         <div class="widget widget_links clearfix">
 
-                            <h4>Ürün Kategorileri</h4>
+                            <h4>Kategoriler</h4>
                             <ul>
-                                @foreach(\App\Category::all() as $singleCategory)
-                                    <li>
-                                        <a href="{{ action('Frontend\HomeController@category',$singleCategory->slug) }}">{{ $singleCategory->title }}</a>
-                                    </li>
+                                @foreach(\App\Category::all() as $category)
+                                <li><a href="{{ action('Frontend\HomeController@category',$category->slug) }}">{{ $category->title }}</a></li>
                                 @endforeach
                             </ul>
 
                         </div>
+
 
                         <div class="widget clearfix">
 
@@ -98,22 +97,22 @@
 
                             <div id="post-list-footer">
                                 @foreach($recentlyAddedProducts as $product)
-                                <div class="spost clearfix">
-                                    <div class="entry-image">
-                                        <a href="#"><img src="{{ action('FileEntryController@show',$product->image) }}" alt="Image"></a>
-                                    </div>
-                                    <div class="entry-c">
-                                        <div class="entry-title">
-                                            <h4><a href="#">{{ $product->title }}</a></h4>
+                                    <div class="spost clearfix">
+                                        <div class="entry-image">
+                                            <a href="#"><img src="{{ action('FileEntryController@show',$product->image) }}" alt="Image"></a>
                                         </div>
-                                        <ul class="entry-meta">
+                                        <div class="entry-c">
+                                            <div class="entry-title">
+                                                <h4><a href="#">{{ $product->title }}</a></h4>
+                                            </div>
+                                            <ul class="entry-meta">
 
-                                            <li class="color">{{ $product->price }} {{ $product->currencyUnit->unit_short_name }}</li>
-                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
+                                                <li class="color">{{ $product->price }} {{ $product->currencyUnit->unit_short_name }}</li>
+                                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
 
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
                                 @endforeach
 
 
@@ -122,13 +121,13 @@
 
                         </div>
 
-
                     </div>
-                </div>
-                <!-- .sidebar end -->
+                </div><!-- .sidebar end -->
+
             </div>
 
         </div>
-    </section>
+
+    </section><!-- #content end -->
 
 @endsection
