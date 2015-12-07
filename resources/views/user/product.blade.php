@@ -398,10 +398,10 @@
                     <div id="oc-product" class="owl-carousel product-carousel owl-theme owl-loaded">
 
                         <div class="owl-stage-outer">
-                            <div class="owl-stage"
-                                 style="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 1462.5px;">
+                            <div class="owl-stage"  style="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 1462.5px;">
                                 @foreach ($relatedProducts as $relatedProduct)
-                                    <div class="owl-item active" style="width: 262.5px; margin-right: 30px;">
+
+                                    <div class="owl-item" style="width: 262.5px; margin-right: 30px;">
                                         <div class="oc-item">
 
                                             <div class="product iproduct clearfix">
@@ -437,19 +437,10 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 @endforeach
-
                             </div>
                         </div>
 
-                        <div class="owl-controls">
-                            <div class="owl-nav">
-                                <div class="owl-prev" style=""><i class="icon-angle-left"></i></div>
-                                <div class="owl-next" style=""><i class="icon-angle-right"></i></div>
-                            </div>
-                            <div class="owl-dots" style="display: none;"></div>
-                        </div>
                     </div>
 
                     <script type="text/javascript">
