@@ -58,6 +58,7 @@
                         @endforeach
 
                     </div>
+                        </div>
                     <!-- #shop end -->
                     <ul class="pagination topmargin nobottommargin">
 
@@ -125,8 +126,6 @@
                     </div>
                 </div>
                 <!-- .sidebar end -->
-
-
             </div>
 
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -48,7 +49,25 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        if($product=Product::where('id',$id)->first()){
+            $relatedProducts=[];
+            foreach($product->categories as $category){
+                if(count($relatedProducts)>5){
+                    break;
+                }else{
+                    foreach($category->products()->limit(5)->get() as $productOfCategory){
+                        if($productOfCategory->id!=$id){
+
+                            $relatedProducts[]=$productOfCategory;
+                        }
+                    }
+                }
+            }
+
+            return view('user.product',['product'=>$product,'relatedProducts'=>$relatedProducts]);
+        }else{
+            return redirect()->action('Frontend\HomeController@index');
+        }
     }
 
     /**

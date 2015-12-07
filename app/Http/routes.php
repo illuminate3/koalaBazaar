@@ -20,7 +20,7 @@ Route::get('/','Frontend\HomeController@index');
 Route::get('kategori/{slug?}','Frontend\HomeController@category');
 
 
-Route::get('urun/{id}','FrontEnd\ProductController@show');
+Route::get('urun/{id}','Frontend\ProductController@show');
 
 Route::group(['prefix' => 'magaza'], function () {
     Route::get('/','Frontend\HomeController@shopList');
