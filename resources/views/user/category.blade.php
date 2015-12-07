@@ -39,10 +39,10 @@
                         @foreach($paginator->items() as $item)
                             <div class="product clearfix">
                                 <div class="product-image">
-                                    <a href="#"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
+                                    <a href="{{action('Frontend\ProductController@show',$item->id)}}"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
                                     <div class="product-overlay">
-                                        <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                        <a href="#" class="item-quick-view"><i class="icon-zoom-in2"></i><span>View</span></a>
+                                        <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Sepete Ekle</span></a>
+                                        <a href="{{action('Frontend\ProductController@show',$item->id)}}" class="item-quick-view"><i class="icon-zoom-in2"></i><span>View</span></a>
                                     </div>
                                 </div>
                                 <div class="product-desc center">
@@ -99,7 +99,7 @@
                                 @foreach($recentlyAddedProducts as $product)
                                     <div class="spost clearfix">
                                         <div class="entry-image">
-                                            <a href="#"><img src="{{ action('FileEntryController@show',$product->image) }}" alt="Image"></a>
+                                            <a href="{{action('Frontend\ProductController@show',$product->id)}}"><img src="{{ action('FileEntryController@show',$product->image) }}" alt="Image"></a>
                                         </div>
                                         <div class="entry-c">
                                             <div class="entry-title">
