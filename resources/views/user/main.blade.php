@@ -208,61 +208,14 @@
                         </li>
                         <!-- Mega Menu
                         ============================================= -->
-                        <li class="mega-menu"><a href="#"><div>Men</div><span>Out of the Box</span></a>
-                            <div class="mega-menu-content style-2 col-4 clearfix">
-                                <ul>
-                                    <li class="mega-menu-title"><a href="#"><div>Footwear</div></a>
-                                        <ul>
-                                            <li><a href="#"><div>Casual Shoes</div></a></li>
-                                            <li><a href="#"><div>Formal Shoes</div></a></li>
-                                            <li><a href="#"><div>Sports shoes</div></a></li>
-                                            <li><a href="#"><div>Flip Flops</div></a></li>
-                                            <li><a href="#"><div>Slippers</div></a></li>
-                                            <li><a href="#"><div>Sports Sandals</div></a></li>
-                                            <li><a href="#"><div>Party Shoes</div></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="mega-menu-title"><a href="#"><div>Clothing</div></a>
-                                        <ul>
-                                            <li><a href="#"><div>Casual Shirts</div></a></li>
-                                            <li><a href="#"><div>T-Shirts</div></a></li>
-                                            <li><a href="#"><div>Collared Tees</div></a></li>
-                                            <li><a href="#"><div>Pants / Trousers</div></a></li>
-                                            <li><a href="#"><div>Ethnic Wear</div></a></li>
-                                            <li><a href="#"><div>Jeans</div></a></li>
-                                            <li><a href="#"><div>Sweamwear</div></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="mega-menu-title"><a href="#"><div>Accessories</div></a>
-                                        <ul>
-                                            <li><a href="#"><div>Bags &amp; Backpacks</div></a></li>
-                                            <li><a href="#"><div>Watches</div></a></li>
-                                            <li><a href="#"><div>Sunglasses</div></a></li>
-                                            <li><a href="#"><div>Wallets</div></a></li>
-                                            <li><a href="#"><div>Caps &amp; Hats</div></a></li>
-                                            <li><a href="#"><div>Jewellery</div></a></li>
-                                            <li><a href="#"><div>Belts, Ties</div></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="mega-menu-title"><a href="#"><div>New Arrivals</div></a>
-                                        <ul>
-                                            <li><a href="#"><div>T-Shirts</div></a></li>
-                                            <li><a href="#"><div>Formal Shoes</div></a></li>
-                                            <li><a href="#"><div>Accessories</div></a></li>
-                                            <li><a href="#"><div>Watches</div></a></li>
-                                            <li><a href="#"><div>Perfumes</div></a></li>
-                                            <li><a href="#"><div>Belts, Ties</div></a></li>
-                                            <li><a href="#"><div>Formal Shirts</div></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                        <li class="mega-menu"><a href="{{ action('Frontend\HomeController@category') }}"><div>Ürünler</div><span>Out of the Box</span></a>
+                            <ul>
+                                @foreach(\App\Category::all() as $category)
+
+                                    <li><a href="{{ action('Frontend\HomeController@category',$category->slug) }}"><div>{{ $category->title }}</div></a></li>
+
+                                @endforeach
+                            </ul>
                         </li><!-- .mega-menu end -->
                         <li><a href="#"><div>Women</div><span>Out of the Box</span></a>
                             <div class="mega-menu-content style-2 col-2 clearfix">

@@ -16,9 +16,9 @@ use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
 use App\User;
 use Illuminate\Support\Facades\Storage;
-Route::get('/', function () {
-    return view('user.index');
-});
+Route::get('/','Frontend\HomeController@index');
+Route::get('category/{slug?}','Frontend\HomeController@category');
+Route::get('shop/{id}','Frontend\HomeController@showShopProfile');
 
 Route::get('/main',function() {
     return view('user.main');
@@ -30,10 +30,6 @@ Route::get('/product',function() {
 });
 Route::get('/shop',function() {
     return view('user.shop');
-
-});
-Route::get('/category',function() {
-    return view('user.category');
 
 });
 
