@@ -38,7 +38,7 @@
                             ============================================= -->
                             <div class="product-price">
 
-                                <ins>{{ $product->price}} {{$product->currencyUnit->unit_name}}</ins>
+                                <ins>{{ $product->price}} {{$product->currencyUnit->unit_short_name}}</ins>
                             </div>
                             <!-- Product Single - Price End -->
 
