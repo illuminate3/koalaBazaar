@@ -405,10 +405,9 @@
                                         <div class="oc-item">
 
                                             <div class="product iproduct clearfix">
-
                                                 <div class="product-image">
                                                     <a href="#">
-                                                        <img src={{$relatedProduct->image}} alt=""></a>
+                                                        <img src={{ action('FileEntryController@show',$relatedProduct->image)}} alt=""></a>
                                                     <div class="product-overlay">
                                                         <a href="#" class="add-to-cart">
                                                             <i class="icon-shopping-cart"></i>
