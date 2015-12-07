@@ -63,7 +63,7 @@ class ProductController extends Controller
                     }
                 }
             }
-
+           // dd($relatedProducts);
             return view('user.product',['product'=>$product,'relatedProducts'=>$relatedProducts]);
         }else{
             return redirect()->action('Frontend\HomeController@index');

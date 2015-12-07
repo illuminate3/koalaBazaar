@@ -1,10 +1,9 @@
 @extends('user.main')
 
-@section('title','Product')
+@section('title','Urun')
 @endsection
 
 @section('content')
-
 
     <section id="content" style="margin-bottom: 0px;">
 
@@ -393,54 +392,62 @@
 
                 <div class="col_full nobottommargin">
 
-                    <h4>Benzer Ürünler</h4>
+                    <h4>Related Products</h4>
 
-                    <div id="oc-product" class="owl-carousel product-carousel owl-theme owl-loaded">
+                    <div id="oc-product" class="owl-carousel product-carousel">
+                        @foreach($relatedProducts as $relatedProduct)
+                        <div class="oc-item">
+                            <div class="product iproduct clearfix">
+                                <div class="product-image">
+                                    <a href="#"><img src="{{ action('FileEntryController@show',$relatedProduct->image) }}" alt=""></a>
 
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage"  style="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 1462.5px;">
-                                @foreach ($relatedProducts as $relatedProduct)
-
-                                    <div class="owl-item" style="width: 262.5px; margin-right: 30px;">
-                                        <div class="oc-item">
-
-                                            <div class="product iproduct clearfix">
-                                                <div class="product-image">
-                                                    <a href="#">
-                                                        <img src={{ action('FileEntryController@show',$relatedProduct->image)}} alt=""></a>
-                                                    <div class="product-overlay">
-                                                        <a href="#" class="add-to-cart">
-                                                            <i class="icon-shopping-cart"></i>
-                                                            <span> Sepete Ekle</span>
-                                                        </a>
-                                                        <a href="include/ajax/shop-item.html" class="item-quick-view"
-                                                           data-lightbox="ajax"><i class="icon-zoom-in2"></i>
-                                                            <span> Hemen Bak</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="product-desc center">
-                                                    <div class="product-title">
-                                                        <h3><a href="#">{{$relatedProduct->title}}</a></h3>
-                                                    </div>
-                                                    <div class="product-price">{{$relatedProduct->price}} {{$product->currencyUnit->unit_short_name}}</div>
-                                                    <div class="product-rating">
-                                                        <i class="icon-star3"></i>
-                                                        <i class="icon-star3"></i>
-                                                        <i class="icon-star3"></i>
-                                                        <i class="icon-star-half-full"></i>
-                                                        <i class="icon-star-empty"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="product-overlay">
+                                        <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Sepete Ekle</span></a>
+                                        <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax">
+                                            <i class="icon-zoom-in2"></i><span>Detaylı Bak</span></a>
                                     </div>
-                                @endforeach
+                                </div>
+                                <div class="product-desc center">
+                                    <div class="product-title"><h3><a href="#">{{$relatedProduct->title}}</a></h3></div>
+                                    <div class="product-price"> <ins>{{$relatedProduct->price}} {{ $product->currencyUnit->unit_short_name }}</ins></div>
+                                    <div class="product-rating">
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star-half-full"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        @endforeach
 
                     </div>
+
+                    <script type="text/javascript">
+
+                        jQuery(document).ready(function($) {
+
+                            var ocProduct = $("#oc-product");
+
+                            ocProduct.owlCarousel({
+                                margin: 30,
+                                nav: true,
+                                navText : ['<i class="icon-angle-left"></i>','<i class="icon-angle-right"></i>'],
+                                autoplayHoverPause: true,
+                                dots: false,
+                                responsive:{
+                                    0:{ items:1 },
+                                    480:{ items:2 },
+                                    768:{ items:3 },
+                                    992:{ items:4 }
+                                }
+                            });
+
+                        });
+
+                    </script>
+
 
                     <script type="text/javascript">
 
@@ -473,6 +480,5 @@
         </div>
 
     </section>
-
 
 @endsection
