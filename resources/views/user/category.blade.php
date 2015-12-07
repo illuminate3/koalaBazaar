@@ -34,36 +34,27 @@
                     <div id="shop" class="product-2 clearfix">
 
                         @foreach($paginator->items() as $item)
+                        <div class="product clearfix">
+                            <div class="product-image">
+                                <a href="#"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
+                                <div class="product-overlay">
+                                    <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                    <a href="#" class="item-quick-view"><i class="icon-zoom-in2"></i><span>View</span></a>
+                                </div>
+                            </div>
+                            <div class="product-desc center">
+                                <div class="product-title"><h3><a href="#">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)...@endif</a></h3></div>
+                                <div class="product-price"><ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins></div>
+                                <div class="product-rating">
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star-half-full"></i>
 
-                            <div class="product clearfix">
-                                <div class="row">
-                                    <div class="product-image">
-                                        <a href="#"><img src="{{ action('FileEntryController@show',$item->image) }}"
-                                                         alt="Checked Short Dress"></a>
-
-                                        <div class="product-overlay">
-                                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                            <a href="#" class="item-quick-view"><i
-                                                        class="icon-zoom-in2"></i><span>View</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-desc center">
-                                        <div class="product-title"><h3><a href="#">{{ $item->title }}</a></h3></div>
-                                        <div class="product-price">
-                                            <ins>{{ $item->price }}</ins>
-                                        </div>
-                                        <div class="product-rating">
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star-half-full"></i>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         @endforeach
-
 
                     </div>
                     <!-- #shop end -->
@@ -76,6 +67,14 @@
                         @endfor
                         <li @if($paginator->total()==$paginator->currentPage()) class="disabled" @endif><a
                                     href="{{ $paginator->url($paginator->total()) }}">»</a></li>
+
+                        <li @if(1==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url(1) }}">«</a></li>
+                        @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
+                            <li @if($i==$paginator->currentPage()) class="active" @endif ><a href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
+                        @endfor
+                        <li @if($paginator->lastPage()==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url($paginator->lastPage()) }}">»</a></li>
+
+
                     </ul>
                 </div>
                 <!-- .postcontent end -->
@@ -100,60 +99,29 @@
 
                         <div class="widget clearfix">
 
-                            <h4>Recent Items</h4>
+                            <h4>Son Eklenenler</h4>
 
                             <div id="post-list-footer">
-
+                                @foreach($recentlyAddedProducts as $product)
                                 <div class="spost clearfix">
                                     <div class="entry-image">
-                                        <a href="#"><img src="images/shop/small/1.jpg" alt="Image"></a>
+                                        <a href="#"><img src="{{ action('FileEntryController@show',$product->image) }}" alt="Image"></a>
                                     </div>
                                     <div class="entry-c">
                                         <div class="entry-title">
-                                            <h4><a href="#">Blue Round-Neck Tshirt</a></h4>
+                                            <h4><a href="#">{{ $product->title }}</a></h4>
                                         </div>
                                         <ul class="entry-meta">
-                                            <li class="color">$29.99</li>
-                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                                        class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                                        class="icon-star-half-full"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
 
-                                <div class="spost clearfix">
-                                    <div class="entry-image">
-                                        <a href="#"><img src="images/shop/small/6.jpg" alt="Image"></a>
-                                    </div>
-                                    <div class="entry-c">
-                                        <div class="entry-title">
-                                            <h4><a href="#">Checked Short Dress</a></h4>
-                                        </div>
-                                        <ul class="entry-meta">
-                                            <li class="color">$23.99</li>
-                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                                        class="icon-star3"></i> <i class="icon-star-half-full"></i> <i
-                                                        class="icon-star-empty"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                            <li class="color">{{ $product->price }} {{ $product->currencyUnit->unit_short_name }}</li>
+                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
 
-                                <div class="spost clearfix">
-                                    <div class="entry-image">
-                                        <a href="#"><img src="images/shop/small/7.jpg" alt="Image"></a>
-                                    </div>
-                                    <div class="entry-c">
-                                        <div class="entry-title">
-                                            <h4><a href="#">Light Blue Denim Dress</a></h4>
-                                        </div>
-                                        <ul class="entry-meta">
-                                            <li class="color">$19.99</li>
-                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                                        class="icon-star3"></i> <i class="icon-star-empty"></i> <i
-                                                        class="icon-star-empty"></i></li>
                                         </ul>
                                     </div>
                                 </div>
+                                @endforeach
+
+
 
                             </div>
 
