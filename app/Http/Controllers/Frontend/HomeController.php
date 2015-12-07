@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function category(Request $request,$slug=null)
     {
 
-        $paginateNumber=5;
+        $paginateNumber=6 ;
         if($slug==null) {
             $products=Product::where('is_active',true);
         }elseif($category=Category::where('slug',$slug)->first()) {
