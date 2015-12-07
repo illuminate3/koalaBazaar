@@ -424,7 +424,7 @@
                                                     <div class="product-title">
                                                         <h3><a href="#">{{$relatedProduct->title}}</a></h3>
                                                     </div>
-                                                    <div class="product-price">{{$relatedProduct->price}}</div>
+                                                    <div class="product-price">{{$relatedProduct->price}} {{$product->currencyUnit->unit_short_name}}</div>
                                                     <div class="product-rating">
                                                         <i class="icon-star3"></i>
                                                         <i class="icon-star3"></i>
