@@ -1,6 +1,6 @@
 @extends('user.main')
 
-@section('title','Categories')
+@section('title','Kategoriler')
 @endsection
 
 @section('content')

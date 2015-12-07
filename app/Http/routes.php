@@ -22,13 +22,16 @@ Route::get('magaza/{id}','Frontend\HomeController@showShopProfile');
 Route::get('urun/{id}','FrontEnd\ProductController@show');
 
 
-});
 Route::get('/product',function() {
     return view('user.product');
 
 });
 Route::get('/shop',function() {
     return view('user.shop');
+});
+Route::get('/shopslist',function() {
+    return view('user.shopsList');
+});
 
 
 
