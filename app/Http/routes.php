@@ -16,10 +16,9 @@ use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
 use App\User;
 use Illuminate\Support\Facades\Storage;
-Route::get('/', function () {
-    return view('user.index');
-});
-
+Route::get('/','Frontend\HomeController@index');
+Route::get('category/{id}','Frontend\HomeController@category');
+Route::get('shop/{id}','Frontend\HomeController@showShopProfile');
 Route::get('storage/{path}','FileEntryController@show')->where('path', '(.*)');;
 Route::get('testmedia',function(){
     $file=new \App\FileEntry();
