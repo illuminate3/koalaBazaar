@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="product-desc center">
-                                <div class="product-title"><h3><a href="#">{{ substr($item->title,0,40) }}@if(strlen($item->title)>40)...@endif</a></h3></div>
+                                <div class="product-title"><h3><a href="#">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)...@endif</a></h3></div>
                                 <div class="product-price"><ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins></div>
                                 <div class="product-rating">
                                     <i class="icon-star3"></i>
