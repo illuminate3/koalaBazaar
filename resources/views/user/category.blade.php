@@ -5,18 +5,18 @@
 
 @section('content')
     @if($category)
-    <section id="page-title">
+        <section id="page-title">
 
-        <div class="container clearfix">
-            <h1> {{ $category->title }} </h1>
-            <span>{{ $category->description }}</span>
-            <ol class="breadcrumb">
-                <li><a href="{{ action('Frontend\HomeController@index')}}">Anasayfa</a></li>
-                <li class="active">{{ $category->title }}</li>
-            </ol>
-        </div>
+            <div class="container clearfix">
+                <h1> {{ $category->title }} </h1>
+                <span>{{ $category->description }}</span>
+                <ol class="breadcrumb">
+                    <li><a href="{{ action('Frontend\HomeController@index')}}">Anasayfa</a></li>
+                    <li class="active">{{ $category->title }}</li>
+                </ol>
+            </div>
 
-    </section>
+        </section>
     @endif
 
     <section id="content" style="margin-bottom: 0px;">
@@ -34,38 +34,51 @@
                     <div id="shop" class="product-2 clearfix">
 
                         @foreach($paginator->items() as $item)
-                        <div class="product clearfix">
-                            <div class="product-image">
-                                <a href="#"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
-                                <div class="product-overlay">
-                                    <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                    <a href="#" class="item-quick-view"><i class="icon-zoom-in2"></i><span>View</span></a>
+
+                            <div class="product clearfix">
+                                <div class="row">
+                                    <div class="product-image">
+                                        <a href="#"><img src="{{ action('FileEntryController@show',$item->image) }}"
+                                                         alt="Checked Short Dress"></a>
+
+                                        <div class="product-overlay">
+                                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                            <a href="#" class="item-quick-view"><i
+                                                        class="icon-zoom-in2"></i><span>View</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-desc center">
+                                        <div class="product-title"><h3><a href="#">{{ $item->title }}</a></h3></div>
+                                        <div class="product-price">
+                                            <ins>{{ $item->price }}</ins>
+                                        </div>
+                                        <div class="product-rating">
+                                            <i class="icon-star3"></i>
+                                            <i class="icon-star3"></i>
+                                            <i class="icon-star3"></i>
+                                            <i class="icon-star3"></i>
+                                            <i class="icon-star-half-full"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="product-desc center">
-                                <div class="product-title"><h3><a href="#">{{ $item->title }}</a></h3></div>
-                                <div class="product-price"><ins>{{ $item->price }}</ins></div>
-                                <div class="product-rating">
-                                    <i class="icon-star3"></i>
-                                    <i class="icon-star3"></i>
-                                    <i class="icon-star3"></i>
-                                    <i class="icon-star3"></i>
-                                    <i class="icon-star-half-full"></i>
-                                </div>
-                            </div>
-                        </div>
                         @endforeach
 
 
-                    </div><!-- #shop end -->
+                    </div>
+                    <!-- #shop end -->
                     <ul class="pagination topmargin nobottommargin">
-                        <li @if(1==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url(1) }}">«</a></li>
+                        <li @if(1==$paginator->currentPage()) class="disabled" @endif><a
+                                    href="{{ $paginator->url(1) }}">«</a></li>
                         @for ($i = 1 ; $i <=$paginator->total(); $i++)
-                            <li @if($i==$paginator->currentPage()) class="active" @endif ><a href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
+                            <li @if($i==$paginator->currentPage()) class="active" @endif ><a
+                                        href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
                         @endfor
-                        <li @if($paginator->total()==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url($paginator->total()) }}">»</a></li>
+                        <li @if($paginator->total()==$paginator->currentPage()) class="disabled" @endif><a
+                                    href="{{ $paginator->url($paginator->total()) }}">»</a></li>
                     </ul>
-                </div><!-- .postcontent end -->
+                </div>
+                <!-- .postcontent end -->
 
                 <!-- Sidebar
                 ============================================= -->
@@ -77,7 +90,9 @@
                             <h4>Ürün Kategorileri</h4>
                             <ul>
                                 @foreach(\App\Category::all() as $singleCategory)
-                                <li><a href="{{ action('Frontend\HomeController@category',$singleCategory->slug) }}">{{ $singleCategory->title }}</a></li>
+                                    <li>
+                                        <a href="{{ action('Frontend\HomeController@category',$singleCategory->slug) }}">{{ $singleCategory->title }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
 
@@ -86,6 +101,7 @@
                         <div class="widget clearfix">
 
                             <h4>Recent Items</h4>
+
                             <div id="post-list-footer">
 
                                 <div class="spost clearfix">
@@ -98,7 +114,9 @@
                                         </div>
                                         <ul class="entry-meta">
                                             <li class="color">$29.99</li>
-                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
+                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
+                                                        class="icon-star3"></i> <i class="icon-star3"></i> <i
+                                                        class="icon-star-half-full"></i></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -113,7 +131,9 @@
                                         </div>
                                         <ul class="entry-meta">
                                             <li class="color">$23.99</li>
-                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i> <i class="icon-star-empty"></i></li>
+                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
+                                                        class="icon-star3"></i> <i class="icon-star-half-full"></i> <i
+                                                        class="icon-star-empty"></i></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -128,7 +148,9 @@
                                         </div>
                                         <ul class="entry-meta">
                                             <li class="color">$19.99</li>
-                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-empty"></i> <i class="icon-star-empty"></i></li>
+                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
+                                                        class="icon-star3"></i> <i class="icon-star-empty"></i> <i
+                                                        class="icon-star-empty"></i></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -138,18 +160,24 @@
                         </div>
 
                         <div class="widget clearfix">
-                            <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FEnvato&amp;width=240&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=499481203443583" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:290px;" allowtransparency="true"></iframe>
+                            <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FEnvato&amp;width=240&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=499481203443583"
+                                    scrolling="no" frameborder="0"
+                                    style="border:none; overflow:hidden; width:240px; height:290px;"
+                                    allowtransparency="true"></iframe>
                         </div>
 
                         <div class="widget subscribe-widget clearfix">
 
                             <h4>Subscribe For Latest Offers</h4>
-                            <h5>Subscribe to Our Newsletter to get Important News, Amazing Offers &amp; Inside Scoops:</h5>
+                            <h5>Subscribe to Our Newsletter to get Important News, Amazing Offers &amp; Inside
+                                Scoops:</h5>
+
                             <form action="#" role="form" class="notopmargin nobottommargin">
                                 <div class="input-group divcenter">
                                     <input type="text" class="form-control" placeholder="Enter your Email" required="">
 										<span class="input-group-btn">
-											<button class="btn btn-success" type="submit"><i class="icon-email2"></i></button>
+											<button class="btn btn-success" type="submit"><i class="icon-email2"></i>
+                                            </button>
 										</span>
                                 </div>
                             </form>
@@ -159,20 +187,81 @@
 
                             <div id="oc-clients-full" class="owl-carousel image-carousel owl-theme owl-loaded">
 
-
-
-
-
-
-
-
-
-
-                                <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1000px, 0px, 0px); transition: 0.25s; width: 3000px;"><div class="owl-item cloned" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/7.png" alt="Clients"></a></div></div><div class="owl-item cloned" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/8.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/1.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/2.png" alt="Clients"></a></div></div><div class="owl-item active" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/3.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/4.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/5.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/6.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/7.png" alt="Clients"></a></div></div><div class="owl-item" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/8.png" alt="Clients"></a></div></div><div class="owl-item cloned" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/1.png" alt="Clients"></a></div></div><div class="owl-item cloned" style="width: 240px; margin-right: 10px;"><div class="oc-item"><a href="#"><img src="images/clients/2.png" alt="Clients"></a></div></div></div></div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;">prev</div><div class="owl-next" style="display: none;">next</div></div><div class="owl-dots" style="display: none;"></div></div></div>
+                                <div class="owl-stage-outer">
+                                    <div class="owl-stage"
+                                         style="transform: translate3d(-1000px, 0px, 0px); transition: 0.25s; width: 3000px;">
+                                        <div class="owl-item cloned" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item">
+                                                <a href="#">
+                                                    <img src="images/clients/7.png" alt="Clients">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item">
+                                                <a href="#">
+                                                    <img src="images/clients/8.png" alt="Clients">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item">
+                                                <a href="#">
+                                                    <img src="images/clients/1.png" alt="Clients">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item">
+                                                <a href="#">
+                                                    <img src="images/clients/2.png" alt="Clients"></a></div>
+                                        </div>
+                                        <div class="owl-item active" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item"><a href="#"><img src="images/clients/3.png"
+                                                                                  alt="Clients"></a></div>
+                                        </div>
+                                        <div class="owl-item" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item"><a href="#"><img src="images/clients/4.png"
+                                                                                  alt="Clients"></a></div>
+                                        </div>
+                                        <div class="owl-item" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item"><a href="#"><img src="images/clients/5.png"
+                                                                                  alt="Clients"></a></div>
+                                        </div>
+                                        <div class="owl-item" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item"><a href="#"><img src="images/clients/6.png"
+                                                                                  alt="Clients"></a></div>
+                                        </div>
+                                        <div class="owl-item" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item"><a href="#"><img src="images/clients/7.png"
+                                                                                  alt="Clients"></a></div>
+                                        </div>
+                                        <div class="owl-item" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item"><a href="#"><img src="images/clients/8.png"
+                                                                                  alt="Clients"></a></div>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item"><a href="#"><img src="images/clients/1.png"
+                                                                                  alt="Clients"></a></div>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 240px; margin-right: 10px;">
+                                            <div class="oc-item"><a href="#"><img src="images/clients/2.png"
+                                                                                  alt="Clients"></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="owl-controls">
+                                    <div class="owl-nav">
+                                        <div class="owl-prev" style="display: none;">prev</div>
+                                        <div class="owl-next" style="display: none;">next</div>
+                                    </div>
+                                    <div class="owl-dots" style="display: none;"></div>
+                                </div>
+                            </div>
 
                             <script type="text/javascript">
 
-                                jQuery(document).ready(function($) {
+                                jQuery(document).ready(function ($) {
 
                                     var ocClients = $("#oc-clients-full");
 
@@ -193,7 +282,8 @@
                         </div>
 
                     </div>
-                </div><!-- .sidebar end -->
+                </div>
+                <!-- .sidebar end -->
 
 
             </div>
