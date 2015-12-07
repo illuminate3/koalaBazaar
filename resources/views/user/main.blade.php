@@ -320,87 +320,9 @@
                             </ul>
                         </li>
                         <!-- .mega-menu end -->
-                        <li><a href="#">
-                                <div>Women</div>
-                                <span>Out of the Box</span></a>
 
-                            <div class="mega-menu-content style-2 col-2 clearfix">
-                                <ul>
-                                    <li class="mega-menu-title"><a href="#">
-                                            <div>Footwear</div>
-                                        </a>
-                                        <ul>
-                                            <li><a href="#">
-                                                    <div>Casual Shoes</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Formal Shoes</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Sports shoes</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Flip Flops</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Slippers</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Sports Sandals</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Party Shoes</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="mega-menu-title"><a href="#">
-                                            <div>Clothing</div>
-                                        </a>
-                                        <ul>
-                                            <li><a href="#">
-                                                    <div>Casual Shirts</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>T-Shirts</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Collared Tees</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Pants / Trousers</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Ethnic Wear</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Jeans</div>
-                                                </a></li>
-                                            <li><a href="#">
-                                                    <div>Sweamwear</div>
-                                                </a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- .mega-menu end -->
-                        <li><a href="#">
-                                <div>Accessories</div>
-                                <span>Awesome Works</span></a></li>
-                        <li><a href="#">
-                                <div>Sale</div>
-                                <span>Awesome Works</span></a></li>
-                        <li><a href="#">
-                                <div>Blog</div>
-                                <span>Latest News</span></a></li>
-                        <li><a href="#">
-                                <div>Videos</div>
-                                <span>Latest News</span></a></li>
-                        <li><a href="#">
-                                <div>Contact</div>
-                                <span>Get In Touch</span></a></li>
+                        <li><a href="{{ action('Frontend\HomeController@shopList') }}">
+                                <div>Mağazalar</div></a></li>
                     </ul>
 
                     <!-- Top Cart

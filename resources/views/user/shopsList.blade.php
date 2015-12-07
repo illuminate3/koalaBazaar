@@ -18,28 +18,19 @@
                     @foreach($paginator->items() as $supplier)
                     <div class="product clearfix">
                         <div class="product-image">
-                            <a href="#"><img src="{{ $supplier->profile_image }}"></a>
+                            <a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}"><img src="{{ $supplier->profile_image }}"></a>
                             <div class="product-overlay">
-                                <a href="http://www.instagram.com/{{ $supplier->instagramAccount->username }}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Instagram </span></a>
-                                <a href="#" class="item-quick-view"><i class="icon-zoom-in2"></i><span> Profil </span></a>
+                                <a href="http://www.instagram.com/{{ $supplier->instagramAccount->username }}" class="add-to-cart"><i class="icon-instagram"></i><span> Instagram </span></a>
+                                <a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}" class="item-quick-view"><i class="icon-zoom-in2"></i><span> Profil </span></a>
                             </div>
                         </div>
                         <div class="product-desc">
-                            <div class="product-title"><h3><a href="#">{{ $supplier->shop_name }}</a></h3></div>
-                            <div class="product-price"><del>$24.99</del> <ins>$12.49</ins></div>
-                            <div class="product-rating">
-                                <i class="icon-star3"></i>
-                                <i class="icon-star3"></i>
-                                <i class="icon-star3"></i>
-                                <i class="icon-star3"></i>
-                                <i class="icon-star-half-full"></i>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sit, exercitationem, consequuntur, assumenda iusto eos commodi alias aut ipsum praesentium officia pariatur doloremque dolor tenetur esse vitae voluptatibus inventore delectus. Eaque laboriosam quaerat accusamus! Porro, laboriosam temporibus dolorum doloremque dolorem ex ducimus recusandae repellat neque sapiente ab numquam rerum deleniti!</p>
+                            <div class="product-title"><h3><a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}">{{ $supplier->shop_name }}</a></h3></div>
+
+                            <p>{{ $supplier->description }}</p>
                             <ul class="iconlist">
-                                <li><i class="icon-caret-right"></i> Dynamic Color Options</li>
-                                <li><i class="icon-caret-right"></i> Lots of Size Options</li>
-                                <li><i class="icon-caret-right"></i> Delivered in 3-5 Days</li>
-                                <li><i class="icon-caret-right"></i> 30-Day Return Policy</li>
+                                <li><i class="icon-flag"></i>Ülke: {{ $supplier->country }}</li>
+                                <li><i class="icon-phone"></i> {{ $supplier->phone }}</li>
                             </ul>
                         </div>
                     </div>
