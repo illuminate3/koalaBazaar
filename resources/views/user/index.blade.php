@@ -1,4 +1,6 @@
 @extends('user.main')
+@section('title','Welcome to KoalaBazaar')
+@endsection
 
 @section('content')
 

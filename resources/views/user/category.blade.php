@@ -1,5 +1,8 @@
 @extends('user.main')
 
+@section('title','Categories')
+@endsection
+
 @section('content')
     <section id="page-title">
 
@@ -320,8 +323,6 @@
                             <li><a href="#">»</a></li>
                         </ul>
                     </div><!-- #shop end -->
-
-
 
                 </div><!-- .postcontent end -->
 

@@ -28,7 +28,7 @@
 
     <!-- Document Title
     ============================================= -->
-    <title>Home - Shop Layout 2 | Canvas</title>
+    <title>@yield('title')</title>
 
 </head>
 
@@ -57,7 +57,7 @@
                 <div class="top-links">
                     <ul>
                         <li>
-                            <a href="#">Login</a>
+                            <a href="#">Giris Yap</a>
                             <div class="top-link-section">
                                 <form id="top-login" role="form" action="{{ action('AuthenticationController@doLogin')}}" method="post">
                                     <div class="input-group" id="top-login-username">

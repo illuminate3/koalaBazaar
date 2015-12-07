@@ -24,6 +24,10 @@ Route::get('/main',function() {
     return view('user.main');
 
 });
+Route::get('/product',function() {
+    return view('user.product');
+
+});
 Route::get('/shop',function() {
     return view('user.shop');
 
