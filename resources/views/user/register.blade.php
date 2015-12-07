@@ -1,18 +1,16 @@
 @extends('user.main')
+@section('title','Register')
+@endsection
 
 @section('content')
-
 
         <!-- Content
         ============================================= -->
 <section id="content">
 
     <div class="content-wrap">
-
         <div class="container clearfix">
-
             <div class="col_one_third nobottommargin">
-
                 <div class="well well-lg nobottommargin">
                     @if($errors->has())
                         @foreach ($errors->all() as $error)
@@ -22,11 +20,10 @@
                         @endforeach
                     @endif
 
-
-                    <form class="nobottommargin" action="{{ action('AuthenticationController@doLogin') }}" method="post">
+                    <form class="nobottommargin" action="{{ action('AuthenticationController@doLogin') }}"
+                          method="post">
 
                         <h3>Login to your Account</h3>
-
                         <div class="col_full">
                             <label for="login-form-username">Email:</label>
                             <input type="text" name="email" value="" class="form-control"/>
@@ -42,12 +39,11 @@
                             <button class="button button-3d nomargin" id="login-form-submit"
                                     name="login-form-submit" type="submit" value="login">Login
                             </button>
-
-                            <a href="{{ action('AuthenticationController@loginviainstagram') }}" class="button button-3d button-blue" id="login-form-submit"
+                            <a href="{{ action('AuthenticationController@loginviainstagram') }}"
+                               class="button button-3d button-blue" id="login-form-submit"
                                name="login-with-instagram">Instagram
                             </a>
                         </div>
-
                     </form>
                 </div>
 
@@ -61,10 +57,11 @@
                         <i class="acc-open icon-user4"></i>Müşteri misiniz?
                     </div>
                     <div class="acc_content clearfix">
-                        <form id="login-form" name="login-form" class="nobottommargin" action="{{ action('Dashboard\CustomerController@store')}}" method="post">
+                        <form id="login-form" name="login-form" class="nobottommargin"
+                              action="{{ action('Dashboard\CustomerController@store')}}" method="post">
                             <div class="form-group">
                                 <div class="input-group">
-                <span class="input-group-addon input-circle-left">
+                                    <span class="input-group-addon input-circle-left">
                     <i class="fa fa-font"></i>
                 </span>
                                     <input type="text" class="form-control input-circle-right"
@@ -73,11 +70,10 @@
                             </div>
 
                             <div class="form-group">
-
                                 <div class="input-group">
-                <span class="input-group-addon input-circle-left">
-                    <i class="fa fa-font"></i>
-                </span>
+                                    <span class="input-group-addon input-circle-left">
+                                        <i class="fa fa-font"></i>
+                                        </span>
                                     <input type="text" class="form-control input-circle-right"
                                            placeholder="Surname" name="surname">
                                 </div>
@@ -93,12 +89,11 @@
                             </div>
 
 
-
                             <div class="form-group">
                                 <div class="input-group">
-                <span class="input-group-addon input-circle-left">
-                    <i class="fa fa-lock"></i>
-                </span>
+                                    <span class="input-group-addon input-circle-left">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
                                     <input class="form-control placeholder-no-fix input-circle-right"
                                            type="password" autocomplete="off" id="register_password"
                                            placeholder="Password" name="pass">
@@ -107,15 +102,14 @@
 
                             <div class="form-group">
                                 <div class="input-group">
-                <span class="input-group-addon input-circle-left">
-                    <i class="fa fa-lock"></i>
-                </span>
+                                    <span class="input-group-addon input-circle-left">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
                                     <input class="form-control placeholder-no-fix input-circle-right"
                                            type="password" autocomplete="off" id="register_password"
                                            placeholder="Re-type your password" name="rpass">
                                 </div>
                             </div>
-
 
                             <div class="form-group">
                                 <div class="input-group">
@@ -126,21 +120,20 @@
                                            placeholder="Phone" name="phone">
                                 </div>
                             </div>
-
-
-
                             <div class="col_full nobottommargin">
                                 <button class="button button-3d button-green" id="login-form-submit"
                                         name="login-form-submit" value="login">Sign Up
                                 </button>
-                                <a href="{{ action('AuthenticationController@registercustomerviainstagram') }}" class="button button-3d button-blue" id="login-form-submit"
+                                <a href="{{ action('AuthenticationController@registercustomerviainstagram') }}"
+                                   class="button button-3d button-blue" id="login-form-submit"
                                    name="login-with-instagram">Signup with Instagram
                                 </a>
                             </div>
                         </form>
                     </div>
 
-                    <div class="acctitle"><i class="acc-closed icon-user4"></i><i
+                    <div class="acctitle">
+                        <i class="acc-closed icon-user4"></i><i
                                 class="acc-open icon-ok-sign"></i>Mağaza mısınız?
                     </div>
                     <div class="acc_content clearfix">
@@ -151,17 +144,10 @@
                     </div>
 
                 </div>
-
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 <!-- #content end -->
 
-
-
-    @endsection
+@endsection
