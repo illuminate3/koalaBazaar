@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Category;
+use App\Product;
 use App\Supplier;
 use Illuminate\Http\Request;
 
@@ -27,15 +28,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function category($slug,Request $request)
+    public function category(Request $request,$slug=null)
     {
-        $category=Category::where('slug',$slug)->first();
-        if($category){
-            $paginator=$category->products()->paginate(1);
-            dd($paginator->appends($request->except('page')));
+
+        $paginateNumber=5;
+        if($slug==null) {
+            $paginator=Product::where('is_active',true)->orderBy('created_at','desc')->paginate($paginateNumber);
+            $recentlyAddedProducts=Product::where('is_active',true)->orderBy('created_at','desc')->limit(3);
+        }elseif($category=Category::where('slug',$slug)->first()) {
+            $recentlyAddedProducts=$category->products()->where('is_active',true)->orderBy('created_at','desc')->limit(3);
+            $paginator=$category->products()->where('is_active',true)->orderBy('created_at','desc')->paginate($paginateNumber);
         }else{
+
             return redirect()->action('Frontend\HomeController@index');
+
         }
+            $category=Category::where('slug',$slug)->first();
+
+            $paginator->appends($request->except('page'));
+            return view('user.category',['category'=>$category,'paginator'=>$paginator,'recentlyAddedProducts'=>$recentlyAddedProducts]);
+
     }
 
     public function showShopProfile($id,Request $request)
