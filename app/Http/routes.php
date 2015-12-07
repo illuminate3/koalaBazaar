@@ -17,17 +17,12 @@ use App\CustomClasses\InstagramAPI;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 Route::get('/','Frontend\HomeController@index');
-Route::get('category/{slug?}','Frontend\HomeController@category');
-Route::get('shop/{id}','Frontend\HomeController@showShopProfile');
+Route::get('kategori/{slug?}','Frontend\HomeController@category');
+Route::get('magaza/{id}','Frontend\HomeController@showShopProfile');
+Route::get('urun/{id}','FrontEnd\ProductController@show');
 
-Route::get('/main',function() {
-    return view('user.main');
 
-});
-Route::get('/shop',function() {
-    return view('user.shop');
 
-});
 
 Route::get('storage/{path}','FileEntryController@show')->where('path', '(.*)');;
 Route::get('testmedia',function(){
