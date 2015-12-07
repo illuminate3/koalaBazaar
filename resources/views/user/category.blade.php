@@ -57,6 +57,7 @@
                         @endforeach
 
                     </div>
+                        </div>
                     <!-- #shop end -->
                     <ul class="pagination topmargin nobottommargin">
                         <li @if(1==$paginator->currentPage()) class="disabled" @endif><a
@@ -252,8 +253,6 @@
                     </div>
                 </div>
                 <!-- .sidebar end -->
-
-
             </div>
 
         </div>

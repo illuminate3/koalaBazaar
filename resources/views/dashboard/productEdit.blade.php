@@ -145,9 +145,7 @@
 
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">
                                         <img class="img-responsive" src="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}} @endif" alt="">
-                                    </a>
                                 </div>
                             </div>
                         </div>
