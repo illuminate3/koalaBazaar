@@ -49,15 +49,11 @@ class HomeController extends Controller
 
     }
 
-    public function showShopProfile($id,Request $request)
+    public function shopList(Request $request)
     {
-        $supplier=Supplier::where('id',$id)->first();
-        if($supplier){
-            $products=$supplier->products()->paginate(1);
-            dd($products->appends($request->except('page')));
-        }else{
-            return redirect()->action('Frontend\HomeController@index');
-        }
+        $paginator=Supplier::paginate(10);
+        $paginator->appends($request->except('page'));
+        return view('user.shopsList',['paginator'=>$paginator]);
     }
 
 }
