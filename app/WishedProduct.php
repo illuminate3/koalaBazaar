@@ -15,5 +15,9 @@ class WishedProduct extends Model
         return $this->belongsTo('App\Customer');
 
     }
+
+    public function product(){
+        return $this->belongsTo('App\Product');
+    }
     //
 }

@@ -103,12 +103,12 @@
                                             <div class="product-image">
                                                 <a href="{{action('Frontend\ProductController@show',$item->id)}}"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
                                                 <div class="product-overlay">
-                                                    <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                                    <a href="{{action('Frontend\ProductController@show',$item->id)}}" class="item-quick-view"><i class="icon-zoom-in2"></i><span>View</span></a>
+                                                    <a href="{{ action('Frontend\ProductController@addToCart',$item->id) }}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Sepete Ekle</span></a>
+                                                    <a href="{{action('Frontend\ProductController@show',$item->id)}}" class="item-quick-view"><i class="icon-zoom-in2"></i><span>Detay</span></a>
                                                 </div>
                                             </div>
                                             <div class="product-desc center">
-                                                <div class="product-title"><h3><a href="#">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)...@endif</a></h3></div>
+                                                <div class="product-title"><h3><a href="{{action('Frontend\ProductController@show',$item->id)}}">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)...@endif</a></h3></div>
                                                 <div class="product-price"><ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins></div>
                                                 <div class="product-rating">
                                                     <i class="icon-star3"></i>

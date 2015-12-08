@@ -74,7 +74,7 @@ class AuthenticationController extends Controller
                 }
                 if($user->isCustomer()){
 
-                    return redirect()->action('Dashboard\CustomerController@show');
+                    return redirect()->action('Frontend\HomeController@index');
                 }
             } else {
 
