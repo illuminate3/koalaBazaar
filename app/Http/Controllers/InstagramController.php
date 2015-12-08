@@ -48,7 +48,7 @@ class InstagramController extends Controller
 
                                 $product = new Product();
                                 $product->supplier_id = $instagramAccount->instagramable->id;
-                                $product->title = $instagramAccount->instagramable->shop_name.' '.$caption;
+                                $product->title = $caption;
                                 $product->description = $caption;
                                 $file = new FileEntry();
                                 $status=$file->storeFromUrl($singleMedia->images->standard_resolution->url,$instagramAccount->instagramable->id,'product');

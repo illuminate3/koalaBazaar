@@ -46,7 +46,7 @@
     <div class="page-header-inner container">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="{{action('Dashboard\CustomerController@show')}}">
+            <a href="{{action('Frontend\HomeController@index')}}">
                 <img src="{{asset('/dashboard')}}/assets/admin/layout2/img/logo-default.png" alt="logo" class="logo-default">
             </a>
             <div class="menu-toggler sidebar-toggler">
@@ -63,17 +63,7 @@
         <!-- END PAGE ACTIONS -->
         <!-- BEGIN PAGE TOP -->
         <div class="page-top">
-            <!-- BEGIN HEADER SEARCH BOX -->
-            <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-            <form class="search-form search-form-expanded" action="extra_search.html" method="GET">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..." name="query">
-					<span class="input-group-btn">
-					<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
-					</span>
-                </div>
-            </form>
-            <!-- END HEADER SEARCH BOX -->
+
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
                 <ul class="nav navbar-nav pull-right">

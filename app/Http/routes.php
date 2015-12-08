@@ -19,8 +19,12 @@ use Illuminate\Support\Facades\Storage;
 Route::get('/','Frontend\HomeController@index');
 Route::get('kategori/{slug?}','Frontend\HomeController@category');
 
+Route::group(['prefix' => 'urun'], function () {
+    Route::get('sepet','Frontend\ProductController@showCart');
+    Route::get('{id}','Frontend\ProductController@show');
+    Route::get('{id}/sepeteekle','Frontend\ProductController@addToCart');
 
-Route::get('urun/{id}','Frontend\ProductController@show');
+});
 
 Route::group(['prefix' => 'magaza'], function () {
     Route::get('/','Frontend\HomeController@shopList');
