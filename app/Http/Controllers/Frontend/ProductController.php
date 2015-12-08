@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -44,9 +45,47 @@ class ProductController extends Controller
     }
 
     public function showCart(){
-        return view('user.cart');
+
+        $products=DB::table('wished_products')
+            ->select('product_id', DB::raw('count(*) as order_number'))
+            ->groupBy('product_id')
+            ->where('customer_id','2')
+            ->orderBy('created_at','desc')
+            ->get();
+
+        return view('user.cart',['products'=>$products]);
     }
 
+    public function removeFromCart(Request $request,$id){
+        if(Auth::check()){
+            $user=Auth::user();
+            if($user->isCustomer()){
+                $quantity=0;
+                if($request->has('quantity')){
+                    $quantity=$request->input('quantity');
+                }
+                if($wishedProducts=WishedProduct::where(['product_id'=>$id,'customer_id'=>$user->id])->get()){
+                    if($quantity==0){
+                        $quantity=count($wishedProducts);
+
+                    }
+                    for($i=0 ; $i<$quantity ; $i++){
+                       $wishedProducts[$i]->delete();
+
+                    }
+                    return redirect()->back()->with(['success'=>['Ürün sepetinizden kaldırıldı.']]);
+                }else{
+                    return redirect()->back()->withErrors(['messages'=>['Ürün zaten sepetinizden kaldırılmış']]);
+                }
+
+            }else{
+                return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Satıcı olarak ürün sepetinizden çıkaramazsınız.','Lütfen müşteri olarak giriş yapınız.']]);
+
+            }
+        }else{
+            return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Giriş yapmalısınız']]);
+        }
+    }
     public function addToCart($id){
         if($product=Product::where(['id'=>$id,'is_active'=>true])->first()){
             if(Auth::check()){
@@ -68,7 +107,6 @@ class ProductController extends Controller
         }else{
             return redirect()->back()->withErrors(['messages'=>['Ürün bulunamadı.']]);
         }
-        return null;
     }
 
     public function show($id)

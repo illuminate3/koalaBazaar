@@ -23,7 +23,7 @@ Route::group(['prefix' => 'urun'], function () {
     Route::get('sepet','Frontend\ProductController@showCart');
     Route::get('{id}','Frontend\ProductController@show');
     Route::get('{id}/sepeteekle','Frontend\ProductController@addToCart');
-
+    Route::get('{id}/sepettencikar','Frontend\ProductController@removeFromCart');
 });
 
 Route::group(['prefix' => 'magaza'], function () {
