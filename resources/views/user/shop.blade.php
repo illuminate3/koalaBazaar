@@ -15,8 +15,8 @@
                 <!-- Portfolio Single Image
                 ============================================= -->
                 <div class="col_one_third portfolio-single-image nobottommargin">
-                    <a href="#">
-                        <img src="{{ $supplier->profile_image }}" alt=""></a>
+
+                        <img src="{{ $supplier->profile_image }}" alt="">
                 </div><!-- .portfolio-single-image end -->
 
                 <!-- Portfolio Single Content
