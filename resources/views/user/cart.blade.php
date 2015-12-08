@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                     @foreach($products as $product)
-                        <?php $productObject=\App\Product::find($product->product_id)->first() ;?>
+                        <?php $productObject=\App\Product::where('id',$product->product_id)->first() ;?>
                     <tr class="cart_item">
                         <td class="cart-product-remove">
                             <a href="{{ action('Frontend\ProductController@removeFromCart',$product->product_id) }}" class="remove" title="Bu ürünü kaldır."><i class="icon-trash2"></i></a>
