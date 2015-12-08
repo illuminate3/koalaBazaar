@@ -175,7 +175,7 @@
                             </li>
                             <li>
                                 <a href="{{action('Dashboard\AddressController@create')}}">
-                                    <i class="icon-basket"></i>
+                                    <i class="fa fa-plus-square"></i>
                                     Adres Ekle</a>
                             </li>
                             <li>

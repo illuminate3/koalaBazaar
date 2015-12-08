@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -184,12 +185,13 @@ class SupplierController extends Controller
             $supplier->phone=$request->input('phone');
 
             $supplier->update();
-            return redirect()->back()->with('success',['Successful','Profil bilgileriniz güncellendi']);
+            return redirect()->back()->with('success',['Profil bilgileriniz güncellendi']);
         }
     }
     public function updatePassword(Request $request)
     {
             $rules = array(
+                'current_password'         =>'required|alphaNum',
                 'password'         =>'required|alphaNum',
                 'rpassword'       => 'required|same:password'
         );
@@ -200,11 +202,16 @@ class SupplierController extends Controller
             return back()->withErrors($validator);
 
         }
-        $user=Auth::user();
 
+
+        $user=Auth::user();
+        if (Hash::check($request->input('current_password'), $user->password)) {
             $user->password=bcrypt($request->input('password'));
             $user->update();
-            return redirect()->back()->with('success',['Successful','Parolanız güncellendi']);
+            return redirect()->back()->with('success',['Parolanız güncellendi']);
+        }else{
+            return redirect()->back()->withErrors(['messages'=>['Mevcut parolanız doğrulanmamıştır']]);
+        }
 
 
 
@@ -225,7 +232,7 @@ class SupplierController extends Controller
             $supplier=$user->userable;
             $supplier->cover_image=$request->input('cover_image');
             $supplier->update();
-            return redirect()->back()->with('success',['Successful','Fotoğrafınız güncellendi']);
+            return redirect()->back()->with('success',['Fotoğrafınız güncellendi']);
 
         }
 

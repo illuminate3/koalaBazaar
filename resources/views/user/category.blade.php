@@ -118,7 +118,7 @@
                                         </div>
                                         <div class="entry-c">
                                             <div class="entry-title">
-                                                <h4><a href="#">{{ $product->title }}</a></h4>
+                                                <h4><a href="{{action('Frontend\ProductController@show',$product->id)}}">{{ $product->title }}</a></h4>
                                             </div>
                                             <ul class="entry-meta">
 

@@ -3,6 +3,11 @@
 @section('title','Odeme Bilgisi Ekle')
 @endsection
 
+@section('page_level_styles')
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css"/>
+@endsection
+
 @section('page_level_content')
 
     @if($errors->has())
@@ -53,14 +58,19 @@
                         </div>
 
                         <div class="row">
+                            <label class="control-label col-md-5">Ödeme Bilgisi Detayları</label>
+
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Ödeme Bilgisi Detayları</label>
-                                    <textarea class="form-control" rows="3" name="detail" > {{ old('detail') }}</textarea>
+                                    <div class="col-md-12">
+                                        <textarea class="wysihtml5 form-control" name="detail"
+                                                  rows="6"> </textarea>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
+
+
                         <!--/row-->
                     </div>
                     <div class="form-actions right">
@@ -74,6 +84,31 @@
 
     </div>
 
-
-
     @endsection
+
+    @section('page_level_plugins')
+            <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript"
+            src="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+    <script type="text/javascript"
+            src="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+@endsection
+
+
+@section('page_level_scripts')
+
+    <script>
+        jQuery(document).ready(function () {
+            if (!jQuery().wysihtml5) {
+                return;
+            }
+
+            if ($('.wysihtml5').size() > 0) {
+                $('.wysihtml5').wysihtml5({
+                    "stylesheets": ["{{asset('/dashboard')}}/assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
+                });
+            }
+        });
+    </script>
+@endsection
