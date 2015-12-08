@@ -191,7 +191,7 @@
 
                             <div class="top-cart-action clearfix">
                                 <span class="fleft top-checkout-price">{{ $totalPrice }}</span>
-                                <button class="button button-3d button-small nomargin fright">View Cart</button>
+                                <button onclick="window.open('{{ action('Frontend\ProductController@showCart') }}','_self')" class="button button-3d button-small nomargin fright">View Cart</button>
                             </div>
                         </div>
                     </div>

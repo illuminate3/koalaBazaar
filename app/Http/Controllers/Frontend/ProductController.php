@@ -44,7 +44,7 @@ class ProductController extends Controller
     }
 
     public function showCart(){
-        return null;
+        return view('user.cart');
     }
 
     public function addToCart($id){
