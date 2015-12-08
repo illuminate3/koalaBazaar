@@ -39,4 +39,10 @@ class Supplier extends Model
     public function ranks(){
         return $this->morphMany('App\Ranking','rankable','rankable_type','rankable_id','id');
     }
+
+    public function paymentInfos() {
+        return $this->hasMany('App\PaymentInfo');
+    }
+
+
 }
