@@ -60,7 +60,7 @@
                                             {{ $paymentInfo->title }}
                                         </td>
                                         <td>
-                                            {{ $paymentInfo->detail  }}
+                                            {!! $paymentInfo->detail !!}
                                         </td>
                                         <td>
                                             <a href="{{ action('Dashboard\PaymentInfoController@edit',$paymentInfo->id) }}" class="btn default btn-xs purple">

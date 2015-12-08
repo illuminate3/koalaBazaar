@@ -3,6 +3,11 @@
 @section('title','Odeme Bilgisi Düzenle')
 @endsection
 
+@section('page_level_styles')
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css"/>
+@endsection
+
 @section('page_level_content')
 
     @if($errors->has())
@@ -39,7 +44,8 @@
             </div>
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                <form  action="{{action('Dashboard\PaymentInfoController@update',$paymentInfo->id)}}" method="post"class="horizontal-form">
+                <form action="{{action('Dashboard\PaymentInfoController@update',$paymentInfo->id)}}" method="post"
+                      class="horizontal-form">
                     <div class="form-body">
                         <h3 class="form-section">Ödeme Bilgisi</h3>
 
@@ -47,24 +53,28 @@
                             <div class="col-md-4 ">
                                 <div class="form-group">
                                     <label>Ödeme Bilgisi Adı</label>
-                                    <input type="text" class="form-control" name="title" value="{{ $paymentInfo->title }}">
+                                    <input type="text" class="form-control" name="title"
+                                           value="{{ $paymentInfo->title }}">
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="row">
+                            <label class="control-label col-md-2">Detayları</label>
+
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Detayları</label>
-                                    <textarea class="form-control" rows="3" name="detail" > {{ $paymentInfo->detail }}</textarea>
+                                    <div class="col-md-12">
+                                        <textarea class="wysihtml5 form-control" name="detail"
+                                                  rows="6">{!! $paymentInfo->detail !!} </textarea>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-                        <!--/row-->
-                        <div class="row"></div>
                     </div>
+
+
                     <div class="form-actions right">
                         <button type="submit" class="btn blue"><i class="fa fa-check"></i> Adresi Düzenle</button>
                     </div>
@@ -75,5 +85,31 @@
 
     </div>
 
-
     @endsection
+
+    @section('page_level_plugins')
+            <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript"
+            src="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+    <script type="text/javascript"
+            src="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+@endsection
+
+
+@section('page_level_scripts')
+
+    <script>
+        jQuery(document).ready(function () {
+            if (!jQuery().wysihtml5) {
+                return;
+            }
+
+            if ($('.wysihtml5').size() > 0) {
+                $('.wysihtml5').wysihtml5({
+                    "stylesheets": ["{{asset('/dashboard')}}/assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
+                });
+            }
+        });
+    </script>
+@endsection

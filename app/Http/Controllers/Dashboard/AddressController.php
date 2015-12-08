@@ -186,7 +186,7 @@ class AddressController extends Controller
             $address->zip_code=$request->input('zip_code');
 
             $address->update();
-            return redirect()->back()->with('success',['Successful','Adres bilgileri güncellendi']);
+            return redirect()->back()->with('success',['Adres bilgileriniz güncellendi']);
         }
 
 
