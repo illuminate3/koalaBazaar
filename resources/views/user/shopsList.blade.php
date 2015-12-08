@@ -16,7 +16,7 @@
                 <!-- Portfolio Single Image
                 ============================================= -->
                 <div class="col_one_third portfolio-single-image nobottommargin">
-                    <a href="#">
+                    <a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}">
                         <img src="{{ $supplier->profile_image }}" alt=""></a>
                 </div><!-- .portfolio-single-image end -->
 
@@ -26,7 +26,7 @@
                     <!-- Portfolio Single - Description
                     ============================================= -->
                     <div class="fancy-title title-bottom-border">
-                        <h2>{{ $supplier->shop_name }}:</h2>
+                        <h2> <a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}">{{ $supplier->shop_name }}:</a></h2>
                     </div>
                     {!! $supplier->description  !!}
                             <!-- Portfolio Single - Description End -->
