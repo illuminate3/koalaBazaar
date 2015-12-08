@@ -36,8 +36,13 @@ Route::get('/product',function() {
 Route::get('/shop',function() {
     return view('user.shop');
 });
+
 Route::get('/shopslist',function() {
     return view('user.shopsList');
+});
+
+Route::get('/cart',function() {
+    return view('user.cart');
 });
 
 
@@ -92,6 +97,15 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
         Route::post('update','Dashboard\SupplierController@update');
         Route::post('updatePassword','Dashboard\SupplierController@updatePassword');
         Route::post('updateImages','Dashboard\SupplierController@updateImages');
+
+        Route::group(['prefix'=>'paymentinfo'],function(){
+            Route::get('/','Dashboard\PaymentInfoController@index');
+            Route::get('create','Dashboard\PaymentInfoController@create');
+            Route::post('store','Dashboard\PaymentInfoController@store');
+            Route::get('edit/{id}','Dashboard\PaymentInfoController@edit');
+            Route::any('update/{id}','Dashboard\PaymentInfoController@update');
+
+        });
 
     });
 
