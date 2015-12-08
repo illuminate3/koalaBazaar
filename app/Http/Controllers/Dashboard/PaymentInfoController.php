@@ -151,7 +151,7 @@ class PaymentInfoController extends Controller
             $paymentInfo->detail=$request->input('detail');
 
             $paymentInfo->update();
-            return redirect()->back()->with('success',['Successful','Ödeme bilgileriniz güncellendi']);
+            return redirect()->back()->with('success',['Ödeme bilgileriniz güncellendi']);
         }
     }
 
