@@ -67,34 +67,36 @@
                             </li>
 
                         @else
-                        <li>
-                            <a href="#">Giris Yap</a>
+                            <li>
+                                <a href="#">Giris Yap</a>
 
-                            <div class="top-link-section">
-                                <form id="top-login" role="form"
-                                      action="{{ action('AuthenticationController@doLogin')}}" method="post">
-                                    <div class="input-group" id="top-login-username">
+                                <div class="top-link-section">
+                                    <form id="top-login" role="form"
+                                          action="{{ action('AuthenticationController@doLogin')}}" method="post">
+                                        <div class="input-group" id="top-login-username">
                                         <span class="input-group-addon">
                                             <i class="icon-user"></i></span>
-                                        <input type="email" class="form-control" placeholder="Email address" required=""
-                                               name="email">
-                                    </div>
-                                    <div class="input-group" id="top-login-password">
-                                        <span class="input-group-addon"><i class="icon-key"></i></span>
-                                        <input type="password" class="form-control" placeholder="Password" required=""
-                                               name="pass">
-                                    </div>
-                                    <button class="btn btn-danger btn-block" type="submit">Sign in</button>
-                                    <a href="{{ action('AuthenticationController@loginviainstagram') }}"
-                                       class="btn btn-primary btn-block" name="login-with-instagram">Instagram
-                                    </a>
+                                            <input type="email" class="form-control" placeholder="Email address"
+                                                   required=""
+                                                   name="email">
+                                        </div>
+                                        <div class="input-group" id="top-login-password">
+                                            <span class="input-group-addon"><i class="icon-key"></i></span>
+                                            <input type="password" class="form-control" placeholder="Password"
+                                                   required=""
+                                                   name="pass">
+                                        </div>
+                                        <button class="btn btn-danger btn-block" type="submit">Sign in</button>
+                                        <a href="{{ action('AuthenticationController@loginviainstagram') }}"
+                                           class="btn btn-primary btn-block" name="login-with-instagram">Instagram
+                                        </a>
 
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="{{ action('AuthenticationController@showRegister') }}">Kayıt Ol</a>
-                        </li>
+                                    </form>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="{{ action('AuthenticationController@showRegister') }}">Kayıt Ol</a>
+                            </li>
                         @endif
                     </ul>
                 </div>
@@ -116,7 +118,8 @@
             <!-- Logo
             ============================================= -->
             <div id="logo">
-                <a href="{{ action('Frontend\HomeController@index') }}" class="standard-logo" data-dark-logo="{{asset('/user')}}/images/logo-dark.png"><img
+                <a href="{{ action('Frontend\HomeController@index') }}" class="standard-logo"
+                   data-dark-logo="{{asset('/user')}}/images/logo-dark.png"><img
                             src="{{asset('/user')}}/images/logo.png" alt="Canvas Logo"></a>
                 <a href="{{ action('Frontend\HomeController@index') }}" class="retina-logo"
                    data-dark-logo="{{asset('/user')}}/images/logo-dark@2x.png"><img
@@ -138,7 +141,9 @@
                     <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
                     <ul>
-                        <li class="current"><a href="{{ action('Frontend\HomeController@index') }}"><div>Anasayfa</div></a></li>
+                        <li class="current"><a href="{{ action('Frontend\HomeController@index') }}">
+                                <div>Anasayfa</div>
+                            </a></li>
                         <!-- Mega Menu
                         ============================================= -->
                         <li class="mega-menu"><a href="{{ action('Frontend\HomeController@category') }}">
@@ -157,46 +162,51 @@
                         <!-- .mega-menu end -->
 
                         <li><a href="{{ action('Frontend\HomeController@shopList') }}">
-                                <div>Mağazalar</div></a></li>
+                                <div>Mağazalar</div>
+                            </a></li>
                     </ul>
                     @if(\Illuminate\Support\Facades\Auth::check())
-                        @if(\Illuminate\Support\Facades\Auth::user()->isCustomer())
-                    <!-- Top Cart
+                    @if(\Illuminate\Support\Facades\Auth::user()->isCustomer())
+                            <!-- Top Cart
                     ============================================= -->
                     <div id="top-cart">
-                        <a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>{{ count(\Illuminate\Support\Facades\Auth::user()->userable->wishedProducts) }}</span></a>
+                        <a href="#" id="top-cart-trigger"><i
+                                    class="icon-shopping-cart"></i><span>{{ count(\Illuminate\Support\Facades\Auth::user()->userable->wishedProducts) }}</span></a>
 
                         <div class="top-cart-content">
                             <div class="top-cart-title">
                                 <h4>Sepetim</h4>
                             </div>
                             <div class="top-cart-items">
-                                <?php $totalPrice=0 ;?>
+                                <?php $totalPrice = 0;?>
                                 @foreach(\Illuminate\Support\Facades\Auth::user()->userable->wishedProducts as $wishedProduct)
-                                        <?php $totalPrice+=$wishedProduct->product->price ;?>
-                                <div class="top-cart-item clearfix">
-                                    <div class="top-cart-item-image">
-                                        <a href="{{ action('Frontend\ProductController@show',$wishedProduct->product->id) }}"><img src="{{ action('FileEntryController@show',$wishedProduct->product->image)  }} }}"
-                                                         alt="{{ $wishedProduct->product->title }}"/></a>
+                                    <?php $totalPrice += $wishedProduct->product->price;?>
+                                    <div class="top-cart-item clearfix">
+                                        <div class="top-cart-item-image">
+                                            <a href="{{ action('Frontend\ProductController@show',$wishedProduct->product->id) }}"><img
+                                                        src="{{ action('FileEntryController@show',$wishedProduct->product->image)  }} }}"
+                                                        alt="{{ $wishedProduct->product->title }}"/></a>
+                                        </div>
+                                        <div class="top-cart-item-desc">
+                                            <a href="#">{{ $wishedProduct->product->title }}</a>
+                                            <span class="top-cart-item-price">{{ $wishedProduct->product->price }} {{ $wishedProduct->product->currencyUnit->unit_short_name }}</span>
+                                            <span class="top-cart-item-quantity">x 1</span>
+                                        </div>
                                     </div>
-                                    <div class="top-cart-item-desc">
-                                        <a href="#">{{ $wishedProduct->product->title }}</a>
-                                        <span class="top-cart-item-price">{{ $wishedProduct->product->price }} {{ $wishedProduct->product->currencyUnit->unit_short_name }}</span>
-                                        <span class="top-cart-item-quantity">x 1</span>
-                                    </div>
-                                </div>
                                 @endforeach
 
                             </div>
 
                             <div class="top-cart-action clearfix">
                                 <span class="fleft top-checkout-price">{{ $totalPrice }}</span>
-                                <button onclick="window.open('{{ action('Frontend\ProductController@showCart') }}','_self')" class="button button-3d button-small nomargin fright">View Cart</button>
+                                <button onclick="window.open('{{ action('Frontend\ProductController@showCart') }}','_self')"
+                                        class="button button-3d button-small nomargin fright">View Cart
+                                </button>
                             </div>
                         </div>
                     </div>
                     <!-- #top-cart end -->
-                        @endif
+                    @endif
                     @endif
 
                 </div>

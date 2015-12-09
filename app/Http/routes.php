@@ -40,6 +40,9 @@ Route::get('/product',function() {
 Route::get('/shop',function() {
     return view('user.shop');
 });
+Route::get('/checkout',function() {
+    return view('user.checkout');
+});
 
 Route::get('/shopslist',function() {
     return view('user.shopsList');
