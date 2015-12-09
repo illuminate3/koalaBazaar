@@ -185,7 +185,7 @@ class ProductController extends Controller
                 }
 
             }
-            return redirect()->back()->with('success',['Successful','Ürün bilgileri güncellendi']);
+            return redirect()->back()->with('success',['Ürün bilgileri güncellendi']);
             }
 
 

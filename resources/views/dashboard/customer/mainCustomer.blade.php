@@ -80,7 +80,7 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                           <img alt="" class="img-circle" src="{{asset('/dashboard')}}/assets/admin/layout2/img/avatar3_small.jpg">
+                           <img alt="" class="img-circle" src="{{ Auth::user()->userable->profile_image  }}">
 						<span class="username username-hide-on-mobile">
 
                         {{ Auth::user()->name.' '.Auth::user()->surname }}</span>

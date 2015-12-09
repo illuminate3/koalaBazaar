@@ -45,7 +45,7 @@
                             {{$user->userable->shop_name}}
                         </div>
                         <div class="profile-usertitle-job">
-                            {{$user->userable->description}} / {{$user->userable->city}}
+                         {!! $user->userable->description !!}  / {{$user->userable->city}}
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
