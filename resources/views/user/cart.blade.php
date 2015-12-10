@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                     @foreach($products as $product)
-                        <?php $productObject=\App\Product::where('id',$product->product_id)->first() ;?>
+                        <?php $productObject=$product->product ;?>
                     <tr class="cart_item">
                         <td class="cart-product-remove">
                             <a href="{{ action('Frontend\ProductController@removeFromCart',$product->product_id) }}" class="remove" title="Bu ürünü kaldır."><i class="icon-trash2"></i></a>
@@ -64,13 +64,13 @@
                         <td class="cart-product-quantity">
                             <div class="quantity clearfix">
                                 <input type="button" onclick="window.open('{{ action('Frontend\ProductController@removeFromCart',['id'=>$product->product_id,'quantity'=>1]) }}','_self')"  value="-" class="minus">
-                                <input type="text" name="quantity" disabled value="{{ $product->order_number }}" class="qty" />
+                                <input type="text" name="quantity" disabled value="{{ $product->count }}" class="qty" />
                                 <input type="button" onclick="window.open('{{ action('Frontend\ProductController@addToCart',$product->product_id) }}','_self')" value="+" class="plus">
                             </div>
                         </td>
 
                         <td class="cart-product-subtotal">
-                            <span class="amount">{{ $product->order_number*$productObject->price }}</span>
+                            <span class="amount">{{ $product->count*$productObject->price }}</span>
                         </td>
                     </tr>
                     @endforeach

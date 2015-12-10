@@ -356,39 +356,10 @@
             <div class="line"></div>
 
             <div id="oc-clients-full" class="owl-carousel image-carousel">
-
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/1.png"
+                @foreach($suppliers as $supplier)
+                <div class="oc-item"><a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}"><img src="{{ $supplier->profile_image }}"
                                                       alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/2.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/3.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/4.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/5.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/6.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/7.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/8.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/9.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/10.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/11.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/12.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/13.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/14.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/15.png"
-                                                      alt="Clients"></a></div>
-                <div class="oc-item"><a href="#"><img src="{{asset('/user')}}/images/clients/logo/18.png"
-                                                      alt="Clients"></a></div>
+                @endforeach
 
             </div>
 

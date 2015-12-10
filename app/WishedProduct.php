@@ -8,7 +8,7 @@ class WishedProduct extends Model
 {
     protected $table = 'wished_products';
 
-    protected $fillable = ['customer_id', 'product_id'];
+    protected $fillable = ['customer_id','count', 'product_id'];
 
     public function customer()
     {

@@ -103,48 +103,40 @@ class ProductController extends Controller
                 if ($validator->fails()) {
                     return redirect()->back()->withErrors($validator);
                 }else{
-                    $wishedProducts=WishedProduct::where('customer_id',$user->id)->get();
+                    $wishedProducts=$user->userable->wishedProducts;
                     foreach($wishedProducts as $wishedProduct){
-                        $productObject=Product::where('id',$wishedProduct->product_id)->first();
                         if(CheckOut::create([
-                            'product_id'=>$productObject->id,
+                            'product_id'=>$wishedProduct->product->id,
                             'customer_id'=>$user->id,
-                            'description'=>$productObject->description,
+                            'description'=>$wishedProduct->product->description,
                             'customer_email'=>$user->email,
-                            'product_title'=>$productObject->title,
-                            'product_price'=>$productObject->price,
+                            'product_title'=>$wishedProduct->product->title,
+                            'product_price'=>$wishedProduct->product->price,
                             'payment_id'=>null,
-                            'image'=>$productObject->image,
-                            'current_unit'=>$productObject->currency_unit_id,
-                            'supplier_id'=>$productObject->supplier_id,
-
+                            'image'=>$wishedProduct->product->image,
+                            'current_unit'=>$wishedProduct->product->currency_unit_id,
+                            'supplier_id'=>$wishedProduct->product->supplier_id,
+                            'count'=>$wishedProduct->count,
                             'receiver_address_id'=>$request->input('shipping_address'),
                             'bill_address_id'=>($request->has('billing_address')) ? $request->input('billing_address') : null ,
                         ])){
                             $wishedProduct->delete();
+                            return redirec()->action('Dashboard\CustomerController@showUnpaidOrders');
                         };
-
-
                     }
+
+
+
+
                 }
 
     }
 
     public function showCheckOut(){
             $user=Auth::user();
-                $products=DB::table('wished_products')
-                    ->select('product_id', DB::raw('count(*) as order_number'))
-                    ->groupBy('product_id')
-                    ->where('customer_id',$user->id)
-                    ->orderBy('created_at','desc')
-                    ->get();
+                $products=$user->userable->wishedProducts;
                 $addresses=$user->userable->addresses;
-                $units=CurrencyUnit::all();
-                $cartTotal=null;
-                foreach($units as $unit){
-                    $cartTotal[$unit->unit_short_name]=0;
-                }
-                return view('user.checkout',['products'=>$products,'addresses'=>$addresses,'cartTotal'=>$cartTotal]);
+                return view('user.checkout',['products'=>$products,'addresses'=>$addresses]);
 
 
 
@@ -152,12 +144,7 @@ class ProductController extends Controller
 
     public function showCart(){
             $user=Auth::user();
-                $products=DB::table('wished_products')
-                    ->select('product_id', DB::raw('count(*) as order_number'))
-                    ->groupBy('product_id')
-                    ->where('customer_id',$user->id)
-                    ->orderBy('created_at','desc')
-                    ->get();
+            $products=$user->userable->wishedProducts;
 
     return view('user.cart',['products'=>$products]);
  }
@@ -165,18 +152,19 @@ class ProductController extends Controller
     public function removeFromCart(Request $request,$id){
 
             $user=Auth::user();
-                $quantity=0;
+                $quantity=1;
                 if($request->has('quantity')){
-                    $quantity=$request->input('quantity');
-                }
-                if($wishedProducts=WishedProduct::where(['product_id'=>$id,'customer_id'=>$user->id])->get()){
-                    if($quantity==0){
-                        $quantity=count($wishedProducts);
-
+                    if($request->input('quantity')>1){
+                        $quantity=$request->input('quantity');
                     }
-                    for($i=0 ; $i<$quantity ; $i++){
-                       $wishedProducts[$i]->delete();
 
+                }
+                if($wishedProducts=WishedProduct::where(['product_id'=>$id,'customer_id'=>$user->id])->first()){
+                    if($wishedProducts->count==1){
+                        $wishedProducts->delete();
+                    }else{
+                        $wishedProducts->count-=$quantity;
+                        $wishedProducts->update();
                     }
                     return redirect()->back()->with(['success'=>['Ürün sepetinizden kaldırıldı.']]);
                 }else{
@@ -189,18 +177,20 @@ class ProductController extends Controller
         if($product=Product::where(['id'=>$id,'is_active'=>true])->first()){
 
                 $user=Auth::user();
+            $quantity=1;
                     if($request->has('quantity')){
-                        for($i=0; $i<$request->input('quantity');$i++){
-                            WishedProduct::create(['customer_id'=>$user->id,'product_id'=>$product->id]);
-                        }
-                        return redirect()->back()->with(['success'=>['Ürün sepetinize eklendi.']]);
-                    }else{
-                        if(WishedProduct::create(['customer_id'=>$user->id,'product_id'=>$product->id])){
-                            return redirect()->back()->with(['success'=>['Ürün sepetinize eklendi.']]);
-                        }else{
-                            return redirect()->back()->withErrors(['messages'=>['Ürün eklenemedi.']]);
+                        if($request->input('quantity')>1){
+                            $quantity=$request->input('quantity');
                         }
                     }
+            if($productInWished=WishedProduct::where(['product_id'=>$id,'customer_id'=>$user->id])->first()){
+                $productInWished->count+=$quantity;
+
+                $productInWished->update();
+            }else{
+                WishedProduct::create(['product_id'=>$id,'customer_id'=>$user->id,'count'=>$quantity]);
+            }
+            return redirect()->back()->with(['success'=>['Ürün sepetinize eklendi']]);
 
 
         }else{
