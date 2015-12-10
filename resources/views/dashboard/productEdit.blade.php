@@ -1,6 +1,6 @@
 @extends('dashboard.mainSupplier')
 
-@section('title','Product Detail')
+@section('title','Ürün Detayı')
 @endsection
 
 @section('page_level_styles')

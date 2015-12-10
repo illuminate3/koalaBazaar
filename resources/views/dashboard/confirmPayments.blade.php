@@ -1,6 +1,6 @@
-@extends('dashboard.customer.mainCustomer')
+@extends('dashboard.mainSupplier')
 
-@section('title','Ödeme Bekleyenler')
+@section('title','Onay Bekleyen Ödemeler')
 @endsection
 
 
@@ -11,7 +11,7 @@
             <div class="portlet box red">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-bell-o"></i>Ödeme Bekleyen Alışverişleriniz
+                        <i class="fa fa-bell-o"></i>Onay Bekleyen Ödemeler
                     </div>
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
@@ -30,7 +30,7 @@
                             <thead>
                             <tr>
                                 <th>
-                                    <i class="fa fa-briefcase"></i> Satıcı Firma
+                                    <i class="fa fa-briefcase"></i> Müşteri
                                 </th>
                                 <th>
                                     <i class="fa fa-shopping-cart"></i> Tutar
@@ -41,24 +41,25 @@
                             </thead>
 
                             <tbody>
-                            @foreach($checkouts as $checkout)
-                            <?php $supplier= \App\Supplier::where('id',$checkout->supplier_id)->first();?>
-                            <tr>
-                                <td class="highlight">
-                                    <div class="success">
-                                    </div>
-                                    <a href="javascript:;">
-                                       {{$supplier->shop_name }} </a>
-                                </td>
-                                <td>
-                                    {{$checkout->total}} TL
-                                </td>
-                                <td>
-                                    <a href="{{action('Dashboard\CustomerController@showOrderDetail',$supplier->id)}}" class="btn default btn-xs purple">
+
+
+                                <tr>
+                                    <td class="highlight">
+                                        <div class="success">
+                                        </div>
+                                        <a href="javascript:;">
+                                           İsim </a>
+                                    </td>
+                                    <td>
+                                        Total TL
+                                    </td>
+                                    <td>
+                                        <a href="{{action('Dashboard\SupplierController@waitingPaymentDetail')}}" class="btn default btn-xs purple">
+
                                         <i class="fa fa-edit"></i> İncele </a>
-                                </td>
-                            </tr>
-                            @endforeach
+                                    </td>
+                                </tr>
+
 
                             </tbody>
                         </table>
@@ -68,5 +69,6 @@
             <!-- END SAMPLE TABLE PORTLET-->
         </div>
     </div>
+
 
     @endsection

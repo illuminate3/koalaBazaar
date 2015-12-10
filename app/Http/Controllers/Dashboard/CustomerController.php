@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\CheckOut;
 use App\Customer;
+use App\PaymentInfo;
 use App\User;
+use App\Supplier;
 use App\Address;
 use App\InstagramAccount;
 use Illuminate\Http\Request;
@@ -180,7 +183,8 @@ class CustomerController extends Controller
         $user=Auth::user();
 
         $checkouts=DB::table('check_outs')->select('supplier_id',DB::raw('sum(product_price) as total'))->groupBy('supplier_id')->where(['customer_id'=>$user->id,'payment_id'=>null])->orderBy('created_at','desc')->get();
-        dd($checkouts);
+       // dd($checkouts);
+
         return view('dashboard.customer.waitingOrders',['checkouts'=>$checkouts]);
     }
     public function updatePassword(Request $request)
@@ -211,13 +215,16 @@ class CustomerController extends Controller
 
     }
 
-    public function showWaitingOrders()
+    public function showOrderDetail($id)
     {
-        return view('dashboard.customer.waitingOrders');
-    }
-    public function showOrderDetail()
-    {
-        return view('dashboard.customer.orderDetail');
+        $user=Auth::user();
+        $supplier=Supplier::where(['id'=>$id])->first();
+        $orders = DB::table('check_outs')
+            ->join('products', 'products.id', '=', 'check_outs.product_id')
+            -get();
+        $paymentInfos=PaymentInfo::where(['supplier_id'=>$id])->get();
+        dd($orders);
+        //return view('dashboard.customer.orderDetail',['orders'=>$orders,'supplier'=>$supplier,'paymentInfos'=>$paymentInfos]);
     }
     public function showOrderHistory()
     {

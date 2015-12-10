@@ -8,12 +8,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Supplier;
+use App\Customer;
 use App\Product;
 
 use App\InstagramAccount;
@@ -236,6 +238,20 @@ class SupplierController extends Controller
     }
 
 
+    public function confirmPayments() {
+        $user=Auth::user();
+
+        // $checkouts=DB::table('check_outs')->select('supplier_id',DB::raw('sum(product_price) as total'))->groupBy('supplier_id')->where(['customer_id'=>$user->id,'payment_id'=>null])->orderBy('created_at','desc')->get();
+
+
+      //   dd($checkouts);
+        return view('dashboard.confirmPayments');
+    }
+    public function waitingPaymentDetail()
+    {
+
+        return view('dashboard.waitingPaymentDetail');
+    }
     /**
      * Remove the specified resource from storage.
      *

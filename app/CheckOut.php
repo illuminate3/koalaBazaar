@@ -12,10 +12,18 @@ class CheckOut extends Model
     public function payment(){
         return $this->belongsTo('App\Payment');
     }
+    public function product(){
+        return $this->belongsTo('App\Product');
+    }
+
 
     public function billAddress(){
         return $this->belongsTo('App\Address','bill_address_id','id');
     }
+    public function supplier(){
+        return $this->belongsTo('App\Supplier','supplier_id','id');
+    }
+
 
     public function receiverAddress(){
         return $this->belongsTo('App\Address','receiver_address_id','id');
