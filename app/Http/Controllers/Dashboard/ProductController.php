@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 
@@ -23,12 +24,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $user=Auth::user();
-        $shop=$user->userable;
-        $products= Product::where(['supplier_id'=>$user->id])->orderBy('id','desc')->get();
-    //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
+        $user = Auth::user();
+        $shop = $user->userable;
+        $products = Product::where(['supplier_id' => $user->id])->orderBy('id', 'desc')->get();
+        //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
 
-        return view('dashboard.productList',['products'=>$products]);
+        return view('dashboard.productList', ['products' => $products]);
 
 
     }
@@ -46,7 +47,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,35 +58,36 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if(!Product::find($id)) {
-            return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
+        if (!Product::find($id)) {
+            return redirect()->back()->withErrors(['messages' => "ürün bulunamadı"]);
         }
 
-        $product=Product::find($id);
-        if(Auth::user()->id!=$product->supplier_id) {
-            return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
+        $product = Product::find($id);
+        if (Auth::user()->id != $product->supplier_id) {
+            return redirect()->back()->withErrors(['messages' => "ürün size ait değil"]);
         }
     }
+
     public function setAsActive($id)
     {
 
-        if(!Product::find($id)) {
-            return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
+        if (!Product::find($id)) {
+            return redirect()->back()->withErrors(['messages' => "ürün bulunamadı"]);
         }
 
-        $product=Product::find($id);
-        if(Auth::user()->id!=$product->supplier_id) {
-            return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
+        $product = Product::find($id);
+        if (Auth::user()->id != $product->supplier_id) {
+            return redirect()->back()->withErrors(['messages' => "ürün size ait değil"]);
         }
 
-        $product->is_active=true;
+        $product->is_active = true;
         $product->update();
-        return  redirect()->back()->with(['success'=>["Aktive edildi"]]);
+        return redirect()->back()->with(['success' => ["Aktive edildi"]]);
 
 
     }
@@ -93,63 +95,63 @@ class ProductController extends Controller
     public function setAsDeactive($id)
     {
 
-        if(!Product::find($id)) {
-            return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
+        if (!Product::find($id)) {
+            return redirect()->back()->withErrors(['messages' => "ürün bulunamadı"]);
         }
-        $product=Product::find($id);
-        if(Auth::user()->id!=$product->supplier_id) {
-            return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
+        $product = Product::find($id);
+        if (Auth::user()->id != $product->supplier_id) {
+            return redirect()->back()->withErrors(['messages' => "ürün size ait değil"]);
         }
 
-        $product->is_active=false;
+        $product->is_active = false;
         $product->update();
-        return  redirect()->back()->with(['success'=>["Deaktive edildi"]]);
+        return redirect()->back()->with(['success' => ["Deaktive edildi"]]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if(!Product::find($id)) {
-            return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
+        if (!Product::find($id)) {
+            return redirect()->back()->withErrors(['messages' => "ürün bulunamadı"]);
         }
-        $product=Product::find($id);
-        if(Auth::user()->id!=$product->supplier_id) {
-            return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
+        $product = Product::find($id);
+        if (Auth::user()->id != $product->supplier_id) {
+            return redirect()->back()->withErrors(['messages' => "ürün size ait değil"]);
         }
-        $units=CurrencyUnit::all();
-        $categories=Category::all();
-        return view('dashboard.productEdit',['product'=>$product,'currency_units'=>$units,'categories'=>$categories]);
+        $units = CurrencyUnit::all();
+        $categories = Category::all();
+        return view('dashboard.productEdit', ['product' => $product, 'currency_units' => $units, 'categories' => $categories]);
         //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        if(!Product::find($id)) {
-           // return view('dashboard.supplierProfileEdit');
-            return redirect()->back()->withErrors(['messages'=>"ürün bulunamadı"]);
+        if (!Product::find($id)) {
+            // return view('dashboard.supplierProfileEdit');
+            return redirect()->back()->withErrors(['messages' => "ürün bulunamadı"]);
         }
-        $product=Product::find($id);
-        if(Auth::user()->id!=$product->supplier_id) {
+        $product = Product::find($id);
+        if (Auth::user()->id != $product->supplier_id) {
             //return view('dashboard.supplierProfileEdit');
-           return redirect()->back()->withErrors(['messages'=>"ürün size ait değil"]);
+            return redirect()->back()->withErrors(['messages' => "ürün size ait değil"]);
         }
         $rules = array(
-            'title'         => 'required',
-            'price'         =>'required|numeric',
-            'current_unit'  => 'required',
-            'is_active'        =>  'required',
+            'title' => 'required',
+            'price' => 'required|numeric',
+            'current_unit' => 'required',
+            'is_active' => 'required',
         );
 
         // do the validation ----------------------------------
@@ -161,42 +163,42 @@ class ProductController extends Controller
             // get the error messages from the validator
             $updateProduct = $validator->messages();
             // redirect our user back to the form with the errors from the validator
-           // return view('dashboard.supplierProfileEdit');
+            // return view('dashboard.supplierProfileEdit');
             return back()->withInput()->withErrors($validator);
 
-        }else{
+        } else {
 
-            $product->title=$request->input('title');
-            $product->description=$request->input('description');
-            $product->price=$request->input('price');
-            $product->currency_unit_id=$request->input('current_unit');
-            if($request->input('is_active')=='1') {
-                $product->is_active=true;
-            }else {
-                $product->is_active=false;
+            $product->title = $request->input('title');
+            $product->description = $request->input('description');
+            $product->price = $request->input('price');
+            $product->currency_unit_id = $request->input('current_unit');
+            if ($request->input('is_active') == '1') {
+                $product->is_active = true;
+            } else {
+                $product->is_active = false;
             }
 
             $product->update();
 
             $product->categories()->detach();
-            foreach($request->input('categories') as $category){
-                if(Category::find($category)){
+            foreach ($request->input('categories') as $category) {
+                if (Category::find($category)) {
                     $product->categories()->attach(Category::find($category)->first());
                 }
 
             }
-            return redirect()->back()->with('success',['Ürün bilgileri güncellendi']);
-            }
-
-
+            return redirect()->back()->with('success', ['Ürün bilgileri güncellendi']);
+        }
 
 
     }
 
+
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

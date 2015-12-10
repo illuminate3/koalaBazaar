@@ -42,9 +42,9 @@
                             <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
                                     name="billing_address">
                                 <option value="">Select...</option>
-                                <option value="TR">Türkiye</option>
-                                <option value="FR">Fransa</option>
-                                <option value="USA">Amerika Birleşik Devletleri</option>
+                                @for($i=0 ; $i<count($addresses) ; $i++)
+                                    <option value="{{$addresses[$i]->id}}"> {{$addresses[$i]->address_name}}</option>
+                                @endfor
                             </select>
                         </div>
                         <div class="col-md-6">

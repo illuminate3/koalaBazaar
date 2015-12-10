@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -175,7 +176,13 @@ class CustomerController extends Controller
             return redirect()->back()->with('success',['Profil bilgileriniz güncellendi']);
         }
     }
+    public function showUnpaidOrders() {
+        $user=Auth::user();
 
+        $checkouts=DB::table('check_outs')->select('supplier_id',DB::raw('sum(product_price) as total'))->groupBy('supplier_id')->where(['customer_id'=>$user->id,'payment_id'=>null])->orderBy('created_at','desc')->get();
+        dd($checkouts);
+        return view('dashboard.customer.waitingOrders',['checkouts'=>$checkouts]);
+    }
     public function updatePassword(Request $request)
     {
         $rules = array(

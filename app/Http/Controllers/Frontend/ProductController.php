@@ -109,13 +109,15 @@ class ProductController extends Controller
                         if(CheckOut::create([
                             'product_id'=>$productObject->id,
                             'customer_id'=>$user->id,
+                            'description'=>$productObject->description,
                             'customer_email'=>$user->email,
                             'product_title'=>$productObject->title,
                             'product_price'=>$productObject->price,
                             'payment_id'=>null,
                             'image'=>$productObject->image,
-                            'current_unit'=>$productObject->currencyUnit->unit_short_name,
-                            'supplier_id'=>$productObject->supplier->id,
+                            'current_unit'=>$productObject->currency_unit_id,
+                            'supplier_id'=>$productObject->supplier_id,
+
                             'receiver_address_id'=>$request->input('shipping_address'),
                             'bill_address_id'=>($request->has('billing_address')) ? $request->input('billing_address') : null ,
                         ])){

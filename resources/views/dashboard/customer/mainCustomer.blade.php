@@ -136,7 +136,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="{{action('Dashboard\CustomerController@showWaitingOrders')}}">
+                                <a href="{{action('Dashboard\CustomerController@showUnpaidOrders')}}">
                                     <i class="fa fa-money"></i>
                                     Ödeme Bekleyenler</a>
                             </li>

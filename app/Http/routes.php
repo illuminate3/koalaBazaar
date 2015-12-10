@@ -121,7 +121,7 @@ Route::group(['prefix' => 'dashboard','middleware' =>'auth'],function(){
         Route::get('edit','Dashboard\CustomerController@edit');
         Route::post('update','Dashboard\CustomerController@update');
         Route::post('updatePassword','Dashboard\CustomerController@updatePassword');
-        Route::get('waitingorders','Dashboard\CustomerController@showWaitingOrders');
+        Route::get('waitingorders','Dashboard\CustomerController@showUnpaidOrders');
         Route::get('orderdetail','Dashboard\CustomerController@showOrderDetail');
         Route::get('orderhistory','Dashboard\CustomerController@showOrderHistory');
 
