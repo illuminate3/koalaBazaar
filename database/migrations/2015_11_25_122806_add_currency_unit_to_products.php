@@ -28,6 +28,8 @@ class AddCurrencyUnitToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->dropColumn('currency_unit_id');
+            $table->integer('current_unit')->unsigned()->nullable();
+            $table->foreign("currency_unit_id")->references("id")->on("currency_units")->onDelete('set null');
         });
     }
 }

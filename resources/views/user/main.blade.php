@@ -185,11 +185,9 @@
                                 <h4>Sepetim</h4>
                             </div>
                             <div class="top-cart-items">
-                                <?php $totalPrice = 0;
-                                ?>
-
+                                <?php $total=0 ;?>
                                 @foreach(\Illuminate\Support\Facades\Auth::user()->userable->wishedProducts as $wishedProduct)
-                                    <?php $totalPrice += $wishedProduct->product->price;?>
+
                                     <div class="top-cart-item clearfix">
                                         <div class="top-cart-item-image">
                                             <a href="{{ action('Frontend\ProductController@show',$wishedProduct->product->id) }}"><img
@@ -198,16 +196,19 @@
                                         </div>
                                         <div class="top-cart-item-desc">
                                             <a href="#">{{ $wishedProduct->product->title }}</a>
-                                            <span class="top-cart-item-price">{{ $wishedProduct->product->price }} {{ $wishedProduct->product->currencyUnit->unit_short_name }}</span>
-                                            <span class="top-cart-item-quantity">x 1</span>
+                                            <span class="top-cart-item-price">{{ $wishedProduct->product->price * $wishedProduct->count }} {{ $wishedProduct->product->currencyUnit->unit_short_name }}</span>
+                                            <span class="top-cart-item-quantity">x {{  $wishedProduct->count  }}</span>
                                         </div>
                                     </div>
+                                    <?php $total+=$wishedProduct->product->price * $wishedProduct->count;?>
                                 @endforeach
+
+
 
                             </div>
 
                             <div class="top-cart-action clearfix">
-                                <span class="fleft top-checkout-price">{{ $totalPrice }}</span>
+                                <span class="fleft top-checkout-price">{{ $total }} try</span>
                                 <button onclick="window.open('{{ action('Frontend\ProductController@showCart') }}','_self')"
                                         class="button button-3d button-small nomargin fright">View Cart
                                 </button>

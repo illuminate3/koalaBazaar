@@ -17,7 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         $user=Auth::user();
-        return view('user.index',['user'=>$user]);
+        $suppliers=Supplier::take(10)->get();
+        return view('user.index',['user'=>$user,'suppliers'=>$suppliers]);
         //
     }
 

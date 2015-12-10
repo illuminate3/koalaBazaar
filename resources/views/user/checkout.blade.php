@@ -77,9 +77,9 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <?php $cartTotal=0 ?>
                             @foreach($products as $product)
-                                <?php $productObject=\App\Product::where('id',$product->product_id)->first();
-                                    $cartTotal[$productObject->currencyUnit->unit_short_name]=$cartTotal[$productObject->currencyUnit->unit_short_name]+$productObject->price;?>
+                                <?php $productObject=$product->product;?>
                             <tr class="cart_item">
                                 <td class="cart-product-thumbnail">
                                     <a href="{{ action('Frontend\ProductController@show',$product->product_id) }}"><img width="64" height="64" src="{{ action('FileEntryController@show',$productObject->image) }}"
@@ -92,14 +92,15 @@
 
                                 <td class="cart-product-quantity">
                                     <div class="quantity clearfix">
-                                        1x{{ $product->order_number }}
+                                        1x{{ $product->count }}
                                     </div>
                                 </td>
 
                                 <td class="cart-product-subtotal">
-                                    <span class="amount">{{ $product->order_number*$productObject->price }}</span>
+                                    <span class="amount">{{ $product->count*$productObject->price }}</span>
                                 </td>
                             </tr>
+                                <?php $cartTotal+=$product->count*$productObject->price ;?>
                             @endforeach
                             </tbody>
 
@@ -121,9 +122,7 @@
 
                                 <td class="cart-product-name">
                                     <span class="amount color lead">
-                                        @foreach($cartTotal as $key=>$value)
-                                        @if($value!=0)<strong>{{ $value  }} {{ $key }}</strong>@endif
-                                         @endforeach
+                                       <strong>{{$cartTotal}}</strong>
                                     </span>
                                 </td>
                             </tr>
