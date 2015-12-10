@@ -60,7 +60,7 @@
                                         {{$order->product->description}}
                                     </td>
                                     <td>
-                                        <img class="img-responsive" src="{{$order->product->image}}" style="width: 100px;" alt="">
+                                        <img class="img-responsive" src="@if($order->product->image!=null) {{ action('FileEntryController@show',$order->product->image)}}@else {{$order->product->instagram->image_url}}  @endif" style="width: 100px;" alt="">
                                     </td>
                                     <td>
                                         {{$order->product->price}}
