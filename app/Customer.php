@@ -26,6 +26,10 @@ class Customer extends Model
         return $this->hasMany('App\WishedProduct');
     }
 
+    public function checkOuts(){
+        return $this->hasMany('App\CheckOut');
+    }
+
     public function comments() {
         return $this->hasMany('App\Comment');
     }

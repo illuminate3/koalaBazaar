@@ -121,10 +121,10 @@ class ProductController extends Controller
                             'bill_address_id'=>($request->has('billing_address')) ? $request->input('billing_address') : null ,
                         ])){
                             $wishedProduct->delete();
-                            return redirec()->action('Dashboard\CustomerController@showUnpaidOrders');
                         };
                     }
 
+                    return redirect()->action('Dashboard\CustomerController@showUnpaidOrders');
 
 
 

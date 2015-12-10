@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\CheckOut;
 use App\Customer;
+use App\Payment;
 use App\PaymentInfo;
 use App\User;
 use App\Supplier;
@@ -182,7 +183,7 @@ class CustomerController extends Controller
     public function showUnpaidOrders() {
         $user=Auth::user();
 
-        $checkouts=DB::table('check_outs')->select('supplier_id',DB::raw('sum(product_price) as total'))->groupBy('supplier_id')->where(['customer_id'=>$user->id,'payment_id'=>null])->orderBy('created_at','desc')->get();
+        $checkouts=DB::table('check_outs')->select('supplier_id',DB::raw('sum(product_price * count) as total'))->groupBy('supplier_id')->where(['customer_id'=>$user->id,'payment_id'=>null])->orderBy('created_at','desc')->get();
        // dd($checkouts);
 
         return view('dashboard.customer.waitingOrders',['checkouts'=>$checkouts]);
@@ -219,18 +220,45 @@ class CustomerController extends Controller
     {
         $user=Auth::user();
         $supplier=Supplier::where(['id'=>$id])->first();
-        $orders = DB::table('check_outs')
-            ->join('products', 'products.id', '=', 'check_outs.product_id')
-            -get();
+        $orders = $user->userable->checkOuts()->where('supplier_id',$id)->get();
         $paymentInfos=PaymentInfo::where(['supplier_id'=>$id])->get();
-        dd($orders);
-        //return view('dashboard.customer.orderDetail',['orders'=>$orders,'supplier'=>$supplier,'paymentInfos'=>$paymentInfos]);
+
+        return view('dashboard.customer.orderDetail',['orders'=>$orders,'supplier'=>$supplier,'paymentInfos'=>$paymentInfos]);
     }
     public function showOrderHistory()
     {
         return view('dashboard.customer.orderHistory');
     }
 
+    public function submitPayment(Request $request) {
+        $validator=Validator::make($request->all(),[
+
+            'payment_option'=>'required|integer|exists:payment_infos,id'
+        ]);
+
+        if ($validator->fails()) {
+
+            // get the error messages from the validator
+            $messages = $validator->messages();
+            // redirect our user back to the form with the errors from the validator
+            return back()->withInput()->withErrors($messages);
+
+        }else{
+            $payment=new Payment();
+            $payment->text=$request->input('note');
+            $payment->save();
+
+            foreach($request->input('check_outs') as $checkOutID){
+
+                $checkOut=CheckOut::where(['id'=>$checkOutID,'customer_id'=>Auth::user()->id])->first();
+                $checkOut->payment_id=$payment->id;
+                $checkOut->update();
+            }
+            return redirect()->action('Dashboard\CustomerController@showUnpaidOrders')->with(['success'=>['Odeme kaydı oluşturuldu']]);
+
+        }
+
+    }
 
     /**
      * Remove the specified resource from storage.

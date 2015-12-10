@@ -4,7 +4,7 @@
 @endsection
 
 @section('page_level_content')
-    <form id="billing-form" name="billing-form" class="nobottommargin" action="#" method="post">
+    <form id="billing-form" name="billing-form" class="nobottommargin" action="{{ action('Dashboard\CustomerController@submitPayment') }}" method="post">
 
         <div class="row">
             <h3 class="page-title">{{$supplier->shop_name}} ile ödeme bekleyen alışverisleriniz</h3>
@@ -50,6 +50,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($orders as $order)
+                                    <input type="hidden" name="checkouts[]" value="{{ $order->id }}">
                                 <tr>
                                     <td>
                                         <a href="{{action('Frontend\ProductController@show',['id'=>$order->product_id])}}" target="_blank">
@@ -65,10 +66,10 @@
                                         {{$order->product->price}}
                                     </td>
                                     <td>
-                                        2
+                                        {{$order->count}}
                                     </td>
                                     <td>
-                                        2.00$
+                                        {{$order->product->price * $order->count }}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -90,7 +91,7 @@
                         </div>
                         <div class="actions">
                             <label>
-                                <input type="radio" name="radio1" class="icheck"></label>
+                                <input type="radio" name="payment_option" value="{{ $paymentInfo->id }}" class="icheck"></label>
                         </div>
                     </div>
                     <div class="portlet-body">

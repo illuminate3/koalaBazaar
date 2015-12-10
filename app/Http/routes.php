@@ -126,7 +126,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         Route::get('waitingorders', 'Dashboard\CustomerController@showUnpaidOrders');
         Route::get('orderdetail/{id}', 'Dashboard\CustomerController@showOrderDetail');
         Route::get('orderhistory', 'Dashboard\CustomerController@showOrderHistory');
-
+        Route::post('submitpayment','Dashboard\CustomerController@submitPayment');
         Route::group(['prefix' => 'address'], function () {
             Route::get('/', 'Dashboard\AddressController@index');
             Route::get('create', 'Dashboard\AddressController@create');
