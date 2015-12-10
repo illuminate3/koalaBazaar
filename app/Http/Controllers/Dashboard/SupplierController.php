@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\CheckOut;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -250,6 +251,7 @@ class SupplierController extends Controller
     public function waitingPaymentDetail()
     {
 
+        $products=CheckOut::where('supplier_id',Auth::user()->id)->where('payment_id','<>',null)->get();
         return view('dashboard.waitingPaymentDetail');
     }
     /**

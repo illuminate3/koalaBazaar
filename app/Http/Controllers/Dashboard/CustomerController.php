@@ -246,9 +246,10 @@ class CustomerController extends Controller
         }else{
             $payment=new Payment();
             $payment->text=$request->input('note');
+            $payment->payment_info_id=$request->input('payment_option');
             $payment->save();
 
-            foreach($request->input('check_outs') as $checkOutID){
+            foreach($request->input('checkouts') as $checkOutID){
 
                 $checkOut=CheckOut::where(['id'=>$checkOutID,'customer_id'=>Auth::user()->id])->first();
                 $checkOut->payment_id=$payment->id;
