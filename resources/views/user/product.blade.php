@@ -10,7 +10,21 @@
         <div class="content-wrap">
 
             <div class="container clearfix">
+                @if($errors->has())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
 
+                @if(\Illuminate\Support\Facades\Session::has('success'))
+                    @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
+                        <div class="alert alert-success">
+                            {{ $success }}
+                        </div>
+                    @endforeach
+                @endif
                 <div class="single-product">
 
                     <div class="product">
@@ -58,12 +72,12 @@
 
                             <!-- Product Single - Quantity & Cart Button
                             ============================================= -->
-                            <form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">
+                            <form class="cart nobottommargin clearfix" action="{{ action('Frontend\ProductController@addToCart',$product->id) }}" method="get">
                                 <div class="quantity clearfix">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="text" step="1" min="1" name="quantity" value="1" title="Qty"
+                                    <input type="button" onclick="$('#quantity').val( function(i, oldval) { return (oldval>1)?  --oldval :  oldval;})" value="-" class="minus">
+                                    <input type="text" id="quantity" step="1" min="1" name="quantity" value="1" title="Qty"
                                            class="qty" size="4">
-                                    <input type="button" value="+" class="plus">
+                                    <input type="button" onclick="$('#quantity').val( function(i, oldval) {return ++oldval;})" value="+" class="plus">
                                 </div>
                                 <button type="submit" class="add-to-cart button nomargin">Sepete Ekle</button>
                             </form>
@@ -373,6 +387,9 @@
                     <script type="text/javascript">
 
                         jQuery(document).ready(function ($) {
+                            function decrement(objectID,value){
+                                alert('object' + value);
+                            };
 
                             var ocProduct = $("#oc-product");
 

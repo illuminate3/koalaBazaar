@@ -12,19 +12,33 @@
     <div class="content-wrap">
 
         <div class="container clearfix">
+            @if($errors->has())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
 
+            @if(\Illuminate\Support\Facades\Session::has('success'))
+                @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
+                    <div class="alert alert-success">
+                        {{ $success }}
+                    </div>
+                @endforeach
+            @endif
             <div class="col_half"></div>
             <div class="col_half col_last"></div>
 
             <div class="row clearfix">
                 <div class="col-md-12">
 
-                    <form id="billing-form" name="billing-form" class="nobottommargin" action="#" method="post">
+                    <form id="billing-form" name="billing-form" class="nobottommargin" action="{{ action('Frontend\ProductController@proceedCheckOut') }}" method="post">
                         <div class="col-md-6">
                             <h3>Fatura Adresi</h3>
                             <label for="billing-form-name">Adres Seçin:</label>
                             <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
-                                    name="billing_address" value="">
+                                    name="billing_address">
                                 <option value="">Select...</option>
                                 @foreach ($addresses as $address)
                                     <option value="{{$address->id}}"> {{$address->address_name}}</option>
@@ -34,12 +48,10 @@
                         <div class="col-md-6">
                             <h3 class="">Gönderim Adresi</h3>
                             <label for="billing-form-name">Adres Seçin:</label>
-                            <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
-                                    name="shipping_address" value="">
-                                <option value="">Select...</option>
-                                @foreach ($addresses as $address)
-                                    <option value="{{$address->id}}"> {{$address->address_name}}</option>
-                                @endforeach
+                            <select class="form-control input-medium" tabindex="-1" name="shipping_address">
+                                @for($i=0 ; $i<count($addresses) ; $i++)
+                                    <option value="{{$addresses[$i]->id}}" @if($i==0) selected @endif> {{$addresses[$i]->address_name}}</option>
+                                @endfor
                             </select>
                         </div>
 
@@ -63,66 +75,30 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($products as $product)
+                                <?php $productObject=\App\Product::where('id',$product->product_id)->first();
+                                    $cartTotal[$productObject->currencyUnit->unit_short_name]=$cartTotal[$productObject->currencyUnit->unit_short_name]+$productObject->price;?>
                             <tr class="cart_item">
                                 <td class="cart-product-thumbnail">
-                                    <a href="#"><img width="64" height="64" src="images/shop/thumbs/small/dress-3.jpg"
-                                                     alt="Pink Printed Dress"></a>
+                                    <a href="{{ action('Frontend\ProductController@show',$product->product_id) }}"><img width="64" height="64" src="{{ action('FileEntryController@show',$productObject->image) }}"
+                                                     ></a>
                                 </td>
 
                                 <td class="cart-product-name">
-                                    <a href="#">Pink Printed Dress</a>
+                                    <a href="{{ action('Frontend\ProductController@show',$product->product_id) }}">{{ $productObject->title }}</a>
                                 </td>
 
                                 <td class="cart-product-quantity">
                                     <div class="quantity clearfix">
-                                        1x2
+                                        1x{{ $product->order_number }}
                                     </div>
                                 </td>
 
                                 <td class="cart-product-subtotal">
-                                    <span class="amount">$39.98</span>
+                                    <span class="amount">{{ $product->order_number*$productObject->price }}</span>
                                 </td>
                             </tr>
-                            <tr class="cart_item">
-                                <td class="cart-product-thumbnail">
-                                    <a href="#"><img width="64" height="64" src="images/shop/thumbs/small/shoes-2.jpg"
-                                                     alt="Checked Canvas Shoes"></a>
-                                </td>
-
-                                <td class="cart-product-name">
-                                    <a href="#">Checked Canvas Shoes</a>
-                                </td>
-
-                                <td class="cart-product-quantity">
-                                    <div class="quantity clearfix">
-                                        1x1
-                                    </div>
-                                </td>
-
-                                <td class="cart-product-subtotal">
-                                    <span class="amount">$24.99</span>
-                                </td>
-                            </tr>
-                            <tr class="cart_item">
-                                <td class="cart-product-thumbnail">
-                                    <a href="#"><img width="64" height="64" src="images/shop/thumbs/small/tshirt-2.jpg"
-                                                     alt="Pink Printed Dress"></a>
-                                </td>
-
-                                <td class="cart-product-name">
-                                    <a href="#">Blue Men Tshirt</a>
-                                </td>
-
-                                <td class="cart-product-quantity">
-                                    <div class="quantity clearfix">
-                                        1x3
-                                    </div>
-                                </td>
-
-                                <td class="cart-product-subtotal">
-                                    <span class="amount">$41.97</span>
-                                </td>
-                            </tr>
+                            @endforeach
                             </tbody>
 
                         </table>
@@ -142,14 +118,18 @@
                                 </td>
 
                                 <td class="cart-product-name">
-                                    <span class="amount color lead"><strong>$106.94</strong></span>
+                                    <span class="amount color lead">
+                                        @foreach($cartTotal as $key=>$value)
+                                        @if($value!=0)<strong>{{ $value  }} {{ $key }}</strong>@endif
+                                         @endforeach
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
 
                     </div>
-                    <a href="#" class="button button-3d fright" type="submit">Siparişi Ver</a>
+                    <button class="button button-3d fright" type="submit">Siparişi Ver</button>
                     </form>
                 </div>
             </div>

@@ -21,6 +21,8 @@ Route::get('kategori/{slug?}','Frontend\HomeController@category');
 
 Route::group(['prefix' => 'urun'], function () {
     Route::get('sepet','Frontend\ProductController@showCart');
+    Route::get('siparis','Frontend\ProductController@showCheckOut');
+    Route::post('sipariskaydet','Frontend\ProductController@proceedCheckOut');
     Route::get('{id}','Frontend\ProductController@show');
     Route::get('{id}/sepeteekle','Frontend\ProductController@addToCart');
     Route::get('{id}/sepettencikar','Frontend\ProductController@removeFromCart');
