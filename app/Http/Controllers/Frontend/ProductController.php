@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\CheckOut;
+use App\Comment;
 use App\CurrencyUnit;
 use App\Product;
+use App\Ranking;
 use App\WishedProduct;
 use Illuminate\Http\Request;
 
@@ -47,10 +49,51 @@ class ProductController extends Controller
 
     }
 
-    public function proceedCheckOut(Request $request){
-        if(Auth::check()){
+    public function addReview(Request $request,$id){
             $user=Auth::user();
-            if($user->isCustomer()){
+                $validator = Validator::make([
+                    'comment_body'=>$request->input('comment_body'),
+                    'ranking'=>$request->input('ranking'),
+                    'product_id'=>$id
+                ], [
+                    'ranking'=>'integer|min:1|max:5',
+                    'product_id' => 'integer|exists:products,id',
+                ]);
+
+
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator);
+                }else{
+                    $product=Product::where('id',$id)->first();
+                    if($request->has('comment_body')){
+                        $comment=new Comment();
+                        $comment->comment_body=$request->input('comment_body');
+                        $comment->is_confirmed=true;
+                        $comment->user_id=$user->id;
+                        $product->comments()->save($comment);
+                    }
+
+                    if($request->has('ranking')){
+                        if(!$product->rankings()->where('user_id',$user->id)->first()){
+                            $ranking=new Ranking();
+                            $ranking->vote=$request->input('ranking');
+                            $ranking->is_confirmed=true;
+                            $ranking->user_id=$user->id;
+                            $product->rankings()->save($ranking);
+                        }
+
+                    }
+
+
+
+
+                    return redirect()->back()->with(['success'=>['Yorumunuz kaydedildi']]);
+                }
+
+    }
+
+    public function proceedCheckOut(Request $request){
+            $user=Auth::user();
                 $validator = Validator::make($request->all(), [
                     'billing_address' => 'integer|exists:addresses,id',
                     'shipping_address' => 'required|integer|exists:addresses,id',
@@ -83,21 +126,10 @@ class ProductController extends Controller
                     }
                 }
 
-
-
-            }else{
-                return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Satıcı olarak ürün sepetinizden çıkaramazsınız.','Lütfen müşteri olarak giriş yapınız.']]);
-
-            }
-        }else{
-            return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Giriş yapmalısınız']]);
-        }
     }
 
     public function showCheckOut(){
-        if(Auth::check()){
             $user=Auth::user();
-            if($user->isCustomer()){
                 $products=DB::table('wished_products')
                     ->select('product_id', DB::raw('count(*) as order_number'))
                     ->groupBy('product_id')
@@ -112,42 +144,25 @@ class ProductController extends Controller
                 }
                 return view('user.checkout',['products'=>$products,'addresses'=>$addresses,'cartTotal'=>$cartTotal]);
 
-            }else{
-                return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Satıcı olarak ürün sepetinizden çıkaramazsınız.','Lütfen müşteri olarak giriş yapınız.']]);
 
-            }
-        }else{
-            return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Giriş yapmalısınız']]);
-        }
+
     }
 
     public function showCart(){
-        if(Auth::check()){
             $user=Auth::user();
-            if($user->isCustomer()){
                 $products=DB::table('wished_products')
                     ->select('product_id', DB::raw('count(*) as order_number'))
                     ->groupBy('product_id')
-                    ->where('customer_id','2')
+                    ->where('customer_id',$user->id)
                     ->orderBy('created_at','desc')
                     ->get();
 
                 return view('user.cart',['products'=>$products]);
-
-            }else{
-                return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Satıcı olarak ürün sepetinizden çıkaramazsınız.','Lütfen müşteri olarak giriş yapınız.']]);
-
-            }
-        }else{
-            return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Giriş yapmalısınız']]);
-        }
-
-    }
+ }
 
     public function removeFromCart(Request $request,$id){
-        if(Auth::check()){
+
             $user=Auth::user();
-            if($user->isCustomer()){
                 $quantity=0;
                 if($request->has('quantity')){
                     $quantity=$request->input('quantity');
@@ -166,19 +181,12 @@ class ProductController extends Controller
                     return redirect()->back()->withErrors(['messages'=>['Ürün zaten sepetinizden kaldırılmış']]);
                 }
 
-            }else{
-                return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Satıcı olarak ürün sepetinizden çıkaramazsınız.','Lütfen müşteri olarak giriş yapınız.']]);
 
-            }
-        }else{
-            return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Giriş yapmalısınız']]);
-        }
     }
     public function addToCart(Request $request,$id){
         if($product=Product::where(['id'=>$id,'is_active'=>true])->first()){
-            if(Auth::check()){
+
                 $user=Auth::user();
-                if($user->isCustomer()){
                     if($request->has('quantity')){
                         for($i=0; $i<$request->input('quantity');$i++){
                             WishedProduct::create(['customer_id'=>$user->id,'product_id'=>$product->id]);
@@ -193,13 +201,6 @@ class ProductController extends Controller
                     }
 
 
-                }else{
-                    return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Satıcı olarak ürün alamazsınız.','Lütfen müşteri olarak giriş yapınız.']]);
-
-                }
-            }else{
-                return redirect()->action('AuthenticationController@showRegister')->withErrors(['messages'=>['Giriş yapmalısınız']]);
-            }
         }else{
             return redirect()->back()->withErrors(['messages'=>['Ürün bulunamadı.']]);
         }
@@ -221,7 +222,7 @@ class ProductController extends Controller
                     }
                 }
             }
-           // dd($relatedProducts);
+
             return view('user.product',['product'=>$product,'relatedProducts'=>$relatedProducts]);
         }else{
             return redirect()->action('Frontend\HomeController@index');

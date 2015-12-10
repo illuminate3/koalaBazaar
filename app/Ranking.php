@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ranking extends Model
 {
     protected $table='rankings';
-    protected $fillable=['customer_id','rankable','rankable_type','vote','is_confirmed'];
+    protected $fillable=['user_id','rankable','rankable_type','vote','is_confirmed'];
 
     public function customer() {
         return $this->belongsTo('App\Customer');

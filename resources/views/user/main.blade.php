@@ -178,7 +178,9 @@
                                 <h4>Sepetim</h4>
                             </div>
                             <div class="top-cart-items">
-                                <?php $totalPrice = 0;?>
+                                <?php $totalPrice = 0;
+                                ?>
+
                                 @foreach(\Illuminate\Support\Facades\Auth::user()->userable->wishedProducts as $wishedProduct)
                                     <?php $totalPrice += $wishedProduct->product->price;?>
                                     <div class="top-cart-item clearfix">

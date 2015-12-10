@@ -29,6 +29,7 @@ return array(
     'CreateWishedProductsTable' => $baseDir . '/database/migrations/2015_11_05_195128_create_wished_products_table.php',
     'CurrencyUnitsSeeder' => $baseDir . '/database/seeds/CurrencyUnitsSeeder.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'EditCommentTable' => $baseDir . '/database/migrations/2015_12_10_172735_edit_comment_table.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',

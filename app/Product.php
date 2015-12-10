@@ -25,7 +25,7 @@ class Product extends Model
         return $this->morphMany('App\Comment','commentable','commentable_type','commentable_id','id');
     }
 
-    public function ranks() {
+    public function rankings() {
         return $this->morphMany('App\Ranking','rankable','rankable_type','rankable_id','id');
     }
 
