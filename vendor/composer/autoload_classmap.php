@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddCurrencyUnitToProducts' => $baseDir . '/database/migrations/2015_11_25_122806_add_currency_unit_to_products.php',
+    'AddPaymentToCheckouts' => $baseDir . '/database/migrations/2015_12_09_143521_add_payment_to_checkouts.php',
     'CategorySeeder' => $baseDir . '/database/seeds/CategorySeeder.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2015_10_22_183013_create_addresses_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2015_10_22_185822_create_categories_table.php',
@@ -18,6 +19,8 @@ return array(
     'CreateFileEntriesTable' => $baseDir . '/database/migrations/2015_11_19_160215_create_file_entries_table.php',
     'CreateInstagramAccountsTable' => $baseDir . '/database/migrations/2015_11_05_145752_create_instagram_accounts_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePaymentInfosTable' => $baseDir . '/database/migrations/2015_12_08_160827_create_payment_infos_table.php',
+    'CreatePaymentsTable' => $baseDir . '/database/migrations/2015_12_09_143117_create_payments_table.php',
     'CreateProductsInstagramsTable' => $baseDir . '/database/migrations/2015_10_22_191359_create_products_instagrams_table.php',
     'CreateProductsTable' => $baseDir . '/database/migrations/2015_10_22_190046_create_products_table.php',
     'CreateRankingsTable' => $baseDir . '/database/migrations/2015_11_05_195211_create_rankings_table.php',
@@ -26,6 +29,7 @@ return array(
     'CreateWishedProductsTable' => $baseDir . '/database/migrations/2015_11_05_195128_create_wished_products_table.php',
     'CurrencyUnitsSeeder' => $baseDir . '/database/seeds/CurrencyUnitsSeeder.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'EditCommentTable' => $baseDir . '/database/migrations/2015_12_10_172735_edit_comment_table.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',

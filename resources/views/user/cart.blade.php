@@ -81,7 +81,7 @@
 
             </div>
             <div class="col-md-12 col-xs-12 nopadding">
-                <a href="shop.html" class="button button-3d notopmargin fright">Proceed to Checkout</a>
+                <a href="{{ action('Frontend\ProductController@showCheckOut') }}" class="button button-3d notopmargin fright">Proceed to Checkout</a>
             </div>
 
 

@@ -56,4 +56,8 @@ class User extends Model implements AuthenticatableContract,
     public function setAsCustomer(){
         $this->type='App\Customer';
     }
+
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 }

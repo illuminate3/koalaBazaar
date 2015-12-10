@@ -10,7 +10,21 @@
         <div class="content-wrap">
 
             <div class="container clearfix">
+                @if($errors->has())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
 
+                @if(\Illuminate\Support\Facades\Session::has('success'))
+                    @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
+                        <div class="alert alert-success">
+                            {{ $success }}
+                        </div>
+                    @endforeach
+                @endif
                 <div class="single-product">
 
                     <div class="product">
@@ -58,12 +72,12 @@
 
                             <!-- Product Single - Quantity & Cart Button
                             ============================================= -->
-                            <form class="cart nobottommargin clearfix" method="post" enctype="multipart/form-data">
+                            <form class="cart nobottommargin clearfix" action="{{ action('Frontend\ProductController@addToCart',$product->id) }}" method="get">
                                 <div class="quantity clearfix">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="text" step="1" min="1" name="quantity" value="1" title="Qty"
+                                    <input type="button" onclick="$('#quantity').val( function(i, oldval) { return (oldval>1)?  --oldval :  oldval;})" value="-" class="minus">
+                                    <input type="text" id="quantity" step="1" min="1" name="quantity" value="1" title="Qty"
                                            class="qty" size="4">
-                                    <input type="button" value="+" class="plus">
+                                    <input type="button" onclick="$('#quantity').val( function(i, oldval) {return ++oldval;})" value="+" class="plus">
                                 </div>
                                 <button type="submit" class="add-to-cart button nomargin">Sepete Ekle</button>
                             </form>
@@ -139,80 +153,37 @@
 
                                         <ol class="commentlist clearfix">
 
+                                            @foreach($product->comments as $comment)
                                             <li class="comment even thread-even depth-1" id="li-comment-1">
                                                 <div id="comment-1" class="comment-wrap clearfix">
 
                                                     <div class="comment-meta">
                                                         <div class="comment-author vcard">
 																	<span class="comment-avatar clearfix">
-																	<img alt=""
+																	<img
+                                                                         @if(!$comment->user->userable->instagramAccount)
                                                                          src="http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60"
+                                                                         @else
+                                                                         src="{{$comment->user->userable->instagramAccount->profile_picture}}"
+                                                                         @endif
+
                                                                          height="60" width="60"></span>
                                                         </div>
                                                     </div>
 
                                                     <div class="comment-content clearfix">
-                                                        <div class="comment-author">John Doe<span><a href="#"
-                                                                                                     title="Permalink to this comment">April
-                                                                    24, 2014 at 10:46AM</a></span></div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Quo perferendis aliquid tenetur. Aliquid, tempora, sit
-                                                            aliquam officiis nihil autem eum at repellendus facilis
-                                                            quaerat consequatur commodi laborum saepe non nemo nam
-                                                            maxime quis error tempore possimus est quasi
-                                                            reprehenderit fuga!</p>
+                                                        <div class="comment-author">{{ $comment->user->name }}<span><a href="#"
+                                                                                                     title="Permalink to this comment">
+                                                                    {{ $comment->created_at }}</a></span></div>
+                                                        <p>{{ $comment->comment_body }}</p>
 
-                                                        <div class="review-comment-ratings">
-                                                            <i class="icon-star3"></i>
-                                                            <i class="icon-star3"></i>
-                                                            <i class="icon-star3"></i>
-                                                            <i class="icon-star3"></i>
-                                                            <i class="icon-star-half-full"></i>
-                                                        </div>
                                                     </div>
 
                                                     <div class="clear"></div>
 
                                                 </div>
                                             </li>
-
-                                            <li class="comment even thread-even depth-1" id="li-comment-1">
-                                                <div id="comment-1" class="comment-wrap clearfix">
-
-                                                    <div class="comment-meta">
-                                                        <div class="comment-author vcard">
-																	<span class="comment-avatar clearfix">
-																	<img alt=""
-                                                                         src="http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60"
-                                                                         height="60" width="60"></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="comment-content clearfix">
-                                                        <div class="comment-author">Mary Jane<span><a href="#"
-                                                                                                      title="Permalink to this comment">June
-                                                                    16, 2014 at 6:00PM</a></span></div>
-                                                        <p>Quasi, blanditiis, neque ipsum numquam odit asperiores
-                                                            hic dolor necessitatibus libero sequi amet voluptatibus
-                                                            ipsam velit qui harum temporibus cum nemo iste aperiam
-                                                            explicabo fuga odio ratione sint fugiat consequuntur
-                                                            vitae adipisci delectus eum incidunt possimus tenetur
-                                                            excepturi at accusantium quod doloremque reprehenderit
-                                                            aut expedita labore error atque?</p>
-
-                                                        <div class="review-comment-ratings">
-                                                            <i class="icon-star3"></i>
-                                                            <i class="icon-star3"></i>
-                                                            <i class="icon-star3"></i>
-                                                            <i class="icon-star-empty"></i>
-                                                            <i class="icon-star-empty"></i>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="clear"></div>
-
-                                                </div>
-                                            </li>
+                                            @endforeach
 
                                         </ol>
 
@@ -234,42 +205,11 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <form class="nobottommargin" id="template-reviewform"
-                                                              name="template-reviewform" action="#" method="post">
-
-                                                            <div class="col_half">
-                                                                <label for="template-reviewform-name">Name
-                                                                    <small>*</small>
-                                                                </label>
-
-                                                                <div class="input-group">
-                                                                        <span class="input-group-addon"><i
-                                                                                    class="icon-user"></i></span>
-                                                                    <input type="text" id="template-reviewform-name"
-                                                                           name="template-reviewform-name" value=""
-                                                                           class="form-control required">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col_half col_last">
-                                                                <label for="template-reviewform-email">Email
-                                                                    <small>*</small>
-                                                                </label>
-
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon">@</span>
-                                                                    <input type="email"
-                                                                           id="template-reviewform-email"
-                                                                           name="template-reviewform-email" value=""
-                                                                           class="required email form-control">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="clear"></div>
-
+                                                              name="template-reviewform" action="{{ action('Frontend\ProductController@addReview',['id'=>$product->id]) }}" method="post">
                                                             <div class="col_full col_last">
                                                                 <label for="template-reviewform-rating">Rating</label>
                                                                 <select id="template-reviewform-rating"
-                                                                        name="template-reviewform-rating"
+                                                                        name="ranking"
                                                                         class="form-control">
                                                                     <option value="">-- Select One --</option>
                                                                     <option value="1">1</option>
@@ -288,7 +228,7 @@
                                                                 </label>
                                                                     <textarea class="required form-control"
                                                                               id="template-reviewform-comment"
-                                                                              name="template-reviewform-comment"
+                                                                              name="comment_body"
                                                                               rows="6" cols="30"></textarea>
                                                             </div>
 
@@ -373,6 +313,9 @@
                     <script type="text/javascript">
 
                         jQuery(document).ready(function ($) {
+                            function decrement(objectID,value){
+                                alert('object' + value);
+                            };
 
                             var ocProduct = $("#oc-product");
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InstagramAccount extends Model
 {
     protected $table='instagram_accounts';
-    protected $fillable=['instagramable_id','instagramable_type','instagram_id','username','access_token','full_name','bio','website','profil_picture',];
+    protected $fillable=['instagramable_id','instagramable_type','instagram_id','username','access_token','full_name','bio','website','profile_picture',];
 
     public function instagramable(){
         return $this->morphTo();

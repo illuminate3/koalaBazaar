@@ -19,11 +19,16 @@ use Illuminate\Support\Facades\Storage;
 Route::get('/','Frontend\HomeController@index');
 Route::get('kategori/{slug?}','Frontend\HomeController@category');
 
-Route::group(['prefix' => 'urun'], function () {
-    Route::get('sepet','Frontend\ProductController@showCart');
-    Route::get('{id}','Frontend\ProductController@show');
-    Route::get('{id}/sepeteekle','Frontend\ProductController@addToCart');
-    Route::get('{id}/sepettencikar','Frontend\ProductController@removeFromCart');
+Route::group(['prefix' => 'urun','middleware'=>'auth'], function () {
+    Route::group(['middleware'=>'customer'],function(){
+        Route::get('sepet','Frontend\ProductController@showCart');
+        Route::get('siparis','Frontend\ProductController@showCheckOut');
+        Route::post('sipariskaydet','Frontend\ProductController@proceedCheckOut');
+        Route::get('{id}','Frontend\ProductController@show');
+        Route::get('{id}/sepeteekle','Frontend\ProductController@addToCart');
+        Route::get('{id}/sepettencikar','Frontend\ProductController@removeFromCart');
+    });
+    Route::post('{id}/yorumyap','Frontend\ProductController@addReview');
 });
 
 Route::group(['prefix' => 'magaza'], function () {
@@ -32,29 +37,8 @@ Route::group(['prefix' => 'magaza'], function () {
 
 });
 
-
-Route::get('/product',function() {
-    return view('user.product');
-
-});
-Route::get('/shop',function() {
-    return view('user.shop');
-});
-Route::get('/checkout',function() {
-    return view('user.checkout');
-});
-
-Route::get('/shopslist',function() {
-    return view('user.shopsList');
-});
-
-Route::get('/cart',function() {
-    return view('user.cart');
-});
-
-
-
 Route::get('storage/{path}','FileEntryController@show')->where('path', '(.*)');;
+
 Route::get('testmedia',function(){
     $file=new \App\FileEntry();
     $file->storeFromUrl('http://www.istanbul.ferraridealers.com/siteasset/ferraridealer/4f74a1a219b2b/961/420/selected/-216/0/0/4f74a1a219b2b.jpg','1','test');
@@ -97,8 +81,8 @@ Route::post('login', 'AuthenticationController@doLogin');
 Route::get('logout', 'AuthenticationController@doLogout');
 Route::get('loginviainstagram','AuthenticationController@loginviainstagram');
 
-Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
-    Route::group(['prefix'=>'supplier'],function(){
+Route::group(['prefix' => 'dashboard','middleware' =>'auth'],function(){
+    Route::group(['prefix'=>'supplier','middleware'=>'supplier'],function(){
         Route::get('/','Dashboard\SupplierController@show');
         Route::get('edit','Dashboard\SupplierController@edit');
         Route::post('update','Dashboard\SupplierController@update');
@@ -114,18 +98,20 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'],function(){
 
         });
 
+        Route::group(['prefix'=>'product'],function(){
+            Route::get('/','Dashboard\ProductController@index');
+            Route::get('/edit/{id}','Dashboard\ProductController@edit');
+            Route::post('/update/{id}','Dashboard\ProductController@update');
+            Route::get('/setasactive/{id}','Dashboard\ProductController@setAsActive');
+            Route::get('/setasdeactive/{id}','Dashboard\ProductController@setAsDeactive');
+        });
+
+
     });
 
-    Route::group(['prefix'=>'product'],function(){
-        Route::get('/','Dashboard\ProductController@index');
-        Route::get('/edit/{id}','Dashboard\ProductController@edit');
-        Route::post('/update/{id}','Dashboard\ProductController@update');
-        Route::get('/setasactive/{id}','Dashboard\ProductController@setAsActive');
-        Route::get('/setasdeactive/{id}','Dashboard\ProductController@setAsDeactive');
-    });
 
 
-    Route::group(['prefix'=>'customer'],function(){
+    Route::group(['prefix'=>'customer','middleware'=>'customer'],function(){
         Route::get('/','Dashboard\CustomerController@show');
         Route::get('edit','Dashboard\CustomerController@edit');
         Route::post('update','Dashboard\CustomerController@update');
