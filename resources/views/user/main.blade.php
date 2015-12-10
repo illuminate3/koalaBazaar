@@ -59,7 +59,7 @@
                 <div class="top-links">
                     <ul>
                         @if(\Illuminate\Support\Facades\Auth::check())
-                            @if(\Illuminate\Support\Facades\Auth::user()->isCustomer()))
+                            @if(\Illuminate\Support\Facades\Auth::user()->isCustomer())
                             <li>
                                 <a href="{{ action('Dashboard\CustomerController@show') }}">Panelim</a>
                             </li>
