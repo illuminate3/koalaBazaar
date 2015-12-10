@@ -31,6 +31,7 @@ return array(
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'EditCartCheckout' => $baseDir . '/database/migrations/2015_12_10_210851_edit_cart_checkout.php',
     'EditCommentTable' => $baseDir . '/database/migrations/2015_12_10_172735_edit_comment_table.php',
+    'EditPayments' => $baseDir . '/database/migrations/2015_12_10_223226_edit_payments.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
