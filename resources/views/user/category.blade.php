@@ -49,7 +49,7 @@
 
                             <!-- Shop
                             ============================================= -->
-                            <div id="shop" class="product-2 clearfix">
+                            <div id="shop" class="product-3 clearfix">
 
                                 @foreach($paginator->items() as $item)
                                     <div class="product clearfix">

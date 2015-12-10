@@ -61,8 +61,6 @@
 
                 </div>
 
-
-
                 <div class="clear bottommargin"></div>
 
                 <div class="col-md-6">
