@@ -46,7 +46,7 @@
     <div class="page-header-inner container">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="{{action('Dashboard\SupplierController@show')}}">
+            <a href="{{action('Frontend\HomeController@index')}}">
                 <img src="{{asset('/dashboard')}}/assets/admin/layout2/img/logo-default.png" alt="logo" class="logo-default">
             </a>
             <div class="menu-toggler sidebar-toggler">
