@@ -1,7 +1,7 @@
 @extends('dashboard.customer.mainCustomer')
 
 
-@section('title','Edit Address')
+@section('title','Adres Düzenle')
 @endsection
 
 

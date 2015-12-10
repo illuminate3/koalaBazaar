@@ -1,6 +1,6 @@
 @extends('dashboard.customer.mainCustomer')
 
-@section('title','Sipariş Geçmişiniz - KoalaBazaar')
+@section('title','Sipariş Geçmişim - KoalaBazaar')
 @endsection
 
 

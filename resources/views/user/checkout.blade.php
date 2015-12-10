@@ -20,8 +20,6 @@
                 @endforeach
             @endif
 
-<<<<<<< HEAD
-=======
             @if(\Illuminate\Support\Facades\Session::has('success'))
                 @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
                     <div class="alert alert-success">
@@ -32,8 +30,9 @@
             <div class="col_half"></div>
             <div class="col_half col_last"></div>
 
->>>>>>> b500cd6126df47f639bea504b0a8d6d2954e469a
+
             <div class="row clearfix">
+
                 <div class="col-md-12">
 
                     <form id="billing-form" name="billing-form" class="nobottommargin" action="{{ action('Frontend\ProductController@proceedCheckOut') }}" method="post">

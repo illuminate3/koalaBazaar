@@ -1,5 +1,5 @@
 @extends ('dashboard.customer.mainCustomer')
-@section('title','Edit Your Addresses')
+@section('title','Profilimi Düzenle')
 @endsection
 
         <!-- BEGIN PAGE LEVEL CONTENT-->
@@ -28,7 +28,7 @@
               <div class="portlet-title tabbable-line">
                   <div class="caption caption-md">
                       <i class="icon-globe theme-font hide"></i>
-                      <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
+                      <span class="caption-subject font-blue-madison bold uppercase">Profiliniz</span>
                   </div>
                   <ul class="nav nav-tabs">
                       <li class="active">
@@ -43,18 +43,18 @@
                   <div class="tab-content">
                       <!-- PERSONAL INFO TAB -->
                       <div class="tab-pane active" id="tab_1_1">
-                          <form id="update-form" name="update-form" class="nobottommargin" action="{{action('Dashboard\SupplierController@update')}}" method="post">
+                          <form id="update-form" name="update-form" class="nobottommargin" action="{{action('Dashboard\CustomerController@update')}}" method="post">
 
                               <div class="form-group">
-                                  <label class="control-label">First Name</label>
+                                  <label class="control-label">İsim</label>
                                   <input type="text" value="{{$user->name}}" class="form-control" name="firstname">
                               </div>
                               <div class="form-group">
-                                  <label class="control-label">Last Name</label>
+                                  <label class="control-label">Soyisim</label>
                                   <input type="text" value="{{$user->surname}}" class="form-control" name="surname">
                               </div>
                               <div class="form-group">
-                                  <label class="control-label">Phone</label>
+                                  <label class="control-label">Telefon</label>
                                   <input type="text" value="{{$user->userable->phone}}" class="form-control" name="phone">
                               </div>
 
@@ -63,38 +63,27 @@
                                   <input type="text" value="{{$user->email}}" class="form-control" name="email">
                               </div>
 
-                              <div class="form-group"></div>
-
-                              <div class="form-group"></div>
-
-
-                              <div class="form-group"></div>
-
-                              <div class="form-group"></div>
-
                               <div class="margiv-top-10">
                                   <button type="submit" class="btn default btn green">
                                       <i class="fa fa-check"></i> Profili Düzenle</button>
-
-
                               </div>
                           </form>
                       </div>
                       <!-- END PERSONAL INFO TAB -->
                       <!-- CHANGE PASSWORD TAB -->
                       <div class="tab-pane" id="tab_1_2">
-                          <form id="update-password-form" name="update-password-form" class="nobottommargin" action="{{action('Dashboard\SupplierController@updatePassword')}}#tab_1_3" method="post">
+                          <form id="update-password-form" name="update-password-form" class="nobottommargin" action="{{action('Dashboard\CustomerController@updatePassword')}}#tab_1_3" method="post">
 
                               <div class="form-group">
-                                  <label class="control-label">Current Password</label>
+                                  <label class="control-label">Mevcut Parolanız</label>
                                   <input type="password" class="form-control" name="current_password">
                               </div>
                               <div class="form-group">
-                                  <label class="control-label">New Password</label>
+                                  <label class="control-label">Yeni Parola</label>
                                   <input type="password" class="form-control" name="password">
                               </div>
                               <div class="form-group">
-                                  <label class="control-label">Re-type New Password</label>
+                                  <label class="control-label">Yeni Parolanızı Doğrulayın</label>
                                   <input type="password" class="form-control" name="rpassword">
                               </div>
                               <div class="margin-top-10">

@@ -1,6 +1,6 @@
 @extends('user.main')
 
-@section('title','Magazalar')
+@section('title','Mağazalar')
 @endsection
 
 

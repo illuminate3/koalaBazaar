@@ -1,6 +1,6 @@
 @extends('dashboard.customer.mainCustomer')
 
-@section('title','Address List')
+@section('title','Adreslerim')
 @endsection
 
 

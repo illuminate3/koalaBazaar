@@ -1,7 +1,7 @@
 @extends('dashboard.customer.mainCustomer')
 
 
-@section('title','Create Address')
+@section('title','Adres Ekle')
 @endsection
 
 
