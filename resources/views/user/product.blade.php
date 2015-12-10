@@ -186,7 +186,7 @@
                                             @endforeach
 
                                         </ol>
-
+                                        @if(\Illuminate\Support\Facades\Auth::check())
                                         <!-- Modal Reviews
                                         ============================================= -->
                                         <a href="#" data-toggle="modal" data-target="#reviewFormModal"
@@ -255,7 +255,7 @@
                                         </div>
                                         <!-- /.modal -->
                                         <!-- Modal Reviews End -->
-
+                                        @endif
                                     </div>
                                 </div>
 

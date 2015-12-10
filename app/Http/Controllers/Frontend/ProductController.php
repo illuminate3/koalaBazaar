@@ -157,7 +157,7 @@ class ProductController extends Controller
                     ->orderBy('created_at','desc')
                     ->get();
 
-                return view('user.cart',['products'=>$products]);
+    return view('user.cart',['products'=>$products]);
  }
 
     public function removeFromCart(Request $request,$id){

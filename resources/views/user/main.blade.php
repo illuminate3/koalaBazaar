@@ -59,9 +59,16 @@
                 <div class="top-links">
                     <ul>
                         @if(\Illuminate\Support\Facades\Auth::check())
+                            @if(\Illuminate\Support\Facades\Auth::user()->isCustomer()))
                             <li>
                                 <a href="{{ action('Dashboard\CustomerController@show') }}">Panelim</a>
                             </li>
+                            @endif
+                                @if(\Illuminate\Support\Facades\Auth::user()->isSupplier())
+                                <li>
+                                    <a href="{{ action('Dashboard\SupplierController@show') }}">Panelim</a>
+                                </li>
+                                @endif
                             <li>
                                 <a href="{{ action('AuthenticationController@doLogout') }}">Çıkış Yap</a>
                             </li>

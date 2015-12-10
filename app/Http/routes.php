@@ -17,12 +17,15 @@ Route::get('/','Frontend\HomeController@index');
 Route::get('kategori/{slug?}','Frontend\HomeController@category');
 
 Route::group(['prefix' => 'urun'], function () {
-    Route::get('{id}','Frontend\ProductController@show');
+
     Route::group(['middleware'=>['auth','customer']],function(){
-        Route::get('sepet','Frontend\ProductController@showCart');
+        Route::get('sepeti','Frontend\ProductController@showCart');
         Route::get('siparis','Frontend\ProductController@showCheckOut');
         Route::post('sipariskaydet','Frontend\ProductController@proceedCheckOut');
+    });
 
+    Route::get('{id}','Frontend\ProductController@show');
+    Route::group(['middleware'=>['auth','customer']],function(){
         Route::get('{id}/sepeteekle','Frontend\ProductController@addToCart');
         Route::get('{id}/sepettencikar','Frontend\ProductController@removeFromCart');
     });
