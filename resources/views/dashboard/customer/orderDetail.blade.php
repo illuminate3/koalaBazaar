@@ -1,6 +1,6 @@
 @extends('dashboard.customer.mainCustomer')
 
-@section('title','Hoşgeldiniz - KoalaBazaar')
+@section('title','Sipariş-Ödeme Detayı')
 @endsection
 
 @section('page_level_content')

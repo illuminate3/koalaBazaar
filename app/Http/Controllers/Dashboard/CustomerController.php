@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -144,9 +146,69 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $updateRules = array(
+            'firstname'      => 'required',
+            'surname'        => 'required',
+            'phone'          => 'required|digits:11',
+            'email'          => 'required|email',
+        );
+
+        $validator = Validator::make($request->all(), $updateRules);
+
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        }
+
+        else {
+            $user=Auth::user();
+            $user->name=$request->input('firstname');
+            $user->surname=$request->input('surname');
+            $user->email=$request->input('email');
+            $user->update();
+
+            $customer=$user->userable;
+
+            $customer->phone=$request->input('phone');
+
+            $customer->update();
+            return redirect()->back()->with('success',['Profil bilgileriniz güncellendi']);
+        }
+    }
+    public function showUnpaidOrders() {
+        $user=Auth::user();
+
+        $checkouts=DB::table('check_outs')->select('supplier_id',DB::raw('sum(product_price) as total'))->groupBy('supplier_id')->where(['customer_id'=>$user->id,'payment_id'=>null])->orderBy('created_at','desc')->get();
+        dd($checkouts);
+        return view('dashboard.customer.waitingOrders',['checkouts'=>$checkouts]);
+    }
+    public function updatePassword(Request $request)
+    {
+        $rules = array(
+            'current_password' => 'required|alphaNum',
+            'password' => 'required|alphaNum',
+            'rpassword' => 'required|same:password'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+
+        }
+
+
+        $user = Auth::user();
+        if (Hash::check($request->input('current_password'), $user->password)) {
+            $user->password = bcrypt($request->input('password'));
+            $user->update();
+            return redirect()->back()->with('success', ['Parolanız güncellendi']);
+        } else {
+            return redirect()->back()->withErrors(['messages' => ['Mevcut parolanız doğrulanmamıştır']]);
+        }
+
+
     }
 
     public function showWaitingOrders()
