@@ -10,17 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-use App\Supplier;
+
 use App\Product;
-use App\InstagramAccount;
 use App\CustomClasses\InstagramAPI;
-use App\User;
-use Illuminate\Support\Facades\Storage;
 Route::get('/','Frontend\HomeController@index');
 Route::get('kategori/{slug?}','Frontend\HomeController@category');
 
-Route::group(['prefix' => 'urun','middleware'=>'auth'], function () {
-    Route::group(['middleware'=>'customer'],function(){
+Route::group(['prefix' => 'urun'], function () {
+    Route::get('{id}','Frontend\ProductController@show');
+    Route::group(['middleware'=>['auth','customer']],function(){
         Route::get('sepet','Frontend\ProductController@showCart');
         Route::get('siparis','Frontend\ProductController@showCheckOut');
         Route::post('sipariskaydet','Frontend\ProductController@proceedCheckOut');
@@ -28,8 +26,11 @@ Route::group(['prefix' => 'urun','middleware'=>'auth'], function () {
         Route::get('{id}/sepeteekle','Frontend\ProductController@addToCart');
         Route::get('{id}/sepettencikar','Frontend\ProductController@removeFromCart');
     });
-    Route::get('{id}','Frontend\ProductController@show');
-    Route::post('{id}/yorumyap','Frontend\ProductController@addReview');
+    Route::group(['middleware'=>'auth'],function(){
+        Route::post('{id}/yorumyap','Frontend\ProductController@addReview');
+    });
+
+
 });
 
 Route::group(['prefix' => 'magaza'], function () {
