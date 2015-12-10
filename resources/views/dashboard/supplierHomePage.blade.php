@@ -1,6 +1,6 @@
 @extends('dashboard.mainSupplier')
 
-@section('title','Home')
+@section('title','Panelim')
 @endsection
 
 @section('page_level_styles')
@@ -45,7 +45,7 @@
                             {{$user->userable->shop_name}}
                         </div>
                         <div class="profile-usertitle-job">
-                         {!! $user->userable->description !!}  / {{$user->userable->city}}
+                          {{$user->userable->city}}
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
@@ -59,26 +59,7 @@
                     <!-- SIDEBAR MENU -->
                     <div class="profile-usermenu">
                         <ul class="nav">
-                            <li class="active">
-                                <a href="extra_profile.html">
-                                    <i class="icon-home"></i>
-                                    Overview </a>
-                            </li>
-                            <li>
-                                <a href="extra_profile_account.html">
-                                    <i class="icon-settings"></i>
-                                    Account Settings </a>
-                            </li>
-                            <li>
-                                <a href="page_todo.html" target="_blank">
-                                    <i class="icon-check"></i>
-                                    Tasks </a>
-                            </li>
-                            <li>
-                                <a href="extra_profile_help.html">
-                                    <i class="icon-info"></i>
-                                    Help </a>
-                            </li>
+                            <li class="active"></li>
                         </ul>
                     </div>
                     <!-- END MENU -->
@@ -115,8 +96,8 @@
                     </div>
                     <!-- END STAT -->
                     <div>
-                        <h4 class="profile-desc-title">About {{$user->userable->shop_name}}</h4>
-                        <span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
+                        <h4 class="profile-desc-title">{{$user->userable->shop_name}}</h4>
+                        <span class="profile-desc-text"> {!!$user->userable->description !!} </span>
                         <div class="margin-top-20 profile-desc-link">
                             <i class="fa fa-globe"></i>
                             <a href="http://www.keenthemes.com">www.keenthemes.com</a>

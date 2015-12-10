@@ -1,6 +1,6 @@
 <html lang="en"><!--<![endif]--><!-- BEGIN HEAD --><head>
     <meta charset="utf-8">
-    <title>Dashboard-@yield('title')</title>
+    <title>@yield('title')</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -125,7 +125,7 @@
                     <li class="start ">
                         <a href="{{action('Dashboard\CustomerController@show')}}">
                             <i class="icon-home"></i>
-                            <span class="title">Dashboard</span>
+                            <span class="title">Anasayfa</span>
                         </a>
                     </li>
                     <li>
@@ -136,14 +136,14 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="ecommerce_index.html">
-                                    <i class="icon-home"></i>
-                                    Dashboard</a>
+                                <a href="{{action('Dashboard\CustomerController@showWaitingOrders')}}">
+                                    <i class="fa fa-money"></i>
+                                    Ödeme Bekleyenler</a>
                             </li>
                             <li>
-                                <a href="ecommerce_orders.html">
+                                <a href="{{action('Dashboard\CustomerController@showOrderHistory')}}">
                                     <i class="icon-basket"></i>
-                                    Orders</a>
+                                    Eski Siparişler</a>
                             </li>
                             <li>
                                 <a href="ecommerce_orders_view.html">
@@ -170,7 +170,7 @@
                         <ul class="sub-menu">
                             <li>
                                 <a href="{{action('Dashboard\CustomerController@edit')}}">
-                                    <i class="icon-home"></i>
+                                    <i class="fa fa-pencil-square-o"></i>
                                     Profilimi Düzenle</a>
                             </li>
                             <li>

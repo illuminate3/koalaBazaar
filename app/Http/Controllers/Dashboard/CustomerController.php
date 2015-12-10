@@ -149,6 +149,20 @@ class CustomerController extends Controller
         //
     }
 
+    public function showWaitingOrders()
+    {
+        return view('dashboard.customer.waitingOrders');
+    }
+    public function showOrderDetail()
+    {
+        return view('dashboard.customer.orderDetail');
+    }
+    public function showOrderHistory()
+    {
+        return view('dashboard.customer.orderHistory');
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *

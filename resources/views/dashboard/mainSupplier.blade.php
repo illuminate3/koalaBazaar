@@ -125,7 +125,13 @@
                     <li class="start ">
                         <a href="{{action('Dashboard\SupplierController@show')}}">
                             <i class="icon-home"></i>
-                            <span class="title">Dashboard</span>
+                            <span class="title">Anasayfa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{action('Dashboard\SupplierController@edit')}}">
+                            <i class="icon-user"></i>
+                            <span class="title">Profilimi Düzenle</span>
                         </a>
                     </li>
                     <li>
@@ -162,12 +168,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{action('Dashboard\SupplierController@edit')}}">
-                            <i class="icon-user"></i>
-                            <span class="title">Profilimi Düzenle</span>
-                        </a>
-                    </li>
+
                     <li>
                         <a href="{{action('Dashboard\PaymentInfoController@index')}}">
                             <i class="icon-credit-card"></i>

@@ -13,9 +13,6 @@
 
         <div class="container clearfix">
 
-            <div class="col_half"></div>
-            <div class="col_half col_last"></div>
-
             <div class="row clearfix">
                 <div class="col-md-12">
 
@@ -26,9 +23,9 @@
                             <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
                                     name="billing_address" value="">
                                 <option value="">Select...</option>
-                                @foreach ($addresses as $address)
-                                    <option value="{{$address->id}}"> {{$address->address_name}}</option>
-                                @endforeach
+                                <option value="TR">Türkiye</option>
+                                <option value="FR">Fransa</option>
+                                <option value="USA">Amerika Birleşik Devletleri</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -37,9 +34,9 @@
                             <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
                                     name="shipping_address" value="">
                                 <option value="">Select...</option>
-                                @foreach ($addresses as $address)
-                                    <option value="{{$address->id}}"> {{$address->address_name}}</option>
-                                @endforeach
+                                <option value="TR">Türkiye</option>
+                                <option value="FR">Fransa</option>
+                                <option value="USA">Amerika Birleşik Devletleri</option>
                             </select>
                         </div>
 

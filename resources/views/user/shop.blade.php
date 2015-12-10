@@ -1,6 +1,6 @@
 @extends('user.main')
 @section('title','Shop')
-    @endsection
+@endsection
 
 @section('content')
 
@@ -16,8 +16,9 @@
                 ============================================= -->
                 <div class="col_one_third portfolio-single-image nobottommargin">
 
-                        <img src="{{ $supplier->profile_image }}" alt="">
-                </div><!-- .portfolio-single-image end -->
+                    <img src="{{ $supplier->profile_image }}" alt="">
+                </div>
+                <!-- .portfolio-single-image end -->
 
                 <!-- Portfolio Single Content
                 ============================================= -->
@@ -29,7 +30,7 @@
                         <h2>{{ $supplier->shop_name }}:</h2>
                     </div>
                     {!! $supplier->description  !!}
-                    <!-- Portfolio Single - Description End -->
+                            <!-- Portfolio Single - Description End -->
 
                     <div class="line"></div>
 
@@ -46,6 +47,7 @@
                     ============================================= -->
                     <div class="si-share clearfix">
                         <span>Share:</span>
+
                         <div>
                             <a href="#" class="social-icon si-borderless si-facebook">
                                 <i class="icon-facebook"></i>
@@ -101,15 +103,25 @@
                                     @foreach($paginator->items() as $item)
                                         <div class="product clearfix">
                                             <div class="product-image">
-                                                <a href="{{action('Frontend\ProductController@show',$item->id)}}"><img src="{{ action('FileEntryController@show',$item->image) }}" alt="Checked Short Dress"></a>
+                                                <a href="{{action('Frontend\ProductController@show',$item->id)}}"><img
+                                                            src="{{ action('FileEntryController@show',$item->image) }}"
+                                                            alt="Checked Short Dress"></a>
+
                                                 <div class="product-overlay">
-                                                    <a href="{{ action('Frontend\ProductController@addToCart',$item->id) }}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Sepete Ekle</span></a>
-                                                    <a href="{{action('Frontend\ProductController@show',$item->id)}}" class="item-quick-view"><i class="icon-zoom-in2"></i><span>Detay</span></a>
+                                                    <a href="{{ action('Frontend\ProductController@addToCart',$item->id) }}"
+                                                       class="add-to-cart"><i class="icon-shopping-cart"></i><span> Sepete Ekle</span></a>
+                                                    <a href="{{action('Frontend\ProductController@show',$item->id)}}"
+                                                       class="item-quick-view"><i
+                                                                class="icon-zoom-in2"></i><span>Detay</span></a>
                                                 </div>
                                             </div>
                                             <div class="product-desc center">
-                                                <div class="product-title"><h3><a href="{{action('Frontend\ProductController@show',$item->id)}}">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)...@endif</a></h3></div>
-                                                <div class="product-price"><ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins></div>
+                                                <div class="product-title"><h3><a
+                                                                href="{{action('Frontend\ProductController@show',$item->id)}}">{{ substr($item->title,0,35) }}@if(strlen($item->title)>35)
+                                                                ...@endif</a></h3></div>
+                                                <div class="product-price">
+                                                    <ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins>
+                                                </div>
                                                 <div class="product-rating">
                                                     <i class="icon-star3"></i>
                                                     <i class="icon-star3"></i>
@@ -123,17 +135,23 @@
                                     @endforeach
 
 
-                                </div><!-- #shop end -->
-                                <ul class="pagination topmargin nobottommargin">
-                                    <li @if(1==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url(1) }}">«</a></li>
-                                    @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
-                                        <li @if($i==$paginator->currentPage()) class="active" @endif ><a href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
-                                    @endfor
-                                    <li @if($paginator->lastPage()==$paginator->currentPage()) class="disabled" @endif><a href="{{ $paginator->url($paginator->lastPage()) }}">»</a></li>
-
+                                </div>
+                                <!-- #shop end -->
+                                <div class="row">
+                                    <ul class="pagination topmargin nobottommargin ">
+                                        <li @if(1==$paginator->currentPage()) class="disabled" @endif><a
+                                                    href="{{ $paginator->url(1) }}">«</a></li>
+                                        @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
+                                            <li @if($i==$paginator->currentPage()) class="active" @endif ><a
+                                                        href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
+                                        @endfor
+                                        <li @if($paginator->lastPage()==$paginator->currentPage()) class="disabled" @endif>
+                                            <a href="{{ $paginator->url($paginator->lastPage()) }}">»</a></li>
+                                </div>
 
                                 </ul>
-                            </div><!-- .postcontent end -->
+                            </div>
+                            <!-- .postcontent end -->
 
                             <!-- Sidebar
                             ============================================= -->
@@ -161,16 +179,23 @@
                                             @foreach($recentlyAddedProducts as $product)
                                                 <div class="spost clearfix">
                                                     <div class="entry-image">
-                                                        <a href="{{action('Frontend\ProductController@show',$product->id)}}"><img src="{{ action('FileEntryController@show',$product->image) }}" alt="Image"></a>
+                                                        <a href="{{action('Frontend\ProductController@show',$product->id)}}"><img
+                                                                    src="{{ action('FileEntryController@show',$product->image) }}"
+                                                                    alt="Image"></a>
                                                     </div>
                                                     <div class="entry-c">
                                                         <div class="entry-title">
-                                                            <h4><a href="{{action('Frontend\ProductController@show',$product->id)}}">{{ $product->title }}</a></h4>
+                                                            <h4>
+                                                                <a href="{{action('Frontend\ProductController@show',$product->id)}}">{{ $product->title }}</a>
+                                                            </h4>
                                                         </div>
                                                         <ul class="entry-meta">
 
                                                             <li class="color">{{ $product->price }} {{ $product->currencyUnit->unit_short_name }}</li>
-                                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star3"></i> <i class="icon-star-half-full"></i></li>
+                                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
+                                                                        class="icon-star3"></i> <i
+                                                                        class="icon-star3"></i> <i
+                                                                        class="icon-star-half-full"></i></li>
 
                                                         </ul>
                                                     </div>
@@ -178,13 +203,13 @@
                                             @endforeach
 
 
-
                                         </div>
 
                                     </div>
 
                                 </div>
-                            </div><!-- .sidebar end -->
+                            </div>
+                            <!-- .sidebar end -->
 
 
                         </div>
