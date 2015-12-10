@@ -1,5 +1,5 @@
 @extends ('dashboard.mainSupplier')
-@section('title','Profili Düzenle')
+@section('title','Profilimi Düzenle')
 @endsection
 
 @section('page_level_styles')

@@ -1,6 +1,6 @@
 @extends('dashboard.mainSupplier')
 
-@section('title','Product List')
+@section('title','Ürünlerim')
 @endsection
 @section('page_level_styles')
         <!-- BEGIN PAGE LEVEL STYLES -->
@@ -83,7 +83,7 @@
                                         {{ $product->title }}
                                     </td>
                                            <td>
-                                        {{ $product->description }}
+                                        {!!$product->description !!}
                                     </td>
                                            <td>
                                                <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">

@@ -20,6 +20,8 @@
                 @endforeach
             @endif
 
+<<<<<<< HEAD
+=======
             @if(\Illuminate\Support\Facades\Session::has('success'))
                 @foreach (\Illuminate\Support\Facades\Session::pull('success') as $success)
                     <div class="alert alert-success">
@@ -30,6 +32,7 @@
             <div class="col_half"></div>
             <div class="col_half col_last"></div>
 
+>>>>>>> b500cd6126df47f639bea504b0a8d6d2954e469a
             <div class="row clearfix">
                 <div class="col-md-12">
 
@@ -40,9 +43,9 @@
                             <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
                                     name="billing_address">
                                 <option value="">Select...</option>
-                                @foreach ($addresses as $address)
-                                    <option value="{{$address->id}}"> {{$address->address_name}}</option>
-                                @endforeach
+                                <option value="TR">Türkiye</option>
+                                <option value="FR">Fransa</option>
+                                <option value="USA">Amerika Birleşik Devletleri</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -52,6 +55,7 @@
                                 @for($i=0 ; $i<count($addresses) ; $i++)
                                     <option value="{{$addresses[$i]->id}}" @if($i==0) selected @endif> {{$addresses[$i]->address_name}}</option>
                                 @endfor
+
                             </select>
                         </div>
 

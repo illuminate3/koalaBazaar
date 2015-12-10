@@ -28,7 +28,7 @@
             <div class="portlet box purple">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-cogs"></i>Ödeme Bilgileriniz
+                        <i class="fa fa-barcode"></i>Ödeme Bilgileriniz
                     </div>
                     <div class="actions">
                         <a href="{{action('Dashboard\PaymentInfoController@create')}}" class="btn btn-default btn-sm">

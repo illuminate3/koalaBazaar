@@ -24,10 +24,11 @@ Route::group(['prefix' => 'urun','middleware'=>'auth'], function () {
         Route::get('sepet','Frontend\ProductController@showCart');
         Route::get('siparis','Frontend\ProductController@showCheckOut');
         Route::post('sipariskaydet','Frontend\ProductController@proceedCheckOut');
-        Route::get('{id}','Frontend\ProductController@show');
+
         Route::get('{id}/sepeteekle','Frontend\ProductController@addToCart');
         Route::get('{id}/sepettencikar','Frontend\ProductController@removeFromCart');
     });
+    Route::get('{id}','Frontend\ProductController@show');
     Route::post('{id}/yorumyap','Frontend\ProductController@addReview');
 });
 
@@ -116,6 +117,9 @@ Route::group(['prefix' => 'dashboard','middleware' =>'auth'],function(){
         Route::get('edit','Dashboard\CustomerController@edit');
         Route::post('update','Dashboard\CustomerController@update');
         Route::post('updatePassword','Dashboard\CustomerController@updatePassword');
+        Route::get('waitingorders','Dashboard\CustomerController@showWaitingOrders');
+        Route::get('orderdetail','Dashboard\CustomerController@showOrderDetail');
+        Route::get('orderhistory','Dashboard\CustomerController@showOrderHistory');
 
         Route::group(['prefix'=>'address'],function(){
             Route::get('/','Dashboard\AddressController@index');
