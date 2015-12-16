@@ -76,7 +76,7 @@
                         </table>
                     </div>
                 </div>
-                <ul class="pagination topmargin nobottommargin">
+                <ul class="pagination topmargin nobottommargin pull-right">
                     <li @if(1==$paginator->currentPage()) class="disabled" @endif><a
                                 href="{{ $paginator->url(1) }}">«</a></li>
                     @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)

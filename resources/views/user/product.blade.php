@@ -90,27 +90,23 @@
                                 <span>Share:</span>
 
                                 <div>
-                                    <a href="#" class="social-icon si-borderless si-facebook">
+                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{action('Frontend\ProductController@show',$product->id)}}" class="social-icon si-borderless si-facebook">
                                         <i class="icon-facebook"></i>
                                         <i class="icon-facebook"></i>
                                     </a>
-                                    <a href="#" class="social-icon si-borderless si-twitter">
+                                    <a target="_blank" href="https://twitter.com/home?status={{action('Frontend\ProductController@show',$product->id)}}" class="social-icon si-borderless si-twitter">
                                         <i class="icon-twitter"></i>
                                         <i class="icon-twitter"></i>
                                     </a>
-                                    <a href="#" class="social-icon si-borderless si-pinterest">
+                                    <a target="_blank" href="http://pinterest.com/pin/create/button/?url={{action('Frontend\ProductController@show',$product->id)}}&description={{$product->title}}&media={{$product->image}}" class="social-icon si-borderless si-pinterest">
                                         <i class="icon-pinterest"></i>
                                         <i class="icon-pinterest"></i>
                                     </a>
-                                    <a href="#" class="social-icon si-borderless si-gplus">
+                                    <a target="_blank" href="https://plus.google.com/share?url={{action('Frontend\ProductController@show',$product->id)}}" class="social-icon si-borderless si-gplus">
                                         <i class="icon-gplus"></i>
                                         <i class="icon-gplus"></i>
                                     </a>
-                                    <a href="#" class="social-icon si-borderless si-rss">
-                                        <i class="icon-rss"></i>
-                                        <i class="icon-rss"></i>
-                                    </a>
-                                    <a href="#" class="social-icon si-borderless si-email3">
+                                    <a target="_blank" href="mailto:someone@example.com?body={{action('Frontend\ProductController@show',$product->id)}}&subject={{$product->title}}" class="social-icon si-borderless si-email3">
                                         <i class="icon-email3"></i>
                                         <i class="icon-email3"></i>
                                     </a>
