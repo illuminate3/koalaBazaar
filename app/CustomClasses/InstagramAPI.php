@@ -365,9 +365,9 @@ class InstagramAPI {
      *
      * @return mixed
      */
-    public function getMediaComments($id)
+    public function getMediaComments($id,$auth=false)
     {
-        return $this->_makeCall('media/' . $id . '/comments', false);
+        return $this->_makeCall('media/' . $id . '/comments', $auth);
     }
     /**
      * Add a comment on a media.
