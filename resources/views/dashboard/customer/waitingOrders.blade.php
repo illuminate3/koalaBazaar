@@ -45,7 +45,7 @@
                                 <td class="highlight">
                                     <div class="success">
                                     </div>
-                                    <a href="javascript:;">
+                                    <a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}">
                                        {{$supplier->shop_name }} </a>
                                 </td>
                                 <td>
