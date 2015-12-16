@@ -73,14 +73,6 @@
                                             <div class="product-price">
                                                 <ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins>
                                             </div>
-                                            <div class="product-rating">
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star3"></i>
-                                                <i class="icon-star-half-full"></i>
-
-                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -141,10 +133,6 @@
                                                     <ul class="entry-meta">
 
                                                         <li class="color">{{ $product->price }} {{ $product->currencyUnit->unit_short_name }}</li>
-                                                        <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                                                    class="icon-star3"></i> <i class="icon-star3"></i>
-                                                            <i class="icon-star-half-full"></i></li>
-
                                                     </ul>
                                                 </div>
                                             </div>

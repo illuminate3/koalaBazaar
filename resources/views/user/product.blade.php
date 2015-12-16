@@ -56,16 +56,6 @@
                             </div>
                             <!-- Product Single - Price End -->
 
-                            <!-- Product Single - Rating
-                            ============================================= -->
-                            <div class="product-rating">
-                                <i class="icon-star3"></i>
-                                <i class="icon-star3"></i>
-                                <i class="icon-star3"></i>
-                                <i class="icon-star-half-full"></i>
-                                <i class="icon-star-empty"></i>
-                            </div>
-                            <!-- Product Single - Rating End -->
 
                             <div class="clear"></div>
                             <div class="line"></div>
@@ -190,7 +180,7 @@
                                         <!-- Modal Reviews
                                         ============================================= -->
                                         <a href="#" data-toggle="modal" data-target="#reviewFormModal"
-                                           class="button button-3d nomargin fright">Add a Review</a>
+                                           class="button button-3d nomargin fright">Yorum Ekle</a>
 
                                         <div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog"
                                              aria-labelledby="reviewFormModalLabel" aria-hidden="true">
@@ -200,30 +190,17 @@
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-hidden="true">×
                                                         </button>
-                                                        <h4 class="modal-title" id="reviewFormModalLabel">Submit a
-                                                            Review</h4>
+                                                        <h4 class="modal-title" id="reviewFormModalLabel">Yorum Ekleyin</h4>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form class="nobottommargin" id="template-reviewform"
                                                               name="template-reviewform" action="{{ action('Frontend\ProductController@addReview',['id'=>$product->id]) }}" method="post">
-                                                            <div class="col_full col_last">
-                                                                <label for="template-reviewform-rating">Rating</label>
-                                                                <select id="template-reviewform-rating"
-                                                                        name="ranking"
-                                                                        class="form-control">
-                                                                    <option value="">-- Select One --</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                </select>
-                                                            </div>
+
 
                                                             <div class="clear"></div>
 
                                                             <div class="col_full">
-                                                                <label for="template-reviewform-comment">Comment
+                                                                <label for="template-reviewform-comment">Yorum
                                                                     <small>*</small>
                                                                 </label>
                                                                     <textarea class="required form-control"
@@ -237,7 +214,7 @@
                                                                         type="submit"
                                                                         id="template-reviewform-submit"
                                                                         name="template-reviewform-submit"
-                                                                        value="submit">Submit Review
+                                                                        value="submit">Yorum Ekle
                                                                 </button>
                                                             </div>
 
@@ -245,7 +222,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default"
-                                                                data-dismiss="modal">Close
+                                                                data-dismiss="modal">Kapat
                                                         </button>
                                                     </div>
                                                 </div>
@@ -295,13 +272,6 @@
                                             </h3></div>
                                         <div class="product-price">
                                             <ins>{{$relatedProduct->price}} {{ $product->currencyUnit->unit_short_name }}</ins>
-                                        </div>
-                                        <div class="product-rating">
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star-half-full"></i>
                                         </div>
                                     </div>
                                 </div>
