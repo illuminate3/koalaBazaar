@@ -13,7 +13,7 @@ class AddLastScannedCommentProduct extends Migration
     public function up()
     {
         Schema::table('products_instagrams', function (Blueprint $table) {
-            $table->integer('count')->unsigned()->default(1);
+            $table->string('last_scanned_comment');
         });
     }
 
@@ -24,6 +24,8 @@ class AddLastScannedCommentProduct extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('products_instagrams', function (Blueprint $table) {
+            $table->drop('last_scanned_comment');
+        });
     }
 }
