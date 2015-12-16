@@ -1,6 +1,7 @@
-# ~/workers.yml
 TestWorker:
-    type:    worker
-    script:  htdocs/artisan
+    type: worker
+    script: htdocs/artisan
     args:
-        - 'queue:listen'
+        - 'schedule:run'
+    interval:
+        minute: *
