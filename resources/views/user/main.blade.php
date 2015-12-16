@@ -191,7 +191,7 @@
                                     <div class="top-cart-item clearfix">
                                         <div class="top-cart-item-image">
                                             <a href="{{ action('Frontend\ProductController@show',$wishedProduct->product->id) }}"><img
-                                                        src="{{ action('FileEntryController@show',$wishedProduct->product->image)  }} }}"
+                                                        src="{{ action('FileEntryController@show',$wishedProduct->product->image)  }}"
                                                         alt="{{ $wishedProduct->product->title }}"/></a>
                                         </div>
                                         <div class="top-cart-item-desc">

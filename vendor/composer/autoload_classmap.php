@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddCurrencyUnitToProducts' => $baseDir . '/database/migrations/2015_11_25_122806_add_currency_unit_to_products.php',
+    'AddLastScannedCommentProduct' => $baseDir . '/database/migrations/2015_12_16_151118_add_last_scanned_comment_product.php',
     'AddPaymentToCheckouts' => $baseDir . '/database/migrations/2015_12_09_143521_add_payment_to_checkouts.php',
     'CategorySeeder' => $baseDir . '/database/seeds/CategorySeeder.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2015_10_22_183013_create_addresses_table.php',

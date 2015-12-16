@@ -67,10 +67,9 @@ Route::get('/supplierProfileEdit', function () {
 });
 
 
-Route::get('getsubscriptions', function () {
-    $faruk = new InstagramAPI();
-    print_r($faruk->getSubscriptions());
-    return null;
+Route::get('getMediaComments', function () {
+
+
 });
 
 Route::get('setsubscriptions', function () {
@@ -79,9 +78,12 @@ Route::get('setsubscriptions', function () {
     return null;
 });
 
-Route::get('getprice', function () {
-    $product = Product::find(1)->first();
-    $product->categories()->detach();
+Route::get('testing', function () {
+    if (strpos(mb_strtolower("Sepete at ", 'UTF-8'),'sepete at') !== false){
+        echo "true";
+    }else{
+        echo "false";
+    }
 });
 
 Route::get('register', 'AuthenticationController@showRegister');
