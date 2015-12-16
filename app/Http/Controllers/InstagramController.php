@@ -39,8 +39,14 @@ class InstagramController extends Controller
                     $media=$instagram->getUserMedia($instagramAccount->instagram_id,1);
                     if($media->meta->code==200){
                         foreach($media->data as $singleMedia) {
-                            if ($singleMedia->type == 'image' && ProductsInstagram::where('id', '=', $singleMedia->id)->first() ==null) {
+                            $isKoalaProduct=false;
+                            foreach($singleMedia->tags as $tag){
+                                if($tag=='koalabazaar'){
+                                    $isKoalaProduct=true;
+                                }
+                            }
 
+                            if ($isKoalaProduct && $singleMedia->type == 'image' && ProductsInstagram::where('id', '=', $singleMedia->id)->first() ==null) {
                                 $caption=null;
                                 if(isset($singleMedia->caption)){
                                     $caption=$singleMedia->caption->text;
