@@ -65,31 +65,7 @@ Route::get('/supplierProfileEdit', function () {
 
 
 Route::get('getMediaComments', function () {
-    $instagram = new InstagramAPI();
-    foreach(\App\Supplier::all() as $supplier){
-        $instagram->setAccessToken($supplier->instagramAccount->access_token);
-        foreach($supplier->products()->where('is_active',true)->get() as $product){
-            $comments=$instagram->getMediaComments($product->instagram->id);
 
-            if($comments->meta->code==200){
-                for($i=count($comments->data)-1; $i>=0 ; $i-- ){
-                    $comment=$comments->data[$i];
-                    if(mb_strtolower($comment->text, 'UTF-8') == 'sepete at'){
-                        if($customer=\App\InstagramAccount::where('instagram_id',$comment->from->id)->first()){
-                            if($customer->isCustomer()){
-                                $customer=$customer->instagramable;
-                                \App\WishedProduct::create(['customer_id'=>$customer->id,'product_id'=>$product->id,'count'=>1]);
-                            }
-                        }
-                    }
-
-
-
-                }
-            }
-
-        }
-    }
 
 
 });

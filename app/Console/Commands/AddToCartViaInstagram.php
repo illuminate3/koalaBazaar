@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\CustomClasses\InstagramAPI;
 use Illuminate\Console\Command;
 
 class AddToCartViaInstagram extends Command
@@ -37,6 +38,44 @@ class AddToCartViaInstagram extends Command
      */
     public function handle()
     {
-        echo 'hello';
+
+        $instagram = new InstagramAPI();
+        foreach(\App\Supplier::all() as $supplier){
+            $instagram->setAccessToken($supplier->instagramAccount->access_token);
+            foreach($supplier->products()->where('is_active',true)->get() as $product){
+                $comments=$instagram->getMediaComments($product->instagram->id);
+
+                if($comments->meta->code==200){
+                    $lastScannedComment=null;
+                    for($i=count($comments->data)-1; $i>=0 ; $i-- ){
+                        $comment=$comments->data[$i];
+                        if($lastScannedComment==null){
+                            $lastScannedComment=$comment->id;
+                        }
+
+                        if($product->instagram->last_scanned_comment<=$comment->id){
+                            break;
+                        };
+                        if (strpos(mb_strtolower($comment->text, 'UTF-8'),'sepete at') !== false){
+                            if($customer=\App\InstagramAccount::where('instagram_id',$comment->from->id)->first()){
+                                if($customer->isCustomer()){
+                                    $customer=$customer->instagramable;
+                                    \App\WishedProduct::create(['customer_id'=>$customer->id,'product_id'=>$product->id,'count'=>1]);
+                                }
+                            }
+                        }
+
+
+
+                    }
+                    if($lastScannedComment!=null){
+                        $productInstagram=$product->instagram;
+                        $productInstagram->last_scanned_comment=$lastScannedComment;
+                        $productInstagram->update();
+                    }
+                }
+
+            }
+        }
     }
 }
