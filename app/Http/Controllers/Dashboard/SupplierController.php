@@ -245,9 +245,7 @@ class SupplierController extends Controller
     public function showWaitingPayments() {
         $user=Auth::user();
 
-        $checkouts=DB::table('check_outs')->select('customer_id',DB::raw('sum(product_price * count) as total'))->groupBy('customer_id')->where('supplier_id',$user->id)->whereNotNull('payment_id')->orderBy('created_at','desc')->get();
-//
-  //       dd($checkouts);
+        $checkouts=DB::table('check_outs')->select('payment_id',DB::raw('sum(product_price * count) as total'))->groupBy('payment_id')->where(['supplier_id'=>$user->id,'confirmed_by_supplier'=>0])->whereNotNull('payment_id')->orderBy('created_at','desc')->get();
 
         return view('dashboard.waitingPayments',['checkouts'=>$checkouts]);
     }
@@ -267,6 +265,12 @@ class SupplierController extends Controller
         $payment = Payment::find($id);
         $payment->does_supplier_confirm=1;
         $payment->update();
+
+        $checkouts=CheckOut::where(['supplier_id'=>Auth::user()->id,'payment_id'=>$id])->get();
+        foreach($checkouts as $checkout) {
+            $checkout->confirmed_by_supplier=1;
+            $checkout->update();
+        }
 
         return redirect()->action('Dashboard\SupplierController@showWaitingPayments')->with(['success'=>['Müşteri ödemesi onaylandı.']]);
 

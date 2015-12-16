@@ -47,7 +47,7 @@
                             @foreach($checkouts as $checkout)
                             <tr>
                                 <td>
-                                    {{$checkout->supplier_id}}
+                                    {{$checkout->supplier->shop_name}}
                                 </td>
                                 <td>
                                     <a href="javascript:;">
@@ -76,6 +76,16 @@
                         </table>
                     </div>
                 </div>
+                <ul class="pagination topmargin nobottommargin">
+                    <li @if(1==$paginator->currentPage()) class="disabled" @endif><a
+                                href="{{ $paginator->url(1) }}">«</a></li>
+                    @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
+                        <li @if($i==$paginator->currentPage()) class="active" @endif ><a
+                                    href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
+                    @endfor
+                    <li @if($paginator->lastPage()==$paginator->currentPage()) class="disabled" @endif><a
+                                href="{{ $paginator->url($paginator->lastPage()) }}">»</a></li>
+                </ul>
             </div>
         </div>
     </div>

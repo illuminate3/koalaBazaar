@@ -42,20 +42,20 @@
 
                             <tbody>
                             @foreach($checkouts as $checkout)
-                                <?php $customer= \App\Customer::where('id',$checkout->customer_id)->first();?>
+                                <?php $payment= \App\Payment::where('id',$checkout->payment_id)->first();?>
 
                                 <tr>
                                     <td class="highlight">
                                         <div class="success">
                                         </div>
                                         <a href="javascript:;">
-                                          {{$customer->user->name}} {{$customer->user->surname}} </a>
+                                         {{ $payment->checkOuts()->first()->customer->user->name }} {{ $payment->checkOuts()->first()->customer->user->surname }}  </a>
                                     </td>
                                     <td>
-                                        {{$checkout->total}} TL
+                                     {{$checkout->total}} TL
                                     </td>
                                     <td>
-                                        <a href="{{action('Dashboard\SupplierController@waitingPaymentDetail')}}" class="btn default btn-xs purple">
+                                        <a href="{{action('Dashboard\SupplierController@waitingPaymentDetail',$payment->id)}}" class="btn default btn-xs purple">
 
                                         <i class="fa fa-edit"></i> İncele </a>
                                     </td>

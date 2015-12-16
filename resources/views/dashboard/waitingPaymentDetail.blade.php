@@ -14,10 +14,6 @@
                     <div class="caption">
                         <i class="fa fa-user"></i>Müşteri Bilgileri
                     </div>
-                    <div class="actions">
-                        <a href="javascript:;" class="btn btn-default btn-sm">
-                            <i class="fa fa-pencil"></i> Edit </a>
-                    </div>
                 </div>
 
 

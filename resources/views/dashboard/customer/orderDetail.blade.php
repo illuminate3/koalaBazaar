@@ -7,19 +7,15 @@
     <form id="billing-form" name="billing-form" class="nobottommargin" action="{{ action('Dashboard\CustomerController@submitPayment') }}" method="post">
 
         <div class="row">
-            <h3 class="page-title">{{$supplier->shop_name}} ile ödeme bekleyen alışverisleriniz</h3>
+            <h4 class="page-title">{{$supplier->shop_name}} ile ödeme bekleyen alışverisleriniz</h4>
         </div>
 
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                <div class="portlet grey-cascade box">
+                <div class="portlet blue box">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-cogs"></i>Ürünleriniz
-                        </div>
-                        <div class="actions">
-                            <a href="javascript:;" class="btn btn-default btn-sm">
-                                <i class="fa fa-pencil"></i> Edit </a>
+                            <i class="icon-basket"></i>Ürünleriniz
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -113,7 +109,7 @@
                 <div class="portlet box blue-hoki">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-gift"></i>Notunuz
+                            <i class="fa fa-edit"></i>Notunuz
                         </div>
                     </div>
                     <textarea class="form-control" rows="9" name="note"> {{ old('note') }}</textarea>

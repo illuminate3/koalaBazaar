@@ -6,7 +6,7 @@
 
 @section('page_level_content')
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <!-- BEGIN SAMPLE TABLE PORTLET-->
             <div class="portlet box red">
                 <div class="portlet-title">
@@ -15,8 +15,6 @@
                     </div>
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
-                        </a>
-                        <a href="#portlet-config" data-toggle="modal" class="config">
                         </a>
                         <a href="javascript:;" class="reload">
                         </a>

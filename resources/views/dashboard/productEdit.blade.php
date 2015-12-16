@@ -38,9 +38,9 @@
             <div class="portlet light">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="icon-basket font-green-sharp"></i>
+                        <i class="fa fa-edit font-green-sharp"></i>
 										<span class="caption-subject font-green-sharp bold uppercase">
-										Edit Product </span>
+										Ürün Düzenle </span>
                         <span class="caption-helper">{{$product->title}}</span>
                     </div>
                     <div class="actions btn-set">

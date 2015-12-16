@@ -126,7 +126,7 @@ class CustomerController extends Controller
          $addresses= Address::where(['customer_id'=>$user->id])->get();
         //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
 
-        return view('dashboard.customer.homePage',['user'=>$user,'addresses'=>$addresses]);
+        return view('dashboard.customer.ProfileEdit',['user'=>$user,'addresses'=>$addresses]);
     //    return view('dashboard.customer.homePage');
     }
 
@@ -229,9 +229,12 @@ class CustomerController extends Controller
     {
 
         $user=Auth::user();
-        $checkOuts=CheckOut::where('customer_id',$user->id)->whereNotNull('payment_id')->get();
+
+        $paginator=CheckOut::where('customer_id',$user->id)->whereNotNull('payment_id')->paginate(10);
         //dd($checkOuts);
-        return view('dashboard.customer.orderHistory',['checkouts'=>$checkOuts]);
+
+        $checkOuts=$paginator->items();
+        return view('dashboard.customer.orderHistory',['checkouts'=>$checkOuts,'paginator'=>$paginator]);
     }
 
     public function submitPayment(Request $request) {

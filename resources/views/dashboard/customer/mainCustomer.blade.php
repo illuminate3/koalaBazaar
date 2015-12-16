@@ -122,46 +122,7 @@
                 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                    <li class="start ">
-                        <a href="{{action('Dashboard\CustomerController@show')}}">
-                            <i class="icon-home"></i>
-                            <span class="title">Anasayfa</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{action('Dashboard\CustomerController@show')}}">
-                            <i class="icon-basket"></i>
-                            <span class="title">Siparişlerim</span>
-                            <span class="arrow "></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{action('Dashboard\CustomerController@showUnpaidOrders')}}">
-                                    <i class="fa fa-money"></i>
-                                    Ödeme Bekleyenler</a>
-                            </li>
-                            <li>
-                                <a href="{{action('Dashboard\CustomerController@showOrderHistory')}}">
-                                    <i class="icon-basket"></i>
-                                    Eski Siparişler</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce_orders_view.html">
-                                    <i class="icon-tag"></i>
-                                    Order View</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce_products.html">
-                                    <i class="icon-handbag"></i>
-                                    Products</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce_products_edit.html">
-                                    <i class="icon-pencil"></i>
-                                    Product Edit</a>
-                            </li>
-                        </ul>
-                    </li>
+
                     <li>
                         <a href="{{action('Dashboard\CustomerController@edit')}}">
                             <i class="icon-user"></i>
@@ -187,7 +148,25 @@
                             <li></li>
                         </ul>
                     </li>
-
+                    <li>
+                        <a href="{{action('Dashboard\CustomerController@show')}}">
+                            <i class="icon-basket"></i>
+                            <span class="title">Siparişlerim</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{action('Dashboard\CustomerController@showUnpaidOrders')}}">
+                                    <i class="fa fa-money"></i>
+                                    Ödeme Bekleyenler</a>
+                            </li>
+                            <li>
+                                <a href="{{action('Dashboard\CustomerController@showOrderHistory')}}">
+                                    <i class="icon-basket"></i>
+                                    Eski Siparişler</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
                 <!-- END SIDEBAR MENU -->
             </div>

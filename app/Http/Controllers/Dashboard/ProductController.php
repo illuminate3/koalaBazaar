@@ -26,10 +26,10 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $shop = $user->userable;
-        $products = Product::where(['supplier_id' => $user->id])->orderBy('id', 'desc')->get();
-        //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
+        $paginator = Product::where(['supplier_id' => $user->id])->orderBy('id', 'desc')->paginate(10);
+        $products=$paginator->items();
 
-        return view('dashboard.productList', ['products' => $products]);
+        return view('dashboard.productList', ['products' => $products,'paginator'=>$paginator]);
 
 
     }

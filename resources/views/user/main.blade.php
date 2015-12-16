@@ -181,8 +181,15 @@
                                     class="icon-shopping-cart"></i><span>{{ count(\Illuminate\Support\Facades\Auth::user()->userable->wishedProducts) }}</span></a>
 
                         <div class="top-cart-content">
+
                             <div class="top-cart-title">
                                 <h4>Sepetim</h4>
+
+                            <div class="clearfix">
+                                <button onclick="window.open('{{ action('Frontend\ProductController@showCart') }}','_self')"
+                                        class="button button-3d button-small pull-right nomargin fright">Sepete Git
+                                </button>
+                            </div>
                             </div>
                             <div class="top-cart-items">
                                 <?php $total=0 ;?>
@@ -209,9 +216,6 @@
 
                             <div class="top-cart-action clearfix">
                                 <span class="fleft top-checkout-price">{{ $total }} try</span>
-                                <button onclick="window.open('{{ action('Frontend\ProductController@showCart') }}','_self')"
-                                        class="button button-3d button-small nomargin fright">View Cart
-                                </button>
                             </div>
                         </div>
                     </div>

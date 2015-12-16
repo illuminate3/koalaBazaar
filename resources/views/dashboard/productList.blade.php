@@ -27,107 +27,105 @@
             </div>
         @endforeach
     @endif
-    <div class="col-md-12">
-        <!-- BEGIN EXAMPLE TABLE PORTLET-->
-        <div class="portlet box yellow-casablanca">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-diamond"></i>Ürünleriniz
-                </div>
-                <div class="tools">
-                    <a href="javascript:;" class="collapse" data-original-title="" title="">
-                    </a>
-                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
-                    </a>
-                    <a href="javascript:;" class="reload" data-original-title="" title="">
-                    </a>
-                    <a href="javascript:;" class="remove" data-original-title="" title="">
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="table-scrollable">
-                            <table class="table table-striped table-bordered table-hover dataTable no-footer" id="sample_1" role="grid" aria-describedby="products_table">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet box red">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-basket"></i>Ürünleriniz
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered table-striped">
                                 <thead>
-                                     <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="id: activate to sort column ascending" style="width: 41px;">
-                                    Ürün id
-                                </th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="title" style="width: 87px;">
-                                    Title
-                                </th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="description" style="width: 150px;">
-                                    Description
-                                </th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="image" style="width: 150px;">
-                                    image
-                                </th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Status" style="width: 139px;">
-                                    Status
-                                </th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="detaylı duzenle" style="width: 139px;">
-                                    Detaylı düzenle
-                                </th>
-                            </tr>
+                                <tr>
+                                    <th>
+                                       Ürün id
+                                    </th>
+                                    <th>
+                                        Ürün Adı
+                                    </th>
+                                    <th>
+                                        Ürün Açıklaması
+                                    </th>
+                                    <th>
+                                        Ürün Resmi
+                                    </th>
+                                    <th>
+                                       Durum
+                                    </th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="detaylı duzenle" style="width: 139px;">
+                                        Detaylı düzenle
+                                    </th>
+
+                                </tr>
                                 </thead>
-
                                 <tbody>
-                                     @foreach ($products as $product)
+                                @foreach($products as $product)
+                                    <tr>
+                                        <td>
+                                            {{$product->id}}
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;">
+                                                {{$product->title}} </a>
+                                        </td>
+                                        <td>
+                                            {{$product->description}}
+                                        </td>
+                                        <td>
+                                            <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">
+                                                <img class="img-responsive" src="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" style="width: 100px;" alt="">
+                                            </a>
+                                        </td>
+                                        <td>
 
-                                       <tr class="odd gradeX" role="row">
-
-                                           <td>
-                                        {{ $product->id }}
-                                    </td>
-                                           <td>
-                                        {{ $product->title }}
-                                    </td>
-                                           <td>
-                                        {!!$product->description !!}
-                                    </td>
-                                           <td>
-                                               <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">
-                                                   <img class="img-responsive" src="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" style="width: 100px;" alt="">
-                                               </a>
-                                    </td>
-                                           <td>
-
-                                        @if($product->is_active)
-                                            <span class="label label-xl label-success">
+                                            @if($product->is_active)
+                                                <span class="label label-xl label-success">
 										Aktif </span>
 
 
-                                        @else
-                                            <span class="label label-sm label-default">
+                                            @else
+                                                <span class="label label-sm label-default">
 										Deaktif </span>
-                                        @endif
-                                    </td>
-                                           <td>
-                                        <a href="{{ action('Dashboard\ProductController@edit',$product->id) }}" class="btn default btn-xs purple">
-                                            Düzenle
-                                        </a>
-                                        @if($product->is_active)
-                                            <a href="{{ action('Dashboard\ProductController@setAsDeactive',$product->id) }}" class="btn default btn-xs default">
-                                                Deaktive et
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ action('Dashboard\ProductController@edit',$product->id) }}" class="btn default btn-xs purple">
+                                                Düzenle
                                             </a>
-                                        @else
-                                            <a href="{{ action('Dashboard\ProductController@setAsActive',$product->id)}}" class="btn default btn-xs green">
-                                                Aktive et
-                                            </a>
-                                        @endif
-                                    </td>
+                                            @if($product->is_active)
+                                                <a href="{{ action('Dashboard\ProductController@setAsDeactive',$product->id) }}" class="btn default btn-xs default">
+                                                    Deaktive et
+                                                </a>
+                                            @else
+                                                <a href="{{ action('Dashboard\ProductController@setAsActive',$product->id)}}" class="btn default btn-xs green">
+                                                    Aktive et
+                                                </a>
+                                            @endif
+                                        </td>
 
-                                </tr>
+                                    </tr>
+
                                 @endforeach
                                 </tbody>
-
                             </table>
                         </div>
+                    </div>
+                    <ul class="pagination topmargin nobottommargin pull-right">
+                        <li @if(1==$paginator->currentPage()) class="disabled" @endif><a
+                                    href="{{ $paginator->url(1) }}">«</a></li>
+                        @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
+                            <li @if($i==$paginator->currentPage()) class="active" @endif ><a
+                                        href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
+                        @endfor
+                        <li @if($paginator->lastPage()==$paginator->currentPage()) class="disabled" @endif><a
+                                    href="{{ $paginator->url($paginator->lastPage()) }}">»</a></li>
+                    </ul>
                 </div>
-
+            </div>
         </div>
-        <!-- END EXAMPLE TABLE PORTLET-->
-    </div>
 </div>
 @endsection
         <!-- END PAGE LEVEL CONTENT-->
