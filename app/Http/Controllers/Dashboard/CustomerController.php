@@ -220,14 +220,18 @@ class CustomerController extends Controller
     {
         $user=Auth::user();
         $supplier=Supplier::where(['id'=>$id])->first();
-        $orders = $user->userable->checkOuts()->where('supplier_id',$id)->get();
+        $orders = $user->userable->checkOuts()->where(['supplier_id'=>$id,'payment_id'=>null])->get();
         $paymentInfos=PaymentInfo::where(['supplier_id'=>$id])->get();
 
         return view('dashboard.customer.orderDetail',['orders'=>$orders,'supplier'=>$supplier,'paymentInfos'=>$paymentInfos]);
     }
     public function showOrderHistory()
     {
-        return view('dashboard.customer.orderHistory');
+
+        $user=Auth::user();
+        $checkOuts=CheckOut::where('customer_id',$user->id)->whereNotNull('payment_id')->get();
+        //dd($checkOuts);
+        return view('dashboard.customer.orderHistory',['checkouts'=>$checkOuts]);
     }
 
     public function submitPayment(Request $request) {
@@ -251,7 +255,7 @@ class CustomerController extends Controller
 
             foreach($request->input('checkouts') as $checkOutID){
 
-                $checkOut=CheckOut::where(['id'=>$checkOutID,'customer_id'=>Auth::user()->id])->first();
+                $checkOut=CheckOut::where(['id'=>$checkOutID,'customer_id'=>Auth::user()->id,'payment_id'=>null])->first();
                 $checkOut->payment_id=$payment->id;
                 $checkOut->update();
             }

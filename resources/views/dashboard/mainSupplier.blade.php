@@ -185,7 +185,7 @@
                                     <i class="fa fa-money"></i>
                                     Ödeme Bilgilerim</a>
                             </li>
-                            <li><a href="{{action('Dashboard\SupplierController@confirmPayments')}}">
+                            <li><a href="{{action('Dashboard\SupplierController@showWaitingPayments')}}">
                                     <i class="fa fa-money"></i>
                                     Onay Bekleyen Ödemeler</a></li>
                             <li></li>

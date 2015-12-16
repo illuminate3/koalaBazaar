@@ -41,17 +41,18 @@
                             </thead>
 
                             <tbody>
-
+                            @foreach($checkouts as $checkout)
+                                <?php $customer= \App\Customer::where('id',$checkout->customer_id)->first();?>
 
                                 <tr>
                                     <td class="highlight">
                                         <div class="success">
                                         </div>
                                         <a href="javascript:;">
-                                           İsim </a>
+                                          {{$customer->user->name}} {{$customer->user->surname}} </a>
                                     </td>
                                     <td>
-                                        Total TL
+                                        {{$checkout->total}} TL
                                     </td>
                                     <td>
                                         <a href="{{action('Dashboard\SupplierController@waitingPaymentDetail')}}" class="btn default btn-xs purple">
@@ -60,7 +61,7 @@
                                     </td>
                                 </tr>
 
-
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
