@@ -91,23 +91,6 @@
                                                        name="price" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">Current Unit <span class="required">
-														* </span>
-                                            </label>
-
-                                            <div class="col-md-10">
-                                                <select class="table-group-action-input form-control input-medium"
-                                                        name="current_unit">
-                                                    <option value="">Select...</option>
-                                                    @foreach($currency_units as $curunit)
-                                                        <option value="{{ $curunit->id }}"
-                                                                @if($product->currency_unit_id == $curunit->id) selected @endif>{{ $curunit->unit_name }}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-                                        </div>
 
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Categories: <span class="required">
