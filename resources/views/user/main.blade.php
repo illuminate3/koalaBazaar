@@ -3,7 +3,9 @@
 <head>
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta name="author" content="SemiColonWeb"/>
+    <meta name="author" content="KoalaBazaar"/>
+    @section('page_level_head')
+    @show
 
     <!-- Stylesheets
     ============================================= -->

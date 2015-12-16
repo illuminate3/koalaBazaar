@@ -1,5 +1,11 @@
 @extends('user.main')
 
+@section('page_level_head')
+    <meta property="og:title" content="{{$product->title}}">
+    <meta property="og:url" content="{{action('Frontend\ProductController@show',$product->id)}}">
+    <meta property="og:image" content="{{ action('FileEntryController@show',$product->image) }}">
+    @endsection
+
 @section('title','Urun')
 @endsection
 
@@ -98,7 +104,7 @@
                                         <i class="icon-twitter"></i>
                                         <i class="icon-twitter"></i>
                                     </a>
-                                    <a target="_blank" href="http://pinterest.com/pin/create/button/?url={{action('Frontend\ProductController@show',$product->id)}}&description={{$product->title}}&media={{$product->image}}" class="social-icon si-borderless si-pinterest">
+                                    <a target="_blank" href="http://pinterest.com/pin/create/button/?url={{action('Frontend\ProductController@show',$product->id)}}&description={{$product->title}}&media={{ action('FileEntryController@show',$product->image) }}" class="social-icon si-borderless si-pinterest">
                                         <i class="icon-pinterest"></i>
                                         <i class="icon-pinterest"></i>
                                     </a>
