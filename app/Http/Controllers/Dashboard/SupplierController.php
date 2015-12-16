@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\CheckOut;
+use App\Payment;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,6 +19,9 @@ use App\User;
 use App\Supplier;
 use App\Customer;
 use App\Product;
+use App\PaymentInfo;
+
+
 
 use App\InstagramAccount;
 
@@ -238,21 +242,38 @@ class SupplierController extends Controller
 
     }
 
-
-    public function confirmPayments() {
+    public function showWaitingPayments() {
         $user=Auth::user();
 
-        // $checkouts=DB::table('check_outs')->select('supplier_id',DB::raw('sum(product_price) as total'))->groupBy('supplier_id')->where(['customer_id'=>$user->id,'payment_id'=>null])->orderBy('created_at','desc')->get();
+        $checkouts=DB::table('check_outs')->select('payment_id',DB::raw('sum(product_price * count) as total'))->groupBy('payment_id')->where(['supplier_id'=>$user->id,'confirmed_by_supplier'=>0])->whereNotNull('payment_id')->orderBy('created_at','desc')->get();
 
-
-      //   dd($checkouts);
-        return view('dashboard.confirmPayments');
+        return view('dashboard.waitingPayments',['checkouts'=>$checkouts]);
     }
-    public function waitingPaymentDetail()
-    {
 
-        $products=CheckOut::where('supplier_id',Auth::user()->id)->where('payment_id','<>',null)->get();
-        return view('dashboard.waitingPaymentDetail');
+    public function waitingPaymentDetail($id)
+    {
+       // $payment=Payment::where('id',$id)->first();
+        $payment = Payment::find($id);
+        $checkOuts=CheckOut::where('supplier_id',Auth::user()->id)->where('payment_id',$id)->get();
+        $sampleOut=CheckOut::where('supplier_id',Auth::user()->id)->where('payment_id',$id)->first();
+        $customer=Customer::where('id',$sampleOut->customer_id)->first();
+        $paymentInfo=PaymentInfo::where('id',$payment->payment_info_id)->first();
+        return view('dashboard.waitingPaymentDetail',['customer'=>$customer,'checkOuts'=>$checkOuts,'payment'=>$payment,'paymentInfo'=>$paymentInfo]);
+    }
+    public function confirmPayment(Request $request,$id) {
+
+        $payment = Payment::find($id);
+        $payment->does_supplier_confirm=1;
+        $payment->update();
+
+        $checkouts=CheckOut::where(['supplier_id'=>Auth::user()->id,'payment_id'=>$id])->get();
+        foreach($checkouts as $checkout) {
+            $checkout->confirmed_by_supplier=1;
+            $checkout->update();
+        }
+
+        return redirect()->action('Dashboard\SupplierController@showWaitingPayments')->with(['success'=>['Müşteri ödemesi onaylandı.']]);
+
     }
     /**
      * Remove the specified resource from storage.

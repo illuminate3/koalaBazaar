@@ -26,10 +26,10 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $shop = $user->userable;
-        $products = Product::where(['supplier_id' => $user->id])->orderBy('id', 'desc')->get();
-        //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
+        $paginator = Product::where(['supplier_id' => $user->id])->orderBy('id', 'desc')->paginate(10);
+        $products=$paginator->items();
 
-        return view('dashboard.productList', ['products' => $products]);
+        return view('dashboard.productList', ['products' => $products,'paginator'=>$paginator]);
 
 
     }
@@ -150,7 +150,6 @@ class ProductController extends Controller
         $rules = array(
             'title' => 'required',
             'price' => 'required|numeric',
-            'current_unit' => 'required',
             'is_active' => 'required',
         );
 
@@ -171,7 +170,7 @@ class ProductController extends Controller
             $product->title = $request->input('title');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
-            $product->currency_unit_id = $request->input('current_unit');
+            $product->currency_unit_id = CurrencyUnit::where('unit_short_name','try')->first()->id;
             if ($request->input('is_active') == '1') {
                 $product->is_active = true;
             } else {

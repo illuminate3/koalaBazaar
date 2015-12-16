@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.1.23 (LTS) on 2015-11-06.
+ * Generated for Laravel 5.1.23 (LTS) on 2015-12-16.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12509,6 +12509,128 @@ namespace {
         public static function offsetUnset($key){
             //Method inherited from \DebugBar\DebugBar            
             return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
+        }
+        
+    }
+
+
+    class Instagram extends \Vinkla\Instagram\Facades\Instagram{
+        
+        /**
+         * Get the factory instance.
+         *
+         * @return \Vinkla\Instagram\InstagramFactory 
+         * @static 
+         */
+        public static function getFactory(){
+            return \Vinkla\Instagram\InstagramManager::getFactory();
+        }
+        
+        /**
+         * Get a connection instance.
+         *
+         * @param string $name
+         * @return object 
+         * @static 
+         */
+        public static function connection($name = null){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Instagram\InstagramManager::connection($name);
+        }
+        
+        /**
+         * Reconnect to the given connection.
+         *
+         * @param string $name
+         * @return object 
+         * @static 
+         */
+        public static function reconnect($name = null){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Instagram\InstagramManager::reconnect($name);
+        }
+        
+        /**
+         * Disconnect from the given connection.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function disconnect($name = null){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            \Vinkla\Instagram\InstagramManager::disconnect($name);
+        }
+        
+        /**
+         * Get the configuration for a connection.
+         *
+         * @param string $name
+         * @throws \InvalidArgumentException
+         * @return array 
+         * @static 
+         */
+        public static function getConnectionConfig($name){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Instagram\InstagramManager::getConnectionConfig($name);
+        }
+        
+        /**
+         * Get the default connection name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultConnection(){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Instagram\InstagramManager::getDefaultConnection();
+        }
+        
+        /**
+         * Set the default connection name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultConnection($name){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            \Vinkla\Instagram\InstagramManager::setDefaultConnection($name);
+        }
+        
+        /**
+         * Register an extension connection resolver.
+         *
+         * @param string $name
+         * @param callable $resolver
+         * @return void 
+         * @static 
+         */
+        public static function extend($name, $resolver){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            \Vinkla\Instagram\InstagramManager::extend($name, $resolver);
+        }
+        
+        /**
+         * Return all of the created connections.
+         *
+         * @return object[] 
+         * @static 
+         */
+        public static function getConnections(){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Instagram\InstagramManager::getConnections();
+        }
+        
+        /**
+         * Get the config instance.
+         *
+         * @return \Illuminate\Contracts\Config\Repository 
+         * @static 
+         */
+        public static function getConfig(){
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Instagram\InstagramManager::getConfig();
         }
         
     }

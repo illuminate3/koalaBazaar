@@ -140,33 +140,7 @@
                             <span class="title">Ürünlerim</span>
                             <span class="arrow "></span>
                         </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="ecommerce_index.html">
-                                    <i class="icon-home"></i>
-                                    Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce_orders.html">
-                                    <i class="icon-basket"></i>
-                                    Orders</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce_orders_view.html">
-                                    <i class="icon-tag"></i>
-                                    Order View</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce_products.html">
-                                    <i class="icon-handbag"></i>
-                                    Products</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce_products_edit.html">
-                                    <i class="icon-pencil"></i>
-                                    Product Edit</a>
-                            </li>
-                        </ul>
+
                     </li>
 
                     <li>
@@ -185,7 +159,7 @@
                                     <i class="fa fa-money"></i>
                                     Ödeme Bilgilerim</a>
                             </li>
-                            <li><a href="{{action('Dashboard\SupplierController@confirmPayments')}}">
+                            <li><a href="{{action('Dashboard\SupplierController@showWaitingPayments')}}">
                                     <i class="fa fa-money"></i>
                                     Onay Bekleyen Ödemeler</a></li>
                             <li></li>

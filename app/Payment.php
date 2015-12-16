@@ -13,4 +13,5 @@ class Payment extends Model
     public function checkOuts(){
         return $this->hasMany('App\CheckOut');
     }
+
 }

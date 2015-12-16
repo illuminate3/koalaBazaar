@@ -53,6 +53,9 @@ Route::get('testmedia', function () {
 Route::get('/supplierRegister', function () {
     return view('dashboard.supplierRegister');
 });
+Route::get('/waitingPaymentDetail', function () {
+    return view('dashboard.waitingPaymentDetail');
+});
 
 Route::get('/customerRegister', function () {
     return view('dashboard.customerRegister');
@@ -96,8 +99,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         Route::post('update', 'Dashboard\SupplierController@update');
         Route::post('updatePassword', 'Dashboard\SupplierController@updatePassword');
         Route::post('updateImages', 'Dashboard\SupplierController@updateImages');
-        Route::get('confirmpayments', 'Dashboard\SupplierController@confirmPayments');
-        Route::get('waitingpaymentdetail', 'Dashboard\SupplierController@waitingPaymentDetail');
+        Route::get('waitingpayments', 'Dashboard\SupplierController@showWaitingPayments');
+        Route::get('waitingpaymentdetail/{id}', 'Dashboard\SupplierController@waitingPaymentDetail');
+        Route::post('confirmpayment/{id}', 'Dashboard\SupplierController@confirmPayment');
 
         Route::group(['prefix' => 'paymentinfo'], function () {
             Route::get('/', 'Dashboard\PaymentInfoController@index');

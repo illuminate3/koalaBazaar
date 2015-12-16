@@ -16,14 +16,15 @@ class CheckOut extends Model
         return $this->belongsTo('App\Product');
     }
 
-
     public function billAddress(){
         return $this->belongsTo('App\Address','bill_address_id','id');
     }
     public function supplier(){
         return $this->belongsTo('App\Supplier','supplier_id','id');
     }
-
+    public function customer(){
+        return $this->belongsTo('App\Customer','customer_id','id');
+    }
 
     public function receiverAddress(){
         return $this->belongsTo('App\Address','receiver_address_id','id');

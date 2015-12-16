@@ -38,9 +38,9 @@
             <div class="portlet light">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="icon-basket font-green-sharp"></i>
+                        <i class="fa fa-edit font-green-sharp"></i>
 										<span class="caption-subject font-green-sharp bold uppercase">
-										Edit Product </span>
+										Ürün Düzenle </span>
                         <span class="caption-helper">{{$product->title}}</span>
                     </div>
                     <div class="actions btn-set">
@@ -89,23 +89,6 @@
                                             <div class="col-md-10">
                                                 <input type="text" class="form-control" value="{{$product->price}}"
                                                        name="price" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">Current Unit <span class="required">
-														* </span>
-                                            </label>
-
-                                            <div class="col-md-10">
-                                                <select class="table-group-action-input form-control input-medium"
-                                                        name="current_unit">
-                                                    <option value="">Select...</option>
-                                                    @foreach($currency_units as $curunit)
-                                                        <option value="{{ $curunit->id }}"
-                                                                @if($product->currency_unit_id == $curunit->id) selected @endif>{{ $curunit->unit_name }}</option>
-                                                    @endforeach
-
-                                                </select>
                                             </div>
                                         </div>
 

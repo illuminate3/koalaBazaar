@@ -27,7 +27,7 @@
         <div class="portlet box purple">
             <div class="portlet-title">
             <div class="caption">
-                <i class="fa fa-cogs"></i>Adresleriniz
+                <i class="fa fa-home"></i>Adresleriniz
             </div>
             <div class="actions">
                 <a href="{{action('Dashboard\AddressController@create')}}" class="btn btn-default btn-sm">

@@ -44,38 +44,48 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($checkouts as $checkout)
                             <tr>
                                 <td>
-                                    B Butik
+                                    {{$checkout->supplier->shop_name}}
                                 </td>
                                 <td>
                                     <a href="javascript:;">
-                                        Product 1 </a>
+                                        {{$checkout->product_title}} </a>
                                 </td>
                                 <td>
-								<span class="label label-sm label-success">
-									Available </span>
+                                    {{$checkout->description}}
                                 </td>
                                 <td>
-                                    345.50$
+                                        <img class="img-responsive" src="@if($checkout->image!=null) {{ action('FileEntryController@show',$checkout->image)}}@else {{$checkout->product->image->image_url}}  @endif" style="width: 100px;" alt="">
+
                                 </td>
                                 <td>
-                                    345.50$
+                                    {{$checkout->product->price}}
                                 </td>
                                 <td>
-                                    2
+                                    {{$checkout->count}}
                                 </td>
                                 <td>
-                                    2.00$
+                                    {{$checkout->product->price * $checkout->count}}
                                 </td>
                             </tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
+
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <ul class="pagination topmargin nobottommargin">
+                    <li @if(1==$paginator->currentPage()) class="disabled" @endif><a
+                                href="{{ $paginator->url(1) }}">«</a></li>
+                    @for ($i = 1 ; $i <=$paginator->lastPage(); $i++)
+                        <li @if($i==$paginator->currentPage()) class="active" @endif ><a
+                                    href="{{ $paginator->url($i) }}">{{ $i }}</a></li>
+                    @endfor
+                    <li @if($paginator->lastPage()==$paginator->currentPage()) class="disabled" @endif><a
+                                href="{{ $paginator->url($paginator->lastPage()) }}">»</a></li>
+                </ul>
             </div>
         </div>
     </div>
