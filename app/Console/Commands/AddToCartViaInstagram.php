@@ -38,7 +38,6 @@ class AddToCartViaInstagram extends Command
      */
     public function handle()
     {
-
         $instagram = new InstagramAPI();
         foreach(\App\Supplier::all() as $supplier){
             $instagram->setAccessToken($supplier->instagramAccount->access_token);
@@ -53,7 +52,7 @@ class AddToCartViaInstagram extends Command
                             $lastScannedComment=$comment->id;
                         }
 
-                        if($product->instagram->last_scanned_comment<=$comment->id){
+                        if($product->instagram->last_scanned_comment>=$comment->id){
                             break;
                         };
                         if (strpos(mb_strtolower($comment->text, 'UTF-8'),'sepete at') !== false){

@@ -13,7 +13,7 @@ class AddLastScannedCommentProduct extends Migration
     public function up()
     {
         Schema::table('products_instagrams', function (Blueprint $table) {
-            $table->string('last_scanned_comment');
+            $table->string('last_scanned_comment')->nullable()->default(null);
         });
     }
 
