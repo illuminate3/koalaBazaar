@@ -182,7 +182,7 @@ class ProductController extends Controller
             $product->categories()->detach();
             foreach ($request->input('categories') as $category) {
                 if (Category::find($category)) {
-                    $product->categories()->attach(Category::find($category)->first());
+                    $product->categories()->attach(Category::where('id',$category)->first());
                 }
 
             }

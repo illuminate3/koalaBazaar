@@ -32,17 +32,14 @@
                 <div class="portlet-title tabbable-line">
                     <div class="caption caption-md">
                         <i class="icon-globe theme-font hide"></i>
-                        <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
+                        <span class="caption-subject font-blue-madison bold uppercase">Profil Bilgileriniz</span>
                     </div>
                     <ul class="nav nav-tabs">
                         <li class="active">
                             <a href="#tab_1_1" data-toggle="tab">Kişisel Bilgiler</a>
                         </li>
                         <li>
-                            <a href="#tab_1_2" data-toggle="tab">Fotoğraf Değiştir</a>
-                        </li>
-                        <li>
-                            <a href="#tab_1_3" data-toggle="tab">Parola Değiştir</a>
+                            <a href="#tab_1_2" data-toggle="tab">Parola Değiştir</a>
                         </li>
 
                     </ul>
@@ -55,15 +52,15 @@
                                   action="{{action('Dashboard\SupplierController@update')}}" method="post">
 
                                 <div class="form-group">
-                                    <label class="control-label">First Name</label>
+                                    <label class="control-label">İsim</label>
                                     <input type="text" value="{{$user->name}}" class="form-control" name="firstname">
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Last Name</label>
+                                    <label class="control-label">Soyisim</label>
                                     <input type="text" value="{{$user->surname}}" class="form-control" name="surname">
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Phone</label>
+                                    <label class="control-label">Telefon</label>
                                     <input type="text" value="{{$user->userable->phone}}" class="form-control"
                                            name="phone">
                                 </div>
@@ -74,13 +71,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">City</label>
+                                    <label class="control-label">Şehir</label>
                                     <input type="text" class="form-control" name="city"
                                            value="{{$user->userable->city}}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Country</label>
+                                    <label class="control-label">Ülke</label>
                                     <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
                                             name="country" value="{{$user->userable->country}}">
                                         <option value="">Select...</option>
@@ -91,7 +88,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <label class="control-label col-md-2">Description</label>
+                                    <label class="control-label col-md-2">Açıklama</label>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -104,7 +101,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Social Links</label>
+                                    <label class="control-label">Sosyal Bağlantılar</label>
                                     <input type="text" placeholder="Facebook, Twitter, Instagram..."
                                            class="form-control" name="social_links"
                                            value="{{$user->userable->social_links}}">
@@ -115,90 +112,32 @@
                                         <i class="fa fa-check"></i> Profili Düzenle
                                     </button>
 
-                                    <a href="javascript:;" class="btn default">
-                                        Cancel </a>
                                 </div>
                             </form>
                         </div>
                         <!-- END PERSONAL INFO TAB -->
-                        <!-- CHANGE AVATAR TAB -->
-                        <div class="tab-pane" id="tab_1_2">
-                            <p>Fotoğraflarınızı güncelleyin </p>
-
-                            <form id="update-images-form" name="update-images-form" class="nobottommargin"
-                                  action="{{action('Dashboard\SupplierController@updateImages')}}#tab_1_2"
-                                  method="post">
-
-                                <div class="form-group">
-                                    <div class="fileinput fileinput-new" data-provides="fileinput" name="cover_image">
-                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
-                                                 alt="">
-                                        </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail"
-                                             style="max-width: 200px; max-height: 150px;">
-                                        </div>
-                                        <div>
-																	<span class="btn default btn-file">
-																	<span class="fileinput-new">
-																	Select image </span>
-																	<span class="fileinput-exists">
-																	Change </span>
-																	<input type="file" name="cover_image">
-																	</span>
-                                            <a href="javascript:;" class="btn default fileinput-exists"
-                                               data-dismiss="fileinput">
-                                                Remove </a>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix margin-top-10">
-                                        <span class="label label-danger">NOTE! </span>
-                                        <span>Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label">Image url</label>
-                                    <input type="text" placeholder="image_link" class="form-control"
-                                           name="cover_image_url" value="{{$user->userable->cover_image}}">
-
-                                </div>
-                                <div class="margin-top-10">
-                                    <button type="submit" class="btn default btn green">
-                                        <i class="fa fa-check"></i> Kapak Fotoğrafını Düzenle
-                                    </button>
-                                    <a href="javascript:;" class="btn default">
-                                        Cancel </a>
-                                </div>
-
-
-                            </form>
-                        </div>
-                        <!-- END CHANGE AVATAR TAB -->
                         <!-- CHANGE PASSWORD TAB -->
-                        <div class="tab-pane" id="tab_1_3">
+                        <div class="tab-pane" id="tab_1_2">
                             <form id="update-password-form" name="update-password-form" class="nobottommargin"
                                   action="{{action('Dashboard\SupplierController@updatePassword')}}#tab_1_3"
                                   method="post">
 
                                 <div class="form-group">
-                                    <label class="control-label">Current Password</label>
+                                    <label class="control-label">Mevcut Parolanız</label>
                                     <input type="password" class="form-control" name="current_password">
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">New Password</label>
+                                    <label class="control-label">Yeni Parolanız</label>
                                     <input type="password" class="form-control" name="password">
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Re-type New Password</label>
+                                    <label class="control-label">Yeni Parolanızı Doğrulayın</label>
                                     <input type="password" class="form-control" name="rpassword">
                                 </div>
                                 <div class="margin-top-10">
                                     <button type="submit" class="btn default btn green">
                                         <i class="fa fa-check"></i> Parolamı Değiştir
                                     </button>
-                                    <a href="javascript:;" class="btn default">
-                                        Cancel </a>
                                 </div>
                             </form>
                         </div>
@@ -224,42 +163,20 @@
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        {{$user->userable->shop_name}}
+                      <h4>{{$user->userable->shop_name}}</h4>
                     </div>
 
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
                 <div class="profile-userbuttons">
-                    <button type="button" class="btn btn-circle green-haze btn-sm">Follow</button>
-                    <button type="button" class="btn btn-circle btn-danger btn-sm">Message</button>
+                    <a href="https://www.instagram.com/{{$user->userable->shop_name}}">
+                        <button type="button" class="btn btn-circle green-haze btn-sm">Instagram'a git</button>
+                    </a>
                 </div>
                 <!-- END SIDEBAR BUTTONS -->
                 <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li>
-                            <a href="extra_profile.html">
-                                <i class="icon-home"></i>
-                                Overview </a>
-                        </li>
-                        <li class="active">
-                            <a href="extra_profile_account.html">
-                                <i class="icon-settings"></i>
-                                Account Settings </a>
-                        </li>
-                        <li>
-                            <a href="page_todo.html" target="_blank">
-                                <i class="icon-check"></i>
-                                Tasks </a>
-                        </li>
-                        <li>
-                            <a href="extra_profile_help.html">
-                                <i class="icon-info"></i>
-                                Help </a>
-                        </li>
-                    </ul>
-                </div>
+
                 <!-- END MENU -->
             </div>
             <!-- END PORTLET MAIN -->

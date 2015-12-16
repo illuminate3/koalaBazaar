@@ -58,7 +58,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active">
                                 <a href="#tab_general" data-toggle="tab" aria-expanded="true">
-                                    General </a>
+                                    Genel </a>
                             </li>
 
                         </ul>
@@ -71,7 +71,7 @@
                                          action="{{ action('Dashboard\ProductController@update'),$product->id }}"
                                          method="post">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Title: <span class="required">
+                                            <label class="col-md-2 control-label">Ürün Adı: <span class="required">
 														* </span>
                                             </label>
 
@@ -82,7 +82,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Price: <span class="required">
+                                            <label class="col-md-2 control-label">Fiyat: <span class="required">
 														* </span>
                                             </label>
 
@@ -93,7 +93,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Categories: <span class="required">
+                                            <label class="col-md-2 control-label">Kategoriler: <span class="required">
 														* </span>
                                             </label>
 
@@ -116,12 +116,12 @@
                                                     </div>
                                                 </div>
 															<span class="help-block">
-															select one or more categories </span>
+															bir veya daha fazla kategori seçebilirsiniz </span>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Status: <span class="required">
+                                            <label class="col-md-2 control-label">Durum: <span class="required">
 														* </span>
                                             </label>
 
@@ -129,17 +129,16 @@
                                                 <select class="table-group-action-input form-control input-medium"
                                                         name="is_active">
 
-                                                    <option value="1" @if($product->is_active) selected @endif>Active
+                                                    <option value="1" @if($product->is_active) selected @endif>Aktif
                                                     </option>
-                                                    <option value="0" @if(!$product->is_active) selected @endif>Not
-                                                        Active
+                                                    <option value="0" @if(!$product->is_active) selected @endif>Deaktif
                                                     </option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <label class="control-label col-md-2">Description</label>
+                                            <label class="control-label col-md-3">Ürün Açıklaması:</label>
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
