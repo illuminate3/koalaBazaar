@@ -25,6 +25,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('addtocart:comment')->everyFiveMinutes();
+        $schedule->command('addtocart:comment')->everyMinute();
     }
 }
