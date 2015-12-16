@@ -1,0 +1,6 @@
+# ~/workers.yml
+TestWorker:
+    type:    worker
+    script:  htdocs/artisan
+    args:
+        - 'queue:listen'
