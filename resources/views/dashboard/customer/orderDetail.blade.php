@@ -4,10 +4,10 @@
 @endsection
 
 @section('page_level_content')
-    <form id="billing-form" name="billing-form" class="nobottommargin" action="#" method="post">
+    <form id="billing-form" name="billing-form" class="nobottommargin" action="{{ action('Dashboard\CustomerController@submitPayment') }}" method="post">
 
         <div class="row">
-            <h3 class="page-title">Firmadan Alısverisleriniz</h3>
+            <h3 class="page-title">{{$supplier->shop_name}} ile ödeme bekleyen alışverisleriniz</h3>
         </div>
 
         <div class="row">
@@ -49,31 +49,30 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($orders as $order)
+                                    <input type="hidden" name="checkouts[]" value="{{ $order->id }}">
                                 <tr>
                                     <td>
-                                        <a href="javascript:;">
-                                            Product 1 </a>
+                                        <a href="{{action('Frontend\ProductController@show',['id'=>$order->product_id])}}" target="_blank">
+                                            {{$order->product->title}} </a>
                                     </td>
                                     <td>
-								<span class="label label-sm label-success">
-									Available </span>
+                                        {{$order->product->description}}
                                     </td>
                                     <td>
-                                        345.50$
+                                        <img class="img-responsive" src="@if($order->product->image!=null) {{ action('FileEntryController@show',$order->product->image)}}@else {{$order->product->instagram->image_url}}  @endif" style="width: 100px;" alt="">
                                     </td>
                                     <td>
-                                        345.50$
+                                        {{$order->product->price}}
                                     </td>
                                     <td>
-                                        2
+                                        {{$order->count}}
                                     </td>
                                     <td>
-                                        2.00$
+                                        {{$order->product->price * $order->count }}
                                     </td>
                                 </tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -83,7 +82,7 @@
         </div>
 
         <div class="row">
-
+            @foreach($paymentInfos as $paymentInfo)
             <div class="col-md-6 col-sm-12">
                 <div class="portlet red-sunglo box">
                     <div class="portlet-title">
@@ -92,24 +91,20 @@
                         </div>
                         <div class="actions">
                             <label>
-                                <input type="radio" name="radio1" class="icheck"></label>
+                                <input type="radio" name="payment_option" value="{{ $paymentInfo->id }}" class="icheck"></label>
                         </div>
                     </div>
                     <div class="portlet-body">
                         <div class="row static-info">
                             <div class="col-md-12 value">
-                                Jhon Done<br>
-                                #24 Park Avenue Str<br>
-                                New York<br>
-                                Connecticut, 23456 New York<br>
-                                United States<br>
-                                T: 123123232<br>
-                                F: 231231232<br>
+                                {{$paymentInfo->title}}<br>
+                               {!! $paymentInfo->detail !!}<br>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
 
         <div class="row">
