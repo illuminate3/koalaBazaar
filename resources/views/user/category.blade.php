@@ -68,8 +68,8 @@
                                         </div>
                                         <div class="product-desc center">
                                             <div class="product-title"><h3><a
-                                                            href="{{action('Frontend\ProductController@show',$item->id)}}">{{ substr($item->title,0,20) }}@if(strlen($item->title)>35)
-                                                            ...@endif</a></h3></div>
+                                                            href="{{action('Frontend\ProductController@show',$item->id)}}">@if(strlen($item->title)>20){{ substr($item->title,0,20) }}..
+                                                            @else {{ $item->title }} @endif</a></h3></div>
                                             <div class="product-price">
                                                 <ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins>
                                             </div>
