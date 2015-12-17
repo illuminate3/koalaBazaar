@@ -23,7 +23,7 @@
     <link id="style_color" href="{{asset('/dashboard')}}/assets/admin/layout2/css/themes/grey.css" rel="stylesheet" type="text/css">
     <link href="{{asset('/dashboard')}}/assets/admin/layout2/css/custom.css" rel="stylesheet" type="text/css">
     <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="{{asset('/')}}/favicon.ico">
 
 
 </head>
