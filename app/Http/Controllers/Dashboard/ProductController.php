@@ -34,26 +34,6 @@ class ProductController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -85,9 +65,15 @@ class ProductController extends Controller
             return redirect()->back()->withErrors(['messages' => "ürün size ait değil"]);
         }
 
-        $product->is_active = true;
-        $product->update();
-        return redirect()->back()->with(['success' => ["Aktive edildi"]]);
+        if($product->isActivable()){
+            $product->is_active = true;
+            $product->update();
+
+            return redirect()->back()->with(['success' => ["Aktive edildi"]]);
+        }else{
+            return redirect()->back()->withErrors(['messages'=>['aktif olabilmesi için başlık,fiyat ve para birimi dolu olmalıdır']]);
+        }
+
 
 
     }
@@ -172,7 +158,7 @@ class ProductController extends Controller
             $product->price = $request->input('price');
             $product->currency_unit_id = CurrencyUnit::where('unit_short_name','try')->first()->id;
             if ($request->input('is_active') == '1') {
-                $product->is_active = true;
+                $product->is_active = ($product->isActivable())?true:false;
             } else {
                 $product->is_active = false;
             }
