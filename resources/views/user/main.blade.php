@@ -95,9 +95,9 @@
                                                    required=""
                                                    name="pass">
                                         </div>
-                                        <button class="btn btn-danger btn-block" type="submit">Sign in</button>
+                                        <button class="btn btn-danger btn-block" type="submit">Giriş Yap</button>
                                         <a href="{{ action('AuthenticationController@loginviainstagram') }}"
-                                           class="btn btn-primary btn-block" name="login-with-instagram">Instagram
+                                           class="btn btn-primary btn-block" name="login-with-instagram">Instagram ile Giriş
                                         </a>
 
                                     </form>

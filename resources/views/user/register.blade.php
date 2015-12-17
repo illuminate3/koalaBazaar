@@ -23,27 +23,30 @@
                     <form class="nobottommargin" action="{{ action('AuthenticationController@doLogin') }}"
                           method="post">
 
-                        <h3>Login to your Account</h3>
+                        <h3>Giriş Yapın</h3>
+
                         <div class="col_full">
                             <label for="login-form-username">Email:</label>
                             <input type="text" name="email" value="" class="form-control"/>
                         </div>
 
                         <div class="col_full">
-                            <label for="login-form-password">Password:</label>
+                            <label for="login-form-password">Parola:</label>
                             <input type="password" name="pass" value=""
                                    class="form-control"/>
                         </div>
 
-                        <div class="col_full nobottommargin">
-                            <button class="button button-3d nomargin" id="login-form-submit"
-                                    name="login-form-submit" type="submit" value="login">Login
-                            </button>
-                            <a href="{{ action('AuthenticationController@loginviainstagram') }}"
-                               class="button button-3d button-blue" id="login-form-submit"
-                               name="login-with-instagram">Instagram
-                            </a>
-                        </div>
+
+                            <div class="col_full nobottommargin">
+                                <button class="button button-3d" id="login-form-submit"
+                                        name="login-form-submit" type="submit" value="login">Giriş
+                                </button>
+                                <a href="{{ action('AuthenticationController@loginviainstagram') }}"
+                                   class="button button-3d button-blue" id="login-form-submit"
+                                   name="login-with-instagram">Instagram ile Giriş
+                                </a>
+                            </div>
+
                     </form>
                 </div>
 
@@ -65,7 +68,7 @@
                     <i class="fa fa-font"></i>
                 </span>
                                     <input type="text" class="form-control input-circle-right"
-                                           placeholder="Name" name="firstname">
+                                           placeholder="İsim" name="firstname">
                                 </div>
                             </div>
 
@@ -75,7 +78,7 @@
                                         <i class="fa fa-font"></i>
                                         </span>
                                     <input type="text" class="form-control input-circle-right"
-                                           placeholder="Surname" name="surname">
+                                           placeholder="Soyisim" name="surname">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -96,7 +99,7 @@
                                     </span>
                                     <input class="form-control placeholder-no-fix input-circle-right"
                                            type="password" autocomplete="off" id="register_password"
-                                           placeholder="Password" name="pass">
+                                           placeholder="Parolanız..." name="pass">
                                 </div>
                             </div>
 
@@ -107,7 +110,7 @@
                                     </span>
                                     <input class="form-control placeholder-no-fix input-circle-right"
                                            type="password" autocomplete="off" id="register_password"
-                                           placeholder="Re-type your password" name="rpass">
+                                           placeholder="Parolanızı doğrulayın..." name="rpass">
                                 </div>
                             </div>
 
@@ -117,18 +120,20 @@
                                     <i class="fa fa-phone"></i>
                                     </span>
                                     <input type="text" class="form-control input-circle-right"
-                                           placeholder="Phone" name="phone">
+                                           placeholder="05xx-xxx-xx-xx" name="phone">
                                 </div>
                             </div>
+
                             <div class="col_full nobottommargin">
                                 <button class="button button-3d button-green" id="login-form-submit"
-                                        name="login-form-submit" value="login">Sign Up
+                                        name="login-form-submit" value="login">Kaydol
                                 </button>
                                 <a href="{{ action('AuthenticationController@registercustomerviainstagram') }}"
                                    class="button button-3d button-blue" id="login-form-submit"
-                                   name="login-with-instagram">Signup with Instagram
+                                   name="login-with-instagram">Instagram ile kaydol
                                 </a>
                             </div>
+
                         </form>
                     </div>
 
@@ -139,7 +144,7 @@
                     <div class="acc_content clearfix">
                         <a href="{{ action('AuthenticationController@registersupplierviainstagram') }}"
                            class="button button-3d button-blue nomargin" name="register-form-submit">Instagram
-                            ile kayıt ol</a>
+                            ile kaydol</a>
 
                     </div>
 
