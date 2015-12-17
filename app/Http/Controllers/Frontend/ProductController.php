@@ -171,7 +171,7 @@ class ProductController extends Controller
 
                 }
                 if($wishedProducts=WishedProduct::where(['product_id'=>$id,'customer_id'=>$user->id])->first()){
-                    if($wishedProducts->count==1){
+                    if($wishedProducts->count==1 || $wishedProducts->count<=$quantity){
                         $wishedProducts->delete();
                     }else{
                         $wishedProducts->count-=$quantity;

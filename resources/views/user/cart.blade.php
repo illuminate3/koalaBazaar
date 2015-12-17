@@ -46,7 +46,7 @@
                         <?php $productObject=$product->product ;?>
                     <tr class="cart_item">
                         <td class="cart-product-remove">
-                            <a href="{{ action('Frontend\ProductController@removeFromCart',$product->product_id) }}" class="remove" title="Bu ürünü kaldır."><i class="icon-trash2"></i></a>
+                            <a href="{{ action('Frontend\ProductController@removeFromCart',['id'=>$product->product_id,'quantity'=>$product->count]) }}" class="remove" title="Bu ürünü kaldır."><i class="icon-trash2"></i></a>
                         </td>
 
                         <td class="cart-product-thumbnail">

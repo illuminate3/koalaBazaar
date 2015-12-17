@@ -125,7 +125,7 @@
                             </div>
 
                             <div class="col_full nobottommargin">
-                                <button class="button button-3d button-green" id="login-form-submit"
+                                <button class="button button-3d" id="login-form-submit"
                                         name="login-form-submit" value="login">Kaydol
                                 </button>
                                 <a href="{{ action('AuthenticationController@registercustomerviainstagram') }}"

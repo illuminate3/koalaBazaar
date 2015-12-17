@@ -250,7 +250,7 @@
 
                 <div class="col_full nobottommargin">
 
-                    <h4>Related Products</h4>
+                    <h4>İlgili Ürünler</h4>
 
                     <div id="oc-product" class="owl-carousel product-carousel">
                         @foreach($relatedProducts as $relatedProduct)

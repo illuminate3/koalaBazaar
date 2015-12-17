@@ -180,7 +180,7 @@
                     ============================================= -->
                     <div id="top-cart">
                         <a href="#" id="top-cart-trigger"><i
-                                    class="icon-shopping-cart"></i><span>{{ count(\Illuminate\Support\Facades\Auth::user()->userable->wishedProducts) }}</span></a>
+                                    class="icon-shopping-cart"></i><span>{{ \Illuminate\Support\Facades\Auth::user()->userable->wishedProducts()->sum('count') }}</span></a>
 
                         <div class="top-cart-content">
 
