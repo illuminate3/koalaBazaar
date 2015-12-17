@@ -18,25 +18,16 @@
                     <div class="flexslider">
                         <div class="slider-wrap">
                             <div class="slide">
-                                <a href="#">
-                                    <img src="{{asset('/user')}}/images/shop/slider/1.jpg" alt="Shop Image">
+                                <a href="{{ action('Frontend\ProductController@show',2) }}">
+                                    <img src="{{asset('/user')}}/images/shop/slider/5.jpg" alt="Shop Image">
                                 </a>
                             </div>
                             <div class="slide">
-                                <a href="#">
-                                    <img src="{{asset('/user')}}/images/shop/slider/2.jpg" alt="Shop Image">
+                                <a href="{{ action('Frontend\ProductController@show',1) }}">
+                                    <img src="{{asset('/user')}}/images/shop/slider/6.jpg" alt="Shop Image">
                                 </a>
                             </div>
-                            <div class="slide">
-                                <a href="#">
-                                    <img src="{{asset('/user')}}/images/shop/slider/3.jpg" alt="Shop Image">
-                                </a>
-                            </div>
-                            <div class="slide">
-                                <a href="#">
-                                    <img src="{{asset('/user')}}/images/shop/slider/4.jpg" alt="Shop Image">
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -46,11 +37,11 @@
             <div class="col_one_third bottommargin-lg col_last">
 
                 <div class="col_full bottommargin-sm">
-                    <a href="#"><img src="{{asset('/user')}}/images/shop/banners/7.jpg" alt="Image"></a>
+                    <a href="{{ action('Frontend\ProductController@show',5) }}"><img src="{{asset('/user')}}/images/shop/banners/13.jpg" alt="Image"></a>
                 </div>
 
                 <div class="col_full nobottommargin">
-                    <a href="#"><img src="{{asset('/user')}}/images/shop/banners/3.jpg" alt="Image"></a>
+                    <a href="{{ action('Frontend\ProductController@show',3) }}"><img src="{{asset('/user')}}/images/shop/banners/14.jpg" alt="Image"></a>
                 </div>
 
             </div>
