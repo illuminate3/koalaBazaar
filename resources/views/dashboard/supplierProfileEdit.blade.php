@@ -79,11 +79,11 @@
                                 <div class="form-group">
                                     <label class="control-label">Ülke</label>
                                     <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
-                                            name="country" >
+                                            name="country">
                                         <option value="">Select...</option>
-                                        <option value="TR" @if($user->userable->country=='TR')selected@endif>Türkiye</option>
-                                        <option value="FR" @if($user->userable->country=='FR')selected@endif >Fransa</option>
-                                        <option value="USA" @if($user->userable->country=='USA')selected@endif>Amerika Birleşik Devletleri</option>
+                                        <option value="TR" @if($user->userable->country=="TR") selected @endif>Türkiye</option>
+                                        <option value="FR" @if($user->userable->country=="FR") selected @endif>Fransa</option>
+                                        <option value="USA" @if($user->userable->country=="USA") selected @endif)>Amerika Birleşik Devletleri</option>
                                     </select>
                                 </div>
 
@@ -99,6 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="margiv-top-10">
                                     <button type="submit" class="btn default btn green">
                                         <i class="fa fa-check"></i> Profili Düzenle
