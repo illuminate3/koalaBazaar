@@ -147,6 +147,7 @@
                         <a href="{{action('Dashboard\PaymentInfoController@index')}}">
                             <i class="icon-credit-card"></i>
                             <span class="title">Ödeme Bilgilerim</span>
+                            <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
                             <li>

@@ -26,12 +26,10 @@
         <div class="portlet box blue">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-gift"></i>Adres Ekleyin
+                    <i class="fa fa-pencil"></i>Adres Ekleyin
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse" data-original-title="" title="">
-                    </a>
-                    <a href="javascript:;" class="reload" data-original-title="" title="">
                     </a>
                     <a href="javascript:;" class="remove" data-original-title="" title="">
                     </a>
@@ -41,12 +39,12 @@
                 <!-- BEGIN FORM-->
                 <form  action="{{action('Dashboard\AddressController@store')}}" method="post"class="horizontal-form">
                     <div class="form-body">
-                        <h3 class="form-section">Address</h3>
+                        <h3 class="form-section">Adresiniz</h3>
 
                         <div class="row">
                             <div class="col-md-4 ">
                                 <div class="form-group">
-                                    <label>Adress Name</label>
+                                    <label>Adres Adı</label>
                                     <input type="text" class="form-control" name="address_name" value="{{ old('address_name') }}">
                                 </div>
                             </div>
@@ -55,19 +53,19 @@
                         <div class="row">
                             <div class="col-md-4 ">
                                 <div class="form-group">
-                                    <label>Name</label>
+                                    <label>İsim</label>
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                 </div>
                             </div>
                             <div class="col-md-4 ">
                                 <div class="form-group">
-                                    <label>Surname</label>
+                                    <label>Soyisim</label>
                                     <input type="text" class="form-control" name="surname" value="{{ old('surname') }}">
                                 </div>
                             </div>
                             <div class="col-md-4 ">
                                 <div class="form-group">
-                                    <label>Phone Number</label>
+                                    <label>Telefon</label>
                                     <input type="text" class="form-control" name="phone_number" value="{{ old('phone_number') }}">
                                 </div>
                             </div>
@@ -77,7 +75,7 @@
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="form-group">
-                                    <label>Distinct</label>
+                                    <label>Semt</label>
                                     <input type="text" class="form-control" name="distinct" value="{{ old('distinct') }}">
                                 </div>
                             </div>
@@ -85,16 +83,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>City</label>
+                                    <label>Şehir</label>
                                     <input type="text" class="form-control" name="city" value="{{ old('city') }}">
                                 </div>
                             </div>
                             <!--/span-->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Country</label>
+                                    <label class="control-label">Ülke</label>
                                     <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1" name="country" value="{{ old('country') }}">
-                                        <option value="">Select...</option>
+                                        <option value="">Seçiniz...</option>
                                         <option value="TR">Türkiye</option>
                                         <option value="FR">Fransa</option>
                                         <option value="USA">Amerika Birleşik Devletleri</option>
@@ -106,7 +104,7 @@
                         <div class="row">
                             <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label">Address Detail</label>
+                                <label class="control-label">Adres Detayları</label>
                                 <textarea class="form-control" rows="3" name="address_detail" > {{ old('address_detail') }}</textarea>
                             </div>
                             </div>
@@ -116,14 +114,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Zip Code</label>
+                                    <label>Posta Kodu</label>
                                     <input type="text" class="form-control" name="zip_code" value="{{ old('zip_code') }}">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-actions right">
-                        <button type="button" class="btn default">Cancel</button>
                         <button type="submit" class="btn blue"><i class="fa fa-check"></i> Adresi Ekle</button>
                     </div>
                 </form>

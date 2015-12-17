@@ -4,10 +4,12 @@
 @endsection
 
 @section('page_level_styles')
-    <link href="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css"
+          rel="stylesheet" type="text/css">
     <link href="{{asset('/dashboard')}}/assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css">
     <link href="{{asset('/dashboard')}}/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css">
-    <link href="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet"
+          type="text/css">
 
 @endsection
 
@@ -36,7 +38,8 @@
                 <div class="portlet light profile-sidebar-portlet">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="{{$user->userable->profile_image}}" style="width: 125px; height: 125px;" align="center "class="img-responsive" alt="">
+                        <img src="{{$user->userable->profile_image}}" style="width: 125px; height: 125px;"
+                             align="center " class="img-responsive" alt="">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -45,14 +48,14 @@
                             {{$user->userable->shop_name}}
                         </div>
                         <div class="profile-usertitle-job">
-                          {{$user->userable->city}}
+                            {{$user->userable->city}}
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
                         <a href="https://www.instagram.com/{{$user->userable->shop_name}}">
-                        <button type="button" class="btn btn-circle green-haze btn-sm">Instagram'a git</button>
+                            <button type="button" class="btn btn-circle green-haze btn-sm">Instagram'a git</button>
                         </a>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->
@@ -89,7 +92,6 @@
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">GENEL BAKIŞ</span>
-                                    <span class="caption-helper">Son ürünleriniz...</span>
                                 </div>
                                 <div class="tools">
                                     <a href="javascript:;" class="collapse" data-original-title="" title="">
@@ -105,11 +107,11 @@
                                     <ul class="nav nav-tabs">
                                         <li class="active">
                                             <a href="#overview_1" data-toggle="tab" aria-expanded="true">
-                                                Top Selling </a>
+                                                Ürünleriniz </a>
                                         </li>
                                         <li class="">
-                                            <a href="#overview_3" data-toggle="tab" aria-expanded="false">
-                                                Customers </a>
+                                            <a href="#overview_2" data-toggle="tab" aria-expanded="false">
+                                                Onay Bekleyen Ödemeler </a>
                                         </li>
                                     </ul>
                                     <div class="tab-content">
@@ -131,156 +133,64 @@
                                                     <tbody>
 
                                                     @foreach ($products as $product)
-                                                    <tr>
-                                                        <td>
-                                                            <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">
-                                                                {{$product->title}} </a>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif"
+                                                                   class="fancybox-button" data-rel="fancybox-button">
+                                                                    {{$product->title}} </a>
 
-                                                        </td>
-                                                        <td>
-                                                            {{$product->price}}  {{$product->current_unit}} TL
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ action('Dashboard\ProductController@edit',$product->id)  }}" class="btn default btn-xs green-stripe">
-                                                                Düzenle </a>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                            <td>
+                                                                {{$product->price}}  {{$product->current_unit}} TRY
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ action('Dashboard\ProductController@edit',$product->id)  }}"
+                                                                   class="btn default btn-xs green-stripe">
+                                                                    Düzenle </a>
+                                                            </td>
+                                                        </tr>
                                                     @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="tab-pane" id="overview_3">
+                                        <div class="tab-pane" id="overview_2">
                                             <div class="table-responsive">
                                                 <table class="table table-striped table-hover table-bordered">
                                                     <thead>
                                                     <tr>
                                                         <th>
-                                                            Customer Name
+                                                            Müşteri İsmi
                                                         </th>
                                                         <th>
-                                                            Total Orders
-                                                        </th>
-                                                        <th>
-                                                            Total Amount
+                                                            Tutar
                                                         </th>
                                                         <th>
                                                         </th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="javascript:;">
-                                                                David Wilson </a>
-                                                        </td>
-                                                        <td>
-                                                            3
-                                                        </td>
-                                                        <td>
-                                                            $625.50
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                View </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="javascript:;">
-                                                                Amanda Nilson </a>
-                                                        </td>
-                                                        <td>
-                                                            4
-                                                        </td>
-                                                        <td>
-                                                            $12625.50
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                View </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="javascript:;">
-                                                                Jhon Doe </a>
-                                                        </td>
-                                                        <td>
-                                                            2
-                                                        </td>
-                                                        <td>
-                                                            $125.00
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                View </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="javascript:;">
-                                                                Bill Chang </a>
-                                                        </td>
-                                                        <td>
-                                                            45
-                                                        </td>
-                                                        <td>
-                                                            $12,125.70
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                View </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="javascript:;">
-                                                                Paul Strong </a>
-                                                        </td>
-                                                        <td>
-                                                            1
-                                                        </td>
-                                                        <td>
-                                                            $890.85
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                View </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="javascript:;">
-                                                                Jane Hilson </a>
-                                                        </td>
-                                                        <td>
-                                                            5
-                                                        </td>
-                                                        <td>
-                                                            $239.85
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                View </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="javascript:;">
-                                                                Patrick Walker </a>
-                                                        </td>
-                                                        <td>
-                                                            2
-                                                        </td>
-                                                        <td>
-                                                            $1239.85
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
-                                                                View </a>
-                                                        </td>
-                                                    </tr>
+                                                    @foreach($checkouts as $checkout)
+                                                        <?php $payment= \App\Payment::where('id',$checkout->payment_id)->first();?>
+
+                                                        <tr>
+                                                            <td class="highlight">
+                                                                <div class="success">
+                                                                </div>
+                                                                <a href="javascript:;">
+                                                                    {{ $payment->checkOuts()->first()->customer->user->name }} {{ $payment->checkOuts()->first()->customer->user->surname }}  </a>
+                                                            </td>
+                                                            <td>
+                                                                {{$checkout->total}} TRY
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{action('Dashboard\SupplierController@waitingPaymentDetail',$payment->id)}}" class="btn default btn-xs purple">
+
+                                                                    <i class="fa fa-edit"></i> İncele </a>
+                                                            </td>
+                                                        </tr>
+
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -323,7 +233,8 @@
 														Pending </span>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
+                                                            <a href="javascript:;"
+                                                               class="btn default btn-xs green-stripe">
                                                                 View </a>
                                                         </td>
                                                     </tr>
@@ -343,7 +254,8 @@
 														Pending </span>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
+                                                            <a href="javascript:;"
+                                                               class="btn default btn-xs green-stripe">
                                                                 View </a>
                                                         </td>
                                                     </tr>
@@ -363,7 +275,8 @@
 														Success </span>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
+                                                            <a href="javascript:;"
+                                                               class="btn default btn-xs green-stripe">
                                                                 View </a>
                                                         </td>
                                                     </tr>
@@ -383,7 +296,8 @@
 														In Process </span>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
+                                                            <a href="javascript:;"
+                                                               class="btn default btn-xs green-stripe">
                                                                 View </a>
                                                         </td>
                                                     </tr>
@@ -403,7 +317,8 @@
 														Success </span>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
+                                                            <a href="javascript:;"
+                                                               class="btn default btn-xs green-stripe">
                                                                 View </a>
                                                         </td>
                                                     </tr>
@@ -423,7 +338,8 @@
 														Canceled </span>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
+                                                            <a href="javascript:;"
+                                                               class="btn default btn-xs green-stripe">
                                                                 View </a>
                                                         </td>
                                                     </tr>
@@ -443,7 +359,8 @@
 														Success </span>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn default btn-xs green-stripe">
+                                                            <a href="javascript:;"
+                                                               class="btn default btn-xs green-stripe">
                                                                 View </a>
                                                         </td>
                                                     </tr>
@@ -473,24 +390,29 @@
                             </div>
                             <div class="portlet-body">
                                 <div data-spy="scroll" class="scrollspy-example">
-                                        <div class="general-item-list">
-                                            @foreach($comments as $comment)
-                                                <?php $commentObject=\App\Comment::where('id',$comment->comment_id)->first()?>
+                                    <div class="general-item-list">
+                                        @foreach($comments as $comment)
+                                            <?php $commentObject = \App\Comment::where('id', $comment->comment_id)->first()?>
                                             <div class="item">
                                                 <div class="item-head">
                                                     <div class="item-details">
-                                                        <img class="item-pic" src="{{ $commentObject->user->userable->instagramAccount->profile_picture  }}">
-                                                        <a href="" class="item-name primary-link">{{ $commentObject->user->name}}</a>
+                                                        <img class="item-pic"
+                                                             src="{{ $commentObject->user->userable->instagramAccount->profile_picture  }}">
+                                                        <a href=""
+                                                           class="item-name primary-link">{{ $commentObject->user->name}}</a>
                                                         <span class="item-label">{{ $commentObject->created_at }}</span>
                                                     </div>
-                                                    <span class="item-status"><a target="_blank" href="{{ action('Frontend\ProductController@show',$commentObject->commentable_id) }}"><span class="badge badge-empty badge-success"></span> Ürüne Git</a></span>
+                                                    <span class="item-status"><a target="_blank"
+                                                                                 href="{{ action('Frontend\ProductController@show',$commentObject->commentable_id) }}"><span
+                                                                    class="badge badge-empty badge-success"></span>
+                                                            Ürüne Git</a></span>
                                                 </div>
                                                 <div class="item-body">
-                                                 {{ $commentObject->comment_body }}
+                                                    {{ $commentObject->comment_body }}
                                                 </div>
                                             </div>
-                                            @endforeach
-                                        </div>
+                                        @endforeach
+                                    </div>
 
                                 </div>
                             </div>
@@ -503,21 +425,23 @@
         </div>
     </div>
 
-    @endsection
+@endsection
 
 @section('page_level_plugins')
 
-    <script src="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="{{asset('/dashboard')}}/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"
+            type="text/javascript"></script>
     <script src="{{asset('/dashboard')}}/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript"
+            src="{{asset('/dashboard')}}/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 
 @endsection
 
 @section('page_level_scripts')
     <script src="{{asset('/dashboard')}}/assets/admin/pages/scripts/profile.js" type="text/javascript"></script>
     <script>
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
             Profile.init(); // init page demo
         });
     </script>
-    @endsection
+@endsection

@@ -43,11 +43,11 @@
                         <tr role="row">
                             <th class="sorting_asc" tabindex="0" aria-controls="sample_3" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
 										 Username: activate to sort column ascending" style="width: 80px;">
-                                Address Name
+                                Adres Adı
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="sample_3" rowspan="1" colspan="1" aria-label="
 										 Email: activate to sort column ascending" style="width: 139px;">
-                                City
+                                Şehir
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="sample_3" rowspan="1" colspan="1" aria-label="
 										 Status: activate to sort column ascending" style="width: 73px;">

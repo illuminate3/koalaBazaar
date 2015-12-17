@@ -16,8 +16,6 @@
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
                         </a>
-                        <a href="javascript:;" class="reload">
-                        </a>
                         <a href="javascript:;" class="remove">
                         </a>
                     </div>
@@ -49,7 +47,7 @@
                                        {{$supplier->shop_name }} </a>
                                 </td>
                                 <td>
-                                    {{$checkout->total}} TL
+                                    {{$checkout->total}} TRY
                                 </td>
                                 <td>
                                     <a href="{{action('Dashboard\CustomerController@showOrderDetail',$supplier->id)}}" class="btn default btn-xs purple">

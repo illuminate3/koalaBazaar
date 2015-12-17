@@ -217,7 +217,7 @@
                             </div>
 
                             <div class="top-cart-action clearfix">
-                                <span class="fleft top-checkout-price">{{ $total }} try</span>
+                                <span class="fleft top-checkout-price">{{ $total }} TRY</span>
                             </div>
                         </div>
                     </div>

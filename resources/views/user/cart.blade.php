@@ -58,7 +58,7 @@
                         </td>
 
                         <td class="cart-product-price">
-                            <span class="amount">{{ $productObject->price }}</span>
+                            <span class="amount">{{ $productObject->price }} TRY</span>
                         </td>
 
                         <td class="cart-product-quantity">
@@ -70,7 +70,7 @@
                         </td>
 
                         <td class="cart-product-subtotal">
-                            <span class="amount">{{ $product->count*$productObject->price }}</span>
+                            <span class="amount">{{ $product->count*$productObject->price }} TRY</span>
                         </td>
                     </tr>
                     @endforeach
