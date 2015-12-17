@@ -112,7 +112,12 @@ class InstagramController extends Controller
 
                                     $relatedCategories=Category::where('keywords', 'LIKE', '%'.mb_strtolower($tag, 'UTF-8').'%')->get();
                                     foreach($relatedCategories as $relatedCategory){
-                                        $product->categories()->attach($relatedCategory);
+                                        if($product->categories()->where('id',$relatedCategory->id)->first()){
+
+                                        }else{
+
+                                            $product->categories()->attach($relatedCategory);
+                                        }
                                     }
                                 }
                                 $productInstagram = new ProductsInstagram();
