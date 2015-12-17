@@ -99,14 +99,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="control-label">Sosyal Bağlantılar</label>
-                                    <input type="text" placeholder="Facebook, Twitter, Instagram..."
-                                           class="form-control" name="social_links"
-                                           value="{{$user->userable->social_links}}">
-                                </div>
-
                                 <div class="margiv-top-10">
                                     <button type="submit" class="btn default btn green">
                                         <i class="fa fa-check"></i> Profili Düzenle
