@@ -1,5 +1,5 @@
 @extends('user.main')
-@section('title','Welcome to KoalaBazaar')
+@section('title','KoalaBazaar')
 @endsection
 
 @section('content')
@@ -62,131 +62,37 @@
         <div class="promo parallax promo-full bottommargin-lg"
              style="background-image: url('images/parallax/3.jpg');" data-stellar-background-ratio="0.4">
             <div class="container clearfix">
-                <h3>Get <span>30%</span> off on orders of $29 or more. Use Coupon: <span>SHOP30</span></h3>
-                <span>Sale available on selected Designer Brands that include Apparels, Footwear, Fashion Accessories &amp; Watches.</span>
-                <a href="#" class="button button-xlarge button-rounded">Start Shopping</a>
+                <h3>Instagram'da satış yapan butiklerle online alışveriş</h3>
+                <span>Sistemimize kayıtlı butiklerle keyifli alışverişler dileriz.</span>
+                <a href="{{ action('Frontend\HomeController@category') }}" class="button button-xlarge button-rounded">Alışverişe Başla</a>
             </div>
         </div>
 
         <div class="container clearfix">
 
-            <div class="col_one_third bottommargin-lg">
-                <div class="feature-box center media-box fbox-bg">
-                    <div class="fbox-media">
-                        <img src="{{asset('/user')}}/images/shop/banners/10.jpg" alt="Image">
-                    </div>
-                    <div class="fbox-desc">
-                        <h3>Men's Footwear<span class="subtitle">Flat 50% Off*</span></h3>
-
-                        <p><a href="#" class="btn btn-default">Shop Now</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col_one_third bottommargin-lg">
-                <div class="feature-box center media-box fbox-bg">
-                    <div class="fbox-media">
-                        <img src="{{asset('/user')}}/images/shop/banners/11.jpg" alt="Image">
-                    </div>
-                    <div class="fbox-desc">
-                        <h3>Latest Product Arrivals<span class="subtitle">New Dress Designs Available</span>
-                        </h3>
-
-                        <p><a href="#" class="btn btn-default">Check New Arrivals</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col_one_third bottommargin-lg col_last">
-                <div class="feature-box center media-box fbox-bg">
-                    <div class="fbox-media">
-                        <img src="{{asset('/user')}}/images/shop/banners/12.jpg" alt="Image">
-                    </div>
-                    <div class="fbox-desc">
-                        <h3>The Style Blog<span class="subtitle">Fashion Tips from Experts</span></h3>
-
-                        <p><a href="#" class="btn btn-default">Browse Videos</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="clear"></div>
 
             <div class="col_one_third nobottommargin">
 
                 <div class="fancy-title title-border">
-                    <h4>Recently Arrived</h4>
+                    <h4>Son Ürünler</h4>
                 </div>
 
                 <div>
-
+                    @foreach($recentlyArrivedProducts as $recentlyArrivedProduct)
                     <div class="spost clearfix">
                         <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/1.jpg" alt="Image"></a>
+                            <a href="{{ action('Frontend\ProductController@show',$recentlyArrivedProduct->id) }}"><img src="{{ action('FileEntryController@show',$recentlyArrivedProduct->image) }}" alt="Image"></a>
                         </div>
                         <div class="entry-c">
                             <div class="entry-title">
-                                <h4><a href="#">Blue Round-Neck Tshirt</a></h4>
+                                <h4><a href="{{ action('Frontend\ProductController@show',$recentlyArrivedProduct->id) }}">{{ $recentlyArrivedProduct->title }}</a></h4>
                             </div>
                             <ul class="entry-meta">
-                                <li class="color">$29.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star-half-full"></i></li>
+                                <li class="color">{{ $recentlyArrivedProduct->price }}try</li>
                             </ul>
                         </div>
                     </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/6.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Checked Short Dress</a></h4>
-                            </div>
-                            <ul class="entry-meta">
-                                <li class="color">$23.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star-half-full"></i> <i
-                                            class="icon-star-empty"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/7.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Light Blue Denim Dress</a></h4>
-                            </div>
-                            <ul class="entry-meta">
-                                <li class="color">$19.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star-empty"></i> <i
-                                            class="icon-star-empty"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/9.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Slim Fit Chinos</a></h4>
-                            </div>
-                            <ul class="entry-meta">
-                                <li class="color">$24.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star-empty"></i></li>
-                            </ul>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
 
@@ -195,78 +101,26 @@
             <div class="col_one_third nobottommargin">
 
                 <div class="fancy-title title-border">
-                    <h4>Popular Products</h4>
+                    <h4>Popüler Ürünler</h4>
                 </div>
 
                 <div>
 
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/3.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Round-Neck Tshirt</a></h4>
+                    @foreach($popularProducts as $populerProduct)
+                        <div class="spost clearfix">
+                            <div class="entry-image">
+                                <a href="{{ action('Frontend\ProductController@show',$populerProduct->id) }}"><img src="{{ action('FileEntryController@show',$populerProduct->image) }}" alt="Image"></a>
                             </div>
-                            <ul class="entry-meta">
-                                <li class="color">$15</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/10.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Green Trousers</a></h4>
+                            <div class="entry-c">
+                                <div class="entry-title">
+                                    <h4><a href="{{ action('Frontend\ProductController@show',$populerProduct->id) }}">{{ $populerProduct->title }}</a></h4>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li class="color">{{ $populerProduct->price }}try</li>
+                                </ul>
                             </div>
-                            <ul class="entry-meta">
-                                <li class="color">$19</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star-empty"></i> <i class="icon-star-empty"></i> <i
-                                            class="icon-star-empty"></i></li>
-                            </ul>
                         </div>
-                    </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/11.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Silver Chrome Watch</a></h4>
-                            </div>
-                            <ul class="entry-meta">
-                                <li class="color">$34.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star-half-full"></i> <i
-                                            class="icon-star-empty"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/4.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Black Polo Tshirt</a></h4>
-                            </div>
-                            <ul class="entry-meta">
-                                <li class="color">$17.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star-half-full"></i></li>
-                            </ul>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
 
@@ -275,78 +129,26 @@
             <div class="col_one_third nobottommargin col_last">
 
                 <div class="fancy-title title-border">
-                    <h4>Recommended for You</h4>
+                    <h4>Size Önerilenler</h4>
                 </div>
 
                 <div>
 
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/8.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Pink Printed Dress</a></h4>
+                    @foreach($recommendedProducts as $recommendedProduct)
+                        <div class="spost clearfix">
+                            <div class="entry-image">
+                                <a href="{{ action('Frontend\ProductController@show',$recommendedProduct->id) }}"><img src="{{ action('FileEntryController@show',$recommendedProduct->image) }}" alt="Image"></a>
                             </div>
-                            <ul class="entry-meta">
-                                <li class="color">$21</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star-half-full"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/5.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Blue Round-Neck Tshirt</a></h4>
+                            <div class="entry-c">
+                                <div class="entry-title">
+                                    <h4><a href="{{ action('Frontend\ProductController@show',$recommendedProduct->id) }}">{{ $recommendedProduct->title }}</a></h4>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li class="color">{{ $recommendedProduct->price }}try</li>
+                                </ul>
                             </div>
-                            <ul class="entry-meta">
-                                <li class="color">$19.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star-empty"></i> <i
-                                            class="icon-star-empty"></i></li>
-                            </ul>
                         </div>
-                    </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/12.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Men Aviator Sunglasses</a></h4>
-                            </div>
-                            <ul class="entry-meta">
-                                <li class="color">$14.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star-half-full"></i> <i class="icon-star-empty"></i> <i
-                                            class="icon-star-empty"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="#"><img src="{{asset('/user')}}/images/shop/small/2.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="#">Unisex Sunglasses</a></h4>
-                            </div>
-                            <ul class="entry-meta">
-                                <li class="color">$17.99</li>
-                                <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                            class="icon-star-half-full"></i></li>
-                            </ul>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
 

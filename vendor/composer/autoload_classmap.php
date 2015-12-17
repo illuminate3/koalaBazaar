@@ -24,7 +24,6 @@ return array(
     'CreatePaymentsTable' => $baseDir . '/database/migrations/2015_12_09_143117_create_payments_table.php',
     'CreateProductsInstagramsTable' => $baseDir . '/database/migrations/2015_10_22_191359_create_products_instagrams_table.php',
     'CreateProductsTable' => $baseDir . '/database/migrations/2015_10_22_190046_create_products_table.php',
-    'CreateRankingsTable' => $baseDir . '/database/migrations/2015_11_05_195211_create_rankings_table.php',
     'CreateSuppliersTable' => $baseDir . '/database/migrations/2015_10_21_145840_create_suppliers_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateWishedProductsTable' => $baseDir . '/database/migrations/2015_11_05_195128_create_wished_products_table.php',

@@ -25,10 +25,6 @@ class Product extends Model
         return $this->morphMany('App\Comment','commentable','commentable_type','commentable_id','id');
     }
 
-    public function rankings() {
-        return $this->morphMany('App\Ranking','rankable','rankable_type','rankable_id','id');
-    }
-
     public function currencyUnit(){
         return $this->hasOne('App\CurrencyUnit','id','currency_unit_id');
     }

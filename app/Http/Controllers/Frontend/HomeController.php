@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,10 @@ class HomeController extends Controller
     {
         $user=Auth::user();
         $suppliers=Supplier::take(10)->get();
-        return view('user.index',['user'=>$user,'suppliers'=>$suppliers]);
+        $popularProducts=Product::where('is_active',true)->orderBy(DB::raw('RAND()'))->limit(4)->get();
+        $recentlyArrivedProducts=Product::where('is_active',true)->orderBy(DB::raw('RAND()'))->limit(4)->get();
+        $recommendedProducts=Product::where('is_active',true)->orderBy(DB::raw('RAND()'))->limit(4)->get();
+        return view('user.index',['popularProducts'=>$popularProducts,'recentlyArrivedProducts'=>$recentlyArrivedProducts,'recommendedProducts'=>$recommendedProducts,'user'=>$user,'suppliers'=>$suppliers]);
         //
     }
 
