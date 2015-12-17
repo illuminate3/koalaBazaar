@@ -104,27 +104,33 @@ class ProductController extends Controller
                     return redirect()->back()->withErrors($validator);
                 }else{
                     $wishedProducts=$user->userable->wishedProducts;
-                    foreach($wishedProducts as $wishedProduct){
-                        if(CheckOut::create([
-                            'product_id'=>$wishedProduct->product->id,
-                            'customer_id'=>$user->id,
-                            'description'=>$wishedProduct->product->description,
-                            'customer_email'=>$user->email,
-                            'product_title'=>$wishedProduct->product->title,
-                            'product_price'=>$wishedProduct->product->price,
-                            'payment_id'=>null,
-                            'image'=>$wishedProduct->product->image,
-                            'current_unit'=>$wishedProduct->product->currency_unit_id,
-                            'supplier_id'=>$wishedProduct->product->supplier_id,
-                            'count'=>$wishedProduct->count,
-                            'receiver_address_id'=>$request->input('shipping_address'),
-                            'bill_address_id'=>($request->has('billing_address')) ? $request->input('billing_address') : null ,
-                        ])){
-                            $wishedProduct->delete();
-                        };
+                    if(count($wishedProducts)>0){
+                        foreach($wishedProducts as $wishedProduct){
+                            if(CheckOut::create([
+                                'product_id'=>$wishedProduct->product->id,
+                                'customer_id'=>$user->id,
+                                'description'=>$wishedProduct->product->description,
+                                'customer_email'=>$user->email,
+                                'product_title'=>$wishedProduct->product->title,
+                                'product_price'=>$wishedProduct->product->price,
+                                'payment_id'=>null,
+                                'image'=>$wishedProduct->product->image,
+                                'current_unit'=>$wishedProduct->product->currency_unit_id,
+                                'supplier_id'=>$wishedProduct->product->supplier_id,
+                                'count'=>$wishedProduct->count,
+                                'receiver_address_id'=>$request->input('shipping_address'),
+                                'bill_address_id'=>($request->has('billing_address')) ? $request->input('billing_address') : null ,
+                            ])){
+                                $wishedProduct->delete();
+                            };
+                        }
+
+                        return redirect()->action('Dashboard\CustomerController@showUnpaidOrders');
+                    }else{
+
+                        return redirect()->back()->withErrors(['messages'=>['Lütfen sepetinize ürün ekleyiniz']]);
                     }
 
-                    return redirect()->action('Dashboard\CustomerController@showUnpaidOrders');
 
 
 
@@ -135,8 +141,13 @@ class ProductController extends Controller
     public function showCheckOut(){
             $user=Auth::user();
                 $products=$user->userable->wishedProducts;
-                $addresses=$user->userable->addresses;
-                return view('user.checkout',['products'=>$products,'addresses'=>$addresses]);
+                if(count($products)>0){
+
+                    $addresses=$user->userable->addresses;
+                    return view('user.checkout',['products'=>$products,'addresses'=>$addresses]);
+                }else{
+                    return redirect()->back()->withErrors(['messages'=>['Sepetinize ürün eklemelisiniz']]);
+                }
 
 
 

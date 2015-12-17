@@ -1,5 +1,5 @@
-TestWorker:
-    type: worker
+TestCron:
+    type: cron
     script: htdocs/artisan
     args:
         - 'schedule:run'

@@ -32,4 +32,8 @@ class Product extends Model
     public function currencyUnit(){
         return $this->hasOne('App\CurrencyUnit','id','currency_unit_id');
     }
+
+    public function isActivable(){
+        return ($this->image==null || $this->title==null || $this->price==null || $this->currency_unit_id==null)?false:true;
+    }
 }
