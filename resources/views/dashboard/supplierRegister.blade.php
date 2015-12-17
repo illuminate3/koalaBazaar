@@ -47,13 +47,6 @@
 
 <!-- BEGIN BODY -->
 <body class="login">
-<!-- BEGIN LOGO -->
-<div class="logo">
-    <a href="index.html">
-        <img src="{{asset('/dashboard')}}/assets/admin/layout2/img/logo-big.png" alt=""/>
-    </a>
-</div>
-<!-- END LOGO -->
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 <div class="menu-toggler sidebar-toggler">
 </div>
