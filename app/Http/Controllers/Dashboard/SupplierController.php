@@ -128,11 +128,13 @@ class SupplierController extends Controller
     public function show()
     {
         $user = Auth::user();
-
-        $products = Product::where(['supplier_id' => $user->id])->get();
+        $products = Product::where(['supplier_id' => $user->id])->orderBy('created_at','desc')->take(5)->get();
         //  $products= Product::where(['supplier_id'=>$user->id,'is_active'=>'1'])->get();
+        $comments=DB::table('comments')->join('products',function($join){
+            $join->on('comments.commentable_id','=','products.id')->where('products.supplier_id','=',Auth::user()->id)->where('comments.commentable_type','=','App\Product');
 
-        return view('dashboard.supplierHomePage', ['user' => $user, 'products' => $products]);
+        })->select(DB::raw('comments.id as comment_id'))->orderBy('comments.created_at','desc')->take(5)->get();
+        return view('dashboard.supplierHomePage', ['user' => $user, 'products' => $products,'comments'=>$comments]);
     }
 
 

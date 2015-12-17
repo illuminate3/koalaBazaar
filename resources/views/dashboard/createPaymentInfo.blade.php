@@ -34,10 +34,6 @@
                 <div class="tools">
                     <a href="javascript:;" class="collapse" data-original-title="" title="">
                     </a>
-                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
-                    </a>
-                    <a href="javascript:;" class="reload" data-original-title="" title="">
-                    </a>
                     <a href="javascript:;" class="remove" data-original-title="" title="">
                     </a>
                 </div>
@@ -74,7 +70,6 @@
                         <!--/row-->
                     </div>
                     <div class="form-actions right">
-                        <button type="button" class="btn default">Cancel</button>
                         <button type="submit" class="btn blue"><i class="fa fa-check"></i> Ödeme Bilgisi Ekle</button>
                     </div>
                 </form>

@@ -68,48 +68,12 @@
                 <!-- PORTLET MAIN -->
                 <div class="portlet light">
                     <!-- STAT -->
-                    <div class="row list-separated profile-stat">
-                        <div class="col-md-4 col-sm-4 col-xs-6">
-                            <div class="uppercase profile-stat-title">
-                                37
-                            </div>
-                            <div class="uppercase profile-stat-text">
-                                Ürün
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-6">
-                            <div class="uppercase profile-stat-title">
-                                51
-                            </div>
-                            <div class="uppercase profile-stat-text">
-                                Tasks
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-6">
-                            <div class="uppercase profile-stat-title">
-                                61
-                            </div>
-                            <div class="uppercase profile-stat-text">
-                                Uploads
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- END STAT -->
                     <div>
                         <h4 class="profile-desc-title">{{$user->userable->shop_name}}</h4>
                         <span class="profile-desc-text"> {!!$user->userable->description !!} </span>
-                        <div class="margin-top-20 profile-desc-link">
-                            <i class="fa fa-globe"></i>
-                            <a href="http://www.keenthemes.com">www.keenthemes.com</a>
-                        </div>
-                        <div class="margin-top-20 profile-desc-link">
-                            <i class="fa fa-twitter"></i>
-                            <a href="http://www.twitter.com/keenthemes/">@keenthemes</a>
-                        </div>
-                        <div class="margin-top-20 profile-desc-link">
-                            <i class="fa fa-facebook"></i>
-                            <a href="http://www.facebook.com/keenthemes/">keenthemes</a>
-                        </div>
+
                     </div>
                 </div>
                 <!-- END PORTLET MAIN -->
@@ -125,14 +89,10 @@
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">GENEL BAKIŞ</span>
-                                    <span class="caption-helper">weekly stats...</span>
+                                    <span class="caption-helper">Son ürünleriniz...</span>
                                 </div>
                                 <div class="tools">
                                     <a href="javascript:;" class="collapse" data-original-title="" title="">
-                                    </a>
-                                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
-                                    </a>
-                                    <a href="javascript:;" class="reload" data-original-title="" title="">
                                     </a>
                                     <a href="javascript:;" class="fullscreen" data-original-title="" title="">
                                     </a>
@@ -151,29 +111,6 @@
                                             <a href="#overview_3" data-toggle="tab" aria-expanded="false">
                                                 Customers </a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                                                Orders <i class="fa fa-angle-down"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li>
-                                                    <a href="#overview_4" tabindex="-1" data-toggle="tab">
-                                                        Latest 10 Orders </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#overview_4" tabindex="-1" data-toggle="tab">
-                                                        Pending Orders </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#overview_4" tabindex="-1" data-toggle="tab">
-                                                        Completed Orders </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#overview_4" tabindex="-1" data-toggle="tab">
-                                                        Rejected Orders </a>
-                                                </li>
-                                            </ul>
-                                        </li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="overview_1">
@@ -186,9 +123,6 @@
                                                         </th>
                                                         <th>
                                                             Price
-                                                        </th>
-                                                        <th>
-                                                            Sold
                                                         </th>
                                                         <th>
                                                         </th>
@@ -204,10 +138,7 @@
 
                                                         </td>
                                                         <td>
-                                                            {{$product->price}}  {{$product->current_unit}}
-                                                        </td>
-                                                        <td>
-                                                            809
+                                                            {{$product->price}}  {{$product->current_unit}} TL
                                                         </td>
                                                         <td>
                                                             <a href="{{ action('Dashboard\ProductController@edit',$product->id)  }}" class="btn default btn-xs green-stripe">
@@ -537,111 +468,28 @@
                                     <i class="icon-bar-chart theme-font hide"></i>
                                     <i class="fa fa-users font-green-sharp"></i>
                                     <span class="caption-subject font-blue-madison bold">Müşteri Yorumları</span>
-                                    <span class="caption-helper">45 pending</span>
                                 </div>
-                                <div class="inputs">
-                                    <div class="portlet-input scroll input-inline input-small ">
-                                        <div class="input-icon right">
-                                            <i class="icon-magnifier"></i>
-                                            <input type="text" class="form-control form-control-solid" placeholder="search...">
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="portlet-body">
                                 <div data-spy="scroll" class="scrollspy-example">
                                         <div class="general-item-list">
+                                            @foreach($comments as $comment)
+                                                <?php $commentObject=\App\Comment::where('id',$comment->comment_id)->first()?>
                                             <div class="item">
                                                 <div class="item-head">
                                                     <div class="item-details">
-                                                        <img class="item-pic" src="{{asset('/dashboard')}}/assets/admin/layout3/img/avatar4.jpg">
-                                                        <a href="" class="item-name primary-link">Nick Larson</a>
-                                                        <span class="item-label">3 hrs ago</span>
+                                                        <img class="item-pic" src="{{ $commentObject->user->userable->instagramAccount->profile_picture  }}">
+                                                        <a href="" class="item-name primary-link">{{ $commentObject->user->name}}</a>
+                                                        <span class="item-label">{{ $commentObject->created_at }}</span>
                                                     </div>
-                                                    <span class="item-status"><span class="badge badge-empty badge-success"></span> Open</span>
+                                                    <span class="item-status"><a target="_blank" href="{{ action('Frontend\ProductController@show',$commentObject->commentable_id) }}"><span class="badge badge-empty badge-success"></span> Ürüne Git</a></span>
                                                 </div>
                                                 <div class="item-body">
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                 {{ $commentObject->comment_body }}
                                                 </div>
                                             </div>
-                                            <div class="item">
-                                                <div class="item-head">
-                                                    <div class="item-details">
-                                                        <img class="item-pic" src="{{asset('/dashboard')}}/assets/admin/layout3/img/avatar3.jpg">
-                                                        <a href="" class="item-name primary-link">Mark</a>
-                                                        <span class="item-label">5 hrs ago</span>
-                                                    </div>
-                                                    <span class="item-status"><span class="badge badge-empty badge-warning"></span> Pending</span>
-                                                </div>
-                                                <div class="item-body">
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat tincidunt ut laoreet.
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-head">
-                                                    <div class="item-details">
-                                                        <img class="item-pic" src="{{asset('/dashboard')}}/assets/admin/layout3/img/avatar6.jpg">
-                                                        <a href="" class="item-name primary-link">Nick Larson</a>
-                                                        <span class="item-label">8 hrs ago</span>
-                                                    </div>
-                                                    <span class="item-status"><span class="badge badge-empty badge-primary"></span> Closed</span>
-                                                </div>
-                                                <div class="item-body">
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-head">
-                                                    <div class="item-details">
-                                                        <img class="item-pic" src="{{asset('/dashboard')}}/assets/admin/layout3/img/avatar7.jpg">
-                                                        <a href="" class="item-name primary-link">Nick Larson</a>
-                                                        <span class="item-label">12 hrs ago</span>
-                                                    </div>
-                                                    <span class="item-status"><span class="badge badge-empty badge-danger"></span> Pending</span>
-                                                </div>
-                                                <div class="item-body">
-                                                    Consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-head">
-                                                    <div class="item-details">
-                                                        <img class="item-pic" src="{{asset('/dashboard')}}/assets/admin/layout3/img/avatar9.jpg">
-                                                        <a href="" class="item-name primary-link">Richard Stone</a>
-                                                        <span class="item-label">2 days ago</span>
-                                                    </div>
-                                                    <span class="item-status"><span class="badge badge-empty badge-danger"></span> Open</span>
-                                                </div>
-                                                <div class="item-body">
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, ut laoreet dolore magna aliquam erat volutpat.
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-head">
-                                                    <div class="item-details">
-                                                        <img class="item-pic" src="{{asset('/dashboard')}}/assets/admin/layout3/img/avatar8.jpg">
-                                                        <a href="" class="item-name primary-link">Dan</a>
-                                                        <span class="item-label">3 days ago</span>
-                                                    </div>
-                                                    <span class="item-status"><span class="badge badge-empty badge-warning"></span> Pending</span>
-                                                </div>
-                                                <div class="item-body">
-                                                    Lorem ipsum dolor sit amet, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-head">
-                                                    <div class="item-details">
-                                                        <img class="item-pic" src="{{asset('/dashboard')}}/assets/admin/layout3/img/avatar2.jpg">
-                                                        <a href="" class="item-name primary-link">Larry</a>
-                                                        <span class="item-label">4 hrs ago</span>
-                                                    </div>
-                                                    <span class="item-status"><span class="badge badge-empty badge-success"></span> Open</span>
-                                                </div>
-                                                <div class="item-body">
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
 
                                 </div>
