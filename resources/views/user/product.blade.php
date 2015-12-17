@@ -90,25 +90,25 @@
                             <!-- Product Single - Short Description End -->
 
 
-                            <!-- Product Single - Share
+                            <!-- Product Single - ss
                             ============================================= -->
                             <div class="si-share noborder clearfix">
                                 <span>Share:</span>
 
                                 <div>
-                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{action('Frontend\ProductController@show',$product->id)}}" class="social-icon si-borderless si-facebook">
+                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(action('Frontend\ProductController@show',$product->id))}}" class="social-icon si-borderless si-facebook">
                                         <i class="icon-facebook"></i>
                                         <i class="icon-facebook"></i>
                                     </a>
-                                    <a target="_blank" href="https://twitter.com/home?status={{action('Frontend\ProductController@show',$product->id)}}" class="social-icon si-borderless si-twitter">
+                                    <a target="_blank" href="https://twitter.com/home?status={{urlencode(action('Frontend\ProductController@show',$product->id))}}" class="social-icon si-borderless si-twitter">
                                         <i class="icon-twitter"></i>
                                         <i class="icon-twitter"></i>
                                     </a>
-                                    <a target="_blank" href="http://pinterest.com/pin/create/button/?url={{action('Frontend\ProductController@show',$product->id)}}&description={{$product->title}}&media={{ action('FileEntryController@show',$product->image) }}" class="social-icon si-borderless si-pinterest">
+                                    <a target="_blank" href="http://pinterest.com/pin/create/button/?url={{urlencode(action('Frontend\ProductController@show',$product->id))}}&description={{$product->title}}&media={{ action('FileEntryController@show',$product->image) }}" class="social-icon si-borderless si-pinterest">
                                         <i class="icon-pinterest"></i>
                                         <i class="icon-pinterest"></i>
                                     </a>
-                                    <a target="_blank" href="https://plus.google.com/share?url={{action('Frontend\ProductController@show',$product->id)}}" class="social-icon si-borderless si-gplus">
+                                    <a target="_blank" href="https://plus.google.com/share?url={{urlencode(action('Frontend\ProductController@show',$product->id))}}" class="social-icon si-borderless si-gplus">
                                         <i class="icon-gplus"></i>
                                         <i class="icon-gplus"></i>
                                     </a>

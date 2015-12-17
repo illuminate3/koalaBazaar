@@ -1,7 +1,12 @@
 @extends('user.main')
-@section('title','Shop')
-@endsection
+@section('title',$supplier->shop_name)
 
+@endsection
+@section('page_level_head')
+    <meta property="og:title" content="{{$supplier->shop_name}}">
+    <meta property="og:url" content="{{urlencode(action('Frontend\HomeController@shopDetail',$supplier->id))}}">
+    <meta property="og:image" content="{{ action('FileEntryController@show',$supplier->profile_image) }}">
+@endsection
 @section('content')
 
 
@@ -49,27 +54,23 @@
                         <span>Share:</span>
 
                         <div>
-                            <a href="#" class="social-icon si-borderless si-facebook">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(action('Frontend\HomeController@shopDetail',$supplier->id))}}" class="social-icon si-borderless si-facebook">
                                 <i class="icon-facebook"></i>
                                 <i class="icon-facebook"></i>
                             </a>
-                            <a href="#" class="social-icon si-borderless si-twitter">
+                            <a target="_blank" href="https://twitter.com/home?status={{urlencode(action('Frontend\HomeController@shopDetail',$supplier->id))}}" class="social-icon si-borderless si-twitter">
                                 <i class="icon-twitter"></i>
                                 <i class="icon-twitter"></i>
                             </a>
-                            <a href="#" class="social-icon si-borderless si-pinterest">
+                            <a target="_blank" href="http://pinterest.com/pin/create/button/?url={{urlencode(action('Frontend\HomeController@shopDetail',$supplier->id))}}&description={{$supplier->shop_name}}&media={{ action('FileEntryController@show',$supplier->profile_image) }}" class="social-icon si-borderless si-pinterest">
                                 <i class="icon-pinterest"></i>
                                 <i class="icon-pinterest"></i>
                             </a>
-                            <a href="#" class="social-icon si-borderless si-gplus">
+                            <a target="_blank" href="https://plus.google.com/share?url={{urlencode(action('Frontend\HomeController@shopDetail',$supplier->id))}}" class="social-icon si-borderless si-gplus">
                                 <i class="icon-gplus"></i>
                                 <i class="icon-gplus"></i>
                             </a>
-                            <a href="#" class="social-icon si-borderless si-rss">
-                                <i class="icon-rss"></i>
-                                <i class="icon-rss"></i>
-                            </a>
-                            <a href="#" class="social-icon si-borderless si-email3">
+                            <a target="_blank" href="mailto:someone@example.com?body={{action('Frontend\HomeController@shopDetail',$supplier->id)}}&subject={{$supplier->shop_name}}" class="social-icon si-borderless si-email3">
                                 <i class="icon-email3"></i>
                                 <i class="icon-email3"></i>
                             </a>
@@ -122,14 +123,6 @@
                                                 <div class="product-price">
                                                     <ins>{{ $item->price }} {{ $item->currencyUnit->unit_short_name }}</ins>
                                                 </div>
-                                                <div class="product-rating">
-                                                    <i class="icon-star3"></i>
-                                                    <i class="icon-star3"></i>
-                                                    <i class="icon-star3"></i>
-                                                    <i class="icon-star3"></i>
-                                                    <i class="icon-star-half-full"></i>
-
-                                                </div>
                                             </div>
                                         </div>
                                     @endforeach
@@ -157,19 +150,6 @@
                             ============================================= -->
                             <div class="sidebar nobottommargin">
                                 <div class="sidebar-widgets-wrap">
-
-                                    <div class="widget widget_links clearfix">
-
-                                        <h4>Ürün Kategorileri</h4>
-                                        <ul>
-                                            @foreach(\App\Category::all() as $singleCategory)
-                                                <li>
-                                                    <a href="{{ action('Frontend\HomeController@category',$singleCategory->slug) }}">{{ $singleCategory->title }}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-
-                                    </div>
 
                                     <div class="widget clearfix">
 
