@@ -127,6 +127,7 @@
                         <a href="{{action('Dashboard\CustomerController@edit')}}">
                             <i class="icon-user"></i>
                             <span class="title">Profilim</span>
+                            <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
                             <li>

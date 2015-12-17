@@ -134,7 +134,9 @@ class SupplierController extends Controller
             $join->on('comments.commentable_id','=','products.id')->where('products.supplier_id','=',Auth::user()->id)->where('comments.commentable_type','=','App\Product');
 
         })->select(DB::raw('comments.id as comment_id'))->orderBy('comments.created_at','desc')->take(5)->get();
-        return view('dashboard.supplierHomePage', ['user' => $user, 'products' => $products,'comments'=>$comments]);
+        $checkouts=DB::table('check_outs')->select('payment_id',DB::raw('sum(product_price * count) as total'))->groupBy('payment_id')->where(['supplier_id'=>$user->id,'confirmed_by_supplier'=>0])->whereNotNull('payment_id')->orderBy('created_at','desc')->take(5)->get();
+
+        return view('dashboard.supplierHomePage', ['user' => $user, 'products' => $products,'comments'=>$comments,'checkouts'=>$checkouts]);
     }
 
 

@@ -137,10 +137,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <label class="control-label col-md-3">Ürün Açıklaması:</label>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Ürün Açıklaması:</label>
 
-                                            <div class="col-md-12">
+                                            <div class="col-md-10">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <textarea class="wysihtml5 form-control" name="description"

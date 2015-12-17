@@ -97,7 +97,7 @@
                                 </td>
 
                                 <td class="cart-product-subtotal">
-                                    <span class="amount">{{ $product->count*$productObject->price }}</span>
+                                    <span class="amount">{{ $product->count*$productObject->price }} TRY</span>
                                 </td>
                             </tr>
                                 <?php $cartTotal+=$product->count*$productObject->price ;?>
@@ -122,7 +122,7 @@
 
                                 <td class="cart-product-name">
                                     <span class="amount color lead">
-                                       <strong>{{$cartTotal}}</strong>
+                                       <strong>{{$cartTotal}} TRY</strong>
                                     </span>
                                 </td>
                             </tr>

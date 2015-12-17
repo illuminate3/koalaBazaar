@@ -59,13 +59,13 @@
                                         <img class="img-responsive" src="@if($order->product->image!=null) {{ action('FileEntryController@show',$order->product->image)}}@else {{$order->product->instagram->image_url}}  @endif" style="width: 100px;" alt="">
                                     </td>
                                     <td>
-                                        {{$order->product->price}}
+                                        {{$order->product->price}} TRY
                                     </td>
                                     <td>
                                         {{$order->count}}
                                     </td>
                                     <td>
-                                        {{$order->product->price * $order->count }}
+                                        {{$order->product->price * $order->count }} TRY
                                     </td>
                                 </tr>
                                 @endforeach
