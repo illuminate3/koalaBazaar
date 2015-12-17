@@ -121,10 +121,10 @@
                                                     <thead>
                                                     <tr>
                                                         <th>
-                                                            Product Name
+                                                            Ürün Adı
                                                         </th>
                                                         <th>
-                                                            Price
+                                                            Fiyatı
                                                         </th>
                                                         <th>
                                                         </th>
