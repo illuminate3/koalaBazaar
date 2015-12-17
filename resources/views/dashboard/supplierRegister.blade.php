@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
-Version: 4.1.0
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]>
@@ -20,7 +9,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>Metronic | Login Options - Login Form 4</title>
+    <title>Koalabazaar Mağaza Kayıt Formu</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -164,7 +153,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-    2014 &copy; Metronic - Admin Dashboard Template.
+    2015 &copy; Koalabazaar.
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
