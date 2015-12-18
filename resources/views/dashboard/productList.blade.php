@@ -72,7 +72,7 @@
                                                 {{$product->title}} </a>
                                         </td>
                                         <td>
-                                            {{$product->description}}
+                                            {!!$product->description!!}
                                         </td>
                                         <td>
                                             <a href="@if($product->image!=null) {{ action('FileEntryController@show',$product->image)}}@else {{$product->instagram->image_url}}  @endif" class="fancybox-button" data-rel="fancybox-button">
