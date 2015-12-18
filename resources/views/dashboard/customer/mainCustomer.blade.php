@@ -91,7 +91,7 @@
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
                                 <a href="{{ action('AuthenticationController@doLogout') }}">
-                                    <i class="icon-key"></i> Log Out </a>
+                                    <i class="icon-key"></i> Çıkış Yap </a>
                             </li>
                         </ul>
                     </li>
