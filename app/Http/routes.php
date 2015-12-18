@@ -16,7 +16,15 @@ use App\CustomClasses\InstagramAPI;
 
 Route::get('/', 'Frontend\HomeController@index');
 Route::get('kategori/{slug?}', 'Frontend\HomeController@category');
+Route::get('test',function(){
+    $text="asdsadfgdsfhgfnjshkgdsfdjfakdşslfjdsapdksjdgjfksjaodfskjasdfjkakjdfasjksd";
+    if(strlen($text)>20){
+        echo substr($text,0,20).'...';
+    }else{
+    echo $text;
+    }
 
+});
 Route::group(['prefix' => 'urun'], function () {
 
     Route::group(['middleware' => ['auth', 'customer']], function () {
