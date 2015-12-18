@@ -83,7 +83,7 @@
                                         <option value="">Select...</option>
                                         <option value="TR" @if($user->userable->country=="TR") selected @endif>Türkiye</option>
                                         <option value="FR" @if($user->userable->country=="FR") selected @endif>Fransa</option>
-                                        <option value="USA" @if($user->userable->country=="USA") selected @endif)>Amerika Birleşik Devletleri</option>
+                                        <option value="USA" @if($user->userable->country=="USA") selected @endif>Amerika Birleşik Devletleri</option>
                                     </select>
                                 </div>
 
