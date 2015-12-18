@@ -53,7 +53,7 @@
                                             {{$order->product->title}} </a>
                                     </td>
                                     <td>
-                                        {{$order->product->description}}
+                                        {!! $order->product->description !!}
                                     </td>
                                     <td>
                                         <img class="img-responsive" src="@if($order->product->image!=null) {{ action('FileEntryController@show',$order->product->image)}}@else {{$order->product->instagram->image_url}}  @endif" style="width: 100px;" alt="">
