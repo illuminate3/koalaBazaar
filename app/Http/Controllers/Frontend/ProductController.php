@@ -218,7 +218,7 @@ class ProductController extends Controller
                     break;
                 }else{
                     foreach($category->products()->limit(5)->get() as $productOfCategory){
-                        if($productOfCategory->id!=$id && $productOfCategory->is_active=1){
+                        if($productOfCategory->id!=$id && $productOfCategory->is_active==1){
 
                             $relatedProducts[]=$productOfCategory;
                         }
