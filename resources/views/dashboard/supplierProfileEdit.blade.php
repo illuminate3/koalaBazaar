@@ -163,7 +163,7 @@
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
                 <div class="profile-userbuttons">
-                    <a href="https://www.instagram.com/{{$user->userable->shop_name}}">
+                    <a href="https://www.instagram.com/{{$user->userable->instagramAccount->username}}">
                         <button type="button" class="btn btn-circle green-haze btn-sm">Instagram'a git</button>
                     </a>
                 </div>
