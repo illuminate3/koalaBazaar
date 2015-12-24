@@ -172,10 +172,7 @@
                                                         <ul class="entry-meta">
 
                                                             <li class="color">{{ $product->price }} {{ $product->currencyUnit->unit_short_name }}</li>
-                                                            <li><i class="icon-star3"></i> <i class="icon-star3"></i> <i
-                                                                        class="icon-star3"></i> <i
-                                                                        class="icon-star3"></i> <i
-                                                                        class="icon-star-half-full"></i></li>
+
 
                                                         </ul>
                                                     </div>
