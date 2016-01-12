@@ -1,0 +1,373 @@
+<html lang="en" hola_ext_inject="disabled"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Portfolio | Esercomak.com</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        html{
+            background:url(img/pattern.png);
+            opacity: 0.65;
+        }
+        body{
+            font-family: 'MuseoCustom', 'Century Gothic', Arial, Helvetica, sans-serif;
+        }
+        .marginBottom{
+            margin-bottom:11%
+        }
+        .jumbotron{
+            background-color: black;
+            color: silver;
+            border-color: white;
+            padding-bottom: 5px;
+            margin-bottom: 0;
+        }
+        .jumbotron h1 {
+            font-size:34px;
+        }
+        .jumbotron p{
+            margin-bottom:0px;
+        }
+        #welcomeH{
+            font-size:27px;
+            color:darkcyan;
+        }
+        #welcomeP{
+            color:#478DB1;
+        }
+        .navbar-inverse {
+            background-color:steelblue;
+            color:tomato;
+            border-bottom: solid;
+        }
+        .navbar-nav>li {
+            border-left-style: solid;
+            border-color: silver;
+        }
+        .navbar-inverse .navbar-nav>li>a:hover{
+            background-color:turquoise;
+        }
+        .navbar-inverse .navbar-nav>li>a:active{
+            background-color: #080808;
+        }
+        .navbar-inverse .navbar-nav>li>a{
+            color:white;
+        }
+        ul.nav.navbar-nav {
+            margin: 0 auto;
+            display: table;
+            float: none;
+        }
+        .headerP{
+            font-size:21px;
+            margin-bottom:15px;
+        }
+        .borderNone{
+            border:none!important;
+        }
+        .articleImg{
+        }
+        .ulTag{
+            color: white;
+            font-size: 30px;
+            padding-right: 20px;
+            line-height: 1.7;
+        }
+        form.navbar-form.navbar-right{
+            padding-top: 9px;
+            margin: 0 auto;
+        }
+
+        .footer{
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: white;
+        }
+        .text-primary {
+            font-size:15px;
+        }
+        .portfolioBox{
+            height: 300px;
+            width: 400px;
+            background-color:rgba(128, 128, 128, 0.26);;
+            border-color:silver;
+            border-style:solid;
+        }
+        .portfolioBox:hover{
+            height: 300px;
+            width: 400px;
+            background-color:rgba(128, 128, 128, 0.13);
+            border:none;
+            color:black;
+        }
+        .portfolioBox>h2{
+            text-align:center;
+            line-height:8;
+        }
+        .portfolioBox>h2:hover{
+            text-align:center;
+            line-height:8.3;
+        }
+        .reviewBox{
+            height: 300px;
+            width: 400px;
+            background-color:rgba(128, 128, 128, 0.26);;
+            border-color:silver;
+            border-style:solid;
+        }
+        .reviewBox:hover{
+            height: 300px;
+            width: 400px;
+            background-color:rgba(128, 128, 128, 0.13);
+            border:none;
+            color:black;
+        }
+        .reviewBox>h2{
+            text-align:center;
+            line-height:8;
+        }
+        .reviewBox>h2:hover{
+            text-align:center;
+            line-height:8.3;
+        }
+        .portfolioFullBox{
+            background-color: rgba(128, 128, 128, 0.26);
+            border-color: silver;
+            border-style: solid;
+            height:400px;
+        }
+
+        @media  screen and (max-width: 1200px) {
+            .portfolioBox{
+                height: 250px;
+                width: 350px;
+                background-color:rgba(128, 128, 128, 0.26);;
+                border-color:silver;
+                border-style:solid;
+            }
+            .portfolioBox:hover{
+                height: 250px;
+                width: 350px;
+                background-color:rgba(128, 128, 128, 0.13);
+                border:none;
+                color:black;
+            }
+            .portfolioBox>h2{
+                text-align:center;
+                line-height:6.5;
+            }
+            .portfolioBox>h2:hover{
+                text-align:center;
+                line-height:6.8;
+            }
+            .reviewBox{
+                height: 250px;
+                width: 350px;
+                background-color:rgba(128, 128, 128, 0.26);;
+                border-color:silver;
+                border-style:solid;
+            }
+            .reviewBox:hover{
+                height: 250px;
+                width: 350px;
+                background-color:rgba(128, 128, 128, 0.13);
+                border:none;
+                color:black;
+            }
+            .reviewBox>h2{
+                text-align:center;
+                line-height:6.5;
+            }
+            .reviewBox>h2:hover{
+                text-align:center;
+                line-height:6.8;
+            }
+        }
+        @media  screen and (max-width: 990px) {
+            .ulTag{
+                font-size:20px;
+                line-height: 2.4;
+            }
+            .portfolioBox{
+                margin:0 auto!important;
+                height: 100px;
+                width: 80%;
+                background-color:rgba(128, 128, 128, 0.26);;
+                border-color:silver;
+                border-style:solid;
+            }
+            .portfolioBox:hover{
+                margin:0 auto!important;
+                height: 100px;
+                width: 80%;
+                background-color:rgba(128, 128, 128, 0.13);
+                border-color:silver;
+                border-style:solid;
+                color:black;
+            }
+            .portfolioBox>h2{
+                text-align:center;
+                line-height:1.5;
+            }
+            .portfolioBox>h2:hover{
+                text-align:center;
+                line-height:1.5!important;
+            }
+            .reviewBox{
+                float:none!important;
+                margin:0 auto!important;
+                height: 100px;
+                width: 80%;
+                background-color:rgba(128, 128, 128, 0.26);;
+                border-color:silver;
+                border-style:solid;
+            }
+            .reviewBox:hover{
+                float:none!important;
+                margin:0 auto!important;
+                height: 100px;
+                width: 80%;
+                background-color:rgba(128, 128, 128, 0.13);
+                border-color:silver;
+                border-style:solid;
+                color:black;
+            }
+            .reviewBox>h2{
+                text-align:center;
+                line-height:1.5;
+            }
+            .reviewBox>h2:hover{
+                text-align:center;
+                line-height:1.5!important;
+            }
+        }
+
+        @media  screen and (max-width: 770px) {
+            img{
+                width:300px;
+                height:150px;
+            }
+            .jumbotron h1{
+                font-size:24px;
+            }
+            #welcomeH {
+                font-size:22px;
+            }
+            .ulTag{
+                display:none!important;
+            }
+            .nav>li{
+                display: table-cell;
+            }
+        }
+
+    </style>
+    <style type="text/css"></style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+        .en-markup-crop-options {
+            top: 18px !important;
+            left: 50% !important;
+            margin-left: -100px !important;
+            width: 200px !important;
+            border: 2px rgba(255,255,255,.38) solid !important;
+            border-radius: 4px !important;
+        }
+
+        .en-markup-crop-options div div:first-of-type {
+            margin-left: 0px !important;
+        }
+    </style></head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>&lt;h1&gt;<span id="welcomeH">Web Design&amp;Development</span>&lt;/h1&gt;</h1>
+        <div class="headerP">&lt;p&gt;<br><p style="margin-left:40px;">On this page you will find information about my works so far!</p>&lt;/p&gt;
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container ">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav">
+                <li class="ulTag borderNone">&lt;ul&gt;</li>
+                <li class="borderNone"><a href="index.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="active"><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="ulTag borderNone">&lt;/ul&gt;</li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<div class="container marginBottom">
+    <!-- Example row of columns -->
+    <div class="row" style="padding-bottom:11%;margin-top:5%">
+        <div class="col-md-6 portfolioBox" style="margin-left: 10%; display: none;">
+            <h2>Portfolio</h2>
+        </div>
+        <div class="col-md-6 reviewBox" style="margin: 0px auto; float: none; width: 100%;">
+            <h2>Reviews</h2>
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-primary">
+            Copyright © 2016, esercomak.com
+        </p>
+    </div>
+</footer>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script>
+
+
+    $(".portfolioBox").click(function(){
+        $(".reviewBox").hide("drop",{direction:"right"},500);
+        $(this).css("margin","0 auto");
+        $(this).animate({width:"100%"},1000);
+    });
+
+    $(".reviewBox").click(function(){
+        $(".portfolioBox").hide();
+        $(this).css({"margin":"0 auto","float":"none"});
+        $(this).animate({width:"100%"},1000,function(){
+            $(this).html();
+
+        });
+    });
+
+</script>
+
+</body></html>

@@ -1,0 +1,346 @@
+<?php $__env->startSection('page_level_head'); ?>
+    <meta property="og:title" content="<?php echo e($product->title); ?>">
+    <meta property="og:url" content="<?php echo e(action('Frontend\ProductController@show',$product->id)); ?>">
+    <meta property="og:image" content="<?php echo e(action('FileEntryController@show',$product->image)); ?>">
+    <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title','Urun'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+    <section id="content" style="margin-bottom: 0px;">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+                <?php if($errors->has()): ?>
+                    <?php foreach($errors->all() as $error): ?>
+                        <div class="alert alert-danger">
+                            <?php echo e($error); ?>
+
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+                <?php if(\Illuminate\Support\Facades\Session::has('success')): ?>
+                    <?php foreach(\Illuminate\Support\Facades\Session::pull('success') as $success): ?>
+                        <div class="alert alert-success">
+                            <?php echo e($success); ?>
+
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <div class="single-product">
+
+                    <div class="product">
+
+                        <div class="col_two_fifth">
+
+                            <!-- Product Single - Gallery
+                            ============================================= -->
+                            <div class="product-image">
+                                <a href="<?php if($product->image!=null): ?> <?php echo e(action('FileEntryController@show',$product->image)); ?><?php else: ?> <?php echo e($product->instagram->image_url); ?>  <?php endif; ?>"
+                                   class="fancybox-button" data-rel="fancybox-button">
+                                    <img class="img-responsive"
+                                         src="<?php if($product->image!=null): ?> <?php echo e(action('FileEntryController@show',$product->image)); ?><?php else: ?> <?php echo e($product->instagram->image_url); ?> <?php endif; ?>"
+                                         alt="">
+                                </a>
+
+                            </div>
+                            <!-- Product Single - Gallery End -->
+
+                        </div>
+
+                        <div class="col_two_fifth product-desc">
+
+                            <!-- Product Single - Price
+                            ============================================= -->
+                            <div class="product-price">
+
+                                <ins><?php echo e($product->price); ?> <?php echo e($product->currencyUnit->unit_short_name); ?></ins>
+                            </div>
+                            <!-- Product Single - Price End -->
+
+
+                            <div class="clear"></div>
+                            <div class="line"></div>
+
+                            <!-- Product Single - Quantity & Cart Button
+                            ============================================= -->
+                            <form class="cart nobottommargin clearfix" action="<?php echo e(action('Frontend\ProductController@addToCart',$product->id)); ?>" method="get">
+                                <div class="quantity clearfix">
+                                    <input type="button" onclick="$('#quantity').val( function(i, oldval) { return (oldval>1)?  --oldval :  oldval;})" value="-" class="minus">
+                                    <input type="text" id="quantity" step="1" min="1" name="quantity" value="1" title="Qty"
+                                           class="qty" size="4">
+                                    <input type="button" onclick="$('#quantity').val( function(i, oldval) {return ++oldval;})" value="+" class="plus">
+                                </div>
+                                <button type="submit" class="add-to-cart button nomargin">Sepete Ekle</button>
+                            </form>
+                            <!-- Product Single - Quantity & Cart Button End -->
+
+                            <div class="clear"></div>
+                            <div class="line"></div>
+
+                            <!-- Product Single - Short Description
+                            ============================================= -->
+                            <p><?php echo e($product->title); ?></p>
+
+                            <p><?php echo $product->description; ?> </p>
+                            <!-- Product Single - Short Description End -->
+
+
+                            <!-- Product Single - Share
+                            ============================================= -->
+                            <div class="si-share noborder clearfix">
+                                <span>Share:</span>
+
+                                <div>
+                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo e(action('Frontend\ProductController@show',$product->id)); ?>" class="social-icon si-borderless si-facebook">
+                                        <i class="icon-facebook"></i>
+                                        <i class="icon-facebook"></i>
+                                    </a>
+                                    <a target="_blank" href="https://twitter.com/home?status=<?php echo e(action('Frontend\ProductController@show',$product->id)); ?>" class="social-icon si-borderless si-twitter">
+                                        <i class="icon-twitter"></i>
+                                        <i class="icon-twitter"></i>
+                                    </a>
+                                    <a target="_blank" href="http://pinterest.com/pin/create/button/?url=<?php echo e(action('Frontend\ProductController@show',$product->id)); ?>&description=<?php echo e($product->title); ?>&media=<?php echo e(action('FileEntryController@show',$product->image)); ?>" class="social-icon si-borderless si-pinterest">
+                                        <i class="icon-pinterest"></i>
+                                        <i class="icon-pinterest"></i>
+                                    </a>
+                                    <a target="_blank" href="https://plus.google.com/share?url=<?php echo e(action('Frontend\ProductController@show',$product->id)); ?>" class="social-icon si-borderless si-gplus">
+                                        <i class="icon-gplus"></i>
+                                        <i class="icon-gplus"></i>
+                                    </a>
+                                    <a target="_blank" href="mailto:someone@example.com?body=<?php echo e(action('Frontend\ProductController@show',$product->id)); ?>&subject=<?php echo e($product->title); ?>" class="social-icon si-borderless si-email3">
+                                        <i class="icon-email3"></i>
+                                        <i class="icon-email3"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Product Single - Share End -->
+
+
+                        </div>
+
+
+                        <div class="col_full nobottommargin">
+
+                            <div class="tabs clearfix nobottommargin ui-tabs ui-widget ui-widget-content ui-corner-all"
+                                 id="tab-1">
+
+                                <ul class="tab-nav clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"
+                                    role="tablist">
+
+                                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
+                                        aria-controls="tabs-3" aria-labelledby="ui-id-3" aria-selected="false"><a
+                                                href="#tabs-3" class="ui-tabs-anchor" role="presentation" tabindex="-1"
+                                                id="ui-id-3"><i class="icon-star3"></i><span
+                                                    class="hidden-xs"> Yorumlar</span></a></li>
+                                </ul>
+
+                                <div class="tab-container">
+
+                                    <div id="reviews" class="clearfix">
+
+                                        <ol class="commentlist clearfix">
+
+                                            <?php foreach($product->comments as $comment): ?>
+                                            <li class="comment even thread-even depth-1" id="li-comment-1">
+                                                <div id="comment-1" class="comment-wrap clearfix">
+
+                                                    <div class="comment-meta">
+                                                        <div class="comment-author vcard">
+																	<span class="comment-avatar clearfix">
+																	<img
+                                                                         <?php if(!$comment->user->userable->instagramAccount): ?>
+                                                                         src="http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60"
+                                                                         <?php else: ?>
+                                                                         src="<?php echo e($comment->user->userable->instagramAccount->profile_picture); ?>"
+                                                                         <?php endif; ?>
+
+                                                                         height="60" width="60"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="comment-content clearfix">
+                                                        <div class="comment-author"><?php echo e($comment->user->name); ?><span><a href="#"
+                                                                                                     title="Permalink to this comment">
+                                                                    <?php echo e($comment->created_at); ?></a></span></div>
+                                                        <p><?php echo e($comment->comment_body); ?></p>
+
+                                                    </div>
+
+                                                    <div class="clear"></div>
+
+                                                </div>
+                                            </li>
+                                            <?php endforeach; ?>
+
+                                        </ol>
+                                        <?php if(\Illuminate\Support\Facades\Auth::check()): ?>
+                                        <!-- Modal Reviews
+                                        ============================================= -->
+                                        <a href="#" data-toggle="modal" data-target="#reviewFormModal"
+                                           class="button button-3d nomargin fright">Yorum Ekle</a>
+
+                                        <div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog"
+                                             aria-labelledby="reviewFormModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">×
+                                                        </button>
+                                                        <h4 class="modal-title" id="reviewFormModalLabel">Yorum Ekleyin</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form class="nobottommargin" id="template-reviewform"
+                                                              name="template-reviewform" action="<?php echo e(action('Frontend\ProductController@addReview',['id'=>$product->id])); ?>" method="post">
+
+
+                                                            <div class="clear"></div>
+
+                                                            <div class="col_full">
+                                                                <label for="template-reviewform-comment">Yorum
+                                                                    <small>*</small>
+                                                                </label>
+                                                                    <textarea class="required form-control"
+                                                                              id="template-reviewform-comment"
+                                                                              name="comment_body"
+                                                                              rows="6" cols="30"></textarea>
+                                                            </div>
+
+                                                            <div class="col_full nobottommargin">
+                                                                <button class="button button-3d nomargin"
+                                                                        type="submit"
+                                                                        id="template-reviewform-submit"
+                                                                        name="template-reviewform-submit"
+                                                                        value="submit">Yorum Ekle
+                                                                </button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                                data-dismiss="modal">Kapat
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /.modal -->
+                                        <!-- Modal Reviews End -->
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="clear"></div>
+                <div class="line"></div>
+
+                <div class="col_full nobottommargin">
+
+                    <h4>Related Products</h4>
+
+                    <div id="oc-product" class="owl-carousel product-carousel">
+                        <?php foreach($relatedProducts as $relatedProduct): ?>
+                            <div class="oc-item">
+                                <div class="product iproduct clearfix">
+                                    <div class="product-image">
+                                        <a href="<?php echo e(action('Frontend\ProductController@show',$relatedProduct->id)); ?>"><img
+                                                    src="<?php echo e(action('FileEntryController@show',$relatedProduct->image)); ?>"
+                                                    alt=""></a>
+
+                                        <div class="product-overlay">
+                                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Sepete Ekle</span></a>
+                                            <a href="include/ajax/shop-item.html" class="item-quick-view"
+                                               data-lightbox="ajax">
+                                                <i class="icon-zoom-in2"></i><span>Detaylı Bak</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-desc center">
+                                        <div class="product-title"><h3><a
+                                                        href="<?php echo e(action('Frontend\ProductController@show',$relatedProduct->id)); ?>"><?php echo e($relatedProduct->title); ?></a>
+                                            </h3></div>
+                                        <div class="product-price">
+                                            <ins><?php echo e($relatedProduct->price); ?> <?php echo e($product->currencyUnit->unit_short_name); ?></ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+
+                    </div>
+
+                    <script type="text/javascript">
+
+                        jQuery(document).ready(function ($) {
+                            function decrement(objectID,value){
+                                alert('object' + value);
+                            };
+
+                            var ocProduct = $("#oc-product");
+
+                            ocProduct.owlCarousel({
+                                margin: 30,
+                                nav: true,
+                                navText: ['<i class="icon-angle-left"></i>', '<i class="icon-angle-right"></i>'],
+                                autoplayHoverPause: true,
+                                dots: false,
+                                responsive: {
+                                    0: {items: 1},
+                                    480: {items: 2},
+                                    768: {items: 3},
+                                    992: {items: 4}
+                                }
+                            });
+
+                        });
+
+                    </script>
+
+
+                    <script type="text/javascript">
+
+                        jQuery(document).ready(function ($) {
+
+                            var ocProduct = $("#oc-product");
+
+                            ocProduct.owlCarousel({
+                                margin: 30,
+                                nav: true,
+                                navText: ['<i class="icon-angle-left"></i>', '<i class="icon-angle-right"></i>'],
+                                autoplayHoverPause: true,
+                                dots: false,
+                                responsive: {
+                                    0: {items: 1},
+                                    480: {items: 2},
+                                    768: {items: 3},
+                                    992: {items: 4}
+                                }
+                            });
+
+                        });
+
+                    </script>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('user.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

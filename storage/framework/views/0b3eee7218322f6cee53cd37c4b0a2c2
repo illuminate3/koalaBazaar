@@ -1,0 +1,25 @@
+<?php $__env->startSection('title'); ?>
+    Welcome Page
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('body'); ?>
+    <?php $__env->startSection('page_level_scripts'); ?>
+
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/admin/layout2/scripts/layout.js" type="text/javascript"></script>
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/admin/layout2/scripts/quick-sidebar.js" type="text/javascript"></script>
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/admin/layout2/scripts/demo.js" type="text/javascript"></script>
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_level_portlets'); ?>
+    Hello Welcome tester ...  There will be portlets here..
+<?php $__env->stopSection(); ?>
+
+
+
+
+<?php echo $__env->make('dashboard.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

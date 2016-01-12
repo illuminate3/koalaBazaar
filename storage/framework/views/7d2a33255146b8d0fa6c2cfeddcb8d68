@@ -1,0 +1,161 @@
+<?php $__env->startSection('title','Kategoriler'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+        <!-- Page Title
+    ============================================= -->
+<?php if($category): ?>
+    <section id="page-title">
+
+        <div class="container clearfix">
+            <h1><?php echo e($category->title); ?></h1>
+            <span><?php echo e($category->description); ?></span>
+            <ol class="breadcrumb">
+                <li><a href="<?php echo e(action('Frontend\HomeController@index')); ?>">Anasayfa</a></li>
+                <li class="active"><?php echo e($category->title); ?></li>
+            </ol>
+        </div>
+
+    </section><!-- #page-title end -->
+    <?php endif; ?>
+            <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <?php if($errors->has()): ?>
+                    <?php foreach($errors->all() as $error): ?>
+                        <div class="alert alert-danger">
+                            <?php echo e($error); ?>
+
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+                <?php if(\Illuminate\Support\Facades\Session::has('success')): ?>
+                    <?php foreach(\Illuminate\Support\Facades\Session::pull('success') as $success): ?>
+                        <div class="alert alert-success">
+                            <?php echo e($success); ?>
+
+                        </div>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                                <!-- Post Content
+                ============================================= -->
+                        <div class="postcontent nobottommargin col_last">
+
+                            <!-- Shop
+                            ============================================= -->
+                            <div id="shop" class="product-3 clearfix">
+
+                                <?php foreach($paginator->items() as $item): ?>
+                                    <div class="product clearfix">
+                                        <div class="product-image">
+                                            <a href="<?php echo e(action('Frontend\ProductController@show',$item->id)); ?>"><img
+                                                        src="<?php echo e(action('FileEntryController@show',$item->image)); ?>"
+                                                        alt="Checked Short Dress"></a>
+
+                                            <div class="product-overlay">
+                                                <a href="<?php echo e(action('Frontend\ProductController@addToCart',$item->id)); ?>"
+                                                   class="add-to-cart"><i class="icon-shopping-cart"></i><span> Sepete Ekle</span></a>
+                                                <a href="<?php echo e(action('Frontend\ProductController@show',$item->id)); ?>"
+                                                   class="item-quick-view"><i
+                                                            class="icon-zoom-in2"></i><span>View</span></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-desc center">
+                                            <div class="product-title"><h3><a
+                                                            href="<?php echo e(action('Frontend\ProductController@show',$item->id)); ?>">
+                                                        <?php if(strlen($item->title)>15): ?>
+                                                            <?php echo e(substr($item->title,0,15)); ?>...
+                                                            <?php else: ?> <?php echo e($item->title); ?>
+
+                                                        <?php endif; ?></a></h3></div>
+                                            <div class="product-price">
+                                                <ins><?php echo e($item->price); ?> <?php echo e($item->currencyUnit->unit_short_name); ?></ins>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+
+
+                            </div>
+                            <!-- #shop end -->
+
+                            <ul class="pagination topmargin nobottommargin">
+                                <li <?php if(1==$paginator->currentPage()): ?> class="disabled" <?php endif; ?>><a
+                                            href="<?php echo e($paginator->url(1)); ?>">«</a></li>
+                                <?php for($i = 1 ; $i <=$paginator->lastPage(); $i++): ?>
+                                    <li <?php if($i==$paginator->currentPage()): ?> class="active" <?php endif; ?> ><a
+                                                href="<?php echo e($paginator->url($i)); ?>"><?php echo e($i); ?></a></li>
+                                <?php endfor; ?>
+                                <li <?php if($paginator->lastPage()==$paginator->currentPage()): ?> class="disabled" <?php endif; ?>><a
+                                            href="<?php echo e($paginator->url($paginator->lastPage())); ?>">»</a></li>
+                            </ul>
+                        </div><!-- .postcontent end -->
+
+                        <!-- Sidebar
+                        ============================================= -->
+                        <div class="sidebar nobottommargin">
+                            <div class="sidebar-widgets-wrap">
+
+                                <div class="widget widget_links clearfix">
+
+                                    <h4>Kategoriler</h4>
+                                    <ul>
+                                        <?php foreach(\App\Category::all() as $category): ?>
+                                            <li>
+                                                <a href="<?php echo e(action('Frontend\HomeController@category',$category->slug)); ?>"><?php echo e($category->title); ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+
+                                </div>
+
+
+                                <div class="widget clearfix">
+
+                                    <h4>Son Eklenenler</h4>
+
+                                    <div id="post-list-footer">
+                                        <?php foreach($recentlyAddedProducts as $product): ?>
+                                            <div class="spost clearfix">
+                                                <div class="entry-image">
+                                                    <a href="<?php echo e(action('Frontend\ProductController@show',$product->id)); ?>"><img
+                                                                src="<?php echo e(action('FileEntryController@show',$product->image)); ?>"
+                                                                alt="Image"></a>
+                                                </div>
+                                                <div class="entry-c">
+                                                    <div class="entry-title">
+                                                        <h4>
+                                                            <a href="<?php echo e(action('Frontend\ProductController@show',$product->id)); ?>"><?php echo e($product->title); ?></a>
+                                                        </h4>
+                                                    </div>
+                                                    <ul class="entry-meta">
+
+                                                        <li class="color"><?php echo e($product->price); ?> <?php echo e($product->currencyUnit->unit_short_name); ?></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div><!-- .sidebar end -->
+
+            </div>
+
+        </div>
+
+    </section><!-- #content end -->
+
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('user.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

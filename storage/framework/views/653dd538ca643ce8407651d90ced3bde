@@ -1,0 +1,157 @@
+<?php $__env->startSection('title','Ürünlerim'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_level_styles'); ?>
+        <!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('/dashboard')); ?>/assets/global/plugins/select2/select2.css">
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('/dashboard')); ?>/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css">
+<link href="<?php echo e(asset('/dashboard')); ?>/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css">
+<!-- END PAGE LEVEL STYLES -->
+<?php $__env->stopSection(); ?>
+        
+<?php $__env->startSection('page_level_content'); ?>
+        <!-- BEGIN PAGE LEVEL CONTENT-->
+<div class="row">
+    <?php if($errors->has()): ?>
+        <?php foreach($errors->all() as $error): ?>
+            <div class="alert alert-danger">
+                <i class="icon-remove-sign"></i><?php echo e($error); ?>
+
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <?php if(\Illuminate\Support\Facades\Session::has('success')): ?>
+        <?php foreach(\Illuminate\Support\Facades\Session::pull('success') as $success): ?>
+            <div class="alert alert-success">
+                <i class="icon-remove-sign"></i><?php echo e($success); ?>
+
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet box red">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-basket"></i>Ürünleriniz
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                       Ürün id
+                                    </th>
+                                    <th>
+                                        Ürün Adı
+                                    </th>
+                                    <th>
+                                        Ürün Açıklaması
+                                    </th>
+                                    <th>
+                                        Ürün Resmi
+                                    </th>
+                                    <th>
+                                       Durum
+                                    </th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="detaylı duzenle" style="width: 139px;">
+                                        Detaylı düzenle
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach($products as $product): ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo e($product->id); ?>
+
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;">
+                                                <?php echo e($product->title); ?> </a>
+                                        </td>
+                                        <td>
+                                            <?php echo e($product->description); ?>
+
+                                        </td>
+                                        <td>
+                                            <a href="<?php if($product->image!=null): ?> <?php echo e(action('FileEntryController@show',$product->image)); ?><?php else: ?> <?php echo e($product->instagram->image_url); ?>  <?php endif; ?>" class="fancybox-button" data-rel="fancybox-button">
+                                                <img class="img-responsive" src="<?php if($product->image!=null): ?> <?php echo e(action('FileEntryController@show',$product->image)); ?><?php else: ?> <?php echo e($product->instagram->image_url); ?>  <?php endif; ?>" style="width: 100px;" alt="">
+                                            </a>
+                                        </td>
+                                        <td>
+
+                                            <?php if($product->is_active): ?>
+                                                <span class="label label-xl label-success">
+										Aktif </span>
+
+
+                                            <?php else: ?>
+                                                <span class="label label-sm label-default">
+										Deaktif </span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo e(action('Dashboard\ProductController@edit',$product->id)); ?>" class="btn default btn-xs purple">
+                                                Düzenle
+                                            </a>
+                                            <?php if($product->is_active): ?>
+                                                <a href="<?php echo e(action('Dashboard\ProductController@setAsDeactive',$product->id)); ?>" class="btn default btn-xs default">
+                                                    Deaktive et
+                                                </a>
+                                            <?php else: ?>
+                                                <a href="<?php echo e(action('Dashboard\ProductController@setAsActive',$product->id)); ?>" class="btn default btn-xs green">
+                                                    Aktive et
+                                                </a>
+                                            <?php endif; ?>
+                                        </td>
+
+                                    </tr>
+
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <ul class="pagination topmargin nobottommargin pull-right">
+                        <li <?php if(1==$paginator->currentPage()): ?> class="disabled" <?php endif; ?>><a
+                                    href="<?php echo e($paginator->url(1)); ?>">«</a></li>
+                        <?php for($i = 1 ; $i <=$paginator->lastPage(); $i++): ?>
+                            <li <?php if($i==$paginator->currentPage()): ?> class="active" <?php endif; ?> ><a
+                                        href="<?php echo e($paginator->url($i)); ?>"><?php echo e($i); ?></a></li>
+                        <?php endfor; ?>
+                        <li <?php if($paginator->lastPage()==$paginator->currentPage()): ?> class="disabled" <?php endif; ?>><a
+                                    href="<?php echo e($paginator->url($paginator->lastPage())); ?>">»</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+<?php $__env->stopSection(); ?>
+        <!-- END PAGE LEVEL CONTENT-->
+
+<?php $__env->startSection('page_level_plugins'); ?>
+
+    <script type="text/javascript" src="<?php echo e(asset('/dashboard')); ?>/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/dashboard')); ?>/assets/global/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/dashboard')); ?>/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/dashboard')); ?>/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+    </script>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page_level_scripts'); ?>
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/global/scripts/datatable.js"></script>
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/admin/pages/scripts/ecommerce-products-edit.js"></script>
+    <script src="<?php echo e(asset('/dashboard')); ?>/assets/admin/pages/scripts/table-managed.js"></script>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('dashboard.mainSupplier', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

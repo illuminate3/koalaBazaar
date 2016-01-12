@@ -37,11 +37,13 @@
             <div class="col_one_third bottommargin-lg col_last">
 
                 <div class="col_full bottommargin-sm">
-                    <a href="{{ action('Frontend\ProductController@show',5) }}"><img src="{{asset('/user')}}/images/shop/banners/13.jpg" alt="Image"></a>
+                    <a href="{{ action('Frontend\ProductController@show',5) }}"><img
+                                src="{{asset('/user')}}/images/shop/banners/13.jpg" alt="Image"></a>
                 </div>
 
                 <div class="col_full nobottommargin">
-                    <a href="{{ action('Frontend\ProductController@show',3) }}"><img src="{{asset('/user')}}/images/shop/banners/14.jpg" alt="Image"></a>
+                    <a href="{{ action('Frontend\ProductController@show',3) }}"><img
+                                src="{{asset('/user')}}/images/shop/banners/14.jpg" alt="Image"></a>
                 </div>
 
             </div>
@@ -55,7 +57,8 @@
             <div class="container clearfix">
                 <h3>Instagram'da satış yapan butiklerle online alışveriş</h3>
                 <span>Sistemimize kayıtlı butiklerle keyifli alışverişler dileriz.</span>
-                <a href="{{ action('Frontend\HomeController@category') }}" class="button button-xlarge button-rounded">Alışverişe Başla</a>
+                <a href="{{ action('Frontend\HomeController@category') }}" class="button button-xlarge button-rounded">Alışverişe
+                    Başla</a>
             </div>
         </div>
 
@@ -70,19 +73,23 @@
 
                 <div>
                     @foreach($recentlyArrivedProducts as $recentlyArrivedProduct)
-                    <div class="spost clearfix">
-                        <div class="entry-image">
-                            <a href="{{ action('Frontend\ProductController@show',$recentlyArrivedProduct->id) }}"><img src="{{ action('FileEntryController@show',$recentlyArrivedProduct->image) }}" alt="Image"></a>
-                        </div>
-                        <div class="entry-c">
-                            <div class="entry-title">
-                                <h4><a href="{{ action('Frontend\ProductController@show',$recentlyArrivedProduct->id) }}">{{ $recentlyArrivedProduct->title }}</a></h4>
+                        <div class="spost clearfix">
+                            <div class="entry-image">
+                                <a href="{{ action('Frontend\ProductController@show',$recentlyArrivedProduct->id) }}"><img
+                                            src="{{ action('FileEntryController@show',$recentlyArrivedProduct->image) }}"
+                                            alt="Image"></a>
                             </div>
-                            <ul class="entry-meta">
-                                <li class="color">{{ $recentlyArrivedProduct->price }}try</li>
-                            </ul>
+                            <div class="entry-c">
+                                <div class="entry-title">
+                                    <h4>
+                                        <a href="{{ action('Frontend\ProductController@show',$recentlyArrivedProduct->id) }}">{{ $recentlyArrivedProduct->title }}</a>
+                                    </h4>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li class="color">{{ $recentlyArrivedProduct->price }}try</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                     @endforeach
 
                 </div>
@@ -100,11 +107,15 @@
                     @foreach($popularProducts as $populerProduct)
                         <div class="spost clearfix">
                             <div class="entry-image">
-                                <a href="{{ action('Frontend\ProductController@show',$populerProduct->id) }}"><img src="{{ action('FileEntryController@show',$populerProduct->image) }}" alt="Image"></a>
+                                <a href="{{ action('Frontend\ProductController@show',$populerProduct->id) }}"><img
+                                            src="{{ action('FileEntryController@show',$populerProduct->image) }}"
+                                            alt="Image"></a>
                             </div>
                             <div class="entry-c">
                                 <div class="entry-title">
-                                    <h4><a href="{{ action('Frontend\ProductController@show',$populerProduct->id) }}">{{ $populerProduct->title }}</a></h4>
+                                    <h4>
+                                        <a href="{{ action('Frontend\ProductController@show',$populerProduct->id) }}">{{ $populerProduct->title }}</a>
+                                    </h4>
                                 </div>
                                 <ul class="entry-meta">
                                     <li class="color">{{ $populerProduct->price }}try</li>
@@ -128,11 +139,15 @@
                     @foreach($recommendedProducts as $recommendedProduct)
                         <div class="spost clearfix">
                             <div class="entry-image">
-                                <a href="{{ action('Frontend\ProductController@show',$recommendedProduct->id) }}"><img src="{{ action('FileEntryController@show',$recommendedProduct->image) }}" alt="Image"></a>
+                                <a href="{{ action('Frontend\ProductController@show',$recommendedProduct->id) }}"><img
+                                            src="{{ action('FileEntryController@show',$recommendedProduct->image) }}"
+                                            alt="Image"></a>
                             </div>
                             <div class="entry-c">
                                 <div class="entry-title">
-                                    <h4><a href="{{ action('Frontend\ProductController@show',$recommendedProduct->id) }}">{{ $recommendedProduct->title }}</a></h4>
+                                    <h4>
+                                        <a href="{{ action('Frontend\ProductController@show',$recommendedProduct->id) }}">{{ $recommendedProduct->title }}</a>
+                                    </h4>
                                 </div>
                                 <ul class="entry-meta">
                                     <li class="color">{{ $recommendedProduct->price }}try</li>
@@ -150,18 +165,16 @@
 
             <div id="oc-clients-full" class="owl-carousel image-carousel">
                 @foreach($suppliers as $supplier)
-                <div class="oc-item"><a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}"><img src="{{ $supplier->profile_image }}"
-                                                      alt="Clients"></a></div>
+                    <div class="oc-item"><a href="{{ action('Frontend\HomeController@shopDetail',$supplier->id) }}"><img
+                                    src="{{ $supplier->profile_image }}"
+                                    alt="Clients"></a></div>
                 @endforeach
 
             </div>
 
             <script type="text/javascript">
-
                 jQuery(document).ready(function ($) {
-
                     var ocClients = $("#oc-clients-full");
-
                     ocClients.owlCarousel({
                         margin: 30,
                         nav: false,
@@ -177,11 +190,8 @@
                         }
                     });
                 });
-
             </script>
-
         </div>
-
     </div>
 
 </section>

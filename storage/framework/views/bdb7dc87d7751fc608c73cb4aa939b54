@@ -1,0 +1,146 @@
+<?php $__env->startSection('title','Siparis'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+            <?php if($errors->has()): ?>
+                <?php foreach($errors->all() as $error): ?>
+                    <div class="alert alert-danger">
+                        <?php echo e($error); ?>
+
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+            <?php if(\Illuminate\Support\Facades\Session::has('success')): ?>
+                <?php foreach(\Illuminate\Support\Facades\Session::pull('success') as $success): ?>
+                    <div class="alert alert-success">
+                        <?php echo e($success); ?>
+
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <div class="col_half"></div>
+            <div class="col_half col_last"></div>
+
+
+            <div class="row clearfix">
+
+                <div class="col-md-12">
+
+                    <form id="billing-form" name="billing-form" class="nobottommargin" action="<?php echo e(action('Frontend\ProductController@proceedCheckOut')); ?>" method="post">
+                        <div class="col-md-6">
+                            <h3>Fatura Adresi</h3>
+                            <label for="billing-form-name">Adres Seçin:</label>
+                            <select class="form-control input-medium" data-placeholder="Select..." tabindex="-1"
+                                    name="billing_address">
+                                <option value="">Select...</option>
+                                <?php for($i=0 ; $i<count($addresses) ; $i++): ?>
+                                    <option value="<?php echo e($addresses[$i]->id); ?>"> <?php echo e($addresses[$i]->address_name); ?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="">Gönderim Adresi</h3>
+                            <label for="billing-form-name">Adres Seçin:</label>
+                            <select class="form-control input-medium" tabindex="-1" name="shipping_address">
+                                <?php for($i=0 ; $i<count($addresses) ; $i++): ?>
+                                    <option value="<?php echo e($addresses[$i]->id); ?>" <?php if($i==0): ?> selected <?php endif; ?>> <?php echo e($addresses[$i]->address_name); ?></option>
+                                <?php endfor; ?>
+
+                            </select>
+                        </div>
+
+
+                </div>
+
+                <div class="clear bottommargin"></div>
+
+                <div class="col-md-6">
+                    <div class="table-responsive clearfix">
+                        <h4>Siparişleriniz</h4>
+
+                        <table class="table cart">
+                            <thead>
+                            <tr>
+                                <th class="cart-product-thumbnail">&nbsp;</th>
+                                <th class="cart-product-name">Ürün</th>
+                                <th class="cart-product-quantity">Adet</th>
+                                <th class="cart-product-subtotal">Toplam</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php $cartTotal=0 ?>
+                            <?php foreach($products as $product): ?>
+                                <?php $productObject=$product->product;?>
+                            <tr class="cart_item">
+                                <td class="cart-product-thumbnail">
+                                    <a href="<?php echo e(action('Frontend\ProductController@show',$product->product_id)); ?>"><img width="64" height="64" src="<?php echo e(action('FileEntryController@show',$productObject->image)); ?>"
+                                                     ></a>
+                                </td>
+
+                                <td class="cart-product-name">
+                                    <a href="<?php echo e(action('Frontend\ProductController@show',$product->product_id)); ?>"><?php echo e($productObject->title); ?></a>
+                                </td>
+
+                                <td class="cart-product-quantity">
+                                    <div class="quantity clearfix">
+                                        1x<?php echo e($product->count); ?>
+
+                                    </div>
+                                </td>
+
+                                <td class="cart-product-subtotal">
+                                    <span class="amount"><?php echo e($product->count*$productObject->price); ?> TRY</span>
+                                </td>
+                            </tr>
+                                <?php $cartTotal+=$product->count*$productObject->price ;?>
+                            <?php endforeach; ?>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <h4>Alışveriş Tutarı</h4>
+
+                        <table class="table cart">
+                            <tbody>
+
+                            <tr class="cart_item">
+                                <td class="cart-product-name">
+                                    <strong>Toplam</strong>
+                                </td>
+
+                                <td class="cart-product-name">
+                                    <span class="amount color lead">
+                                       <strong><?php echo e($cartTotal); ?> TRY</strong>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <button class="button button-3d fright" type="submit">Siparişi Ver</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('user.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

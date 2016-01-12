@@ -1,0 +1,47 @@
+<?php $__env->startSection('title'); ?>
+    Welcome Page
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('body'); ?>
+    <?php echo $__env->make('dashboard.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="clearfix">
+    </div>
+
+    <div class="container">
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+             <?php echo $__env->make('dashboard.leftSidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                     <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+
+                    <!-- BEGIN PAGE HEADER-->
+                    <h3 class="page-title">
+                        Blank Page <small>blank page</small>
+                    </h3>
+                    <!-- BEGIN PAGE CONTENT-->
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+
+                            Page content goes here
+
+
+
+
+                        </div>
+                    </div>
+                    <!-- END PAGE CONTENT-->
+                </div>
+            </div>
+            <!-- END CONTENT -->
+            <!-- BEGIN QUICK SIDEBAR -->
+            <!--Cooming Soon...-->
+            <!-- END QUICK SIDEBAR -->
+        </div>
+        <!-- END CONTAINER -->
+        <?php echo $__env->make('dashboard.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+
+<?php echo $__env->make('dashboard.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

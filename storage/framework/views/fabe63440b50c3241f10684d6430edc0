@@ -1,0 +1,99 @@
+<?php $__env->startSection('title','Sipariş Geçmişim - KoalaBazaar'); ?>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('page_level_content'); ?>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet box red">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-basket"></i>Sipariş Geçmişiniz
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Satıcı
+                                </th>
+                                <th>
+                                    Ürün Adı
+                                </th>
+                                <th>
+                                    Ürün Açıklaması
+                                </th>
+                                <th>
+                                    Ürün Resmi
+                                </th>
+                                <th>
+                                    Fiyatı
+                                </th>
+                                <th>
+                                    Miktarı
+                                </th>
+                                <th>
+                                    Toplam Tutar
+                                </th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach($checkouts as $checkout): ?>
+                            <tr>
+                                <td>
+                                    <?php echo e($checkout->supplier->shop_name); ?>
+
+                                </td>
+                                <td>
+                                    <a href="javascript:;">
+                                        <?php echo e($checkout->product_title); ?> </a>
+                                </td>
+                                <td>
+                                    <?php echo e($checkout->description); ?>
+
+                                </td>
+                                <td>
+                                        <img class="img-responsive" src="<?php if($checkout->image!=null): ?> <?php echo e(action('FileEntryController@show',$checkout->image)); ?><?php else: ?> <?php echo e($checkout->product->image->image_url); ?>  <?php endif; ?>" style="width: 100px;" alt="">
+
+                                </td>
+                                <td>
+                                    <?php echo e($checkout->product->price); ?>
+
+                                </td>
+                                <td>
+                                    <?php echo e($checkout->count); ?>
+
+                                </td>
+                                <td>
+                                    <?php echo e($checkout->product->price * $checkout->count); ?>
+
+                                </td>
+                            </tr>
+
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <ul class="pagination topmargin nobottommargin pull-right">
+                    <li <?php if(1==$paginator->currentPage()): ?> class="disabled" <?php endif; ?>><a
+                                href="<?php echo e($paginator->url(1)); ?>">«</a></li>
+                    <?php for($i = 1 ; $i <=$paginator->lastPage(); $i++): ?>
+                        <li <?php if($i==$paginator->currentPage()): ?> class="active" <?php endif; ?> ><a
+                                    href="<?php echo e($paginator->url($i)); ?>"><?php echo e($i); ?></a></li>
+                    <?php endfor; ?>
+                    <li <?php if($paginator->lastPage()==$paginator->currentPage()): ?> class="disabled" <?php endif; ?>><a
+                                href="<?php echo e($paginator->url($paginator->lastPage())); ?>">»</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('dashboard.customer.mainCustomer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

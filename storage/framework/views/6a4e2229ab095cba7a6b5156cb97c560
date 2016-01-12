@@ -1,0 +1,142 @@
+<?php $__env->startSection('title','Onay Bekleyen Ödeme'); ?>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('page_level_content'); ?>
+    <form id="billing-form" name="billing-form" class="nobottommargin" action="<?php echo e(action('Dashboard\SupplierController@confirmPayment',$payment->id)); ?>" method="post">
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="portlet blue-hoki box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-user"></i>Müşteri Bilgileri
+                    </div>
+                </div>
+
+
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            İsim:
+                        </div>
+                        <div class="col-md-7 value">
+                          <?php echo e($customer->user->name); ?>    <?php echo e($customer->user->surname); ?>
+
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Email:
+                        </div>
+                        <div class="col-md-7 value">
+                            <?php echo e($customer->user->email); ?>
+
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Telefon:
+                        </div>
+                        <div class="col-md-7 value">
+                            <?php echo e($customer->phone); ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <div class="portlet red-sunglo box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-money"></i>Ödeme Seçeneği
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-12 value">
+                            <?php echo $paymentInfo->title; ?><br>
+                            <?php echo $paymentInfo->detail; ?><br>
+                        </div>
+                        <div class="col-md-12 value">
+                            NOT: <br>
+                            <?php echo e($payment->text); ?><br>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet green box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-basket"></i>Ödeme Bekleyen Alışverişi
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Ürün Adı
+                                </th>
+                                <th>
+                                    Ürün Açıklaması
+                                </th>
+                                <th>
+                                    Fiyatı
+                                </th>
+                                <th>
+                                    Miktarı
+                                </th>
+                                <th>
+                                    Toplam Tutar
+                                </th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach($checkOuts as $checkout): ?>
+                            <tr>
+                                <td>
+                                    <a href="#" target="_blank">
+                                       <?php echo e($checkout->product_title); ?> </a>
+                                </td>
+                                <td>
+                                    <?php echo e($checkout->description); ?>
+
+                                </td>
+                                <td>
+                                    <?php echo e($checkout->product_price); ?>
+
+                                </td>
+                                <td>
+                                    <?php echo e($checkout->count); ?>
+
+                                </td>
+                                <td>
+                                    <?php echo e($checkout->product_price * $checkout->count); ?>
+
+                                </td>
+                            </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" class="btn blue pull-right"><i class="fa fa-check"></i> Ödemeyi Onaylayın</button>
+    </div>
+    </form>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('dashboard.mainSupplier', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

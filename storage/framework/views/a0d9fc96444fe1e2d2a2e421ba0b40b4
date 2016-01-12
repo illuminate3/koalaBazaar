@@ -1,0 +1,68 @@
+<?php $__env->startSection('title','Mağazalar'); ?>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('content'); ?>
+
+    <section id="content">
+
+        <div class="content-wrap">
+
+
+            <div class="container clearfix">
+                <?php foreach($paginator->items() as $supplier): ?>
+                        <!-- Portfolio Single Image
+                ============================================= -->
+                <div class="col_one_third portfolio-single-image nobottommargin">
+                    <a href="<?php echo e(action('Frontend\HomeController@shopDetail',$supplier->id)); ?>">
+                        <img src="<?php echo e($supplier->profile_image); ?>" alt=""></a>
+                </div>
+                <!-- .portfolio-single-image end -->
+
+                <!-- Portfolio Single Content
+                ============================================= -->
+                <div class="col_two_third portfolio-single-content col_last nobottommargin">
+                    <!-- Portfolio Single - Description
+                    ============================================= -->
+                    <div class="fancy-title title-bottom-border">
+                        <h2>
+                            <a href="<?php echo e(action('Frontend\HomeController@shopDetail',$supplier->id)); ?>"><?php echo e($supplier->shop_name); ?>
+
+                                :</a></h2>
+                    </div>
+                    <?php echo $supplier->description; ?>
+
+                            <!-- Portfolio Single - Description End -->
+
+                </div>
+                <!-- .portfolio-single-content end -->
+
+                <div class="clear">
+                </div>
+
+                <div class="divider divider-center">
+                    <i class="icon-circle"></i>
+                </div>
+
+                <?php endforeach; ?>
+
+                <div class="row">
+                    <ul class="pagination topmargin nobottommargin pull-right">
+                        <li <?php if(1==$paginator->currentPage()): ?> class="disabled" <?php endif; ?>><a
+                                    href="<?php echo e($paginator->url(1)); ?>">«</a></li>
+                        <?php for($i = 1 ; $i <=$paginator->lastPage(); $i++): ?>
+                            <li <?php if($i==$paginator->currentPage()): ?> class="active" <?php endif; ?> ><a
+                                        href="<?php echo e($paginator->url($i)); ?>"><?php echo e($i); ?></a></li>
+                        <?php endfor; ?>
+                        <li <?php if($paginator->lastPage()==$paginator->currentPage()): ?> class="disabled" <?php endif; ?>><a
+                                    href="<?php echo e($paginator->url($paginator->lastPage())); ?>">»</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section><!-- #content end -->
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('user.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

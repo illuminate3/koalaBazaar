@@ -1,0 +1,86 @@
+<?php $__env->startSection('title','Odeme Bilgilerim'); ?>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('page_level_content'); ?>
+
+
+    <?php if($errors->has()): ?>
+        <?php foreach($errors->all() as $error): ?>
+            <div class="alert alert-danger">
+                <i class="icon-remove-sign"></i><?php echo e($error); ?>
+
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if(\Illuminate\Support\Facades\Session::has('success')): ?>
+        <?php foreach(\Illuminate\Support\Facades\Session::pull('success') as $success): ?>
+            <div class="alert alert-success">
+                <i class="icon-remove-sign"></i><?php echo e($success); ?>
+
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box purple">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-barcode"></i>Ödeme Bilgileriniz
+                    </div>
+                    <div class="actions">
+                        <a href="<?php echo e(action('Dashboard\PaymentInfoController@create')); ?>" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Ödeme Bilgisi Ekle</a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div id="sample_3_wrapper" class="dataTables_wrapper no-footer">
+
+                        <div class="table-scrollable">
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer" id="sample_3" role="grid" aria-describedby="sample_3_info">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="sample_3" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+										 Username: activate to sort column ascending" style="width: 80px;">
+                                        Ödeme Bilgisi Adı
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="sample_3" rowspan="1" colspan="1" aria-label="
+										 Email: activate to sort column ascending" style="width: 139px;">
+                                        Detayları
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <?php foreach($paymentInfos as $paymentInfo): ?>
+                                    <tr class="odd gradeX" role="row">
+                                        <td>
+                                            <?php echo e($paymentInfo->title); ?>
+
+                                        </td>
+                                        <td>
+                                            <?php echo $paymentInfo->detail; ?>
+
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo e(action('Dashboard\PaymentInfoController@edit',$paymentInfo->id)); ?>" class="btn default btn-xs purple">
+                                                Düzenle</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('dashboard.mainSupplier', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
